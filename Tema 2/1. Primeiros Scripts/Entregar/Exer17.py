@@ -12,7 +12,7 @@ euros = float(input("Introduce o en euros a canto custa un litro de combustible:
 
 #Realizamos as operaciones necesarias para o correcto funcionamento do código
 
-custo_euros_litro = l * euros
+custo_euros_litro = (l * euros)/100
 custoViaxe = custo_euros_litro * km
 
 #Amosamos por pantalla

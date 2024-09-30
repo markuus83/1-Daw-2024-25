@@ -6,7 +6,6 @@ A continuación preguntaralle ao usuario se a tarifa é en bruto ou en neto. A p
     · Se o usuario indica que o custe da hora é en bruto, indícalle ao usuario que introduza o IRPF para poder calcularlle o salario neto
 
 """
-
 __author__ = "Marcos Chouza Cruces"
 
 #Importamos unha librería. Non é precisa para o correcto funcionamento do código

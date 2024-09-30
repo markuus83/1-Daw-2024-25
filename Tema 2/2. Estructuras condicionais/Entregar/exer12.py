@@ -1,38 +1,25 @@
-""" 
+"""
 Escribe un script que pida o nome de usuario e contrasinal ao usuario. Indica se o inicio de sesión é correcto. O nome de usuario sería “python” e o contrasinal “pip”.
 """
 
 __author__ = "Marcos Chouza Cruces"
 
-#Establecemos a variables correctas, que usaremos máis adiante no código
+# Establecemos a variables correctas, que usaremos máis adiante no código
 usuario_correcto = "python"
 contrasinal_correcta = "pip"
 
-#Comezamos co primeiro bucle
-while True:
-    #Pedímoslle ao usuario que introduza o seu usario
-    usuario = input("Introduce o nome do usuario: ")
-    
-    #Se o usuario proporcionado coincide co correcto, rompemos o blucle e seguimos ca seguinte parte do código
-    if usuario == usuario_correcto:
-        break
-    
-    #De ser incorrecto, repetímoslle ao usuario que introduzca o usuario ata que este coincida co obrigatorio
-    else:
-        print("Erro. Volva a introducir o nome do usuario: \n")
-        
-#Comezamos co segundo bucle
-while True:
-    #Pedímoslle ao usuario que introduza o seu contrasinal
+# Pedimos o nome de usuario
+usuario = input("Introduce o nome do usuario: ")
+
+# Comprobamos se o usuario é correcto
+if usuario == usuario_correcto:
+    # Se o usuario é correcto, pedimos o contrasinal
     contrasinal = input("Introduce o contrasinal: ")
-    
-    #Se o contrasinal proporcionado coincide co correcto, rompemos o bucle e seguimos ca seguinte parte do código
+
+    # Comprobamos se o contrasinal é correcto
     if contrasinal == contrasinal_correcta:
-        break
-    
-    #De ser incorrecto, repetímoslle ao usuario que introduzca a contrasinal ata que esta coincida ca obrigatoria
+        print("Inicio de sesión correcto...")
     else:
-        print("Erro. Volva a introducir a contrasinal: \n")
-        
-#Saída por pantalla final
-print("Inicio de sesión correcto...")
+        print("Erro. O contrasinal non é correcto.")
+else:
+    print("Erro. O nome do usuario non é correcto.")

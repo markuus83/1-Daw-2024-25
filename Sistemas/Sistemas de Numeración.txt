@@ -1,0 +1,106 @@
+
+						SISTEMAS DE ENUMERACIÓN
+
+   i. Decimal
+
+   ii. Binario
+
+   iii. Hexadecimal
+
+   iv. Octal
+
+
+· CONVERSIÓNS:
+
+   - Binario -> Decimal:
+
+	Seguimos as potencias en base 2 mediante unha orde escalonada de dereita a esquerda.
+
+
+	128	64	32	16	|	8	4	2	1 
+     ___________________________________|______________________________________
+					|
+	0	1	0	1	|	0	0	1	1
+
+	64 + 16 + 2 + 1 = 83
+
+	Para convertir de decimal a binario, temos de facer o proceso á inversa, pero en vez de multiplicar, temos de dividir.
+
+
+
+   - Binario -> Hexadecimal:
+
+	Utilizamos un método directo, posto que ao ser en base 16, con 4 bits (4 díxitos binarios) xa seríamos capaces de acadar facilmente o número.
+
+
+
+	Decimal		|	Hexadecimal
+________________________|_________________________
+	1		|		1
+	2		|		2
+	3		|		3
+	4		|		4
+	5		|		5
+	6		|		6
+	7		|		7
+	8		|		8
+	9		|		9
+	10		|		A
+	11		|		B
+	12		|		C
+	13		|		D
+	14		|		E
+	15		|		F
+	16		|		10
+
+
+
+	8	4	2	1	|	8	4	2	1 
+     ___________________________________|______________________________________
+					|
+	0	1	0	1	|	0	0	1	1
+
+				4 + 1 <===> 2 + 1 = 53
+
+   - Binario -> Octal:
+
+	É un caso similar coma no caso do Hexadecimal, só que neste en caso en vez de utilizar 4 bits, usaremos 3.
+
+
+
+	4	2	1	|	4	2	1 
+     ___________________________|___________________________
+				|
+	1	1	1	|	0	1	1
+
+
+	4 + 2 + 1 <====> 2 + 1 = 73
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -19,15 +19,18 @@ if option == 'a':
     conversion = cantidade * 1.1
     print(cantidade, "€ son", conversion, "£")
     
-    #print(cantidade, "€ son", round(conversion,2), "£") -> Mesma saída por pantalla, pero rondeando a variable a dous posibles decimais
     
 #O segundo 'IF' consta das operacións de cálculo de conversión de libras a euros, e amosa o resultado por pantalla.
+
+
+
+
 elif option== 'b':
     cantidade = float(input("Ingrese a cantidade en libras que quere converter:"))
-    conversion = cantidade * 0.9
+    conversion = cantidade / 1.1
     print(cantidade, "£ son", conversion, "€")
+
     
-    #print(cantidade, "£ son", round(conversion,2), "€") -> Mesma saída por pantalla, pero rondeando a variable a dous posibles decimais
 
 #O último if encárgase de amosar posibles erros do código
 else:

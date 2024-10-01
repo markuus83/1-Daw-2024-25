@@ -10,16 +10,11 @@ contrasinal_correcta = "pip"
 
 # Pedimos o nome de usuario
 usuario = input("Introduce o nome do usuario: ")
+contrasinal = input("Introduce o contrasinal: ")
 
 # Comprobamos se o usuario é correcto
-if usuario == usuario_correcto:
-    # Se o usuario é correcto, pedimos o contrasinal
-    contrasinal = input("Introduce o contrasinal: ")
-
-    # Comprobamos se o contrasinal é correcto
-    if contrasinal == contrasinal_correcta:
-        print("Inicio de sesión correcto...")
-    else:
-        print("Erro. O contrasinal non é correcto.")
+if usuario == usuario_correcto and contrasinal == contrasinal_correcta:
+    print("Inicio de sesión exitoso. ")
+    
 else:
-    print("Erro. O nome do usuario non é correcto.")
+    print("Erro")

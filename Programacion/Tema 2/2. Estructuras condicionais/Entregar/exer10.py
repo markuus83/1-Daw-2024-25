@@ -11,7 +11,7 @@ b = float(input("Ingrese o valor numérico da segunda variable: "))
 c = float(input("Ingrese o valor numérico do número sobrante: "))
 
 #Calculamos o discriminante
-discriminante = b** - 4*a*c
+discriminante = b**2 - 4*a*c
 
 #O primeiro 'IF' encárgase de amosar cando a ecuación ten dúas solucións reais
 if discriminante > 0:

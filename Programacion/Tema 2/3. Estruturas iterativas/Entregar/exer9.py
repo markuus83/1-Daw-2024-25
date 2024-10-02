@@ -6,9 +6,12 @@ __author__ = "Marcos Chouza Cruces"
 
 numero = int(input("Ingrese un número para calcularlle o seu factorial: "))
 
-if numero < 0  or numero == 1:
-    print(f"O factorial de {numero} é 0")
-    
+if numero == 0  or numero == 1:
+    print(f"O factorial de {numero} é 1")
+
+elif numero < 0:
+    print("Error, non existe o factorial dun número negativo")
+
 else:
     calculo_factorial = 1  
     original_numero = numero  

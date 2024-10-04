@@ -6,6 +6,9 @@ __author__ ="Marcos Chouza Cruces"
 
 numero = int(input("Ingrese un numero enteiro positivo: "))
 
+contador = 0
 
-while True:
+while contador <= numero:
+    print(contador)
+    contador += 2
     

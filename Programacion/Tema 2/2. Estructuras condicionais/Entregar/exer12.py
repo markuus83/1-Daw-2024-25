@@ -4,17 +4,18 @@ Escribe un script que pida o nome de usuario e contrasinal ao usuario. Indica se
 
 __author__ = "Marcos Chouza Cruces"
 
-# Establecemos a variables correctas, que usaremos máis adiante no código
+#Establecemos a variables correctas, que usaremos máis adiante no código
 usuario_correcto = "python"
 contrasinal_correcta = "pip"
 
-# Pedimos o nome de usuario
+#Pedimos o nome de usuario
 usuario = input("Introduce o nome do usuario: ")
 contrasinal = input("Introduce o contrasinal: ")
 
-# Comprobamos se o usuario é correcto
+#Comprobamos se o usuario é correcto
 if usuario == usuario_correcto and contrasinal == contrasinal_correcta:
     print("Inicio de sesión exitoso. ")
-    
+
+#
 else:
     print("Erro")

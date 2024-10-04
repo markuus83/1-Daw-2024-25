@@ -5,3 +5,4 @@ Escribe un script que calcule o mínimo común múltiplo de dous números introd
 """
 
 __author__ ="Marcos Chouza Cruces"
+

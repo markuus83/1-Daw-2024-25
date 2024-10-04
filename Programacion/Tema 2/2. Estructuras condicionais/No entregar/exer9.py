@@ -27,7 +27,11 @@ elif opcion == 'b':
     
 elif opcion =='c':
     quilometros_camion = float(input("Ingrese os quilometros recorridos: "))
-    tonelada_camion = float(input("Ingrese as toneladas do camion: "))
+    kg_camion = float(input("Ingrese o peso do camion: "))
     
-    custo_total_camion = quilometros_camion*0.25 + 0.15*tonelada_camion
+    kg_total = kg_camion/1000
+    custo_total_camion = quilometros_camion*0.25 + 0.15*kg_total
     print("O custo é de", custo_total_camion, "€")
+
+else:
+    print("Error")

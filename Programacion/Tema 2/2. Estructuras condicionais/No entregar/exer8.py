@@ -23,12 +23,15 @@ opcion = input(">")
 #Comezamos coa estutura condicional, que dará a saída por pantalla
 if opcion == 'a':
     solucion_a = num1 + num2
-    print("A suma de", num1, "e de ", num2, "é", solucion_a)
+    print("A suma de", num1, "e de", num2, "é:", solucion_a)
     
 elif opcion == 'b':
     solucion_b = num1 - num2
-    print("A resta de", num1, "e de ", num2, "é", solucion_b)
+    print("A resta de", num1, "e de", num2, "é:", solucion_b)
 
 elif opcion == 'c':
     solucion_c = num1 * num2
-    print("A multiplicación de", num1, "e de ", num2, "é", solucion_c)
+    print("A multiplicación de", num1, "e de", num2, "é:", solucion_c)
+    
+else:
+    print("Error")

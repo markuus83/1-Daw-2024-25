@@ -7,6 +7,11 @@ __author__ = "Marcos Chouza Cruces"
 
 numero = int(input("Ingrese un valor numérico enteiro positivo: "))
 
+suma = 0
+contador = 1
 
-
-print(f"A suma dos números do 1 ao {numero} é: ")
+while contador <= numero:
+    suma += contador
+    contador += 1
+    
+print(f"A suma dos {numero} primeiros números naturais é: {suma}")

@@ -16,7 +16,7 @@ ano = int(input("Indique un ano para calcular se é bisiesto ou non: "))
 #Comenzamos con las estructuras condicionales, que nos darán la coprrecta salida por pantalla.
 if ano < 0:
     print("Erro")
-elif ano% 4 == 0 and ano%100 and ano%400:
+elif ano% 4 == 0 and ano%100 or ano%400:
     print("Bisiesto")
 else:
     print("Non bisiesto")

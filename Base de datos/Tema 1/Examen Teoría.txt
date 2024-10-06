@@ -1,0 +1,144 @@
+
+									MODELO ER e E-ER
+
+1. MODELO ENTIDAD RELACION:
+
+   - Entidades:   
+
+	· Entidad -> Representa un obxecto ou concepto do mundo real.
+
+	· Atributo -> Representa unha propiedade de interese que describe o obxecto (entidade)
+
+
+   Polo tanto, podemos dicir que unha entidade é unha agrupación de atributos que describen un obxecto do mundo real.
+
+
+	· Entidade Tipo -> É un conxunto de entidades do mesmo tipo. Represéntase por un rectángulo rotulado co seu nome.
+
+
+   - Atributos:
+
+	· Simples -> Non é divisible, é atómico: 1º Apelido, sexo, idade, etc.
+
+	· Compostos -> Pode ser dividido en outros atributos con significado propio: Nome_Completo (Nome + ape1 + ape2), Enderezo (Rúa + num_Portal + letra + concello + provincia)
+
+	· Univaluados -> O atributo só pode tomar un valor: NIF, DNI, NSS, etc.
+
+	· Multivaluados -> O atributo pode tomar máis dun valor: cor dunha peza de roupa.
+
+	· Almacenado / Elemental -> O seu valor non se pode calcular a partires doutro: A data de nacemento dunha persoa.
+
+	· Derivado / Calculado -> Pódese calcular a partires doutro: A idade dunha persoa.
+
+	· Obrigatorios -> Non poden tomar valores nulos.
+
+	· Opcionais -> Poden tomar valores nulos
+
+	· Sen valor / Descoñecido -> Aquel atributo que ten un valor nulo: Só se poderá especificar o teléfono se se coñece o seu valor: NON SIGNIFICA NIN CERO NIN ESPAZOS EN BRANCO <==> NULL
+
+	· Atributos chave / Superchave -> Atributo conxunto de atributos que forman unha COMBINACIÓN de valores distinta para cada entidade: NIF + Nome || N_Empr + NIF + Nome + Ape1
+
+	· Chaves candidatas -> Aquelas Superchaves que teñen un número mínimo de atributos. Poden ser unha ou varias, cada unha delas pode estar composta por un ou varios atributos. Ditos atributos NON PODEN CONTER VALORES NULOS.
+
+	· Chave primaria / Principal -> Chace seleccionada polo analista ou administrador de sistemas, para identificar a cada unha das entidades.
+
+	· Chave alternativa -> Cada unha das claves candidatas que non foron seleccionadas como chave primaria.
+
+	· Dominio dun atributo -> Conxunto de valores que poden ser asignados a un atributo.
+
+
+   - Relacións, roles e restricións:
+
+	· Relación -> Establece vínculos entre entidades, posto que na vida real non están illadas, senon relacionadas entre elas.
+
+	· Relación Tipo -> Representa o conxunto de tódalas relacións que existen entre as entidades de dúas ou máis entidades tipo. Represéntase cun rombo e deben ter un nome que as identifiquen de maneira unequívoca.
+
+	· Grao dunha relación -> Indica o número de entidades tipo que relaciona. 
+
+	· Atributos dunha relación -> Son propios da relación e non das entidades que relaciona.
+
+	· Relacións recursivas -> Aquela que asocia entidades do mesmo tipo de entidade.
+
+	· Restricións sobre as relación tipo -> Limitan as posibles combinacións entre as entidades. Existen dous tipos de restriccións:
+
+	   a) Cardinalidade simplificada -> Especifica o número máximo de relacións nas que pode participar unha entidade:
+
+	       i. 1 : 1
+
+  	      ii. 1 : n
+
+	     iii. n : m
+
+
+
+	   b) Cardinalidade detallada -> Reflicte o mesmo que a cardinalidade simplificada pero especificando o número mínimo e máximo de cada tipo de entidade que participa na relación (min, max)
+
+	       i. (0,1):(1,1)
+
+  	      ii. (0,n):(1,1)
+
+	     iii. (0,n):(1,n)
+
+
+	   c) Participación Total -> Toda entidade dunha entidade debe participar na relación. MÍNIMO <==> 1: (1,-)
+
+	   d) participación parcial -> As entidades dunha entidade tipo non teñen por que participar en ningunha relación. MÍNIMO <==> 0: (0,-)
+
+
+
+   - Entidades e Relacións débiles: Existen dous tipos de relacións:
+
+	· Regulares
+
+	· Débiles -> Cando relacionan un tipo de entidade débil con outro forte, a entidade débil depende da forte.
+
+	   a) Dependencia por EXISTENCIA-> As instancias do tipo de entidade débil existen na medida en que exista unha instancia na entidade forte á que está vinculada. 
+					    Polo tanto, non poden existir entidades débiles que non estén asociadas a unha entidade forte.
+
+					   É dicir, unha entidade tipo que non pode existir se desaparece o exemplar do tipo de entidade regular da cal dependen.
+
+
+	   b) Dependencia por IDENTIFIACIÓN -> Cando, ademáis das condicións para que se cumpra a dependencia por existencia, observamos que a entidade débil non se pode identificar polos seus propios atributos,
+						e é preciso de engadir a clave primaria da entidade tipo forte.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

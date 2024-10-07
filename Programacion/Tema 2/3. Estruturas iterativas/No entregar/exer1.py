@@ -5,13 +5,7 @@ Mostra o resultado por pantalla
 
 __author__ = "Marcos Chouza Cruces"
 
-numero = int(input("Ingrese un valor numérico enteiro positivo: "))
+numero = int(input("Introduce un número: "))
 
-suma = 0
-contador = 1
-
-while contador <= numero:
-    suma += contador
-    contador += 1
+while True:
     
-print(f"A suma dos {numero} primeiros números naturais é: {suma}")

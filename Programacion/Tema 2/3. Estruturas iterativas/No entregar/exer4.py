@@ -3,3 +3,18 @@ Escribe un script que pida as notas dun exame dos alumnos dunha clase e conte o 
 """
 
 __author__ = "Marcos Chouza Cruces"
+
+while True:
+    
+    nota = int(input("Introduce a nota do alumno: "))
+    
+    if nota < 0 or nota > 10:
+        break
+    
+    elif nota < 5:
+        print(f"{nota}: Este alumno está suspenso")
+        
+        
+    elif nota >= 5:
+        print(f"{nota}: Este alumno está aprobado")
+        

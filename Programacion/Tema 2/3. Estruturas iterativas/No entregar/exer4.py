@@ -4,6 +4,9 @@ Escribe un script que pida as notas dun exame dos alumnos dunha clase e conte o 
 
 __author__ = "Marcos Chouza Cruces"
 
+aprobados = 0
+suspensos = 0
+
 while True:
     
     nota = int(input("Introduce a nota do alumno: "))
@@ -13,8 +16,16 @@ while True:
     
     elif nota < 5:
         print(f"{nota}: Este alumno está suspenso")
+        suspensos += 1
         
         
     elif nota >= 5:
         print(f"{nota}: Este alumno está aprobado")
+        aprobados += 1
+        
+    else:
+        print("Erro")
+        
+print(f"El número total de aprobados es {aprobados}.")
+print(f"El número total de suspensos es {suspensos}.")
         

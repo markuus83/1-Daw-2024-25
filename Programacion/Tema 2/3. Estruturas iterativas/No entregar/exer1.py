@@ -6,6 +6,3 @@ Mostra o resultado por pantalla
 __author__ = "Marcos Chouza Cruces"
 
 numero = int(input("Introduce un número: "))
-
-while True:
-    

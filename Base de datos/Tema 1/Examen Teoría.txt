@@ -82,7 +82,7 @@
 
 	   c) Participación Total -> Toda entidade dunha entidade debe participar na relación. MÍNIMO <==> 1: (1,-)
 
-	   d) participación parcial -> As entidades dunha entidade tipo non teñen por que participar en ningunha relación. MÍNIMO <==> 0: (0,-)
+	   d) Participación Parcial -> As entidades dunha entidade tipo non teñen por que participar en ningunha relación. MÍNIMO <==> 0: (0,-)
 
 
 
@@ -93,13 +93,13 @@
 	· Débiles -> Cando relacionan un tipo de entidade débil con outro forte, a entidade débil depende da forte.
 
 	   a) Dependencia por EXISTENCIA-> As instancias do tipo de entidade débil existen na medida en que exista unha instancia na entidade forte á que está vinculada. 
-					    Polo tanto, non poden existir entidades débiles que non estén asociadas a unha entidade forte.
 
-					   É dicir, unha entidade tipo que non pode existir se desaparece o exemplar do tipo de entidade regular da cal dependen.
+			Polo tanto, non poden existir entidades débiles que non estén asociadas a unha entidade forte.
+
+			É dicir, unha entidade tipo que non pode existir se desaparece o exemplar do tipo de entidade regular da cal dependen.
 
 
-	   b) Dependencia por IDENTIFIACIÓN -> Cando, ademáis das condicións para que se cumpra a dependencia por existencia, observamos que a entidade débil non se pode identificar polos seus propios atributos,
-						e é preciso de engadir a clave primaria da entidade tipo forte.
+	   b) Dependencia por IDENTIFIACIÓN -> Cando, ademáis das condicións para que se cumpra a dependencia por existencia, observamos que a entidade débil non se pode identificar polos seus propios atributos,e é preciso de engadir a clave primaria da entidade tipo forte.
 
 
 

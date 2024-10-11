@@ -4,26 +4,33 @@ Escribe un script que permita obter o factorial dun número enteiro positivo int
 
 __author__ = "Marcos Chouza Cruces"
 
-#Pedímoslle ao usuario que ingrese os valores axeitados
-numero = int(input("Ingrese un número para calcularlle o seu factorial: "))
+#Pedímoslle ao usuario que ingrese os valores
+numero = int(input("Introduce un número para calcularlle o seu factorial: "))
 
-#Casos para casos de factoriais especiais
-if numero == 0  or numero == 1:
-    print(f"O factorial de {numero} é 1")
+#Para establecer os factoriais de '0' e '1' (casos especiais)
+if numero == 0 or numero == 1:
+    print(f"O factorial de {numero} é: 1")
 
-#Outros casos de factoriais especiais
+#Para os valores negativos
 elif numero < 0:
-    print("Error, non existe o factorial dun número negativo")
-
+    print("Non existen factoriais de negativos.")
+    
+#Para o resto de números  
+elif numero > 1:
+    
+    #Inicializamos as variables precisas
+    contador = numero
+    factorial = 1
+    
+    #Comezamos co bucle
+    while contador > 1:
+        
+        factorial *= contador
+        contador -= 1
+        
+    #Imprimimos a saída
+    print(f"O factorial de {numero} é: {factorial}")
+    
+#Para posibles erros do código
 else:
-    #Inicializamos variables
-    calculo_factorial = 1  
-    original_numero = numero  
-    
-    #Establecemos o bucle
-    while numero > 1:
-        calculo_factorial *= numero
-        numero -= 1  
-    
-    #Imprimimos o resultado
-    print(f"O factorial de {original_numero} é {calculo_factorial}.")
+    print("Error")

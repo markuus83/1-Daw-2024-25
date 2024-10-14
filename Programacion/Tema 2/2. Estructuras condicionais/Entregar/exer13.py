@@ -28,7 +28,7 @@ if opcion == 'a':
     
     tarifa_neta = float(input("Ingrese a cantidade de cartos a recibir por hora: "))
     
-    salario_diario = horas_traballadas*tarifa_neta
+    salario_diario = horas_traballadas*tarifa_neta  
     salario_total = 22*salario_diario
     print("O salario mensual do usuario é de:", salario_total)
 

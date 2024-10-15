@@ -1,0 +1,14 @@
+
+									FONTES DE ALIMENTACIÓN:
+
+
+   A súa función principal consiste en coller a corrente convencial e adaptala a cada un dos compoñentes da placa base.
+
+Para iso, utilizamos as fontes de alimentación, os cales veñen conectados á placa base cos conectores ATX 
+
+
+1. CONECTORES DAS FONTES DE ALIMENTACIÓN:
+
+   - Comezaron a evolucionar incluíndo un elemento a maiores coñecido coma 12V, para cubrir as novas necesidades das tarxetas gráficas.
+
+   - A evolución seguir pasando de 4 a 8 pins, para proprocionar máis potencia ao procesador.

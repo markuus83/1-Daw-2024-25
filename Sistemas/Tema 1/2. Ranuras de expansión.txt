@@ -1,0 +1,78 @@
+
+								RANURAS DE EXPANSIÓN
+
+   Unha ranura/slot de expansión, é un porto que permite conectar á placa base unha tarxera ou compoñente adicional, dando maior funcionalidade ao PC, como por exemplo:
+
+	a) Tarxeta Gráfica
+
+	b) Tarxeta de Rede
+
+
+   Ordenando os slots de expansión por antiguedade, podemos atoparnos:
+
+	a) ISA (Industry Starnad Architecture)
+
+	   · Ancho de BUS => 8 bits
+
+	   · Frecuencia BUS =>8 MHz
+
+	   · Tasa de Transferencia => 6 MB/s
+
+
+	b) ISA x16
+
+	   · Ancho de BUS => 16 bits
+
+	   · Frecuencia BUS =>8 MHz
+
+	   · Tasa de Transferencia => 16 MB/s
+
+
+	c) PCI (Peripheral Component Interconnect)
+
+	   · Ancho de BUS => 32 bits
+
+	   · Frecuencia BUS =>33 MHz
+
+	   · Tasa de Transferencia => 133 MB/s
+
+
+	c) PCIx64 bits:
+
+	   · Ancho de BUS => 64 bits
+
+	   · Frecuencia BUS =>33 MHz
+
+	   · Tasa de Transferencia => 266 MB/s
+
+
+	c) PCIx66 MHz:
+
+	   · Ancho de BUS => 16 bits
+
+	   · Frecuencia BUS => 66 MHz
+
+	   · Tasa de Transferencia => 533 MB/s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

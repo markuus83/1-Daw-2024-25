@@ -23,16 +23,16 @@ while True:
         break
     
     #Darlle pistas sobre que o número introducido é menor
-    if numero > numero_aleatorio:
+    elif numero > numero_aleatorio:
         print("O número é menor")
         contador += 1
-        continue
+
     
     #Darlle pistas sobre que o número introducido é maior
-    if numero < numero_aleatorio:
+    else:
         print("O número é maior.")
         contador += 1
-        continue
+        
     
 #Saída por pantalla de estado do xogo
 if contador < 5:

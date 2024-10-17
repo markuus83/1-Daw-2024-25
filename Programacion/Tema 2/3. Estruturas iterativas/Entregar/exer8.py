@@ -16,8 +16,8 @@ if numero >= 1:
     
     #Comezamos co bucle
     while x <= numero:
-        suma += 1/x
-        x += 1
+        suma += 1/x  
+        x += 1 
         
     #Imprimimos a saída
     print(f"A suma total é: {suma}")

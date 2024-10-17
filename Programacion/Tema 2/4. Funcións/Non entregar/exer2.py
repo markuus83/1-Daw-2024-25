@@ -10,10 +10,25 @@ Para comprobar o funcionamento das funcións utiliza o seguinte código
 
 
 def comprobar_valores_iguais(numero1, numero2, numero3):
-    return True
+    
+    if numero1 == numero2 or numero1 == numero3 or numero2 == numero3:
+        return True
 
 def calcular_menor_numero (numero1, numero2, numero3):
-    return True
+    
+    if numero1 < numero2 and numero1 < numero3:
+        return numero1
+    
+    elif numero2 < numero1 and numero2 < numero3:
+        return numero2
+    
+    elif numero3 < numero1 and numero3 < numero2:
+        return numero3
+    
+    else:
+        print("Error")
+ 
+ 
     
 # Pedimos o primeiro numero
 numero1 = int(input("Ingrese un numero por consola: "))

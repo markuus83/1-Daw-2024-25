@@ -21,6 +21,7 @@ while True:
     if primeira_introducion_numero:
         num_menor = numero
         primeira_introducion_numero = False
+        
     else:
             # Actualizamos o número máis pequeno se corresponde
         if numero < num_menor:

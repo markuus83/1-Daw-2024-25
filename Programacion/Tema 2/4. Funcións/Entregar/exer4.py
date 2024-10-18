@@ -27,6 +27,7 @@ Escribe un script que pide ao usuario os coeficientes dunha ecuación de segundo
 
 __author__ = "Marcos Chouza Cruces"
 
+
 def discriminante(a: float, b: float, c: float) -> float:
     return b**2 - 4*a*c
 
@@ -42,7 +43,7 @@ def numero_solucions(a: float, b: float, c: float) -> int:
 def solucion_unica(a: float, b: float) -> float:
     return -b / (2*a)
 
-def calcula_duas_solucions(a: float, b: float, c: float) -> (float, float):
+def calcula_duas_solucions(a: float, b: float, c: float) -> float:
     
     d = discriminante(a, b, c)
     

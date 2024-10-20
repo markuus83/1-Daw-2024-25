@@ -55,6 +55,24 @@
 	   · Tasa de Transferencia => 533 MB/s
 
 
+	d) AGP (Acelerated Graphics Port) => Empregadas únicamente para conectar as Tarxetas Gráficas, foros substituídas recentemenre polas PCI-Express x16ç
+
+
+	e) PCIe => Actualmente estamos pola 6º xeración:
+
+	   · 1ª Xeración => 250 MB/s
+
+	   · 1ª Xeración => Dobra a anterior taxa de transferencia: 500 MB/s
+
+	   · 1ª Xeración => Volve a dobrar a anterior taxa: 1 GB/s
+
+	   · 1ª Xeración => Volve a dobrar a anterior taxa: 2 GB/s
+
+	   · 1ª Xeración => Volve a dobrar a anterior taxa: 4 GB/s
+
+	   · 1ª Xeración => Volve a dobrar a anterior taxa: 8 GB/s
+
+
 
 
 

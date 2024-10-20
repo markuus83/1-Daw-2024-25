@@ -1,0 +1,26 @@
+
+												MEMORIAS
+
+   1. VOLATILIDADE DE INFORMACIÓN:
+
+	- Memoria de tipo volátil -> Require que se lle subministre constantemente enerxía para manter a información almacenada. A memoria volátil máis coñecida é a MEMORIA PRINCIPAL.
+
+	- Memoria NON volatil -> Retén a información almacenada aínda que non reciba corrente constantemente. Este tipo de memoria úsase para gardar programas que se precise que non se perdan aínda que non exista alimentación eléctrica. A memoria máis coñecida é a BIOS
+
+
+   2. MEMORIAS TIPO ROM:
+
+	- Tipos de memorias ROM:
+
+	   · ROM (Read Only Memory) => Traen de fábrica unha serie de datos gardados no seu interior. É imposible borrar ou modiciar estes datos.
+
+	   · PROM (Programable ROM) => Memorias que veñen valeiras pero que, grazas a un gravador podemos gardar no seu interior datos que desexemos. Ditos datos, non poderán ser borrados ou modificados de ningún xeito.
+
+	   · EPROM (Erasable/Programable ROM) => Memorias nas que poderemos gardar datos pero que, a diferencia das PROM, poderemos borrar ditos datos a través de luz ultravioleta.
+
+	   · EEPROM (Electrically EPROM) => Sopn o tipo de memorias que se empregan hoxe en día, para as BIOS. Pódese escribir e borrar con "electricidade". 
+
+		a) Memorias FLASH EEPROM => Son unha forma de memorias EEPROM mais avanzadas; permiten múltiples que múltiples posicións de memoria sexan escritas ou borradas nunha mesma operación, fronte as anteriores EEPROM que só permitían escribir ou borrar unha única celda cada vez.
+
+
+   3. MEMORIAS TIPO RAM: 

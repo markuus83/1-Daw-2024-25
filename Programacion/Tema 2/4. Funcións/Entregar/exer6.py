@@ -22,8 +22,13 @@ def login (usuario: str, contrasinal: str) -> bool:
     else:
         return False
 
-
+#Pedimoslle ao usuario que ingrese os valores
 usuario = input("Introduce o nome do usuario: ")
 contrasinal = input("Introduce o contrasinal: ")
 
-print(login(usuario, contrasinal))
+#Establecemos a estrutura condicional que chama as funcións necesarias e dará unha saída por pantalla
+if login(usuario, contrasinal) == True:
+    print("O inicio de sesión é correcto")
+    
+else:
+    print("O inicio de sesión é incorrecto")

@@ -69,45 +69,46 @@ def porcentaxe_practico(nota_practico: float) -> float:
     return nota_practico
 
 
-def redondeo (nota_total: float) -> float:
+def total_redondeado (nota_tarefas: float, nota_teorico: float, nota_practico: float) -> float:
     """
-    Redondea a nota final
+    Calcula a nota total, seguindo os criterios de porcentaxes a redondea a solución final
 
     Args:
-        nota_total (float): Nota final do alumno
+        nota_tarefas (float): Nota das tarefas
+        nota_teorico (float): Nota do exame teórico
+        nota_practico (float): Nota do exmae práctico
 
     Returns:
         float: Tipo do dato do retunr
     """
-    return round(nota_total,2)
-
+    
+    nota_total = porcentaxe_tarefas(nota_tarefas) + porcentaxe_teorico(nota_teorico) + porcentaxe_practico(nota_practico)
+    return round(nota_total,2) 
 
 #Pedímoslle ao usuario que ingrese os valores
 nota_tarefas = float(input("Ingrese a nota das tarefas: "))
 nota_teorico = float(input("Ingrese a nota do exame teórico: "))
 nota_practico = float(input("Ingrese a nota do exame práctico: "))
 
-#Calculamos a nota total
-nota_total = porcentaxe_tarefas(nota_tarefas) + porcentaxe_teorico(nota_teorico) + porcentaxe_practico(nota_practico)
+#Comprobamos que as notas ingresadas son correctas, e, de ser así, comezamos a condicional
+if comprobacion_notas(nota_tarefas, nota_teorico, nota_practico) is True:
+    
+    #Conxunto de IFs anidados, que fan chamadas as funcions necesarias para dar unha correcta saída por pantalla   
+    if total_redondeado(nota_tarefas, nota_teorico, nota_practico) >= 9:
+        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Sobresaliente")
+    
+    elif total_redondeado(nota_tarefas, nota_teorico, nota_practico) >= 7 and total_redondeado(nota_tarefas, nota_teorico, nota_practico) < 9:
+        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Notable")
 
-#Comprobamos que as notas ingresadas son correctas, e, de ser así, comezamos a condicional e danos unha saída por pantalla
-if comprobacion_notas(nota_tarefas, nota_teorico, nota_practico) == True:
+    elif total_redondeado(nota_tarefas, nota_teorico, nota_practico) > 5 and total_redondeado(nota_tarefas, nota_teorico, nota_practico) < 7:
+        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Ben")
     
-    if nota_total >= 9:
-        print(f"{redondeo(nota_total)} = Sobresaliente")
-    
-    elif nota_total >= 7 and nota_total < 9:
-        print(f"{redondeo(nota_total)} = Notable")
-
-    elif nota_total > 5 and nota_total < 7:
-        print(f"{redondeo(nota_total)} = Ben")
-    
-    elif nota_total == 5:
-        print(f"{redondeo(nota_total)} = Suficiente")
+    elif total_redondeado(nota_tarefas, nota_teorico, nota_practico) == 5:
+        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Suficiente")
     
     else:
-        print(f"{redondeo(nota_total)} = Insuficiente")
+        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Insuficiente")
 
 #Para posibles erros de código
 else:
-    print("Erro")
+    print("Erro, os valores introducidos teñen que estar entre 0 e 10")

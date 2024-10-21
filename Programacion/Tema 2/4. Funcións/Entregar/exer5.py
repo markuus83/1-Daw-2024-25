@@ -6,37 +6,58 @@ Escribe un script que faga o cambio de divisas tanto de euros a libras e vicever
     
 Un € é igual a 1,10 libras
 """
+
 __author__ = "Marcos Chouza Cruces"
 
-def libras_to_euros(option) -> float:
-    cantidade = float(input("Ingrese a cantidade en euros que quere converter: "))
+
+def libras_to_euros(cantidade: float) -> float:
+    """
+    Conversor de libras a Euros
+
+    Args:
+        cantidade (float): Cantidade a convertir
+
+    Returns:
+        float: Tipo de valor no return
+    """
+    
     conversion = cantidade * 1.1
-    print(cantidade, "€ son", conversion, "£")
-    return
+    return conversion
 
 
-def euros_to_libras(option) -> float:
-    cantidade = float(input("Ingrese a cantidade en libras que quere converter:"))
+def euros_to_libras(cantidade: float) -> float:
+    """
+    Conversor de Euros a Libras
+
+    Args:
+        cantidade (float): Cantidade a convertir
+
+    Returns:
+        float: Tipo de valor no return
+    """
     conversion = cantidade / 1.1
-    print(cantidade, "£ son", conversion, "€")
-    return
+    return conversion
 
-
+#Creamos o menu
 print("\nPrema a opción desexada no menú")
 print("\ta) Converter de Euros (€) a Libras(£) ")
 print("\tb) Converter de Libras (£) a Euros(€) ")
 
 #Establecemos a opción que queremos utilizar
-option = input(">")
+option = input("> ")
 
-#O primeiro 'IF' consta das operacións de cálculo de conversión de euros a libras, e amosa o resultado por pantalla
+#Preguntamos a cantidade a converter e facemos o chamado a funcion necesaria, que dará unha saída por consola
 if option == 'a':
-    libras_to_euros(option)
+    
+    cantidade = float(input("Ingrese a cantidade en euros que quere converter: "))
+    print(f"{cantidade}€ a libras son: {libras_to_euros(cantidade)}")
     
     
-#O segundo 'IF' consta das operacións de cálculo de conversión de libras a euros, e amosa o resultado por pantalla.
+#Preguntamos a cantidade a converter e facemos o chamado a funcion necesaria, que dará unha saída por consola
 elif option== 'b':
-    euros_to_libras(option)
+    
+    cantidade = float(input("Ingrese a cantidade en libras que quere converter:"))
+    print(f"{cantidade}Libras a euros son: {euros_to_libras(cantidade)}€")
 
 
 #O último if encárgase de amosar posibles erros do código

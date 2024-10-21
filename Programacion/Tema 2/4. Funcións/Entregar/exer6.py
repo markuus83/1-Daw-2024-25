@@ -9,10 +9,11 @@ __author__ = "Marcos Chouza Cruces"
 
 def login (usuario: str, contrasinal: str) -> bool:
     
-    """_summary_
+    """
+    Define se o Loggin na aplicación é ou non correcto
 
     Returns:
-        _type_: _description_
+        Bool: Tipo de dato no return
     """
     
     if usuario == 'python' and contrasinal == 'pip':

@@ -94,7 +94,7 @@ def tipo_de_nota(nota_total) -> str:
     Convertir a nota a texto
 
     Args:
-        nota_total (_type_): Media ponderada das calificaciones
+        nota_total (nota_total): Media ponderada das calificaciones
 
     Returns:
         str: Tipo de dato do return

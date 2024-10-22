@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """ 
 Escribe un script que faga o cambio de divisas tanto de euros a libras e viceversa. Crea un mení para que o usuario escolla o cambio que desexa realizar. Realiza unha función para un dos cambios:
 
@@ -9,6 +12,7 @@ Un € é igual a 1,10 libras
 
 __author__ = "Marcos Chouza Cruces"
 
+cambio = 1.1
 
 def libras_to_euros(cantidade: float) -> float:
     """
@@ -21,7 +25,7 @@ def libras_to_euros(cantidade: float) -> float:
         float: Tipo de valor no return
     """
     
-    conversion = cantidade * 1.1
+    conversion = cantidade * cambio
     return conversion
 
 
@@ -35,7 +39,7 @@ def euros_to_libras(cantidade: float) -> float:
     Returns:
         float: Tipo de valor no return
     """
-    conversion = cantidade / 1.1
+    conversion = cantidade / cambio
     return conversion
 
 #Creamos o menu

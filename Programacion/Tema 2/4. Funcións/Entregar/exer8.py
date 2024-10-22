@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """
 A avaliación deste módulo é a seguinte: 15% de tarefas, 20% exame teórico e 65% exame práctivo. Escribe un script que lle pedirá as súas tres notas sobre 10. Indicaralle por pantalla se obtivo Sobresaliente, Notable, Ben, Suficiente ou insuficiente.
 
@@ -85,30 +88,46 @@ def total_redondeado (nota_tarefas: float, nota_teorico: float, nota_practico: f
     nota_total = porcentaxe_tarefas(nota_tarefas) + porcentaxe_teorico(nota_teorico) + porcentaxe_practico(nota_practico)
     return round(nota_total,2) 
 
+
+def tipo_de_nota(nota_total) -> str:
+    """
+    Convertir a nota a texto
+
+    Args:
+        nota_total (_type_): Media ponderada das calificaciones
+
+    Returns:
+        str: Tipo de dato do return
+    """
+   
+    if nota_total >= 9:
+        return "Sobresaliente"
+    
+    elif nota_total >= 7 and nota_total < 9:
+        return "Notable"
+
+    elif nota_total > 5 and nota_total < 7:
+        return "Ben"
+    
+    elif nota_total == 5:
+        return "Suficiente"
+    
+    else:
+        return "Insuficiente"
+
+
 #Pedímoslle ao usuario que ingrese os valores
 nota_tarefas = float(input("Ingrese a nota das tarefas: "))
 nota_teorico = float(input("Ingrese a nota do exame teórico: "))
 nota_practico = float(input("Ingrese a nota do exame práctico: "))
 
+nota_total = total_redondeado(nota_tarefas, nota_teorico, nota_practico)
+
 #Comprobamos que as notas ingresadas son correctas, e, de ser así, comezamos a condicional
-if comprobacion_notas(nota_tarefas, nota_teorico, nota_practico) is True:
+if comprobacion_notas(nota_tarefas, nota_teorico, nota_practico):
+    print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = {tipo_de_nota(total_redondeado(nota_tarefas, nota_teorico, nota_practico))}")
+   
     
-    #Conxunto de IFs anidados, que fan chamadas as funcions necesarias para dar unha correcta saída por pantalla   
-    if total_redondeado(nota_tarefas, nota_teorico, nota_practico) >= 9:
-        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Sobresaliente")
-    
-    elif total_redondeado(nota_tarefas, nota_teorico, nota_practico) >= 7 and total_redondeado(nota_tarefas, nota_teorico, nota_practico) < 9:
-        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Notable")
-
-    elif total_redondeado(nota_tarefas, nota_teorico, nota_practico) > 5 and total_redondeado(nota_tarefas, nota_teorico, nota_practico) < 7:
-        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Ben")
-    
-    elif total_redondeado(nota_tarefas, nota_teorico, nota_practico) == 5:
-        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Suficiente")
-    
-    else:
-        print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = Insuficiente")
-
 #Para posibles erros de código
 else:
     print("Erro, os valores introducidos teñen que estar entre 0 e 10")

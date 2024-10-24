@@ -1,3 +1,6 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 """ 
 Escribe un script que solicite ao usuario dous números e a continuación mostre o resultado de dividir o primeiro número polo segundo. Asegúrate de manexar as excepcións no caso de que o usuario intente dividir entre cero ou introduza por teclado un valor que non sexa un número. Para realizar isto deberás capturar as excepcións <ZeroDivisionError> e <ValueError>. Para cada unha das mensaxes mostra unha mensaxe de erro diferente:
 
@@ -8,13 +11,21 @@ Escribe un script que solicite ao usuario dous números e a continuación mostre
 
 __author__ = "Marcos Chouza Cruces"
 
-def division_entre_cero(numero1: int, numero2: int) -> float:
+def dividir_numeros():
     try:
-        total = numero1 / numero2
+        num1 = int(input("Introduce o primeiro número: "))
+        num2 = int(input("Introduce o segundo número: "))
+        
+        resultado = num1 / num2
+        resultado = float(resultado)
+        
     except ZeroDivisionError:
         print("Erro: Non se pode dividir entre cero.")
-    return total
+        
+    except ValueError:
+        print("Erro: Entrada non válida, por favor introduce números...")
+        
+    else:
+        print(f"O resultado de dividir {num1} entre {num2} é {resultado:.2f}")
 
-def 
-numero1 = int(input("Ingrese o primeiro número: "))
-numero2 = int(input("Ingrese o segundo número: "))
+dividir_numeros()

@@ -9,22 +9,15 @@ __author__ = "Marcos Chouza Cruces"
 
 def calcular_desconto_irpf(soldo_bruto: float, irpf: int) -> float:
     """
-    Capturar as excepcións á hora de aplicar o desconto do irpf ao soldo
-
-    Args:
-        soldo_bruto (float): soldo bruto a percibir
-        irpf (int): porcentaxe de desconto a aplicar
-
-    Returns:
-        float: Valor da variable de retorno
-    """
+    Calcula o desconto do IRPF dado un soldo bruto e unha porcentaxe de IRPF.
     
-    try:
-        soldo_bruto = float(soldo_bruto)
-        irpf = float(irpf)
+    Args:
+        soldo_bruto (float): Soldo bruto a percibir.
+        irpf (int): Porcentaxe de desconto a aplicar.
         
-    except ValueError:
-        return None
+    Returns:
+        float: Valor do desconto de IRPF, ou None se os valores non son válidos.
+    """
     
     if soldo_bruto <= 0 or not (0 <= irpf <= 100):
         return None
@@ -32,15 +25,22 @@ def calcular_desconto_irpf(soldo_bruto: float, irpf: int) -> float:
     desconto = soldo_bruto * (irpf / 100)
     return desconto
 
-# Pedímoslle ao usuario que ingrese os datos
+# Pedimos ao usuario que ingrese os datos
 soldo_bruto = input("Introduce o soldo bruto: ")
 irpf = input("Introduce o IRPF en tanto por cen: ")
 
-# Outorgámoslle a unha variable o valor da función
-desconto = calcular_desconto_irpf(soldo_bruto, irpf)
-
-# Comezamos ca estrutura condicional que dará a saída por pantalla
-if desconto is None:
-    print("Erro: Os datos introducidos non son válidos. Asegúrate de que o soldo é maior que 0 e o IRPF está entre 0 e 100.")
+# Convertimos a entrada e comprobamos se é un valor numérico válido
+try:
+    soldo_bruto = float(soldo_bruto)
+    irpf = float(irpf)
+    desconto = calcular_desconto_irpf(soldo_bruto, irpf)
+    
+except ValueError:
+    print("Erro: Os datos introducidos non son válidos. Asegúrate de introducir valores numéricos.")
+    
 else:
-    print(f"O desconto do IRPF sobre o soldo bruto de {soldo_bruto}€ é {desconto}€.")
+    # Verificamos se o desconto foi calculado correctamente
+    if desconto is None:
+        print("Erro: O soldo debe ser maior que 0 e o IRPF debe estar entre 0 e 100.")
+    else:
+        print(f"O desconto do IRPF sobre o soldo bruto de {soldo_bruto}€ é {desconto}€.")

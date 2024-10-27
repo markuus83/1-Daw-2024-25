@@ -8,33 +8,30 @@ __author__ = "Marcos Chouza Cruces"
 
 def raiz_cadrada(numero: float) -> float:
     """
-    Calcula a raíz cadrada dun número.
-    
+    Calcular a raíz cadrada dun número
+
     Args:
-        numero (float): Número do cal se quere calcular a raíz cadrada.
-        
+        numero (float): Número a calcularlle a raíz cadrada
+
     Returns:
-        float: Valor do return
+        float: _description_
     """
     if numero < 0:
         return None
     
-    return numero ** 0.5
+    return numero**0.5
 
-# Pedimos ao usuario que ingrese os datos
-entrada = input("Introduce un número para calcular a súa raíz cadrada: ")
+ingresar = input("Ingrese un número enteiro positivo: ")
 
-# Convertimos a entrada e comprobamos se é un valor numérico válido
 try:
-    numero = float(entrada)
+    numero = float(ingresar)
     resultado = raiz_cadrada(numero)
     
 except ValueError:
-    print("Erro: Debes introducir un valor numérico válido.")
-    
+    print("Erro. O valor ingresado non é un número.")
+
 else:
-    # Verificamos se o número é positivo
     if resultado is None:
-        print("Erro: Debes introducir un número positivo.")
-    else:
+        print("Erro. O valor ingresado é negativo.")
+    else: 
         print(f"A raíz cadrada de {numero} é {resultado}.")

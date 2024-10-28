@@ -7,7 +7,7 @@ Escribe unha función <calcular_desconto_irpf(soldo_bruto: float/int, irpf: int)
 
 __author__ = "Marcos Chouza Cruces"
 
-def calcular_desconto_irpf(soldo_bruto: float/int, irpf: int) -> float:
+def calcular_desconto_irpf(soldo_bruto: float, irpf: int) -> float:
     
     if soldo_bruto <= 0 or not (0 <= irpf <= 100):
         return None

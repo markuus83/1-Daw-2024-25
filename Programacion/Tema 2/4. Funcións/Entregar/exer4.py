@@ -98,19 +98,17 @@ a = float(input("Ingrese o valor de A: "))
 b = float(input("Ingrese o valor de B: "))
 c = float(input("Ingrese o valor de C: "))
 
-
 #Calculamos o número de posibles solucións 
 num_sol = numero_solucions(a, b, c)
-
 
 #Facemos o chamado as funcions dependendo do número de solucións e damos a saída por pantalla
 if num_sol == 2:
     x, y = calcula_duas_solucions(a, b, c)
-    print(f"A ecuación ten dúas solucións reais: {x} e {y}")
+    print(f"A ecuación ten dúas solucións reais: {x} e {y}.")
     
 elif num_sol == 1:
     x = solucion_unica(a, b)
-    print(f"A ecuación ten unha única solución real: {x}")
+    print(f"A ecuación ten unha única solución real: {x}.")
     
 else:
     print("A ecuación non ten solucións reais.")

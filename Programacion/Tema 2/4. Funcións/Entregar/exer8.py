@@ -122,12 +122,12 @@ nota_teorico = float(input("Ingrese a nota do exame teórico: "))
 nota_practico = float(input("Ingrese a nota do exame práctico: "))
 
 nota_total = total_redondeado(nota_tarefas, nota_teorico, nota_practico)
+tipo_nota = tipo_de_nota(total_redondeado(nota_tarefas, nota_teorico, nota_practico))
 
 #Comprobamos que as notas ingresadas son correctas, e, de ser así, comezamos a condicional
 if comprobacion_notas(nota_tarefas, nota_teorico, nota_practico):
-    print(f"{total_redondeado(nota_tarefas, nota_teorico, nota_practico)} = {tipo_de_nota(total_redondeado(nota_tarefas, nota_teorico, nota_practico))}")
+    print(f"{nota_total} = {tipo_nota}.")
    
-    
 #Para posibles erros de código
 else:
-    print("Erro, os valores introducidos teñen que estar entre 0 e 10")
+    print("Erro, os valores introducidos teñen que estar entre 0 e 10.")

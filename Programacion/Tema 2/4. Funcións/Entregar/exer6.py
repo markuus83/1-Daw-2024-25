@@ -30,7 +30,7 @@ usuario = input("Introduce o nome do usuario: ")
 contrasinal = input("Introduce o contrasinal: ")
 
 #Establecemos a estrutura condicional que chama as funcións necesarias e dará unha saída por pantalla
-if login(usuario, contrasinal) == True:
+if login(usuario, contrasinal):
     print("O inicio de sesión é correcto")
     
 else:

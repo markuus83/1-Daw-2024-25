@@ -12,7 +12,7 @@ Un € é igual a 1,10 libras
 
 __author__ = "Marcos Chouza Cruces"
 
-cambio = 1.1
+CAMBIO = 1.1
 
 def libras_to_euros(cantidade: float) -> float:
     """
@@ -25,7 +25,7 @@ def libras_to_euros(cantidade: float) -> float:
         float: Tipo de valor no return
     """
     
-    conversion = cantidade * cambio
+    conversion = cantidade * CAMBIO
     return conversion
 
 
@@ -39,7 +39,7 @@ def euros_to_libras(cantidade: float) -> float:
     Returns:
         float: Tipo de valor no return
     """
-    conversion = cantidade / cambio
+    conversion = cantidade / CAMBIO
     return conversion
 
 #Creamos o menu
@@ -56,13 +56,11 @@ if option == 'a':
     cantidade = float(input("Ingrese a cantidade en euros que quere converter: "))
     print(f"{cantidade}€ a libras son: {libras_to_euros(cantidade)}")
     
-    
 #Preguntamos a cantidade a converter e facemos o chamado a funcion necesaria, que dará unha saída por consola
 elif option== 'b':
     
     cantidade = float(input("Ingrese a cantidade en libras que quere converter:"))
     print(f"{cantidade}Libras a euros son: {euros_to_libras(cantidade)}€")
-
 
 #O último if encárgase de amosar posibles erros do código
 else:

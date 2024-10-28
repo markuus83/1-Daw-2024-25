@@ -56,13 +56,13 @@ opcion = input("> ")
 #Fai un chamado a función correspondente e da a saída por pantalla
 if opcion == 'a':
     tarifa_neta = float(input("Ingrese a cantidade de cartos a recibir por hora: "))
-    print(f"O salario mensual neto é: {salario_neto(horas_traballadas, tarifa_neta):.2f} €")
+    print(f"O salario mensual neto é: {salario_neto(horas_traballadas, tarifa_neta)} €")
 
 #Fai un chamado a función correspondente e da a saída por pantalla
 elif opcion == 'b':
     tarifa_bruta = float(input("Ingrese a cantidade de cartos a recibir por hora: "))
     irpf = float(input("Ingrese a porcentaxe de desconto IRPF: "))
-    print(f"O salario mensual neto é: {salario_bruto(horas_traballadas, tarifa_bruta, irpf):.2f} €")
+    print(f"O salario mensual neto é: {salario_bruto(horas_traballadas, tarifa_bruta, irpf)} €")
 
 #para posibles erros de código
 else:

@@ -8,23 +8,14 @@ __author__ = "Marcos Chouza Cruces"
 
 vocales = "aeiouAEIOU"
 
-def contar_vocales(cadea):
-    if type(cadea) is not str:
-        raise ValueError("Erro. Ingrese unha cadea de caracteres.")
+def comprobar_vocais (cadea: str) -> int:
+    
+    if cadea is not str:
+        raise ValueError "Erro. Ingrese unha cadea de texto."
     
     contador = 0
-    for letra in cadea:
-        if letra in vocales:
-            contador += 1
-            
-    return contador
+    for vocales in cadea:
+        contador += 1
+    return
 
-# Pedimos ao usuario que ingrese os datos
-cadea = input("Ingrese unha cadea: ")
-
-try:
-    solucion = contar_vocales(cadea)
-    print(f"O número de vocales é: {solucion}")
-    
-except ValueError as e:
-    print(e)
+cadea = str(input("Ingrese un texto: "))

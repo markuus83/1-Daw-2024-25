@@ -6,16 +6,32 @@ Escribe un script en python que conte o número de vogais nunha cadea de texto i
 """
 __author__ = "Marcos Chouza Cruces"
 
-vocales = "aeiouAEIOU"
+#Inicializamos unha variable cos caracteres que queremos buscar na cadea de texto
+vocales = "aáàäâãeéèëêiíìïîoóòöôõuúùüûAÁÀÄÂÃEÉÈËÊIÍÌÏÎOÓÒÖÔÕUÚÙÜÛ"
 
 def comprobar_vocais (cadea: str) -> int:
-    
-    if cadea is not str:
-        raise ValueError "Erro. Ingrese unha cadea de texto."
-    
-    contador = 0
-    for vocales in cadea:
-        contador += 1
-    return
+    """
+    Comprobación do número total de vocais existentes na cadea a definir
 
-cadea = str(input("Ingrese un texto: "))
+    Args:
+        cadea (str): Cadea a comparar
+
+    Returns:
+        int: Numero de vogais na cadea
+    """
+    contador = 0
+    
+    for caracter in cadea:
+        if caracter in vocales:
+            contador += 1
+            
+    return contador
+
+#Pedímoslle ao usuario que ingrese un texto
+cadea = input("Ingrese un texto: ")
+
+#Almacenamos o valor da función nunha variable para unha maior lexibilidade do código
+num_vocais = comprobar_vocais(cadea)
+
+#Saída por pantalla
+print(f"O número de vocais da cadea é de {num_vocais}.")

@@ -18,8 +18,8 @@ def eliminar_espazos_incial_final(cadea: str) -> str:
     return c
 
 def contar_palabras(c: str) -> str:
-    
     return
+
 cadea = input("Ingrese unha cadea de texto: ")
 
 c = eliminar_espazos_incial_final(cadea)

@@ -14,14 +14,39 @@ Escribe un script en pyhton que conte o número de palabras nunha cadea de texto
 __author__ = "Marcos Chouza Cruces"
 
 def eliminar_espazos_incial_final(cadea: str) -> str:
-    c = cadea.strip()
+    """
+    Eliminar os espazos ao principio e ao final da cadea ingresada polo usuario.
+    
+    Args:
+        cadea (str): Cadea ingresada polo usuario.
+
+    Returns:
+        str: Nova cadea sen espazos ao principio e final.
+    """
+    
+    c = cadea.strip(" ")
     return c
 
 def contar_palabras(c: str) -> str:
-    return
+    
+    """
+    Contar as palabras da cadea ingresada polo usuario
 
+    Args:
+        c (str): Cadea ingresada polo usuario sen espazos ao principio ou final.
+    Returns:
+        str: Lonxitude das cadeas finais
+    """
+    
+    nova_cadea = c.split()
+    return len(nova_cadea)
+
+#Pedímoslle ao usuario que ingrese unha cadea de texto
 cadea = input("Ingrese unha cadea de texto: ")
 
+#Almacenamos as funcions en distintas varaibles para mellorar a lexibilidade do código
 c = eliminar_espazos_incial_final(cadea)
+numero_palabras = contar_palabras(c)
 
-print(f"A cadea final")
+#Imprimimos por pantalla
+print(f"O número de palabras da cadea é: {numero_palabras}")

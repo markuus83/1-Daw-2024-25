@@ -15,8 +15,6 @@ Escribe un script que lle pida ao usuario o seu DNI e comprobe que sexa correcto
 Por último imprime <Válido> ou <Inválido> segundo corresponda.
 """
 
-############### ESTÁ MAL FEITO ###############
-
 __author__ = "Marcos Chouza Cruces"
 
 def lonxitude_cadea(dni: str) -> bool:
@@ -28,7 +26,12 @@ def lonxitude_cadea(dni: str) -> bool:
         raise ValueError ("O DNI ingresado é inválido.")
 
 
-def comprobacion_dixitos_numericos (numeros_dni:str) -> bool:
+def comprobacion_dixitos_numericos (numeros_dni:int) -> bool:
+    
+    try:
+        numeros_dni = int(numeros_dni)
+    except ValueError:
+        print("Erro. O valor debe ser numérico")
     
     if numeros_dni == 8:
         return True
@@ -36,44 +39,45 @@ def comprobacion_dixitos_numericos (numeros_dni:str) -> bool:
 
 def comprobacion_letra_dni (letra_dni:str) -> bool:
     
+    try:
+        letra_dni = str(letra_dni)
+    except ValueError:
+        print("Erro. O valor debe ser un carácter.")
+        
     codigo_ascii = ord(letra_dni)
     if 65 <= codigo_ascii <= 90:
         return True
     
 
-def comprobacion_total_dni(dni: str) -> bool:
+def comprobacion_total_dni(numeros_dni: str, letra_dni: str) -> bool:
     
-    letras_posibles_dni = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ"
+    letras_totais_dni = "TRWAGMYFPDXBNJZSQVHLCKE"
     
-    # Verificar o formato do DNI
-    if not lonxitude_cadea(dni):
-        return False
+    if comprobacion_dixitos_numericos(len(numeros_dni)):
+        indice = int(numeros_dni) % 23
+        return letra_dni == letras_totais_dni[indice]
     
-    # Separar números e letra
-    numeros_dni = dni[:-1]
-    letra_dni = dni[-1].upper()  # Convertimos a letra a maiúscula por consistencia
-    
-    # Comprobar que os números e a letra son válidos
-    if not comprobacion_dixitos_numericos(numeros_dni) or not comprobacion_letra_dni(letra_dni):
-        return False
-
-    # Convertir os números a un enteiro e calcular a letra de control
-    numero = int(numeros_dni)
-    letra_correcta = letras_posibles_dni[numero % 23]
-    
-    # Comprobar se a letra coincide coa esperada
-    if letra_dni == letra_correcta:
-        return True
+    return False
 
 
 dni = str(input("Ingrese o teu DNI: "))
 
+
 numeros_dni = dni[:-1]
-letra_dni = dni[-1]
+letra_dni = dni[-1].upper()
 
-dni_comprobado = comprobacion_total_dni(dni)
+try:
+    dni1 = lonxitude_cadea(dni)
+    dni2 = comprobacion_dixitos_numericos(numeros_dni)
+    dni3 = comprobacion_letra_dni(letra_dni)
+    dni_comprobado = comprobacion_total_dni(numeros_dni, letra_dni)
 
+except ValueError as error:
+    print(error)
+    dni_comprobado = False
+    
 if dni_comprobado is True:
     print("Válido")
 else:
     print("Inválido")
+

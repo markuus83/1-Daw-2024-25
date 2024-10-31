@@ -18,66 +18,117 @@ Por último imprime <Válido> ou <Inválido> segundo corresponda.
 __author__ = "Marcos Chouza Cruces"
 
 def lonxitude_cadea(dni: str) -> bool:
+    """
+    Calcualr a lonxitude do DNI para ver se ten 9 caracteres
+
+    Args:
+        dni (str): DNI proporcionado polo usuario.
+
+    Raises:
+        ValueError: Erro se a lonmxitude do dni é distinta de 9
+
+    Returns:
+        bool: Tipo do dato do return
+    """
+
+    if len(dni) != 9:
+        raise ValueError("Erro. A lonxitude do dni debe ser de 9 caracteres.")
     
-    if len(dni) == 9:
-        return True
-    
-    else:
-        raise ValueError ("O DNI ingresado é inválido.")
+    return True
 
 
-def comprobacion_dixitos_numericos (numeros_dni:int) -> bool:
+def comprobacion_dixitos_numericos(dni: str) -> bool:
+
+    """
+    Comprobar se os 8 primeiros díxitos do DNI son números.
     
-    try:
-        numeros_dni = int(numeros_dni)
-    except ValueError:
-        print("Erro. O valor debe ser numérico")
+    Args:
+        dni (str): DNI proporcionado polo usuario.
+
+    Raises:
+        ValueError: Erro se os primeiros 8 díxitos non son números.
+
+    Returns:
+        bool: Tipo do dato do return.
+    """
+    if not dni[:8].isdigit(): #Funcion atopada en Stackoverflow, consiste para veriricar se os caracteres dunha cadea son numéricos ou non.
+        raise ValueError("Erro. Os primeiros 8 caracteres deben ser numéricos.")
     
-    if numeros_dni == 8:
-        return True
+    return True
 
 
-def comprobacion_letra_dni (letra_dni:str) -> bool:
-    
-    try:
-        letra_dni = str(letra_dni)
-    except ValueError:
-        print("Erro. O valor debe ser un carácter.")
+def comprobacion_letra_dni(dni: str) -> bool:
+    """
+    Comprar se o último caracter do dni é unha letra maiúscula.
+
+    Args:
+        dni (str): DNI proporcionado polo usuario.
         
-    codigo_ascii = ord(letra_dni)
-    if 65 <= codigo_ascii <= 90:
+    Raises:
+        ValueError: Erro se a última letra non é unha letra maiúscula
+
+    Returns:
+        bool: Tipo do dato do return.
+    """
+
+    if not ('A' <= dni[8] <= 'Z'):
+        raise ValueError("Erro. O último carácter debe ser unha letra maiúscula.")
+    
+    return True
+
+
+def comprobacion_total_dni(dni:str) -> bool:
+    """
+    Comprobación total do DNI, para ver se coinciden os números coa letra proporcionada.
+
+    Args:
+        dni (str): DNI proporcionado polo usuario.
+
+    Raises:
+        ValueError: Erro se a letra do DNI non coincide cos números ingresados.
+
+    Returns:
+        bool: Tipo do dato do return.
+    """
+    
+    letras_dni = "TRWAGMYFPDXBNJZSQVHLCKE"
+    numero = int(dni[:8])
+    letra_correcta = letras_dni[numero % 23]
+    
+    if dni[8] != letra_correcta:
+        raise ValueError("Erro. A letra do DNI non coincide cos díxitos numéricos.")
+    
+    return True
+
+
+def validar_dni(dni:str) -> bool:
+    """
+    Validación xenearl do dni, para ver se as funcións antertiores son correctas.
+
+    Args:
+        dni (str): DNI proporcionado polo usuario.
+
+    Returns:
+        bool: Tipo do dato do return
+    """
+    try:
+        lonxitude_cadea(dni)
+        comprobacion_dixitos_numericos(dni)
+        comprobacion_letra_dni(dni)
+        comprobacion_total_dni(dni)
         return True
     
+    except ValueError as erro:
+        print(f"Inválido: {erro}")
 
-def comprobacion_total_dni(numeros_dni: str, letra_dni: str) -> bool:
-    
-    letras_totais_dni = "TRWAGMYFPDXBNJZSQVHLCKE"
-    
-    if comprobacion_dixitos_numericos(len(numeros_dni)):
-        indice = int(numeros_dni) % 23
-        return letra_dni == letras_totais_dni[indice]
-    
-    return False
+#Pedímoslle ao usuario que ingrese un dni
+dni = input("Ingrese un dni: ")
 
+#Almacenamos o valor da funcion nunha variable para mellorar a lexibilidade do código
+dni_validado = validar_dni(dni)
 
-dni = str(input("Ingrese o teu DNI: "))
-
-
-numeros_dni = dni[:-1]
-letra_dni = dni[-1].upper()
-
-try:
-    dni1 = lonxitude_cadea(dni)
-    dni2 = comprobacion_dixitos_numericos(numeros_dni)
-    dni3 = comprobacion_letra_dni(letra_dni)
-    dni_comprobado = comprobacion_total_dni(numeros_dni, letra_dni)
-
-except ValueError as error:
-    print(error)
-    dni_comprobado = False
-    
-if dni_comprobado is True:
+#Imprimimos por pantalla
+if dni_validado:
     print("Válido")
 else:
     print("Inválido")
-

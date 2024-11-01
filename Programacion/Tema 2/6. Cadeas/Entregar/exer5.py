@@ -16,3 +16,14 @@ O propio script debe utilizar ditas función para cifrar un texto introducido po
 """
 
 __author__ = "Marcos Chouza Cruces"
+
+def cifra_cesar(texto: str, desprazamento: int) -> str:
+    
+    cadea_axuda = "abcdefghijklmnñopqrstuvwxyz"
+    return "hola"
+
+texto = str(input("Ingrese un texto para cifralo: "))
+desprazamento = int(input("Ingrese a cantidade de caracteres que quere desprazar: "))
+
+texto_cifrado = cifra_cesar(texto, desprazamento)
+print(texto_cifrado)

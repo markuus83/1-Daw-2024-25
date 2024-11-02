@@ -15,15 +15,48 @@ Realiza a implantación deste algoritmo na función <cifra_cesar(texto: str, des
 O propio script debe utilizar ditas función para cifrar un texto introducido polo usuario para mostrar o texto cifrado por pantalla. O usuario tamén indicará por teclado o desprazamento. Ademais recorda capturar a excepción.
 """
 
-__author__ = "Marcos Chouza Cruces"
+__author__ = ""
 
 def cifra_cesar(texto: str, desprazamento: int) -> str:
-    
-    cadea_axuda = "abcdefghijklmnñopqrstuvwxyz"
-    return "hola"
+    """
+    Aplicación do Cifrado César a unha cadea de texto proporcionada polo usuario
 
-texto = str(input("Ingrese un texto para cifralo: "))
+    Args:
+        texto (str): Cadea de texto proporcionada polo usuario
+        desprazamento (int): Número de caracteres a desprazar no cifrado
+
+    Raises:
+        ValueError: Para valores ingresados non correspondentes
+
+    Returns:
+        str: Cadea de texto cifrada
+    """
+    
+    if type(texto) != str or type(desprazamento) != int:
+        raise ValueError("Os valores ingresados non son correspondentes")
+    
+    cadea_axuda = "abcdefghijklmnopqrstuvwxyz"
+    texto_cifrado = ""
+    
+    for caracter in texto:
+        
+        if caracter in cadea_axuda:
+            indice_texto = cadea_axuda.index(caracter) #Obtemos o íncide do carácter na cadea_axuda
+            indice_cifrado = (indice_texto + desprazamento) % 26 #Calculamos o desprazamento da cadea, e aplicamos módulo 26 (total das caracteres da cadea_axuda) para que reinicie unha vez o desprazamento chegue ao final de dita cadea
+            texto_cifrado += cadea_axuda[indice_cifrado] #Engadimos o caracter cifrado a unha nova variable
+        else:
+            texto_cifrado += caracter #Para os caracteres que non pertencen a 'cadea_axuda' se ingresen sen modificacion algunha
+    
+    return texto_cifrado
+
+#Pedísmolle ao usuario que ingrese os datos correspondentes
+texto = str(input("Ingrese un texto para cifralo: ")).lower() #Pasamos a cadea ingresada a minúsculas automáticamente.
 desprazamento = int(input("Ingrese a cantidade de caracteres que quere desprazar: "))
 
-texto_cifrado = cifra_cesar(texto, desprazamento)
-print(texto_cifrado)
+#Capturamos posibles excepcións e damos unha saída por pantalla
+try:
+    texto_cifrado = cifra_cesar(texto, desprazamento)
+    print(texto_cifrado)
+    
+except ValueError as erro:
+    print(f"Erro: {erro}")

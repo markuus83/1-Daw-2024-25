@@ -19,7 +19,7 @@ __author__ = "Marcos Chouza Cruces"
 
 def lonxitude_cadea(dni: str) -> bool:
     """
-    Calcualr a lonxitude do DNI para ver se ten 9 caracteres
+    Calcular a lonxitude do DNI para ver se ten 9 caracteres
 
     Args:
         dni (str): DNI proporcionado polo usuario.
@@ -32,7 +32,7 @@ def lonxitude_cadea(dni: str) -> bool:
     """
 
     if len(dni) != 9:
-        raise ValueError("Erro. A lonxitude do dni debe ser de 9 caracteres.")
+        raise ValueError("A lonxitude do dni debe ser de 9 caracteres.")
     
     return True
 
@@ -52,7 +52,7 @@ def comprobacion_dixitos_numericos(dni: str) -> bool:
         bool: Tipo do dato do return.
     """
     if not dni[:8].isdigit(): #Funcion atopada en Stackoverflow, consiste para veriricar se os caracteres dunha cadea son numéricos ou non.
-        raise ValueError("Erro. Os primeiros 8 caracteres deben ser numéricos.")
+        raise ValueError("Os primeiros 8 caracteres deben ser numéricos.")
     
     return True
 
@@ -72,7 +72,7 @@ def comprobacion_letra_dni(dni: str) -> bool:
     """
 
     if not ('A' <= dni[8] <= 'Z'):
-        raise ValueError("Erro. O último carácter debe ser unha letra maiúscula.")
+        raise ValueError("O último carácter debe ser unha letra maiúscula.")
     
     return True
 
@@ -96,7 +96,7 @@ def comprobacion_total_dni(dni:str) -> bool:
     letra_correcta = letras_dni[numero % 23]
     
     if dni[8] != letra_correcta:
-        raise ValueError("Erro. A letra do DNI non coincide cos díxitos numéricos.")
+        raise ValueError("A letra do DNI non coincide cos díxitos numéricos.")
     
     return True
 
@@ -119,7 +119,7 @@ def validar_dni(dni:str) -> bool:
         return True
     
     except ValueError as erro:
-        print(f"Inválido: {erro}")
+        print(f"Erro: {erro}")
 
 #Pedímoslle ao usuario que ingrese un dni
 dni = input("Ingrese un dni: ")

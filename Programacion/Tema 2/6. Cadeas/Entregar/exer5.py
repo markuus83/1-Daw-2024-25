@@ -17,13 +17,16 @@ O propio script debe utilizar ditas función para cifrar un texto introducido po
 
 __author__ = ""
 
-def cifra_cesar(texto: str, desprazamento: int) -> str:
+texto_cifrado = ""
+
+def cifra_cesar(texto: str, desprazamento: int, texto_cifrado: str) -> str:
     """
     Aplicación do Cifrado César a unha cadea de texto proporcionada polo usuario
 
     Args:
         texto (str): Cadea de texto proporcionada polo usuario
         desprazamento (int): Número de caracteres a desprazar no cifrado
+        texto_cifrado (str): Cadea de texto cifrada para dar a saída por pantalla
 
     Raises:
         ValueError: Para valores ingresados non correspondentes
@@ -32,21 +35,20 @@ def cifra_cesar(texto: str, desprazamento: int) -> str:
         str: Cadea de texto cifrada
     """
     
-    if type(texto) != str or type(desprazamento) != int:
+    if type(texto) is not str or type(desprazamento) is not int:
         raise ValueError("Os valores ingresados non son correspondentes")
     
     cadea_axuda = "abcdefghijklmnopqrstuvwxyz"
-    texto_cifrado = ""
     
     for caracter in texto:
-        
         if caracter in cadea_axuda:
             indice_texto = cadea_axuda.index(caracter) #Obtemos o íncide do carácter na cadea_axuda
             indice_cifrado = (indice_texto + desprazamento) % 26 #Calculamos o desprazamento da cadea, e aplicamos módulo 26 (total das caracteres da cadea_axuda) para que reinicie unha vez o desprazamento chegue ao final de dita cadea
             texto_cifrado += cadea_axuda[indice_cifrado] #Engadimos o caracter cifrado a unha nova variable
+            
         else:
             texto_cifrado += caracter #Para os caracteres que non pertencen a 'cadea_axuda' se ingresen sen modificacion algunha
-    
+            
     return texto_cifrado
 
 #Pedísmolle ao usuario que ingrese os datos correspondentes
@@ -55,8 +57,7 @@ desprazamento = int(input("Ingrese a cantidade de caracteres que quere desprazar
 
 #Capturamos posibles excepcións e damos unha saída por pantalla
 try:
-    texto_cifrado = cifra_cesar(texto, desprazamento)
-    print(texto_cifrado)
-    
+    texto_cifrado = cifra_cesar(texto, desprazamento, texto_cifrado)
+    print(texto_cifrado)    
 except ValueError as erro:
     print(f"Erro: {erro}")

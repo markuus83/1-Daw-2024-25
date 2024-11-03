@@ -24,7 +24,7 @@ def descifrar_cesar(texto: str, desprazamento: int) -> str:
         str: Cadea de texto descifrada
     """
     
-    if type(texto) != str or type(desprazamento) != int:
+    if type(texto) is not str or type(desprazamento) is not int:
         raise ValueError("Os valores ingresados non son correspondentes")
     
     cadea_axuda = "abcdefghijklmnopqrstuvwxyz"

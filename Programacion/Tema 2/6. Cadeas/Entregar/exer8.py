@@ -38,9 +38,10 @@ def calculo_folding(cadea: str, num_division: int) -> str:
     return resultado
 
 
-def suma_numeros(cadea2):
+def suma_numeros(cadea2: str) -> int:
     
     return
+
 
 
 

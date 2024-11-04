@@ -103,7 +103,7 @@ def comprobacion_total_dni(dni:str) -> bool:
 
 def validar_dni(dni:str) -> bool:
     """
-    Validación xenearl do dni, para ver se as funcións antertiores son correctas.
+    Validación xeral do dni, para ver se as funcións antertiores son correctas.
 
     Args:
         dni (str): DNI proporcionado polo usuario.

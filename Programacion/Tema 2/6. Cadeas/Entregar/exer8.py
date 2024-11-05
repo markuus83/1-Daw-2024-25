@@ -8,7 +8,6 @@ Queremos realizar un programa que calcule o índice dunha chave para un dicciona
 __author__ = "Marcos Chouza Cruces"
 
 def calculo_ascii(chave: str) -> str:
-    
     """
     Calculamos os números ascii de cada caracter da cadea de texto proporcionada polo usuario
 
@@ -36,7 +35,6 @@ def calculo_ascii(chave: str) -> str:
 
 
 def calculo_folding(cadea: str, num_division: int) -> str:
-    
     """
     Calculamos a separacion folding dependendo da que ingrese o usuario.
 
@@ -89,7 +87,6 @@ def suma_numeros(cadea2: str) -> int:
 
 
 def modulo_taboa(suma: int, tamanho_taboa_modulo: int) -> int:
-    
     """
     Aplicamos o módulo do tamaño da táboa
 

@@ -8,8 +8,21 @@ Queremos realizar un programa que calcule o índice dunha chave para un dicciona
 __author__ = "Marcos Chouza Cruces"
 
 def calculo_ascii(chave: str) -> str:
+    
+    """
+    Calculamos os números ascii de cada caracter da cadea de texto proporcionada polo usuario
+
+    Args:
+        chave (str): Cadea de texto proporcionada polo usuario
+    Raises:
+        ValueError: Cando non coinciden os valores esperados cos outorgados
+
+    Returns:
+        str: Conxunto dos caracteres ascii sen espazos
+    """
+    
     if type(chave) != str:
-        raise ValueError ("OS valores ingresados non coinciden cos esperados.")
+        raise ValueError ("Os valores ingresados non coinciden cos esperados. (Primeira Funcion)")
     
     caracter_ascii = ""
     
@@ -19,11 +32,28 @@ def calculo_ascii(chave: str) -> str:
         # Agregar el código ASCII a la cadena seguido de un espacio
         caracter_ascii += str(ascii_code) + " "
     
-    # Eliminar el último espacio extra al final de la cadena
     return caracter_ascii
 
 
 def calculo_folding(cadea: str, num_division: int) -> str:
+    
+    """
+    Calculamos a separacion folding dependendo da que ingrese o usuario.
+
+    Args:
+    
+        cadea(str): Saída da funcion calculo_ascii()
+        num_division (int): Numero separacion para a division folding
+    
+    Raises:
+        ValueError: Cando non coinciden os valores esperados cos outorgados
+
+    Returns:
+        str: Cadea de texto cos caracteres ascii separados no número de division que pide o usuario
+    """
+    
+    if type(cadea) != str or type(num_division) != int:
+        raise ValueError ("Os valores ingresados non coinciden cos esperados. (Segunda Funcion)")
     
     nova_cadea = cadea.replace(" ", "")
     
@@ -39,21 +69,56 @@ def calculo_folding(cadea: str, num_division: int) -> str:
 
 
 def suma_numeros(cadea2: str) -> int:
+    """
+    Converte a cadea de texto ascii en subcadeas e suma os numeros entre sí
+
+    Raises:
+        ValueError: Cando non coinciden os valores esperados cos outorgados
+
+    Returns:
+        int: Suma dos caracteres ascii
+    """
     
-    return
+    if type(cadea2) != str:
+        raise ValueError("Os valores ingresados non coinciden cos esperados. (Terceira Funcion)")
+    
+    suma = sum(int(num) for num in cadea2.split())
+    
+    return suma
 
 
 
+def modulo_taboa(suma: int, tamanho_taboa_modulo: int) -> int:
+    
+    """
+    Aplicamos o módulo do tamaño da táboa
 
-#tamanho_taboa_modulo = int(input("Ingrese o tamaño da táboa: "))
+    Raises:
+        ValueError: Cando non coinciden os valores esperados cos outorgados
+
+    Returns:
+        int: Código final
+    """
+    
+    if type(suma) != int or type(tamanho_taboa_modulo) != int:
+        raise ValueError ("Os valores ingresados non coinciden cos esperados. (Cuarta Funcion)")
+    
+    modulo = suma % tamanho_taboa_modulo
+    return modulo
+
+#Pedímoslle ao usuario que ingrese os datos precisos
+tamanho_taboa_modulo = int(input("Ingrese o tamaño da táboa: "))
 num_division = int(input("Ingrese o número de divisións do folding: "))
 chave = str(input("Ingrese a chave a aplicar: "))
 
-cadea = calculo_ascii(chave)
+#Almacenamos o valor das funcións en variables para mellorar a lexibilidade e capturas posibles excepcións
+try:
+    cadea = calculo_ascii(chave)
+    cadea2 = calculo_folding(cadea, num_division)
+    suma = suma_numeros(cadea2)
+    Codigo = modulo_taboa(suma, tamanho_taboa_modulo)
+    
+except ValueError as erro:
+    print(f"Erro: {erro}")
 
-cadea1 = calculo_ascii(chave)
-cadea2 = calculo_folding(cadea, num_division)
-cadea3 = suma_numeros(cadea2)
-
-
-print(cadea3)
+print(f"O código do Hashing Folding de {chave} é '{Codigo}'")

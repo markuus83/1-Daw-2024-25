@@ -15,6 +15,9 @@ Escribe un script que lle pida ao usuario o seu DNI e comprobe que sexa correcto
 Por último imprime <Válido> ou <Inválido> segundo corresponda.
 """
 
+#Las excepciones están mal vistas, no son value error, simplemente no dan la salida k yo
+
+
 __author__ = "Marcos Chouza Cruces"
 
 def lonxitude_cadea(dni: str) -> bool:
@@ -30,15 +33,13 @@ def lonxitude_cadea(dni: str) -> bool:
     Returns:
         bool: Tipo do dato do return
     """
-
     if len(dni) != 9:
-        raise ValueError("A lonxitude do dni debe ser de 9 caracteres.")
+        raise("A lonxitude do dni debe ser de 9 caracteres.")
     
     return True
 
 
 def comprobacion_dixitos_numericos(dni: str) -> bool:
-
     """
     Comprobar se os 8 primeiros díxitos do DNI son números.
     
@@ -52,9 +53,7 @@ def comprobacion_dixitos_numericos(dni: str) -> bool:
         bool: Tipo do dato do return.
     """
     if not dni[:8].isdigit(): #Funcion atopada en Stackoverflow, consiste para veriricar se os caracteres dunha cadea son numéricos ou non.
-        raise ValueError("Os primeiros 8 caracteres deben ser numéricos.")
-    
-    return True
+        return True
 
 
 def comprobacion_letra_dni(dni: str) -> bool:
@@ -72,7 +71,7 @@ def comprobacion_letra_dni(dni: str) -> bool:
     """
 
     if not ('A' <= dni[8] <= 'Z'):
-        raise ValueError("O último carácter debe ser unha letra maiúscula.")
+        raise TypeError("O último carácter debe ser unha letra maiúscula.")
     
     return True
 
@@ -96,8 +95,7 @@ def comprobacion_total_dni(dni:str) -> bool:
     letra_correcta = letras_dni[numero % 23]
     
     if dni[8] != letra_correcta:
-        raise ValueError("A letra do DNI non coincide cos díxitos numéricos.")
-    
+        raise ValueError("A letra do DNI non coincide co código de control.")
     return True
 
 

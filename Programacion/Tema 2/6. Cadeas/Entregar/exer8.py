@@ -68,7 +68,7 @@ def calculo_folding(cadea: str, num_division: int) -> str:
 
 def suma_numeros(cadea2: str) -> int:
     """
-    Converte a cadea de texto ascii en subcadeas e suma os numeros entre sí
+    Converte a cadea de texto ascii en subcadeas e suma os números entre sí sen utilizar listas
 
     Raises:
         ValueError: Cando non coinciden os valores esperados cos outorgados
@@ -80,7 +80,20 @@ def suma_numeros(cadea2: str) -> int:
     if type(cadea2) != str:
         raise ValueError("Os valores ingresados non coinciden cos esperados. (Terceira Funcion)")
     
-    suma = sum(int(num) for num in cadea2.split())
+    suma = 0
+    numero_actual = ""
+
+    for caracter in cadea2:
+        
+        if caracter.isdigit():
+            numero_actual += caracter
+            
+        elif caracter == " " and numero_actual:
+            suma += int(numero_actual)
+            numero_actual = ""
+
+    if numero_actual:
+        suma += int(numero_actual)
     
     return suma
 

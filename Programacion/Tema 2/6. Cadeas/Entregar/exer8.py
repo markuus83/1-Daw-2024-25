@@ -131,4 +131,10 @@ try:
 except ValueError as erro:
     print(f"Erro: {erro}")
 
-print(f"O código do Hashing Folding de {chave} é '{Codigo}'")
+print(f"O código do Hashing Folding de {chave} é: '{Codigo}'")
+
+
+
+# Eliminar la creacion de un espacio para en la siguiente funcion borrarlo
+
+# Crear una nueva función donde llame a las tres funciones y pasarle los parámetros

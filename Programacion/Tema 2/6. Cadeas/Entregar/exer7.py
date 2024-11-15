@@ -15,9 +15,6 @@ Escribe un script que lle pida ao usuario o seu DNI e comprobe que sexa correcto
 Por último imprime <Válido> ou <Inválido> segundo corresponda.
 """
 
-#Las excepciones están mal vistas, no son value error, simplemente no dan la salida k yo kiero
-
-
 __author__ = "Marcos Chouza Cruces"
 
 def validar_dni(dni:str) -> bool:

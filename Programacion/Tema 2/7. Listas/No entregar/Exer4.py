@@ -9,14 +9,15 @@ __author__ = "Marcos Chouza Cruces"
 
 def contar_lonxitudes(lista: list) -> list:
     
-    nova_lista = []
+    nova_lista = [] #Inicializamos unha nova lista baleira  
     
-    for elemento in lista:
+    for elemento in lista: #Recorremos cada elemento da lista el almacenamos a súa lonxitude na nova lista
         nova_lista.append(len(elemento))
     
-    return nova_lista
+    return nova_lista #Devolvemos a lista coas lonxitudes dos valores da primeira lista
 
-lista = ["Marcos", "hola", "alvaro", "Alejandra", "silva"]
+lista = ["Marcos", "Hola", "alvaro", "Alejandra", "Silva"]
 hola = contar_lonxitudes(lista)
 
 print(hola)
+

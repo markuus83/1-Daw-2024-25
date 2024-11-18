@@ -54,4 +54,13 @@ n, contador = busqueda_binaria(lista, obxectivo)
 
 print(f"O número {n} precisou de {contador} contadores.")
 
-
+""" 
+    lonxitude = len(lista)
+    
+    for burbulla in range(lonxitude - 1):
+        for indice in range(lonxitude -1): 
+            if lista[indice] > lista[indice + 1]:
+                variable_ayuda = lista[indice]
+                lista[indice] = lista[indice + 1]
+                lista[indice + 1] = variable_ayuda
+"""

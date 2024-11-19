@@ -52,11 +52,27 @@ IMPORTANTE: Non utilices para realizar estas duncións do sistema max, min, etc.
 __author__ = "Marcos Chouza Cruces"
 
 def engadir_nota(lista: list[float], nota: float):
-    return lista.append(nota)
+    
+    if type(lista) is not list:
+        raise ValueError("O parámetro non é unha lista. (ENGADIR_NOTA)")
+    
+    if type(nota) is not float:
+        raise ValueError("A valor da nota non é numérico. (ENGADIR_NOTA)")
+    
+    lista = lista.append(nota)
+    
+    return lista
 
 
 def mostrar_notas(lista: list[float]):
-    return
+    if type(lista) is not list:
+        raise ValueError("O parámetro non é unha lista. (MOSTRAR_NOTAS)")
+    
+    for indice, nota in enumerate(lista):
+        if type(nota) is not float:
+            raise ValueError("O elemento non é numérico.(MOSTRAR_NOTAS)")
+        
+        return indice, nota
 
 
 def media_notas(lista: list[float]) -> float:
@@ -67,22 +83,53 @@ def media_notas(lista: list[float]) -> float:
     suma = 0
 
     for nota in lista: #Calculamos a suma total de todos os elementos da lista
+        if type(nota) is not float:
+            raise ValueError("O elemento non é numérico.(MEDIA)")
         suma += nota
-    
         media = suma /len(lista)
         
     return media 
 
 
 def numero_aprobados(lista: list[float]) -> int:
-    return
+    
+    if type(lista) is not list:
+        raise ValueError("O parámetro non é unha lista. (APROBADOS)")
+    
+    aprobado = 0
+    for nota in lista:
+        if type(nota) is not float:
+            raise ValueError("O elemento non é numérico.(APROBADOS)")
+        
+        if nota >= 5:
+            aprobado += 1
+            
+    return aprobado
 
 
 def maxima_nota(lista: list[float]) -> float:
-    return
+    
+    if type(lista) is not list:
+        raise ValueError("O parámetro non é unha lista. (NOTA_MAXIMA)")
+    
+    maxima_nota = 0 
+    for nota in lista:
+        if nota > maxima_nota:
+            maxima_nota = nota
+
+    return maxima_nota
+
 
 
 def eliminar_nota(lista: list[float],indice: int):
+    
+    if type(lista) is not list:
+        raise ValueError("O parámetro non é unha lista. (ELIMINAR_NOTA)")
+    
+    if type(indice) is not int:
+        raise ValueError("O índice non é un valor numérico")
+    
+    
     return
 
 
@@ -100,27 +147,36 @@ while True:
     option = input(">")
     
     if option == 'a':
-        nota = int(input("Ingrese unha nota: "))
         
+        nota = float(input("Ingrese unha nota: "))
+        engadir_nota(lista, nota)
         
     elif option == 'b':
         
         media = media_notas(lista)
+        print(f"A media das notas é: {media}")
         
     elif option == 'c':
         
         aprobados = numero_aprobados(lista)
+        print(f"O número de aprobados é: {aprobados}")
+        
         
     elif option == 'd':
         
         nota_maxima = maxima_nota(lista)
+        print(f"A nota máxima é: {nota_maxima}")
         
     elif option == 'e':
         
-        indice = input("Ingrese o índice da nota a eliminar: ")
+        indice = int(input("Ingrese o índice da nota a eliminar: "))
+        print(notas = mostrar_notas(lista))
         eliminar_nota(lista,indice)
         
-    else:
+    elif option == 'f':
         print("Saíndo...")
         break
+    
+    else:
+        raise ValueError("Non ingresou un valor válido.")
         

@@ -31,13 +31,13 @@ def burbulla(lista: list) -> list:
     #Calculamos a lonxitude da lista
     lonxitude = len(lista)
     
-    #Recorremos a lista indefinidas veces sempre e cando sexa necesario
-    for burbulla in range(lonxitude - 1):
+    #Recorremos a lista infinitas veces ata que a variable ordenado rompa o bucle
+    while True:
         
         # Igualamos unha variable a 'True' para ver se a lista xa se atopa ordenada previamente
         ordenado = True
         
-        for indice in range(lonxitude - 1 - burbulla):
+        for indice in range(lonxitude - 1):
             
             # Establecemos a condición necesaria 
             if lista[indice] > lista[indice + 1]:
@@ -55,7 +55,7 @@ def burbulla(lista: list) -> list:
     return lista
 
 # Ingresamos unha lista fixa con valores desordenados
-lista = [1, 3, 5, 10, 22, 31, 41, 43, 57, 63]
+lista = [63, 1, 3, 57, 5, 10, 22, 31, 41, 43]
 
 # Almacenamos o valor da función nunha variable para mellorar a lexibilidade do código
 lista_ordenada = burbulla(lista)

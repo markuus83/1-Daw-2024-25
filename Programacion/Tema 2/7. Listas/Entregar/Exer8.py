@@ -59,6 +59,8 @@ def engadir_nota(lista: list[float], nota: float):
     if type(nota) is not float:
         raise ValueError("A valor da nota non é numérico. (ENGADIR_NOTA)")
     
+    if nota < 0 or nota > 10:
+        raise ValueError("A nota non entra nos parámetros. (ENGADIR_NOTA)")
     lista = lista.append(nota)
     
     return lista
@@ -68,11 +70,15 @@ def mostrar_notas(lista: list[float]):
     if type(lista) is not list:
         raise ValueError("O parámetro non é unha lista. (MOSTRAR_NOTAS)")
     
+    notas_formateadas = []
     for indice, nota in enumerate(lista):
         if type(nota) is not float:
             raise ValueError("O elemento non é numérico.(MOSTRAR_NOTAS)")
         
-        return indice, nota
+        notas_formateadas.append(f"Índice: {indice}, Valor: {nota}")
+    
+    return notas_formateadas  
+
 
 
 def media_notas(lista: list[float]) -> float:
@@ -82,7 +88,7 @@ def media_notas(lista: list[float]) -> float:
 
     suma = 0
 
-    for nota in lista: #Calculamos a suma total de todos os elementos da lista
+    for nota in lista: 
         if type(nota) is not float:
             raise ValueError("O elemento non é numérico.(MEDIA)")
         suma += nota
@@ -120,7 +126,6 @@ def maxima_nota(lista: list[float]) -> float:
     return maxima_nota
 
 
-
 def eliminar_nota(lista: list[float],indice: int):
     
     if type(lista) is not list:
@@ -129,8 +134,9 @@ def eliminar_nota(lista: list[float],indice: int):
     if type(indice) is not int:
         raise ValueError("O índice non é un valor numérico")
     
+    del lista[indice]
     
-    return
+    return lista
 
 
 lista = []
@@ -145,38 +151,44 @@ while True:
     print("\t f) Saír")
     
     option = input(">")
+    try:
+        if option == 'a':
+        
+            nota = float(input("Ingrese unha nota: "))
+            engadir_nota(lista, nota)
+        
+        elif option == 'b':
+        
+            media = media_notas(lista)
+            print(f"A media das notas é: {round(media, 2)}")
+        
+        elif option == 'c':
+        
+            aprobados = numero_aprobados(lista)
+            print(f"O número de aprobados é: {aprobados}")
+        
+        
+        elif option == 'd':
+        
+            nota_maxima = maxima_nota(lista)
+            print(f"A nota máxima é: {nota_maxima}")
+        
+        elif option == 'e':
+            
+            notas = mostrar_notas(lista)
+            
+            for nota in notas:
+                print(nota)
+                
+            indice = int(input("Ingrese o índice da nota a eliminar: "))
+            eliminar_nota(lista,indice)
+        
+        elif option == 'f':
+            print("Saíndo...")
+            break
     
-    if option == 'a':
+        else:
+            raise ValueError("Non ingresou un valor válido.")
         
-        nota = float(input("Ingrese unha nota: "))
-        engadir_nota(lista, nota)
-        
-    elif option == 'b':
-        
-        media = media_notas(lista)
-        print(f"A media das notas é: {media}")
-        
-    elif option == 'c':
-        
-        aprobados = numero_aprobados(lista)
-        print(f"O número de aprobados é: {aprobados}")
-        
-        
-    elif option == 'd':
-        
-        nota_maxima = maxima_nota(lista)
-        print(f"A nota máxima é: {nota_maxima}")
-        
-    elif option == 'e':
-        
-        indice = int(input("Ingrese o índice da nota a eliminar: "))
-        print(notas = mostrar_notas(lista))
-        eliminar_nota(lista,indice)
-        
-    elif option == 'f':
-        print("Saíndo...")
-        break
-    
-    else:
-        raise ValueError("Non ingresou un valor válido.")
-        
+    except ValueError as erro:
+        print(f"Erro: {erro}")

@@ -25,17 +25,17 @@ def raiz_cadrada(numero) -> float:
     
     # Comprobar se o número é do tipo correcto (int ou float)
     if not (type(numero) is int or type(numero) is float):
-        raise ValueError("Erro. O valor ingresado non é numérico.")
+        raise ValueError("O valor ingresado non é numérico.")
     
     # Intento de conversión a float
     try:
         numero = float(numero)  
     except ValueError:
-        raise ValueError("Erro. O valor ingresado non é numérico.")
+        raise ValueError("O valor ingresado non é numérico.")
     
     # Comprobar se o número é negativo
     if numero < 0:
-        raise ValueError("Erro. O valor ingresado é negativo.")
+        raise ValueError("O valor ingresado é negativo.")
     
     return numero ** 0.5
 

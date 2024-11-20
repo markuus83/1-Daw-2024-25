@@ -151,6 +151,7 @@ while True:
     print("\t f) Saír")
     
     option = input(">")
+    
     try:
         if option == 'a':
         

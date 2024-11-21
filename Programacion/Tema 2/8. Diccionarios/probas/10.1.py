@@ -139,4 +139,5 @@ print(estudante["enderezo"]["código_postal"])  # Saída: 15001
 
 """
 
+lista = ['mazá', 'banana', 'mazá', 'laranxa', 'banana', 'mazá']
 

@@ -79,9 +79,7 @@ def engadir_nota(lista: list[float], nota: float) -> list:
         raise ValueError("A nota non entra nos parámetros. (ENGADIR_NOTA)")
     
     #Engadimos o valor da nota na lista
-    lista = lista.append(nota)
-    
-    return lista
+    lista.append(nota)
 
 
 def mostrar_notas(lista: list[float]) -> list:
@@ -239,10 +237,14 @@ def eliminar_nota(lista: list[float],indice: int) -> list:
     if type(indice) is not int:
         raise ValueError("O índice non é un valor numérico (ELIMINAR_NOTA)")
     
+    if indice < 0:
+        raise ValueError("O índice e menor ao mínimo.")
+    
+    if indice >= len(lista):
+        raise ValueError("O índice e maior o máximo da lista.")
+    
     #Eliminamos o elemento dependendo do seu índice
     del lista[indice]
-    
-    return lista
 
 #Inicializamos unha lista vacía
 lista = []
@@ -275,7 +277,7 @@ while True:
         elif option == 'c':
         
             if len(lista) == 0:
-                raise ValueError("Non se poden ver os aprobados porque aínda non temos notas almacenadas.")
+                print("Non se poden ver os aprobados porque aínda non temos notas almacenadas.")
             
             aprobados = numero_aprobados(lista)
             print(f"O número de aprobados é: {aprobados}")
@@ -289,7 +291,7 @@ while True:
         elif option == 'e':
             
             if len(lista) == 0:
-                raise ValueError("Non se pode eliminar elementos porque a lista está vacía.")
+                print("Non se pode eliminar elementos porque a lista está vacía.")
             
             notas = mostrar_notas(lista)
             
@@ -304,7 +306,7 @@ while True:
             break
     
         else:
-            raise ValueError("Non ingresou un valor válido.")
+            print("Non ingresou un valor válido.")
         
     except ValueError as erro:
         print(f"Erro: {erro}")

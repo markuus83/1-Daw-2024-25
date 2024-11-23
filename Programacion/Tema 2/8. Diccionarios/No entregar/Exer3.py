@@ -2,11 +2,13 @@
 # -*- coding: utf-8 -*-
 
 """ 
-Escribe nun script unha función <agrupar_datos_por_valor(dicionario: Dict[str, List[int]]) -> Dict[int, List[str]]> que conte a frecuencia de cada palabra nunha lsita de palabras. A función debe devolver un diccionario onde as chaves son as palabras e os valores son as frecuencias. Aquí tes un fragmento de código para probar dita función:
+Exfibe nun script unha función <agrupar_datos_por_valor(diccionario:dict[str,list[int]]) -> dict[int,list[str]]> que reciba un diccionario onde os valores son listas e devolva un novo diccionario que agrupe as claves segundo os valores que teñen en común.
 
-    lista_palabras = ['mazá', 'banana', 'mazá', 'laranxa', 'banana', 'mazá']
-
-    print(contar_frecuencia(lista_palabras))
+    dicionario = {'a': [1, 2], 'b': [2, 3], 'c': [1, 4]}
+    print(agrupar_datos_por_valor(dicionario))
+    
+    # Saída esperada:
+    # {1: ['a', 'c'], 2: ['a', 'b'], 3: ['b'], 4: ['c']}
 """
 
 __author__ = "Marcos Chouza Cruces"

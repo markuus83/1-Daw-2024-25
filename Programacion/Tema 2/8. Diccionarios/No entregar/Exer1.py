@@ -12,25 +12,29 @@ Escribe nun script unha función <contar_frecuencia(lista: List[str]) -> Dict[st
 __author__ = "Marcos Chouza Cruces"
 
 def contar_frecuencia(lista: list[str]) -> dict[str, int]:
-
+    
     #Inicializamos un diccionario vacío
     diccionario = {}
     
-    #Recorremos os elementos da lista
+    #Recorremos cada elemento da lista
     for elemento in lista:
         
-        #para cada elemento do diccionario, aumentamos en un o seu valor
-        if elemento in diccionario:
-            diccionario[elemento] = diccionario[elemento] + 1
-        
-        #Se non se atopa nigún elemento da lista no diccionario, engádese con chave 1
-        #Ao engadirse un novo elemento, dito elemento aumenta automáticamente a súa chave
-        else:
+        #Se o elemento non se atopa na lista, outorgámoslle por chave o seu nome e por valor 1
+        if elemento not in diccionario:
             diccionario[elemento] = 1
-
+            
+        #Se o elemento sí que se atopa previamente na lista, aumentamos en un o seu valor
+        else:
+            diccionario[elemento] = diccionario[elemento] +1
+            
+    #Devolvemos o diccionario
     return diccionario
 
 
-lista = ['mazá', 'banana', 'mazá', 'laranxa', 'banana', 'mazá', 'mazá', 'laranxa']
+lista = ['hola', 'mazá', 'banana', 'mazá', 'laranxa', 'banana', 'mazá', 'mazá', 'laranxa', 'banana', 'hola', 'hola']
 
 print(contar_frecuencia(lista))
+
+#OUTPUT:
+
+# {'hola': 3, 'mazá': 4, 'banana': 3, 'laranxa': 2}

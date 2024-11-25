@@ -15,18 +15,29 @@ __author__ = "Marcos Chouza Cruces"
 
 def agrupar_datos_por_valor(diccionario: dict[str, list[int]]) -> dict[int, list[str]]:
     
-    dic_output = {}
+    #Inicializamos un diccionario vacío onde gardaremos os novos datos
+    dict_output = {}
     
-    for clave, valor in diccionario.items():
-        for numero in valor:
-            if not in dic_output:
+    #Recorremos o diccionario sacando as chaves e os seus valores (neste caso unha lista)
+    for clave, lista in diccionario.items():
+        
+        #Recorremos os números do valor da lista
+        for numero in lista:
+            
+            #Se o número non existe no novo diccionario, engadímolo e coma calve, e a clave do anterior diccionario coma o seu valor
+            if numero not in dict_output:
+                dict_output[numero] = [clave]
                 
+            else:
+                #Almacenamos os valores das claves do primeiro dicionario como valores nunhca lista que será o valor da clave
+                dict_output[numero].append(clave)
     
-    return
+    return dict_output
     
 diccionario = {'a': [1, 2], 'b': [2, 3], 'c': [1, 4]}
 
-for clave, valor in diccionario.items():
-    print(f"{clave} : {valor}")
+dict_output = agrupar_datos_por_valor(diccionario)
+print(dict_output)
+
 
 

@@ -11,7 +11,9 @@ Escribe un script en pyhton que conte o número de palabras nunha cadea de texto
 # Medir longitud de la cadena final
 ##################################################
 
+
 __author__ = "Marcos Chouza Cruces"
+
 
 def eliminar_espazos_incial_final(cadea: str) -> str:
     """
@@ -23,9 +25,10 @@ def eliminar_espazos_incial_final(cadea: str) -> str:
     Returns:
         str: Nova cadea sen espazos ao principio e final.
     """
-    
+
     c = cadea.strip(" ")
     return c
+
 
 def contar_palabras(c: str) -> str:
     

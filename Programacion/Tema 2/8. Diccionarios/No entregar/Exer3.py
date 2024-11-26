@@ -24,7 +24,7 @@ def agrupar_datos_por_valor(diccionario: dict[str, list[int]]) -> dict[int, list
         #Recorremos os números do valor da lista
         for numero in lista:
             
-            #Se o número non existe no novo diccionario, engadímolo e coma calve, e a clave do anterior diccionario coma o seu valor
+            #Se o número non existe no novo diccionario, engadímolo e coma clave, e a clave do anterior diccionario coma o seu valor
             if numero not in dict_output:
                 dict_output[numero] = [clave]
                 

@@ -48,57 +48,206 @@ Axuda:
 __author__ = "Marcos Chouza Cruces"
 
 def ingresar_datos_alumno(nome: str, apelidos: str, nota: float) -> list[dict]:
+    """
+    Ingresamos os datos do alumno.
 
+    Args:
+        nome (str): Nome do alumno
+        apelidos (str): Apelido/s do alumno
+        nota (float): Nota do alumno
+
+    Raises:
+        ValueError: Nome válido
+        ValueError: Apelido/s válido
+        ValueError: Nota válida
+        ValueError: Nota comprendida entr 0 e 10
+
+    Returns:
+        list[dict]: lista de alumnos actualizada co novo alumno
+    """
+    
     if type(nome) is not str:
-        raise ValueError("O nome non é valido")
+        raise ValueError("O nome non é valido. (INGRESAR_DATOS)")
 
     if type(apelidos) is not str:
-        raise ValueError("O nome non é valido")
+        raise ValueError("O nome non é valido. (INGRESAR_DATOS)")
 
     if type(nota) is not float:
-        raise ValueError("O nome non é valido")
+        raise ValueError("O nome non é valido. (INGRESAR_DATOS)")
 
     if nota > 10 or nota < 0:
-        raise ValueError("A nota non é valida.")
+        raise ValueError("A nota non é valida. (INGRESAR_DATOS)")
 
+    #Ingresamos os datos do alumno nun diccionario
     alumno = {
         "nome": nome.strip(),
         "apelidos": apelidos.strip(),
         "nota": nota
     }
 
+    #Ingresamos dito diccionario como un elemento da lista
     lista_alumnos.append(alumno)
+
+
+
+def eliminar_datos_alumno(lista_alumnos: list, indice: int) -> list[dict]:
+
+    """
+    Eliminar os datos dun alumno
+
+    Args:
+        lista_alumnos (list): Lista que conten os datos dos alumnos.
+        indice (int): Indice da lista a modificar
+
+    Raises:
+        ValueError: O parámetro lista é unha lista
+        ValueError: O parámetro índice é un int
+        ValueError: O índice presenta un valor válido
+        ValueError: A lista está vacía
+    """
+
+    if type(lista_alumnos) is not list:
+        raise ValueError("A lista non é unha lista. (ELIMINAR_DATOS)")
     
-
-
-def eliminar_datos_alumno(lista_alumnos: list) -> list[dict]:
-
+    if type(indice) is not int:
+        raise ValueError("O índice non é válido. (ELIMINAR_DATOS)")
+    
+    if indice < 0 or indice > len(lista_alumnos):
+        raise ValueError("O índice non se atopa entre os parámetros. (ELIMINAR_DATOS)")
+    
+    if len(lista_alumnos) == 0:
+        raise ValueError("Non existen alumnos. (ELIMINAR_DATOS)")
+    
     del lista_alumnos[indice]
+     
      
 
 def modificar_nota_alumno(lista_alumnos: list, indice: int, nota: float) -> list[dict]:
+    
+    """
+    Modificamos a nota do alumno
+    
+    Args:
+        lista_alumnos (list): Lista que conten os datos dos alumnos.
+        indice (int): Indice da lista a modificar.
+        nota (float): Nota do alumno a modificar
+    
 
+    Raises:
+        ValueError: O parámetro lista_alumnos non é unha lista
+        ValueError: O parámetro índice non é int
+        ValueError: O parámetro nota non é float
+        ValueError: O índice presenta un valor válido
+        ValueError: A lista está vacía
+    """
+    
+    if type(lista_alumnos) is not list:
+        raise ValueError("A lista non é unha lista. (MODIFICAR_NOTA)")
+    
+    if type(indice) is not int:
+        raise ValueError("O índice non é válido. (MODIFICAR_NOTA)")
+    
+    if type(nota) is not float:
+        raise ValueError("A nota non é válida. (MODIFICAR_NOTA)")
+    
+    if indice < 0 or indice > len(lista_alumnos):
+        raise ValueError("O índice non se atopa entre os parámetros. (MODIFICAR_NOTA)")
+    
+    if len(lista_alumnos) == 0:
+        raise ValueError("Non existen alumnos. (MODIFICAR_NOTA)")
+    
+    
     alumno = lista_alumnos[indice]
     alumno['nota'] = nota
     
     
 
-def ver_nomes_alumnos_aprobados(lista_alumnos) -> list[str]:
+def ver_nomes_alumnos_aprobados(lista_alumnos: list) -> str:
     
-    return   
-        
-        
-        
-        
+    """
+    Ver o nome e apelidos dos alumnos aprobados
+
+    Args:
+        lista_alumnos (list): Lista de alumnos
     
+    Raises:
+        ValueError: O parámetro lista_alumnos é unha lista
+        ValueError: A lista non está vacía
+
+    Returns:
+        Str: Devolve unha cadea de texto co nome dos alumnos aprobados 
+    """
+    
+    if type(lista_alumnos) is not list:
+        raise ValueError("A lista non é unha lista. (APROBADOS)")
+    
+    if len(lista_alumnos) == 0:
+        raise ValueError("Non existen alumnos. (APROBADOS)")
+    
+    resultado = ""
+    
+    for indice, diccionario in enumerate(lista_alumnos):
+        
+        if diccionario['nota'] >= 5.00:
+            resultado += f"{indice}. {diccionario['apelidos']}, {diccionario['nome']} : {diccionario['nota']}\n"
+        
+    return resultado
+        
 
 
-def mostrar_nota_media(lista_alumnos) -> float:
-    return
+def mostrar_nota_media(lista_alumnos: list) -> float:
+
+    """
+    Calcula a nota media dos alumnos
+
+    Args:
+        lista_alumnos (list): Lista de alumnos
+    
+    Raises:
+        ValueError: O parámetro lista_alumnos é unha lista
+        ValueError: A lista non está vacía
+
+    Returns:
+        float: Devolve a media dos alumnos
+    """
+    
+    if type(lista_alumnos) is not list:
+        raise ValueError("A lista non é unha lista. (MEDIA)")
+    
+    if len(lista_alumnos) == 0:
+        raise ValueError("Non existen alumnos. (MEDIA)")
+    
+    suma = 0
+    
+    #Recorremos cada elemento da lista
+    for diccionario in lista_alumnos:
+        
+        suma += diccionario['nota']
+        media = suma /len(lista_alumnos)
+    
+    return media
 
 
 
-def mostrar_lista_alumnos(lista_alumnos: list) -> list:
+def mostrar_lista_alumnos(lista_alumnos: list) -> str:
+
+    """
+    Devolve todos os alumnos
+
+    Raises:
+        ValueError: O parámetro lista_alumnos é unha lista
+        ValueError: A lista non está vacía
+
+
+    Returns:
+        str: Devolve unha cadea de texto onde están almacenados todos os alumnos
+    """
+
+    if type(lista_alumnos) is not list:
+        raise ValueError("A lista non é unha lista. (MOSTRAR_ALUMNOS)")
+    
+    if len(lista_alumnos) == 0:
+        raise ValueError("Non existen alumnos. (MOSTRAR_ALUMNOS)")
     
     resultado = ""
     
@@ -108,10 +257,56 @@ def mostrar_lista_alumnos(lista_alumnos: list) -> list:
     return resultado
 
 
+
+def mostrar_alumnos_alfabeticamente(lista_alumnos: list) -> list:
+    
+    """
+    Mostra os alumnos ordeados alfabéticamente pola letra do seu nome
+
+    Raises:
+        ValueError: O parámetro lista_alumnos é unha lista
+        ValueError: A lista non está vacía
+
+
+    Returns:
+        list: devolve todos os alumnos de forma ordenada nunha lista
+    """
+    
+    if type(lista_alumnos) is not list:
+        raise ValueError("A lista non é unha lista. (ALFABETICAMENTE)")
+    
+    if len(lista_alumnos) == 0:
+        raise ValueError("Non existen alumnos. (ALFABETICAMENTE)")
+    
+    
+    lista_ordenada = []
+    lonxitude = len(lista_alumnos)
+    
+    while True:
+        
+        ordenado = True
+        
+        for indice in range(lonxitude - 1):
+            
+            if lista_alumnos[indice]['nome'] > lista_alumnos[indice + 1]['nome']:
+                ordenado = False
+
+                variable_auxiliar = lista_alumnos[indice]
+                lista_alumnos[indice] = lista_alumnos[indice + 1]
+                lista_alumnos[indice + 1] = variable_auxiliar
+
+        if ordenado:
+            break
+
+    return lista_ordenada
+
+
+
 lista_alumnos = []
 
 
 while True:
+    
     print("\n______________________\nPrema a opción desexada no menú.")
     print("\t a) Ingresar datos do alumno: ")
     print("\t b) Eliminar datos do alumno: ")
@@ -121,51 +316,61 @@ while True:
     print("\t f) Ver a nota media")
     print("\t g) Saír")
 
-#Establecemos a opción que queremos utilizar
     option = input(">")
     
-    if option == 'a':
+    try:
         
-        nome = input("Ingrese o nome do alumno: ")
-        apelidos = input("Ingrese os apelidos do alumno: ")
-        nota = float(input("Ingrese a nota do alumno: "))
+        if option == 'a': #INGRESAR DATOS ALUMNOS
         
-        alumno = ingresar_datos_alumno(nome, apelidos, round(nota, 2))
-
-
-    elif option == 'b':
+            nome = input("Ingrese o nome do alumno: ")
+            apelidos = input("Ingrese os apelidos do alumno: ")
+            nota = float(input("Ingrese a nota do alumno: "))
         
-        print(mostrar_lista_alumnos(lista_alumnos))
-        
-        indice = int(input("Ingrese o índice a eliminar: "))
-        eliminar_datos_alumno(lista_alumnos)
+            ingresar_datos_alumno(nome, apelidos, round(nota, 2))
         
 
-    elif option == 'c':
+        elif option == 'b': #ELIMINAR DATOS ALUMNO
         
-        print(mostrar_lista_alumnos(lista_alumnos))
+            print(mostrar_lista_alumnos(lista_alumnos))
         
-        indice = int(input("Ingrese o índice do alumno: "))
-        nota = float(input("Ingrese a nova nota a ingresar: "))
+            indice = int(input("Ingrese o índice a eliminar: "))
+            eliminar_datos_alumno(lista_alumnos, indice)
         
-        modificar_nota_alumno(lista_alumnos, indice, nota)
+
+        elif option == 'c': # MODIFICAR NOTA ALUMNO
+        
+            print(mostrar_lista_alumnos(lista_alumnos))
+        
+            indice = int(input("Ingrese o índice do alumno: "))
+            nota = float(input("Ingrese a nova nota a ingresar: "))
+        
+            modificar_nota_alumno(lista_alumnos, indice, nota)
          
 
-    elif option == 'd':
+        elif option == 'd': #VER NOMES E APELIDOS DE ALUMNOS APROBADOS
 
-        print(ver_nomes_alumnos_aprobados(lista_alumnos))
+            print(ver_nomes_alumnos_aprobados(lista_alumnos))
         
-"""
-    elif option == 'e':
-        
-        
-    elif option == 'f':
-        
-        
-    elif option == 'g':
-        print("Saíndo...")
-        break
 
-    else:
-        print("Erro")
-"""     
+        elif option == 'e': #MOSTRAR ALUMNOS ALFABÉTICAMENTE
+   
+            lista_ordenada = mostrar_alumnos_alfabeticamente(lista_alumnos)
+        
+            for indice, alumno in enumerate(lista_ordenada):
+                print(f"{indice}. {alumno['apelidos']}, {alumno['nome']}: {alumno['nota']}")
+
+
+        elif option == 'f': #VER NOTA MEDIA
+
+            print(f"A media das notas é: {round(mostrar_nota_media(lista_alumnos)),2}")
+        
+        
+        elif option == 'g': #SAÍR
+            print("Saíndo...")
+            break
+
+        else:
+            print("Non se ingresou un valor válido")
+        
+    except ValueError as erro:
+        print(f"Erro: {erro}")

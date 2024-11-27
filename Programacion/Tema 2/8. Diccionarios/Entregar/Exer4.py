@@ -48,6 +48,7 @@ Axuda:
 __author__ = "Marcos Chouza Cruces"
 
 def ingresar_datos_alumno(nome: str, apelidos: str, nota: float) -> list[dict]:
+    
     """
     Ingresamos os datos do alumno.
 
@@ -63,7 +64,7 @@ def ingresar_datos_alumno(nome: str, apelidos: str, nota: float) -> list[dict]:
         ValueError: Nota comprendida entr 0 e 10
 
     Returns:
-        list[dict]: lista de alumnos actualizada co novo alumno
+        list: lista de alumnos actualizada co novo alumno
     """
     
     if type(nome) is not str:
@@ -106,6 +107,7 @@ def eliminar_datos_alumno(lista_alumnos: list, indice: int) -> list[dict]:
         ValueError: A lista está vacía
     """
 
+    #Capturamos todas as posibles excepcións
     if type(lista_alumnos) is not list:
         raise ValueError("A lista non é unha lista. (ELIMINAR_DATOS)")
     
@@ -118,6 +120,7 @@ def eliminar_datos_alumno(lista_alumnos: list, indice: int) -> list[dict]:
     if len(lista_alumnos) == 0:
         raise ValueError("Non existen alumnos. (ELIMINAR_DATOS)")
     
+    #Borramos o alumno mediante o seu índice na lista
     del lista_alumnos[indice]
      
      
@@ -141,6 +144,7 @@ def modificar_nota_alumno(lista_alumnos: list, indice: int, nota: float) -> list
         ValueError: A lista está vacía
     """
     
+    #Capturamos todas as posibles excepcións
     if type(lista_alumnos) is not list:
         raise ValueError("A lista non é unha lista. (MODIFICAR_NOTA)")
     
@@ -157,6 +161,7 @@ def modificar_nota_alumno(lista_alumnos: list, indice: int, nota: float) -> list
         raise ValueError("Non existen alumnos. (MODIFICAR_NOTA)")
     
     
+    #Modificamos a nota do alumno
     alumno = lista_alumnos[indice]
     alumno['nota'] = nota
     
@@ -178,19 +183,24 @@ def ver_nomes_alumnos_aprobados(lista_alumnos: list) -> str:
         Str: Devolve unha cadea de texto co nome dos alumnos aprobados 
     """
     
+    #Capturamos todas as posibles excepcións
     if type(lista_alumnos) is not list:
         raise ValueError("A lista non é unha lista. (APROBADOS)")
     
     if len(lista_alumnos) == 0:
         raise ValueError("Non existen alumnos. (APROBADOS)")
     
+    #Inicializamos unha cadea valeira onde almacenaremos o resultado
     resultado = ""
     
+    #Recorremos a lista indo índice por índice
     for indice, diccionario in enumerate(lista_alumnos):
         
+        #Establecemos a condición para actuar
         if diccionario['nota'] >= 5.00:
             resultado += f"{indice}. {diccionario['apelidos']}, {diccionario['nome']} : {diccionario['nota']}\n"
-        
+    
+    #Devolvemos o resultado
     return resultado
         
 
@@ -211,20 +221,26 @@ def mostrar_nota_media(lista_alumnos: list) -> float:
         float: Devolve a media dos alumnos
     """
     
+    #Capturamos todas as posibles excepcións
     if type(lista_alumnos) is not list:
         raise ValueError("A lista non é unha lista. (MEDIA)")
     
     if len(lista_alumnos) == 0:
         raise ValueError("Non existen alumnos. (MEDIA)")
     
+    #Incializamos unha variable vacía onde almacenaremos os valores da suma
     suma = 0
     
     #Recorremos cada elemento da lista
     for diccionario in lista_alumnos:
         
+        #Engadimos cada valor numérico da nota na variable suma e imos sumándoa unha por unha
         suma += diccionario['nota']
+        
+        #Calculamos a media
         media = suma /len(lista_alumnos)
     
+    #Devolvemos a media
     return media
 
 
@@ -243,17 +259,21 @@ def mostrar_lista_alumnos(lista_alumnos: list) -> str:
         str: Devolve unha cadea de texto onde están almacenados todos os alumnos
     """
 
+    #Capturamos todas as posibles excepcións
     if type(lista_alumnos) is not list:
         raise ValueError("A lista non é unha lista. (MOSTRAR_ALUMNOS)")
     
     if len(lista_alumnos) == 0:
         raise ValueError("Non existen alumnos. (MOSTRAR_ALUMNOS)")
     
+    #Inicicalizamos unha variable cadea vacía onde almacenaremos os valores
     resultado = ""
     
+    #Recorremos a lista indo índice por índice
     for indice, diccionario in enumerate(lista_alumnos):
         resultado += f"{indice}. {diccionario['apelidos']}, {diccionario['nome']} : {diccionario['nota']}\n"
         
+    #Devolvemos o resultado
     return resultado
 
 
@@ -272,16 +292,20 @@ def mostrar_alumnos_alfabeticamente(lista_alumnos: list) -> list:
         list: devolve todos os alumnos de forma ordenada nunha lista
     """
     
+    #Capturamos todas as posibles excepcións
     if type(lista_alumnos) is not list:
         raise ValueError("A lista non é unha lista. (ALFABETICAMENTE)")
     
     if len(lista_alumnos) == 0:
         raise ValueError("Non existen alumnos. (ALFABETICAMENTE)")
     
-    
+    #Incializamos unha lista valeira
     lista_ordenada = []
+    
+    #Calculamos a lonxitude da lista
     lonxitude = len(lista_alumnos)
     
+    #Facemos un BubbleSort para ordenar alfabéticamente segundo o nome de cada alumno
     while True:
         
         ordenado = True
@@ -301,10 +325,11 @@ def mostrar_alumnos_alfabeticamente(lista_alumnos: list) -> list:
     return lista_ordenada
 
 
-
+#Inicializamos unha lista vacía onde almacenaremos os diccionarios onde se atopará a información de cada alumno
 lista_alumnos = []
 
 
+#Comezamos co bucle infinito que dará a saída por pantalla
 while True:
     
     print("\n______________________\nPrema a opción desexada no menú.")
@@ -316,8 +341,10 @@ while True:
     print("\t f) Ver a nota media")
     print("\t g) Saír")
 
+    #Establecemos a opción que queremos utilizar
     option = input(">")
     
+    #Capturamos as posibles excepcións e damos a saída por pantalla
     try:
         
         if option == 'a': #INGRESAR DATOS ALUMNOS

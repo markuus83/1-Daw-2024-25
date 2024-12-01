@@ -31,10 +31,10 @@ def palindromo(cadea: str) -> bool:
     #Facemos minúsculas 
     cadea = cadea.lower()
     cadea = cadea.replace(" ", "")
-    
-    #Capturamos todas as posibles excepcións
-    if len(cadea) == 0:
-        raise ValueError("A cadea está vacía.")
+
+    #Se a cade aten lonxitude 0 == True
+    if len(cadea) == 0 or type(cadea) is None:
+        return True
     
     #Se a cadea é dun só valor == True
     elif len(cadea) == 1:
@@ -51,14 +51,10 @@ def palindromo(cadea: str) -> bool:
 cadea = input("Ingrese unha cadea para ver se é un palíndromo: ")
 
 #Mostramos as posibles excepcións e damos a saída por pantalla
-try:
-    cadea_output = palindromo(cadea)
+cadea_output = palindromo(cadea)
     
-    if cadea_output:
-        print("Palindromo")
+if cadea_output:
+    print("Palindromo")
         
-    else:
-        print("Non palíndromo")
-    
-except ValueError as erro:
-    print(f"Erro: {erro}")
+else:
+    print("Non palíndromo")

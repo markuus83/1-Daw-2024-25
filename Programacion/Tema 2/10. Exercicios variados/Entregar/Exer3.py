@@ -14,6 +14,8 @@ Implanta este xogo
 __author__ = "Marcos Chouza Cruces"
 
 
+# Definimos un dicionario onde para cada número (chave) temos unha lista de números posibles que poden seguirse
+# de acordo coas regras do xogo. Por exemplo, se o xogador escoller o número 1, pode elixir entre os números 2, 3, 4, ou 7.
 valores_totais = {
     1: [2, 3, 4, 7],
     2: [1, 3, 5, 8],
@@ -26,8 +28,10 @@ valores_totais = {
     9: [3, 6, 7, 8],
 }
 
+# Lista de xogadores (neste caso, xogador 1 e xogador 2)
 xogadores = [1, 2]
 
+# Función para obter os números posibles que pode escoller un xogador
 def obtener_posibles_numeros(ultimo_numero: int or None, valores_totais: dict, usados: list):
     """
     Obter os números posibles baseados no último número xogador e os números xa usados.
@@ -43,22 +47,27 @@ def obtener_posibles_numeros(ultimo_numero: int or None, valores_totais: dict, u
     Raises:
         ValueError: Se o último número non existe en valores_totais.
     """
-    # Comprobar si el ultimo_numero es válido
+    
+    # Se o último número non é None e non está en valores_totais, lanzarase un erro
     if ultimo_numero is not None and ultimo_numero not in valores_totais:
         raise ValueError(f"Último número ({ultimo_numero}) non é válido en valores_totais.")
-
+    
     try:
-        
+        # Se existe un último número, devolve os números posibles de acordo co dicionario
+        # e filtra aqueles que xa foron usados
         if ultimo_numero:
             return [n for n in valores_totais[ultimo_numero] if n not in usados]
         
+        # Se non hai último número, devolve todos os números entre 1 e 9 que non foron usados
         else:
             return [n for n in range(1, 10) if n not in usados]
         
     except Exception as e:
+        # En caso de erro, se produce un fallo, lanzamos un erro personalizado
         raise ValueError(f"Erro ao obter números posibles: {e}")
 
 
+# Función que xestiona a elección dun xogador entre os números posibles
 def obtener_eleccion(posibles: list):
     """
     Obter a elección do xogador entre os números posibles.
@@ -73,20 +82,25 @@ def obtener_eleccion(posibles: list):
         ValueError: Se o xogador escoller un número non válido ou se a entrada non é un número.
     """
     while True:
-        
         try:
+            # Pedimos ao xogador que escolla un número entre os posibles
             eleccion = int(input(f"Escolle un número de {posibles}: "))
             
+            # Se a elección está na lista de números posibles, devolvemola
             if eleccion in posibles:
                 return eleccion
             raise ValueError(f"O número {eleccion} non está na lista de números posibles.")
         
         except ValueError as e:
+            # Se a entrada non é un número válido ou non está na lista de posibles, avisamos ao xogador
             print(f"Entrada non válida. {e}. Intenta novamente.")
             
         except Exception as e:
+            # Se ocorre un erro inesperado, lanzamos unha excepción
             raise ValueError(f"Erro inesperado ao obter elección: {e}")
 
+
+# Función que xestiona un turno dun xogador no xogo
 def turno_xogador(xogador: int, suma: int, valores_totais: dict, usados: list, ultimo_numero: int or None):
     """
     Xestiona o turno dun xogador no xogo.
@@ -106,36 +120,42 @@ def turno_xogador(xogador: int, suma: int, valores_totais: dict, usados: list, u
     """
     print(f"\nTurno do Xogador {xogador}. Suma actual: {suma}")
     
+    # Obtemos os números posibles para o xogador, baseados no último número xogador e os números xa usados
     posibles = obtener_posibles_numeros(ultimo_numero, valores_totais, usados)
     
+    # Se non hai números posibles para escoller, o xogador perde
     if not posibles:
         raise ValueError(f"Xogador {xogador} perdeu porque non pode xogar! Non hai números posibles.")
     
-    
-    
+    # O xogador elixe un número válido entre os posibles
     eleccion = obtener_eleccion(posibles)
     
+    # Actualizamos a suma e a lista de números usados
     suma += eleccion
     usados.append(eleccion)
+    
+    # O último número xogador escollido actualízase
     ultimo_numero = eleccion
 
+    # Se a suma chega ou supera 31, o xogador perde
     if suma >= 31:
         raise ValueError(f"Xogador {xogador} perdeu! A suma chegou a {suma}.")
     
     return suma, ultimo_numero
 
 
-suma = 0
-usados = []
-ultimo_numero = None
+# Variables que controlan o estado do xogo
+suma = 0  # Inicializamos a suma a 0
+usados = []  # Lista para rastrexar os números xa usados
+ultimo_numero = None  # Non hai último número ao inicio
 
+# Intentamos executar o xogo
 try:
-    
+    # Mentres a suma non chegue a 31, o xogo continúa
     while suma < 31:
-        for xogador in xogadores:
+        for xogador in xogadores:  # O xogo alterna entre os xogadores 1 e 2
             suma, ultimo_numero = turno_xogador(xogador, suma, valores_totais, usados, ultimo_numero)
             
+# Se ocorre un erro durante o xogo, é capturado aquí
 except ValueError as erro:
     print(f"Erro: {erro}")
-
-

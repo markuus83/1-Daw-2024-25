@@ -16,27 +16,26 @@ Por último imprime <Válido> ou <Inválido> segundo corresponda.
 
 def validador_dni(dni: str) -> bool:
     
-    
     letras_axuda = "TRWAGMYFPDXBNJZSQVHLCKE"
     
-    dni = dni.replace(" ", "").upper()
+    dni = dni.upper().replace(" ", "")
     
     if len(dni) != 9:
         return False
     
-    elif not dni[:8].isdigit():
+    if not (dni[:8]).isdigit():
         return False
     
-    elif not dni[-1].isalpha():
+    if not(dni[8]).isalpha():
         return False
     
-    numeros = int(dni[:8])
+    numeros_dni = int(dni[:8])
+    letra_calculada = letras_axuda[numeros_dni% 23]
     
-    letra_calculada = letras_axuda [numeros % 23]
     
-    return letra_calculada == dni[8]
-
-
+    return dni[8] == letra_calculada
+    
+    
 
 dni = input("Ingrese o seu dni: ")
 
@@ -47,3 +46,4 @@ if dni_validado:
     
 else:
     print("INVÁLIDO")
+

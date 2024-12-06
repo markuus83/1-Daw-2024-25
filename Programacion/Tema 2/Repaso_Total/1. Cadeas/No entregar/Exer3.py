@@ -5,12 +5,12 @@ Escribe un script que elimine todas as consoantes dunha cadea de texto introduci
 def eliminar_consoantes(texto: str) -> str:
 
 
-    cadea_axuda = "bcdfghjklmnñpqrstvwxyzBCDFGHJKLMNÑPQRSTVWXYZ"
+    cadea_axuda = "aeiouAEIOUáéíóúÁÉÍÓÚ"
     cadea = ""
 
     for caracter in texto:
 
-        if caracter in cadea_axuda:
+        if caracter not in cadea_axuda:
             cadea += caracter
             
     return cadea

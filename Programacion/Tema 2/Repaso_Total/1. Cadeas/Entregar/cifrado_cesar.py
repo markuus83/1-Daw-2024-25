@@ -1,4 +1,4 @@
-""" 
+"""
 O cifrado César é un tipo de cifrado de substitución no que unha letra do texto orixinal é substituída por outra letra que é un número fixo de posicións posteriores no alfabeto.
 
 Por exemplo se o desprazamento é 5, a 'a' cifrarase coa 'f'. Débense ignorar os espazos en branco.
@@ -11,3 +11,16 @@ Realiza a implantación deste algoritmo na función <cifra_cesar(texto: str, des
 
 O propio script debe utilizar ditas función para cifrar un texto introducido polo usuario para mostrar o texto cifrado por pantalla. O usuario tamén indicará por teclado o desprazamento. Ademais recorda capturar a excepción.
 """
+
+
+
+def cifrar_texto(texto: str, desplazamento: int) -> str:
+    return 
+
+
+texto = input("Ingrese un texto para cifrarlo: ")
+desplazamento = int(input("Ingrese el desplazmiento de la cadena: "))
+
+texto_cifrado = cifrar_texto(texto)
+
+print(f"El texto cifrado es: {texto_cifrado}")

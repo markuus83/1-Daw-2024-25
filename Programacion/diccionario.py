@@ -1,7 +1,8 @@
 diccionario = {
-    1: 'hola',
-    2: 'miau'
+    1: ['hola', 'miau'],
+    2: ['adios', 'miau']
 }
 
-for indice, elemento in diccionario.items():
-    print(indice, elemento)
+for clave, lista in diccionario.items():
+    for elemento in lista:
+        print(f"{clave} - {elemento}")

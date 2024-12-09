@@ -58,5 +58,3 @@ if cadea_output:
         
 else:
     print("Non palíndromo")
-    
-    

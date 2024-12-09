@@ -2,10 +2,6 @@
 Escribe un script que en Python que conte o número de vogais nunha cadea de texto introducida por teclado. Por último imprimirá por pantalla o número de vogais. Recorda contar tanto as maiúsculas como as minúsculas.
 """
 
-
-
-
-
 def contar_num_vogais (cadea: str) -> int:
     
     vocales = "aeiouAEIOU"
@@ -16,7 +12,6 @@ def contar_num_vogais (cadea: str) -> int:
             contador = contador + 1
  
     return contador
-
 
 
 cadea = input("Ingrese unha cadea: ")

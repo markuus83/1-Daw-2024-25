@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+El Rey León, Rob Minkoff, Roger Allers
+=======
+ Harry Potter y la piedra filosofal, J. K. Rowling
+ Harry Potter y el cáliza de fuego, J. K. Rowling
+>>>>>>> harrypotter

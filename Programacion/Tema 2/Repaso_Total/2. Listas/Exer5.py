@@ -1,20 +1,21 @@
 """ 
 Escribe unha función en Python <coller_comúns(lista1: List, lista2: List) -> List> que reciba dúas listas e devolva unha lista cos elementos comúns.
 """
+__author__ = "Marcos Chouza Cruces"
 
 def coller_comuns(lista1: list, lista2: list) -> list:
     
-    nova_cadea = []
+    nova_lista = []
     
     for elemento in lista1:
         if elemento in lista2:
-            nova_cadea.append(elemento)
+            nova_lista.append(elemento)
     
-    return nova_cadea
+    return nova_lista
 
-lista1 = [1,2,3,4,5,6,7,8,9,10, 'miau']
-lista2 = [1,3,5,7,9, None, 'miau']
+lista1 = [1,2,3,4,5,6,7,8,9,10]
+lista2 = [2,4,6,8,10]
 
-lista_comuns = coller_comuns(lista1, lista2)
+comuns =coller_comuns(lista1, lista2)
 
-print(f"Os comúns de ambas lista son: {lista_comuns}")
+print(f"Os elementos comúns son: {comuns}")

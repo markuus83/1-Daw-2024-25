@@ -3,26 +3,26 @@ Escribe unha función en Python <piramide(lonxitude: int)> que imprima unha pira
 utiliza a función range().
 """
 
-def piramide(lonxitude: int):
-
-    #Capturamos posibles erros
-    if lonxitude <= 0:
-        raise ValueError('Ingrese un número superior a 0.')
-
-    #O primeiro bucle controla o número de filas necesarias
-    for i in range (1, lonxitude + 1):
-
-        #O segundo bucle imprime os números de cada fila
-        for j in range(1, i +1):
+def piramide(lonxitude: int) -> list:
+    
+    if lonxitude <=0:
+        raise ValueError('A lonxitude da lista non cumple cos parámetros axeitados.')
+    
+    filas = lonxitude + 1           #Almacenamos o número de filas nunha variable
+    
+    for i in range(1, filas):       #Calcular o número de filas
+        
+        for j in range(1, i + 1):   #Calcular o número de ocos na fila
             
-            print(j, end=" ") #Imprime o número na mesma fila
-        print()
-
+            print(j, end =" ")      #Encher as filas con números
+            
+        print()                     #Salto de línea
+        
+    
 lonxitude = int(input("Ingrese a lonxitude da pirámide: "))
 
 try:
-
     piramide(lonxitude)
-
+    
 except ValueError as erro:
     print(f"Erro: {erro}")

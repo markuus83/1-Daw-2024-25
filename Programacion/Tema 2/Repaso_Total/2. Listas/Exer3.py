@@ -6,14 +6,13 @@ def eliminar_duplicados(lista: list) -> list:
     
     nova_lista = []
     
-    for elemento in lista:
-        if elemento not in nova_lista:
-            nova_lista.append(elemento)
+    for numero in lista:
+        if numero not in nova_lista:
+            nova_lista.append(numero)
     
     return nova_lista
 
-lista = [1, 2, 3, 3, 4, 5, 6, 6, 6, 7, 7, 8, 9, 10 , 10]
+lista = [1, 2, 3, 4, 5, 6, 7, 8, 9, 1, 3, 5, 7, 9]
 
-lista_sen_duplicados = eliminar_duplicados(lista)
-
-print(f"A lista se duplicados é: {lista_sen_duplicados}")
+sen_duplicados = eliminar_duplicados(lista)
+print(f"A lista sen duplicados é: {sen_duplicados}")

@@ -6,19 +6,24 @@ __author__ = "Marcos Chouza Cruces"
 
 def contar_frecuencia(lista: list[str]) -> dict[str, int]:
     
+    #Inicializamos un diccionario baleiro
     diccionario = {}
     
+    #Recorremos todos os elementos da lista
     for elemento in lista:
         
-        if elemento in diccionario:
-            diccionario[elemento] = diccionario[elemento] + 1
-
-        else:
+        #Se o elemento non se atopa no diccionario, engadímolo ca chave como o elemnto, e con valor numérico
+        if elemento not in diccionario:
             diccionario[elemento] = 1
             
+        #Se volve a atopar o mesmo elemento no diccionario, aumentamos en un o seu valor.
+        else:
+            diccionario[elemento] = diccionario[elemento] + 1
+    
     return diccionario
 
 
-lista_palabras = ['mazá', 'banana', 'mazá', 'laranxa', 'banana', 'mazá']
+lista = ['mazá', 'banana', 'mazá', 'laranxa', 'banana', 'mazá']
 
-print(contar_frecuencia(lista_palabras))
+frecuencia = contar_frecuencia(lista)
+print(f"{frecuencia}")

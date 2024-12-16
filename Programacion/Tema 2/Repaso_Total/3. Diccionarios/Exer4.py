@@ -59,7 +59,7 @@ def eliminar_datos_alumno(lista_alumnos: list, indice: int):
         raise ValueError('O parámetro indice non coincide cos valores esperados (ELIMINAR NOTA)')
     
     if indice <0 or indice > len(lista_alumnos):
-        raise ValueError('Ingrese un índice válido')
+        raise ValueError('Ingrese un índice válido (ELIMINAR NOTA)')
     
     #Eliminamos un alumno dependendo do seu índice.
     del lista_alumnos[indice]
@@ -78,8 +78,8 @@ def modificar_nota_alumno(lista_alumnos: list, indice: int, nota: float):
     if type(indice) is not int:
         raise ValueError('O parámetro indice non coincide cos valores esperados (MODIFICAR NOTA)')
     
-    if indice <0 or indice > len(lista_alumnos):
-        raise ValueError('Ingrese un índice válido')
+    if indice < 0 or indice > len(lista_alumnos):
+        raise ValueError('Ingrese un índice válido (MODIFICAR NOTA)')
     
     if type(nota) is not float:
         raise ValueError('O parámetro nota non coincide cos valores esperados (MODIFICAR NOTA)')
@@ -106,21 +106,12 @@ def alumnos_aprobados(lista_alumnos: list):
         
         #Amosamos todos os alumnos con notas iguais ou superiores a 5 (aprobados)
         if diccionario['nota'] >= 5:
-            print(f"{indice}. {diccionario['apelidos'], diccionario['nome']}: {diccionario['nota']}")
+            print(f"{indice}. {diccionario['apelidos']}, {diccionario['nome']}: {diccionario['nota']}")
     
 
 
 def mostrar_alumnos_alfabeticamente(lista_alumnos: list):
-    """
-    Mostra os alumnos ordenados alfabéticamente polo nome.
-    
-    Raises:
-        ValueError: Se lista_alumnos non é unha lista válida.
-        ValueError: Se a lista está vacía.
-    
-    Returns:
-        list: A lista ordenada alfabéticamente.
-    """
+
     if type(lista_alumnos) is not list:
         raise ValueError("A lista non é unha lista válida. (ALFABETICAMENTE)")
     
@@ -131,10 +122,11 @@ def mostrar_alumnos_alfabeticamente(lista_alumnos: list):
     lista_ordenada = lista_alumnos[:]
     
     # Implementación do Bubble Sort
-    n = len(lista_ordenada)
-    for i in range(n - 1):
-        for j in range(n - 1 - i):
-            if lista_ordenada[j]['nome'].lower() > lista_ordenada[j + 1]['nome'].lower():
+    longitud = len(lista_ordenada)
+    
+    for i in range(longitud - 1):
+        for j in range(longitud - 1 - i):
+            if lista_ordenada[j]['apelidos'].lower() > lista_ordenada[j + 1]['apelidos'].lower():
                 lista_ordenada[j], lista_ordenada[j + 1] = lista_ordenada[j + 1], lista_ordenada[j]
 
     # Mostramos a lista ordenada
@@ -190,8 +182,6 @@ while True:
         except ValueError as erro:
             print(f"Erro: {erro}")
           
-            
-            
     elif option == 'b':
         
         try:
@@ -200,8 +190,6 @@ while True:
             eliminar_datos_alumno(lista_alumnos, indice)
         except ValueError as erro:
             print(f"Erro: {erro}")
-            
-            
             
     elif option == 'c':
         
@@ -213,8 +201,6 @@ while True:
         except ValueError as erro:
             print(f"Erro: {erro}")
 
-
-
     elif option == 'd':
     
         try:
@@ -222,17 +208,12 @@ while True:
         except ValueError as erro:
             print(f"Erro: {erro}")
     
-    
-    
     elif option == 'e':
         
         try:
             mostrar_alumnos_alfabeticamente(lista_alumnos)
-            
         except ValueError as erro:
             print(f"Erro: {erro}")
-        
-        
         
     elif option == 'f':
         
@@ -240,11 +221,9 @@ while True:
             nota_media(lista_alumnos)
             media = nota_media(lista_alumnos)
             print(f"A nota media dos alumnos é: {round(media,2)}")
-        
         except ValueError as erro:
             print(f"Erro: {erro}")
             
-        
     elif option == 'g':
         print("Saíndo...")
         break

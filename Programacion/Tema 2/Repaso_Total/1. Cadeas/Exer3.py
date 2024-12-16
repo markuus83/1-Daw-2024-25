@@ -4,16 +4,16 @@ Escribe un script que elimine todas as consoantes dunha cadea de texto introduci
 
 def eliminar_consoantes(texto: str) -> str:
 
+    consonantes = "bcdefghjklmnñpqrstvwxyzBCDFGHJKLMNÑPQRSTVWXYZ"
 
-    cadea_axuda = "aeiouAEIOUáéíóúÁÉÍÓÚ"
-    cadea = ""
+    cadea_axuda = ''
 
     for caracter in texto:
+        
+        if caracter not in consonantes:
+            cadea_axuda = cadea_axuda + caracter
 
-        if caracter not in cadea_axuda:
-            cadea += caracter
-            
-    return cadea
+    return cadea_axuda
 
 
 texto = input("Ingrese un texto para eliminar as súas vocais: ")

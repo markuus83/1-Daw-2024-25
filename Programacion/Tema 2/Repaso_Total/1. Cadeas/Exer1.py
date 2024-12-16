@@ -3,16 +3,15 @@ Escribe un script que en Python que conte o número de vogais nunha cadea de tex
 """
 
 def contar_num_vogais (cadea: str) -> int:
-    
-    vocales = "aeiouAEIOU"
+    vocais = "aeiouAEIOU"
 
-    contador = 0
-    for letra in cadea:
-        if letra in vocales:
-            contador = contador + 1
- 
-    return contador
+    suma = 0
 
+    for caracter in cadea:
+        if caracter in vocais:
+            suma += 1
+            
+    return suma
 
 cadea = input("Ingrese unha cadea: ")
 

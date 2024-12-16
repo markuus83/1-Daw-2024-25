@@ -5,25 +5,23 @@ Escribe nun script unha función <valor_maximo(dicionario: Dict[str, int]) -> Li
 __author__ = "Marcos Chouza Cruces"
 
 
-def valor_maximo(dicionario: dict[str, int]) -> list[str]:
-    # Inicializar variables para o valor máximo e as claves asociadas
-    max_valor = None
-    claves_max = []
+def valor_maximo(diccionario: dict[str, int]) -> list[str]:
 
-    # Iterar a través do diccionario
-    for chave, valor in dicionario.items():
-        if valor > max_valor:
-            # Actualizar o valor máximo e reiniciar a lista de claves
-            max_valor = valor
-            claves_max = [chave]
-        elif valor == max_valor:
-            # Engadir a clave á lista se coincide co valor máximo
-            claves_max.append(chave)
+    lista = []
+    maximo_valor = None
+    
+    for clave, valor in diccionario.items():
 
-    return claves_max
+        if maximo_valor is None or maximo_valor<valor:
+            lista = [clave]
+            
+        elif maximo_valor == valor:
+            lista.append(clave)
+
+    return lista
 
 
+diccionario = {'a': 5, 'b': 3, 'c': 5, 'd': 2}
 
-dicionario = {'a': 5, 'b': 3, 'c': 5, 'd': 2}
-
-print(valor_maximo(dicionario))
+maximo_valor = valor_maximo(diccionario)
+print(maximo_valor)

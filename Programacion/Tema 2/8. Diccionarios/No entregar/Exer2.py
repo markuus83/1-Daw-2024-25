@@ -20,10 +20,7 @@ def valor_maximo(diccionario: dict[str, int]) -> list[str]:
         
         #Se o valor 'maximo_valor' segue sendo None, ou é menor que calqueira outro valor do diccionario
         if maximo_valor is None or maximo_valor < valor:
-            
-            #Igualamos a variable 'maximo_valor' ao valor máximo do diccionario
-            maximo_valor = valor
-            
+                        
             #Iniciamos na lista a clave de dito valor
             lista = [clave]
         

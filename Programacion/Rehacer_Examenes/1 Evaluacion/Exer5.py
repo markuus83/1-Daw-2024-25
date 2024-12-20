@@ -50,9 +50,7 @@ A aplicación constará do seguinte menú:
 
 __autor__ = "Marcos Chouza Cruces"
 
-
 def mostrar_datos(lista_vivendas: list):
-
     """
     Encárgase de dar unha saída por pantalla onde amosa todas as vivendas da lista
 
@@ -63,7 +61,6 @@ def mostrar_datos(lista_vivendas: list):
         ValueError: O parámetro 'lista_vivendas' é unha lista.
         ValueError: A lista non está baleira.
     """
-
     if type(lista_vivendas) is not list:
         raise ValueError('O parámetro "lista_vivendas" non coincide cos valores esperados (MOSTRAR DATOS).')
     if len(lista_vivendas) == 0:
@@ -75,7 +72,6 @@ def mostrar_datos(lista_vivendas: list):
 
 
 def ingresar_datos(lista_vivendas: list, direccion: str, estado: str, prezo: float) -> list:
-
     """
     Encárgase de almacenar os datos pedidos por teclado ao usuario nun diccionario e engade dito diccionario á lista
 
@@ -96,7 +92,6 @@ def ingresar_datos(lista_vivendas: list, direccion: str, estado: str, prezo: flo
     Returns:
         list: devovle unha lista cas distintas vivendas.
     """
-
     if type(lista_vivendas) is not list:
         raise ValueError('O parámetro "lista_vivendas" non coincide cos valores esperados (INGRESAR DATOS).')
     if type(direccion) is not str:
@@ -120,7 +115,6 @@ def ingresar_datos(lista_vivendas: list, direccion: str, estado: str, prezo: flo
 
 
 def eliminar_datos(lista_vivendas: list, indice: int) -> list:
-
     """
     Encárgase de eliminar os datos da lista dependendo do índice que escolla o usuario.
 
@@ -137,7 +131,6 @@ def eliminar_datos(lista_vivendas: list, indice: int) -> list:
     Returns:
         list: Devolve a lista de vivendas sen o valor eliminado previamente
     """
-
     if type(lista_vivendas) is not list:
         raise ValueError('O parámetro "lista_vivendas" non coincide cos valores esperados (ELIMINAR DATOS).')
     if len(lista_vivendas) == 0:
@@ -153,7 +146,6 @@ def eliminar_datos(lista_vivendas: list, indice: int) -> list:
 
 
 def modificar_estado(lista_vivendas: list, indice: int) -> list:
-
     """
     Encárgase de cambiar o estado da vivienda, de 'venta' a 'aluguer' e viceversa.
 
@@ -170,7 +162,6 @@ def modificar_estado(lista_vivendas: list, indice: int) -> list:
     Returns:
         list: Devolve a lista de vivendas cas modificación realizadas previamente.
     """
-
     if type(lista_vivendas) is not list:
         raise ValueError('O parámetro "lista_vivendas" non coincide cos valores esperados (MODIFICAR ESTADO).')
     if len(lista_vivendas) == 0:
@@ -191,7 +182,6 @@ def modificar_estado(lista_vivendas: list, indice: int) -> list:
 
 
 def mostrar_vivendas_alugadas(lista_vivendas: list):
-
     """
     Encárgase de amosar as vivendas que se atopan en aluguer.
 
@@ -202,7 +192,6 @@ def mostrar_vivendas_alugadas(lista_vivendas: list):
         ValueError: O parámetro 'lista_vivendas' é unha lista.
         ValueError: A lista non se atopa baleira.
     """
-
     if type(lista_vivendas) is not list:
         raise ValueError('O parámetro "lista_vivendas" non coincide cos valores esperados (MOSTRAR ALUGUERES).')
     if len(lista_vivendas) == 0:
@@ -213,8 +202,51 @@ def mostrar_vivendas_alugadas(lista_vivendas: list):
             print(f"\n{indice}) {diccionario['direccion']}. {diccionario['estado']} - {diccionario['prezo']} €.")
 
 
+def prezo_alugamento_repetido(lista_vivendas: list):
+    
+    
+    if type(lista_vivendas) is not list:
+        raise ValueError('O parámetro "lista_vivendas" non coincide cos valores esperados (MOSTRAR PREZO ALUGAMENTO).')
+    if len(lista_vivendas) == 0:
+        raise ValueError('Non se poden amosar datos dunha lista vacía (MOSTRAR PREZO ALUGAMENTO).')
+    
+    prezos_alugamento = []
+    
+    for diccionario in lista_vivendas:
+        if diccionario['estado'] == 'aluger':
+           prezos_alugamento.append(diccionario['estado']) 
+            
+    if len(prezos_alugamento) == 0:
+        return None
+    
+    
+    frecuencias = {}
+    for prezo in prezos_alugamento:
+        if prezo not in frecuencias:
+            frecuencias[prezo] = 1
+        else:
+            frecuencias[prezo] += 1
+            
+###ACABAR DE CALCULAR ESTO
+    
+    return 
+
+
+
+def prezo_venta_repetido(lista_vivendas: list):
+    
+    
+    if type(lista_vivendas) is not list:
+        raise ValueError('O parámetro "lista_vivendas" non coincide cos valores esperados (MOSTRAR PREZO VENTA).')
+    if len(lista_vivendas) == 0:
+        raise ValueError('Non se poden amosar datos dunha lista vacía (MOSTRAR PREZO VENTA).')
+    
+    
+    
+    return
 
 lista_vivendas = []
+
 
 while True:
     print("\n ---------------------------------------- \n")
@@ -290,8 +322,8 @@ while True:
     elif option == 'e':
 
         try:
-            print("opcion e")
-
+            alugamento_repetido = prezo_alugamento_repetido(lista_vivendas)
+            print(f"O prezo de alugamento máis repetido é: {alugamento_repetido}")
 
         except ValueError as erro:
             print(f"Erro: {erro}")
@@ -300,7 +332,7 @@ while True:
     #Ver prezo de venta máis repetido
     elif option == 'f':
         try:
-            print("opcion f")
+            print("Opcion f")
 
         except ValueError as erro:
             print(f"Erro: {erro}")
@@ -308,5 +340,8 @@ while True:
 
     #Saír
     elif option == 'g':
-        print("Saíndo...")
+        print("\nSaíndo...")
         break
+    
+    else:
+        print("\nErro: Entrada inválida")

@@ -111,7 +111,9 @@ def ingresar_datos(lista_vivendas: list, direccion: str, estado: str, prezo: flo
         'prezo' : prezo
     }
 
-    return lista_vivendas.append(diccionario)
+    lista_vivendas.append(diccionario)
+
+    return lista_vivendas
 
 
 def eliminar_datos(lista_vivendas: list, indice: int) -> list:
@@ -202,9 +204,20 @@ def mostrar_vivendas_alugadas(lista_vivendas: list):
             print(f"\n{indice}) {diccionario['direccion']}. {diccionario['estado']} - {diccionario['prezo']} €.")
 
 
-def prezo_alugamento_repetido(lista_vivendas: list):
-    
-    
+def prezo_alugamento_repetido(lista_vivendas: list) -> float:
+    """
+    Encárgase de calcular o prezo de alugamento máis repetido e, en caso de ter un empate, escolle sempre a opción de alugamento máis baixa
+
+    Args:
+        lista_vivendas (list): Lista onde se almacenan as vivendas.
+
+    Raises:
+        ValueError: O parámetro 'lista_vivendas' é unha lista.
+        ValueError: A lista non se atopa baleira.
+
+    Returns:
+        float: devolve o prezo de alugueres máis repetido
+    """
     if type(lista_vivendas) is not list:
         raise ValueError('O parámetro "lista_vivendas" non coincide cos valores esperados (MOSTRAR PREZO ALUGAMENTO).')
     if len(lista_vivendas) == 0:
@@ -213,37 +226,96 @@ def prezo_alugamento_repetido(lista_vivendas: list):
     prezos_alugamento = []
     
     for diccionario in lista_vivendas:
-        if diccionario['estado'] == 'aluger':
-           prezos_alugamento.append(diccionario['estado']) 
+        if diccionario['estado'] == 'aluguer':
+            prezos_alugamento.append(diccionario['prezo'])  # Corregido: usar 'prezo' en lugar de 'estado'
             
     if len(prezos_alugamento) == 0:
         return None
-    
-    
+
     frecuencias = {}
     for prezo in prezos_alugamento:
         if prezo not in frecuencias:
             frecuencias[prezo] = 1
         else:
             frecuencias[prezo] += 1
-            
-###ACABAR DE CALCULAR ESTO
-    
-    return 
+
+    frecuencia_maxima = 0
+    for frec in frecuencias.values():
+        if frec > frecuencia_maxima:
+            frecuencia_maxima = frec
+
+    prezos_mais_frecuentes = []
+    for prezo, freq in frecuencias.items():
+        if freq == frecuencia_maxima:
+            prezos_mais_frecuentes.append(prezo)
+
+    if len(prezos_mais_frecuentes) == 0:
+        prezo_mais_repetido = None
+    else:
+        prezo_mais_repetido = prezos_mais_frecuentes[0]
+        for prezo in prezos_mais_frecuentes:
+            if prezo < prezo_mais_repetido:
+                prezo_mais_repetido = prezo
+
+    return prezo_mais_repetido
 
 
+def prezo_venta_repetido(lista_vivendas: list) -> float:
+    """
+    Encárgase de calcular o prezo de venta máis repetido e, en caso de ter un empate, escolle sempre a opción de venta máis baixa
 
-def prezo_venta_repetido(lista_vivendas: list):
-    
-    
+    Args:
+        lista_vivendas (list): Lista onde se almacenan as vivendas.
+
+    Raises:
+        ValueError: O parámetro 'lista_vivendas' é unha lista.
+        ValueError: A lista non se atopa baleira.
+
+    Returns:
+        float: devolve o prezo de alugueres máis repetido
+    """
     if type(lista_vivendas) is not list:
         raise ValueError('O parámetro "lista_vivendas" non coincide cos valores esperados (MOSTRAR PREZO VENTA).')
     if len(lista_vivendas) == 0:
         raise ValueError('Non se poden amosar datos dunha lista vacía (MOSTRAR PREZO VENTA).')
     
+    prezos_venta = []
     
-    
-    return
+    for diccionario in lista_vivendas:
+        if diccionario['estado'] == 'venta':
+            prezos_venta.append(diccionario['prezo'])  
+            
+    if len(prezos_venta) == 0:
+        return None
+
+
+    frecuencias = {}
+    for prezo in prezos_venta:
+        if prezo not in frecuencias:
+            frecuencias[prezo] = 1
+        else:
+            frecuencias[prezo] += 1
+
+    frecuencia_maxima = 0
+    for frec in frecuencias.values():
+        if frec > frecuencia_maxima:
+            frecuencia_maxima = frec
+
+    prezos_mais_frecuentes = []
+    for prezo, freq in frecuencias.items():
+        if freq == frecuencia_maxima:
+            prezos_mais_frecuentes.append(prezo)
+
+    if len(prezos_mais_frecuentes) == 0:
+        prezo_mais_repetido = None
+    else:
+        prezo_mais_repetido = prezos_mais_frecuentes[0]
+        for prezo in prezos_mais_frecuentes:
+            if prezo < prezo_mais_repetido:
+                prezo_mais_repetido = prezo
+
+    return prezo_mais_repetido
+
 
 lista_vivendas = []
 
@@ -320,7 +392,6 @@ while True:
 
     #Ver o prezo de alugamento máis repetido
     elif option == 'e':
-
         try:
             alugamento_repetido = prezo_alugamento_repetido(lista_vivendas)
             print(f"O prezo de alugamento máis repetido é: {alugamento_repetido}")
@@ -332,7 +403,8 @@ while True:
     #Ver prezo de venta máis repetido
     elif option == 'f':
         try:
-            print("Opcion f")
+            venta_repetida = prezo_venta_repetido(lista_vivendas)
+            print(f"O prezo de venta máis repetido é: {venta_repetida}")
 
         except ValueError as erro:
             print(f"Erro: {erro}")

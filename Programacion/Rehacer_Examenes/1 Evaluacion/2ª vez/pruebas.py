@@ -39,29 +39,29 @@ def prezo_alugamento_mais_repetido(lista_vivendas: list) -> float:
         raise ValueError('Non se poden sacar datos dunha lista baleira (ALUGAMENTO MÁIS REPETIDO)')
 
     prezos = []
-
+    
     for diccionario in lista_vivendas:
         if diccionario['estado'] == 'aluguer':
             prezos.append(diccionario['prezo'])
 
     if len(prezos) == 0:
         return None
-
+    
     prezos_repetidos = []
     vistos = []
-
+    
     for numero in prezos:
         if numero not in vistos:
             vistos.append(numero)
         else:
             if numero not in prezos_repetidos:
                 prezos_repetidos.append(numero)
-
+                
     if len(prezos_repetidos) == 0:
         return min(prezos)
     
     return min(prezos_repetidos)
-        
+
 
 try:
     venta_repetida = prezo_alugamento_mais_repetido(lista_vivendas)

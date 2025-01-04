@@ -24,7 +24,6 @@ def dias_ano_restante(dia, mes):
     if dia < 1 or dia > dias_por_mes[mes]:
         raise ValueError(f'O día ({dia}) non é válido para o mes ({mes}).')
 
-    
     dias_por_mes = {
         1 : 31,
         2 : 28,

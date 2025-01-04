@@ -110,14 +110,14 @@ def ingresar_vivenda(lista_vivendas: list, direccion: str, venta: bool, aluger:b
     if venta is True:
         vivenda = {
             "direccion": direccion,
-            "venta":  True,
+            "venta":  'venta',
             "prezo": prezo
         }
         
     else:
         vivenda = {
             "direccion": direccion,
-            "alugamento": True,
+            "alugamento": 'aluguer',
             "prezo": prezo
         }
     

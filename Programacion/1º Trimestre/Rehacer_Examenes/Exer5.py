@@ -321,7 +321,7 @@ while True:
     print("\t h) Mostrar datos: ")
     
     #Pedísmoslle ao usuario que escolla a opción desexada
-    option = input(">").lower()
+    option = input(">").lower().strip()
     
     #Opción a
     if option == 'a':
@@ -383,8 +383,8 @@ while True:
             break
         except ValueError as erro:
             print(f"Erro: {erro}")
-            
-            
+
+
     #Opción h
     if option == 'h':
         try:

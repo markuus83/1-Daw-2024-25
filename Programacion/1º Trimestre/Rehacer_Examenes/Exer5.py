@@ -68,7 +68,6 @@ def mostrar_datos(lista_vivendas: list) -> print:
     for indice, diccionario in enumerate(lista_vivendas):
         print(f"\n{indice}) {diccionario['direccion']}. {diccionario['estado']} - {diccionario['prezo']} €.")
 
-
 def ingresar_datos(lista_vivendas: list, direccion: str, estado: str, prezo: float) -> list:
     
     """
@@ -200,7 +199,6 @@ def mostrar_vivendas_alugamento(lista_vivendas:list) -> print:
         if diccionario['estado'] == 'aluguer':
             print(f"\n{indice}) {diccionario['direccion']}. {diccionario['estado']} - {diccionario['prezo']} €.")
 
-
 def prezo_alugamento_mais_repetido(lista_vivendas:list) -> float:
     
     """
@@ -302,7 +300,6 @@ def prezo_venta_mais_repetido(lista_vivendas:list) -> float:
     
     #Devolvemos o prezo repetido máis baixo
     return min(prezos_repetidos)
-
 
 #Inicializamos unha lista vacía onde iremos almacenando todas as vivendas cos seus datos
 lista_vivendas = []

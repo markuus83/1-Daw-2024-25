@@ -381,7 +381,6 @@ while True:
         except ValueError as erro:
             print(f"Erro: {erro}")
 
-
     #Opción h
     if option == 'h':
         try:

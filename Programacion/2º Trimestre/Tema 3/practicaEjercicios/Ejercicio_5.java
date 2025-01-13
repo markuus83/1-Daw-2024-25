@@ -22,6 +22,9 @@ public class Ejercicio_5 {
     	
     	Arrays.sort(numeros); //Ordenamos o array
     	
-    	System.out.println(numeros[0] + ", " + numeros[1] + ", " + numeros[2]);
+    	System.out.println(numeros[0] + " > " + numeros[1] + " > " + numeros[2]);
+
+		scanner.close();
+		
     }
 }

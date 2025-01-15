@@ -18,7 +18,12 @@ public class Exer1 {
         float[] numeros = new float[cantNum];
 
         for (int i=0; i < cantNum ;i++) {
-            System.out.println(numeros[i] + ", ");
+            System.out.print("Ingrese el número: ");
+            numeros[i] = scanner.nextFloat();            
+        }
+        
+        for (int i = numeros.length - 1; i >= 0; i--) {
+            System.out.println(numeros[i]);
         }
 
         scanner.close();

@@ -16,8 +16,8 @@ public class Ejercicio_2 {
     	int anoNacemento = 2025 - idade; 
 
     	System.out.println("O teu ano de nacemento é: " + anoNacemento);
-    	
-    	scanner.close();
+
+		scanner.close();
     }
 
 }

@@ -2,16 +2,15 @@ import java.util.Date;
 
 public class Persona {
 
-    String dni;
-    String nombre;
-    String apellido1;
-    String apellido2;
-    String correo;
-    Integer movil;
-    Date fecNacimiento;
+    private String dni;
+    private String nombre;
+    private String apellido1;
+    private String apellido2;
+    private String correo;
+    private Integer movil;
+    private Date fecNacimiento;
     
-    public Persona(String dni, String nombre, String apellido1, String apellido2, String correo, Integer movil,
-            Date fecNacimiento) {
+    public Persona(String dni, String nombre, String apellido1, String apellido2, String correo, Integer movil, Date fecNacimiento) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido1 = apellido1;
@@ -19,6 +18,10 @@ public class Persona {
         this.correo = correo;
         this.movil = movil;
         this.fecNacimiento = fecNacimiento;
+    }
+
+    public Persona(){
+        
     }
 
     public String getDni() {
@@ -75,6 +78,11 @@ public class Persona {
 
     public void setFecNacimiento(Date fecNacimiento) {
         this.fecNacimiento = fecNacimiento;
+    }
+
+    @Override
+    public String toString() {
+        return nombre + "é unha persoa.";
     }
     
 }

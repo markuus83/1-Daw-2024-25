@@ -27,7 +27,7 @@ public class Exer3 {
 
         for(int i=0;i<lonxColumna;i++){
             System.out.print("Ingrese un número: ");
-            matriz[i][null]=scanner.nextInt();
+            //matriz[i][]=scanner.nextInt();
         }
     }
 }

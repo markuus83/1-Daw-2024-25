@@ -1,33 +1,56 @@
-/**
- * Crea o segunte programa:
- * 
- * · Crea unha matriz bidimensional. O usuario introducirá o número de columnas e filas nesa orde.
- * 
- * · A continuación introducirá os valores columna a columna
- * 
- * · Calcula o valor da suma de cada columna. Imprime ese valores en orde.
- * 
- * · Calcula o valor da suma de cada fila. Imprime eses valores en orde.
- */
-
-
 import java.util.Scanner;
 
 public class Exer3 {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+
         System.out.print("Ingrese a lonxitude das columnas: ");
-        int lonxColumna = scanner.nextInt();
+        int columnas = scanner.nextInt();
 
         System.out.print("Ingrese a lonxitude das filas: ");
-        int lonxFila = scanner.nextInt();
+        int filas = scanner.nextInt();
 
-        int[][] matriz = new int[lonxColumna][lonxFila];
+        // Crear matriz
+        int[][] array = new int[filas][columnas];
 
-        for(int i=0;i<lonxColumna;i++){
-            System.out.print("Ingrese un número: ");
-            //matriz[i][]=scanner.nextInt();
+        // Introducir os valores fila por fila
+        for (int f = 0; f < filas; f++) {
+            for (int c = 0; c < columnas; c++) {
+                System.out.print("Elemento [" + f + "][" + c + "]: ");
+                array[f][c] = scanner.nextInt();
+            }
         }
+
+        // Mostrar o contido da matriz
+        System.out.println("Contido da matriz: ");
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // Calcular e imprimir a suma de cada fila
+        System.out.println("Suma de cada fila: ");
+        for (int i = 0; i < filas; i++) {
+            int sumaFila = 0;
+            for (int j = 0; j < columnas; j++) { // Cambiado a columnas
+                sumaFila += array[i][j];
+            }
+            System.out.println("Suma da fila " + i + ": " + sumaFila);
+        }
+
+        // Calcular e imprimir a suma de cada columna
+        System.out.println("Suma de cada columna: ");
+        for (int j = 0; j < columnas; j++) { // Cambiado a columnas como bucle externo
+            int sumaColumna = 0;
+            for (int i = 0; i < filas; i++) { // Cambiado a filas
+                sumaColumna += array[i][j];
+            }
+            System.out.println("Suma da columna " + j + ": " + sumaColumna);
+        }
+
+        scanner.close();
     }
 }

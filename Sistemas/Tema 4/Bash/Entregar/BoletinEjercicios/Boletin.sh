@@ -88,6 +88,7 @@ do
             ;;
         *)
             echo "Erro: opcion inválida"
+            ;;
     esac
     
 done

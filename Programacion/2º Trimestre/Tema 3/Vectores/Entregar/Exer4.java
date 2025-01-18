@@ -16,14 +16,18 @@ import java.util.Scanner;
 
 public class Exer4 {
     public static void main(String[] args) {
+
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Ingrese o número de estudantes: ");
+        System.out.print("Ingrese a cantidade de alumnos: ");
         int alumno = scanner.nextInt();
 
-        System.out.print("Ingrese o número de modulos: ");
+        System.out.print("\nIngrese a cantidade de módulos: ");
         int modulo = scanner.nextInt();
 
-        int[][] curso = new int [alumno][modulo];
+        int[][] matriz = new int[modulo][alumno];
+
+
+        
     }
 }

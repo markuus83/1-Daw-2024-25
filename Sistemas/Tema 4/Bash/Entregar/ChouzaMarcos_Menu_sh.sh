@@ -40,12 +40,12 @@ multiplicar_numeros(){
 }
 
 numeros_primos(){
-        read -p "Introduce el primer número: " inicio
+    read -p "Introduce el primer número: " inicio
     read -p "Introduce el segundo número: " fin
 
     # Asegurar que el rango esté ordenado
     if (( inicio > fin )); then
-        local temp=$inicio
+        temp=$inicio
         inicio=$fin
         fin=$temp
     fi

@@ -10,12 +10,19 @@
  *  · Amosa o taboleiro despois de cada movemento. Os espazos baleiros represéntaos con - e os xogadores con "X" para o xogador 1 e "0" para o xogador 2.
  * 
  *  · Verifica e amosa unha mensaxe cando un xogador gaña ou se hai un empate se se encheron todos os ocos.
- * 
- * · 
  */
+import java.util.Scanner;
 
 public class Exer5 {
     public static void main(String[] args) {
+        
+        Scanner scanner = new Scanner(System.in);
+
+        int[][] taboleiro = {
+          {0,0,0},
+          {0,0,0},
+          {0,0,0}
+        };
         
     }
 }

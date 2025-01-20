@@ -1,0 +1,98 @@
+import java.util.Scanner;
+
+public class Exer5 {
+
+    public static void main(String[] args) {
+
+        int[][] tablero = new int[3][3]; 
+        int jugadorActual = 1; 
+        boolean hayGanador = false;
+        boolean tableroCompleto = false;
+
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nC1\tC2\tC3");
+
+            for (int fila = 0; fila < 3; fila++) {
+
+                System.out.print("F" + fila + "\t");
+
+                for (int columna = 0; columna < 3; columna++) {
+
+                    if (tablero[fila][columna] == 0) {
+                        System.out.print("-\t");
+
+                    } else if (tablero[fila][columna] == 1) {
+                        System.out.print("X\t");
+
+                    } else {
+                        System.out.print("O\t");
+                    }
+                }
+                System.out.println();
+            }
+
+            if (hayGanador || tableroCompleto) {
+
+                if (hayGanador) {
+                    System.out.println("O xogador " + jugadorActual + " gañou!");
+
+                } else {
+                    System.out.println("Empate!");
+                }
+
+                break;
+            }
+
+            System.out.print("\nTurno do xogador " + jugadorActual + ": ");
+
+            int fila = scanner.nextInt();
+            int columna = scanner.nextInt();
+
+            if (fila < 0 || fila >= 3 || columna < 0 || columna >= 3 || tablero[fila][columna] != 0) {
+
+                System.out.println("Erro: Movemento inválido.");
+                continue;
+            }
+
+            tablero[fila][columna] = jugadorActual;
+
+            // Comprobar si hay un ganador
+            for (int i = 0; i < 3; i++) {
+
+                if (tablero[i][0] == jugadorActual && tablero[i][1] == jugadorActual && tablero[i][2] == jugadorActual) {
+                    hayGanador = true;
+                }
+
+                if (tablero[0][i] == jugadorActual && tablero[1][i] == jugadorActual && tablero[2][i] == jugadorActual) {
+                    hayGanador = true;
+                }
+            }
+
+            if (tablero[0][0] == jugadorActual && tablero[1][1] == jugadorActual && tablero[2][2] == jugadorActual) {
+                hayGanador = true;
+            }
+
+            if (tablero[0][2] == jugadorActual && tablero[1][1] == jugadorActual && tablero[2][0] == jugadorActual) {
+                hayGanador = true;
+            }
+
+            tableroCompleto = true;
+            for (int i = 0; i < 3; i++) {
+                for (int j = 0; j < 3; j++) {
+
+                    if (tablero[i][j] == 0) {
+                        tableroCompleto = false;
+                    }
+                }
+            }
+
+            // Cambiar de jugador
+            if (!hayGanador) {
+                jugadorActual = (jugadorActual == 1) ? 2 : 1;
+            }
+        }
+        scanner.close();
+    }
+}

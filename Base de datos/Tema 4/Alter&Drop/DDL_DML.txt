@@ -1,0 +1,17 @@
+DDL -> Lenguaje de Definición de Datos
+
+   · Create
+   · Alter
+	- Alter
+	- Drop
+	- Add
+
+   · Drop / Truncate
+
+
+
+DML -> Lenguaje de Manipulación de Datos
+
+   · Insert
+   · Update
+   · Delete

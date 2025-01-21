@@ -40,15 +40,15 @@ public class Exer4 {
         System.out.println();
 
         // Inicializamos o array bidimensional
-        float[][] matriz = new float[alumno][modulo];
+        int[][] matriz = new int[alumno][modulo];
 
         // Ingresar notas fila por fila, validando que sean correctas
         for (int i = 0; i < alumno; i++) {
             for (int j = 0; j < modulo; j++) {
-                float nota;
+                int nota;
                 do {
                     System.out.print("Elemento [" + i + "][" + j + "]: ");
-                    nota = scanner.nextFloat();
+                    nota = scanner.nextInt();
                     if (nota < 0 || nota > 10) {
                         System.out.println("Erro: a nota debe estar entre 0 e 10. Inténtao de novo.");
                     }
@@ -87,6 +87,7 @@ public class Exer4 {
                 if (indice < 0 || indice >= alumno) {
                     System.out.println("Erro: índice inválido.");
                     break;
+                    
                 } else {
                     float suma = 0;
 
@@ -138,8 +139,6 @@ public class Exer4 {
                 System.out.println("Erro: ingrese unha opción válida.");
                 break;
             }
-            // Pechamos o Scanner
-            scanner.close();
         }
     }
 }

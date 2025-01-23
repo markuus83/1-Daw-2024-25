@@ -20,27 +20,37 @@
 
 import java.util.Scanner;
 
+/**
+ * NO CAPTURAMOS ERROR CUANDO SE INTRODUCE UN NÚMERO DE MÁS DE 4 DÍGITOS 
+ * 
+ * ############# MODIFICAR CÓDIGO
+ */
+
+
 public class Exer1 {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
 
+        //Pedimos el número a iterar
         System.out.print("Introduce un número de 4 dígitos: ");
         int numero = scanner.nextInt();
         
+        //Si ya es el número Kaprekar acabar el programa
         if (numero == 6174) {
             System.out.println("El número ya es la constante de Kaprekar. Iteraciones: 0");
             
         }
 
-        // Comprobar si el número es un repdigit
+        //Almacenamos cada cifra en una variable
         int cifra1 = numero / 1000;
         int cifra2 = (numero / 100) % 10;
         int cifra3 = (numero / 10) % 10;
         int cifra4 = numero % 10;
         
+        //Comprobamos si el número es un repdigit
         if (cifra1 == cifra2 && cifra2 == cifra3 && cifra3 == cifra4) {
-            System.out.println("El número es un repdigit. Iteraciones: -1");
+            System.out.println("Repdigit. Iteraciones: -1");
         }
 
         int contador = 0;

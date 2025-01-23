@@ -1,10 +1,10 @@
 
 
-DROP DATABASE  IF EXISTS tabla_ejemplo;
+DROP DATABASE  IF EXISTS a23marcoscc_BDEmpleados2;
 						GO
-CREATE DATABASE tabla_ejemplo;
+CREATE DATABASE a23marcoscc_BDEmpleados2;
 						GO
-USE tabla_ejemplo;
+USE a23marcoscc_BDEmpleados2;
 
 create table tabla_ejemplo
 (
@@ -65,14 +65,13 @@ ALTER TABLE tabla_ejemplo
 -- A�adimos datos
 
 insert into tabla_ejemplo
-        (nuevo, nuevo2, nuevo3)
-values(1, 'casa', 23, 'Lois');
+       values(1, 'casa', 23, 'Lois');
+
 insert into tabla_ejemplo
-        (nuevo, nuevo2, nuevo3)
-values(1, 'casa', 10, 'Luis');-- Error 
+	values(1, 'casa', 10, 'Luis');-- Error 
+
 insert into tabla_ejemplo
-        (nuevo, nuevo2, nuevo3)
-values(1, 11, 'ber');
+	values(1, 11, 'ber');
 
 -- Consulta de la tabla creada:                 
 select *

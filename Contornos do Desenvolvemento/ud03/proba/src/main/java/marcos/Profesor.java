@@ -4,10 +4,10 @@ import java.util.Date;
 
 public class Profesor extends Persona{
 
-    private String especialidad;
-    private String cuerpo;
-    private boolean sustituto;
-    private Date fecOposicion;
+    protected String especialidad;
+    protected String cuerpo;
+    protected boolean sustituto;
+    protected Date fecOposicion;
 
     public Profesor(String especialidad, String cuerpo, boolean sustituto, Date fecOposicion) {
         this.especialidad = especialidad;

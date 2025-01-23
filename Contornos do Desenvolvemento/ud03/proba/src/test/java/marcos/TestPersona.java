@@ -1,11 +1,19 @@
 package marcos;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
 public class TestPersona {
 
-    public static void main(String[] args) {
-        
-        Persona Marcos = new Persona(null , null, null, null, null, null, null);
+    @Test
+    public void comprobarNombre(){
 
-        System.out.println(Marcos);
+        Persona mengano = new Persona();
+        mengano.setNombre("Pepe");
+
+        boolean resultado = mengano.getNombre() == "Pepe";
+
+        assertTrue(resultado);
+
     }
-}
+}  

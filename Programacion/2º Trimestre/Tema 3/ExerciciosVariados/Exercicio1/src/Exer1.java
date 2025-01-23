@@ -18,8 +18,69 @@
  * Pídese un programa que reciba un número e indique o número de iteracións necesarias para calcular a constante de Kaprekar. Para os números REPDIGITS deberase indicar -1, e se se introducide a constante de Kaprekar deberase indicar o número 0.
  */
 
-public class Exer1 {
-    public static void main(String[] args) throws Exception {
+import java.util.Scanner;
 
+public class Exer1 {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Introduce un número de 4 dígitos: ");
+        int numero = scanner.nextInt();
+        
+        if (numero == 6174) {
+            System.out.println("El número ya es la constante de Kaprekar. Iteraciones: 0");
+            
+        }
+
+        // Comprobar si el número es un repdigit
+        int cifra1 = numero / 1000;
+        int cifra2 = (numero / 100) % 10;
+        int cifra3 = (numero / 10) % 10;
+        int cifra4 = numero % 10;
+        
+        if (cifra1 == cifra2 && cifra2 == cifra3 && cifra3 == cifra4) {
+            System.out.println("El número es un repdigit. Iteraciones: -1");
+        }
+
+        int contador = 0;
+
+        while (numero != 6174) {
+
+            // Ordenar dígitos de forma ascendente y descendente
+            int[] array = {cifra1, cifra2, cifra3, cifra4};
+
+            
+            for (int i = 0; i < array.length - 1; i++) {
+                for (int j = i + 1; j < array.length; j++) {
+
+                    if (array[i] > array[j]) {
+
+                        int temp = array[i];
+                        array[i] = array[j];
+                        array[j] = temp;
+                    }
+                }
+            }
+            
+
+            int arriba = array[0] * 1000 + array[1] * 100 + array[2] * 10 + array[3];
+            int abajo = array[3] * 1000 + array[2] * 100 + array[1] * 10 + array[0];
+
+            // Calcular la nueva resta
+            numero = abajo - arriba;
+
+            // Actualizar los dígitos
+            cifra1 = numero / 1000;
+            cifra2 = (numero / 100) % 10;
+            cifra3 = (numero / 10) % 10;
+            cifra4 = numero % 10;
+
+            contador++;
+        }
+
+        System.out.println("Número de iteraciones necesarias: " + contador);
+        
+        scanner.close();
     }
 }

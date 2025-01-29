@@ -71,14 +71,15 @@ public class Centro {
         this.codigoPostal = codigoPostal;
     }
 
+    
     @Override
     public String toString() {
         return "Centro [codigo=" + codigo + ", nombre=" + nombre + ", localidad=" + localidad + ", calle=" + calle
                 + ", numero=" + numero + ", codigoPostal=" + codigoPostal + "]";
     }
 
-    public String getDireccion(){
-        return localidad + " " + calle + " " +  numero + " " + codigoPostal;
+    public String getDireccion() {
+        return calle + ", " + numero + ", " + localidad;
     }
 
 }

@@ -66,4 +66,11 @@ public class Modulo {
                 + ", sesiones=" + sesiones + "]";
     }
 
+    public Integer sesionesAP() {
+        return sesiones / 2; 
+    }
+    
+    public Integer sesionesPD() {
+        return sesiones / 2; 
+    }
 }

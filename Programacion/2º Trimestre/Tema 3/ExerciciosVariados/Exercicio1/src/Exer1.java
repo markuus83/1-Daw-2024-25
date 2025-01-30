@@ -20,13 +20,6 @@
 
 import java.util.Scanner;
 
-/**
- * NO CAPTURAMOS ERROR CUANDO SE INTRODUCE UN NÚMERO DE MÁS DE 4 DÍGITOS 
- * 
- * ############# MODIFICAR CÓDIGO
- */
-
-
 public class Exer1 {
     public static void main(String[] args) {
 
@@ -36,10 +29,18 @@ public class Exer1 {
         System.out.print("Introduce un número de 4 dígitos: ");
         int numero = scanner.nextInt();
         
+        //Validar que el número tiene exactamente 4 dígitos
+        if (numero < 1000 || numero > 9999) {
+            System.out.println("El número debe tener exactamente 4 dígitos.");
+            scanner.close();
+            return;
+        }
+
         //Si ya es el número Kaprekar acabar el programa
         if (numero == 6174) {
             System.out.println("El número ya es la constante de Kaprekar. Iteraciones: 0");
-            
+            scanner.close();
+            return;
         }
 
         //Almacenamos cada cifra en una variable
@@ -51,36 +52,37 @@ public class Exer1 {
         //Comprobamos si el número es un repdigit
         if (cifra1 == cifra2 && cifra2 == cifra3 && cifra3 == cifra4) {
             System.out.println("Repdigit. Iteraciones: -1");
+            scanner.close();
+            return;
         }
 
         int contador = 0;
 
         while (numero != 6174) {
-
-            // Ordenar dígitos de forma ascendente y descendente
             int[] array = {cifra1, cifra2, cifra3, cifra4};
 
-            
+            //Ordenamos el array en orden ascendente usando Bubble Sort
             for (int i = 0; i < array.length - 1; i++) {
                 for (int j = i + 1; j < array.length; j++) {
 
+                    //Si el elemento actual es mayor que el siguiente, intercambiarlos
                     if (array[i] > array[j]) {
-
                         int temp = array[i];
                         array[i] = array[j];
                         array[j] = temp;
                     }
                 }
             }
-            
 
+            //Generamos el número con los dígitos en orden ascendente
             int arriba = array[0] * 1000 + array[1] * 100 + array[2] * 10 + array[3];
+            //Generamos el número con los dígitos en orden descendente
             int abajo = array[3] * 1000 + array[2] * 100 + array[1] * 10 + array[0];
 
-            // Calcular la nueva resta
+            //Calculamos la diferencia entre los dos números
             numero = abajo - arriba;
 
-            // Actualizar los dígitos
+            //Actualizar los dígitos
             cifra1 = numero / 1000;
             cifra2 = (numero / 100) % 10;
             cifra3 = (numero / 10) % 10;

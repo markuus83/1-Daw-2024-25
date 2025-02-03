@@ -6,6 +6,10 @@ public class Reloxo {
     private String tipoReloxo;
 
 
+    public Reloxo(){
+
+    }
+
     public Reloxo(String marca, String modelo, Double prezo, String tipoReloxo) {
         this.marca = marca;
         this.modelo = modelo;
@@ -13,8 +17,6 @@ public class Reloxo {
         this.tipoReloxo = tipoReloxo;
     }
 
-    public Reloxo() {
-    }
 
     public String getMarca() {
         return marca;

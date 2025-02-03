@@ -8,6 +8,7 @@ public class Modulo {
     private Integer horas;
     private Integer sesiones;
 
+
     public Modulo(String codigo, String nombre, String descripcion, Integer horas, Integer sesiones) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -64,6 +65,14 @@ public class Modulo {
     public String toString() {
         return "Modulo [codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", horas=" + horas
                 + ", sesiones=" + sesiones + "]";
+    }
+
+    public Integer sesionesAP() {
+        return sesiones / 2; 
+    }
+    
+    public Integer sesionesPD() {
+        return sesiones / 2; 
     }
 
 }

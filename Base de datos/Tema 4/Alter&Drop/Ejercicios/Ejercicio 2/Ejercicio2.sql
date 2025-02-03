@@ -1,0 +1,105 @@
+DROP DATABASE IF EXISTS a23marcoscc_BD_Exercicio2;
+GO
+CREATE DATABASE a23marcoscc_BD_Exercicio2;
+GO
+USE a23marcoscc_BD_Exercicio2;
+
+
+CREATE TABLE TFNO_PROFE (
+
+    codprof CHAR(2),
+    numero CHAR(2),
+    principal CHAR(9) CHECK (principal LIKE '[0-9]{9}'),
+
+    CONSTRAINT PK_TFNO_PROFE 
+    PRIMARY KEY (codprof, numero)
+
+);
+
+
+CREATE TABLE PROFESOR (
+
+    codprof CHAR(2) PRIMARY KEY,
+    DNI CHAR(9) CHECK (DNI LIKE '[0-9]{8}[A-Za-z]') UNIQUE,
+    nombre VARCHAR(30),
+    direccion VARCHAR(30),
+    tipocarnet VARCHAR(30),
+
+);
+
+
+CREATE TABLE MODULO (
+
+    codmod CHAR(2) PRIMARY KEY,
+    nombre VARCHAR(30),
+    codprof CHAR(2),
+    coddelegado CHAR(2),
+    ciclo VARCHAR(30)
+
+
+);
+
+
+CREATE TABLE MATRICULA (
+
+    codmod CHAR(2),
+    codalumno CHAR(2),
+    fecmatricula DATE,
+
+    CONSTRAINT PK_MATRICULA 
+    PRIMARY KEY (codmod, codalumno)
+
+);
+
+
+CREATE TABLE ALUMNO (
+
+    numexp CHAR(2) PRIMARY KEY,
+    nombre VARCHAR(30),
+    apellidos VARCHAR(30),
+    fecnac DATE
+
+
+);
+
+-------------- COMENZAMOS CON LAS RESTRICCIONES DE LA BASE DE DATOS --------------
+
+
+-- TABLA TFNO_PROFE
+
+    ALTER TABLE TFNO_PROFE
+    ADD CONSTRAINT FK_TFNO_PROFE_PROFESOR
+        FOREIGN KEY (codprof)
+        REFERENCES PROFESOR (codprof)
+        ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+-- TABLA MODULO
+
+    ALTER TABLE MODULO
+    ADD CONSTRAINT FK_MODULO_PROFESOR
+        FOREIGN KEY (codprof)
+        REFERENCES PROFESOR (codprof)
+        ON UPDATE CASCADE ON DELETE SET NULL;
+
+    ALTER TABLE MODULO
+    ADD CONSTRAINT FK_MODULO_ALUMNO
+        FOREIGN KEY (coddelegado)
+        REFERENCES ALUMNO (numexp)
+        ON UPDATE CASCADE ON DELETE SET NULL;
+
+
+-- TABLA MATRICULA
+
+    ALTER TABLE MATRICULA
+    ADD CONSTRAINT FK_MATRICULA_MODULO
+        FOREIGN KEY (codmod)
+        REFERENCES MODULO(codmod)
+        ON UPDATE CASCADE ON DELETE NO ACTION;
+
+
+    ALTER TABLE MATRICULA
+    ADD CONSTRAINT FK_MATRICULA_ALUMNO
+        FOREIGN KEY (codalumno)
+        REFERENCES ALUMNO(numexp)
+        ON UPDATE NO ACTION ON DELETE NO ACTION;

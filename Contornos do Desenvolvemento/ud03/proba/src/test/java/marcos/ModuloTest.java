@@ -113,8 +113,5 @@ public class ModuloTest {
         assertEquals("Modulo [codigo=null, nombre=null, descripcion=null, horas=null, sesiones=null]", modulo.toString());
     }
 
-  
-
-
 }
 

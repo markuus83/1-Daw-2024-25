@@ -51,3 +51,11 @@ ORDER BY NOMEM;
 	WHERE COMIS IS NOT NULL
 	GROUP BY NUMDE
 	ORDER BY 1
+
+
+-- agrupando por departamentos y numero de hijos cuantos empleados hay en cada grupo
+
+	SELECT NUMDE, NUMHI, COUNT(*) AS NumEmpleados
+	FROM TEMPLE
+	GROUP BY NUMDE, NUMHI
+	ORDER BY 1, 2

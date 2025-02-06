@@ -14,10 +14,17 @@ public class PersonaTest {
     }
 
     @Test
-    public void testSetApellido() {
+    public void testSetApellido1() {
         Persona persona = new Persona();
-        persona.setApellido("Gonzalez");
-        assertEquals("Gonzalez", persona.getApellido());
+        persona.setApellido1("Gonzalez");
+        assertEquals("Gonzalez", persona.getApellido1());
+    }
+
+    @Test
+    public void testSetApellido2() {
+        Persona persona = new Persona();
+        persona.setApellido2("Pereira");
+        assertEquals("Pereira", persona.getApellido2());
     }
 
     @Test

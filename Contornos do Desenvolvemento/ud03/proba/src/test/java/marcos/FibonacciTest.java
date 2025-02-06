@@ -21,5 +21,4 @@ public class FibonacciTest {
         assertEquals(55, fibonacci.fib(10));
     }
 
-
 }

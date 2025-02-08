@@ -66,15 +66,17 @@ public class Vehiculo {
             }
         }
         
-        for (int i = 4; i < 7; i++) {
-            char c = matricula.charAt(i);
-            if (c < 'A' || c > 'Z') {
-                return false;
+        String consonantes = "BCDFGHJKLMNPQRSTVWXYZ";
+            for (int i = 4; i < 7; i++) {
+                char c = matricula.charAt(i);
+                if (consonantes.indexOf(c) == -1) {
+                    return false;
+                }
             }
+            
+            return true;
         }
-        
-        return true;
-    }
+            
 
 
     /**

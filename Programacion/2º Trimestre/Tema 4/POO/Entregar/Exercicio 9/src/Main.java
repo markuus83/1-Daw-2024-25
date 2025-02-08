@@ -4,7 +4,6 @@
  * 2. Crea a clase Vehículo no paquete concesionario coas seguintes características:
  * 
  * 
-
     Crea un método estático que comprobe que o formato da matricula que se lle pasa por parámetro é correcto. Este componse de 4 números e 3 consonantes maiúsculas a continuación.
 
     Esta clase debe de almacenar a matrícula do vehículo, a marca, o modelo, o tipo de combustible e a velocidade actual.

@@ -103,7 +103,7 @@ public class Empregado {
     }
 
     public void setDNI(String dni) {
-        if (comprobacionDNI(dni)) {
+        if (this.comprobacionDNI(dni)) {
             this.dni = dni;
         } else {
             this.dni = "Sen información";  

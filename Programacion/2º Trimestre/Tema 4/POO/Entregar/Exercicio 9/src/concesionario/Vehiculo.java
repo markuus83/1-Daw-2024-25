@@ -48,7 +48,7 @@ public class Vehiculo {
         return true;
     }
 
-/**
+    /**
      * Constructor que recibe como parámetros a Matricula, Marca e Modelo co coche. 
      * 
      * O tipo de combustible será sempre Gasolina (usamos o enumerando para establecelo)
@@ -62,7 +62,7 @@ public class Vehiculo {
      * @param modelo Establecemos o modelo do coche
      */
     public Vehiculo(String matricula, String marca, String modelo) {
-        setMatricula(matricula); 
+        this.setMatricula(matricula); 
         this.marca = marca;
         this.modelo = modelo;
         this.combustible = TipoCombustible.GASOLINA;
@@ -202,3 +202,5 @@ public class Vehiculo {
         Vehiculo.velocidadeMaxima = velocidadeMaxima;
     }
 }
+
+

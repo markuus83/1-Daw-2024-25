@@ -6,7 +6,10 @@ public class Ciclo {
     private Nivel nivel;
     private Centro centro;
 
-    
+    public Ciclo(){
+
+    }
+
     public Ciclo(String codigo, String nombre, Nivel nivel, Centro centro) {
         this.codigo = codigo;
         this.nombre = nombre;
@@ -50,7 +53,4 @@ public class Ciclo {
     public String toString() {
         return "Ciclo [codigo=" + codigo + ", nombre=" + nombre + ", nivel=" + nivel + ", centro=" + centro + "]";
     }
-
-    
-    
 }

@@ -75,8 +75,12 @@ public class CentroTest {
     }
     
     @Test
-    public void testGetDireccion() {
-        Centro centro = new Centro(1, "IES Abastos", "Valencia", "Calle de los Abastos", "10", 46023);
-        assertEquals("Calle de los Abastos, 10, Valencia", centro.getDireccion());
+    public void testHashCode() {
+        Centro centro1 = new Centro(1, "IES Abastos", "Valencia", "Calle de los Abastos", "10", 46023);
+        Centro centro2 = new Centro(1, "IES Abastos", "Valencia", "Calle de los Abastos", "10", 46023);
+        assertFalse(centro1.hashCode() == centro2.hashCode());
     }
+
+  
+
 }

@@ -3,21 +3,15 @@ package marcos;
 import java.util.Date;
 
 public class Profesor extends Persona{
+    //Atributos
+    private String especialidad;
+    private String cuerpo;
+    private boolean sustituto;
+    private Date fecOposicion;
 
-    protected String especialidad;
-    protected String cuerpo;
-    protected boolean sustituto;
-    protected Date fecOposicion;
-
-    public Profesor(String especialidad, String cuerpo, boolean sustituto, Date fecOposicion) {
-        this.especialidad = especialidad;
-        this.cuerpo = cuerpo;
-        this.sustituto = sustituto;
-        this.fecOposicion = fecOposicion;
-    }
-
+    //Constructores
     public Profesor(){
-
+        
     }
 
     public String getEspecialidad() {
@@ -58,4 +52,5 @@ public class Profesor extends Persona{
                 + ", fecOposicion=" + fecOposicion + "]";
     }
 
+    
 }

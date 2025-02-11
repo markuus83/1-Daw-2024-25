@@ -1,14 +1,16 @@
 package marcos;
 
 public class Centro {
-    
+
     private Integer codigo;
     private String nombre;
     private String localidad;
     private String calle;
     private String numero;
     private Integer codigoPostal;
-
+    
+    public Centro() {
+    }
 
     public Centro(Integer codigo, String nombre, String localidad, String calle, String numero, Integer codigoPostal) {
         this.codigo = codigo;
@@ -17,10 +19,6 @@ public class Centro {
         this.calle = calle;
         this.numero = numero;
         this.codigoPostal = codigoPostal;
-    }
-
-    public Centro(){
-
     }
 
     public Integer getCodigo() {
@@ -71,7 +69,6 @@ public class Centro {
         this.codigoPostal = codigoPostal;
     }
 
-    
     @Override
     public String toString() {
         return "Centro [codigo=" + codigo + ", nombre=" + nombre + ", localidad=" + localidad + ", calle=" + calle
@@ -79,7 +76,10 @@ public class Centro {
     }
 
     public String getDireccion() {
-        return calle + ", " + numero + ", " + localidad;
-    }
+        return localidad + " " +
+                calle + " " +
+                numero + " " +
+                codigoPostal;
 
+    }
 }

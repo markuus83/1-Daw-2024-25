@@ -1,21 +1,20 @@
 package marcos;
 
 public class Matricula {
-
+    
     private Alumno alumno;
     private Modulo modulo;
     private Integer nota;
     private String curso;
+    
+    public Matricula() {
+    }
 
     public Matricula(Alumno alumno, Modulo modulo, Integer nota, String curso) {
         this.alumno = alumno;
         this.modulo = modulo;
         this.nota = nota;
         this.curso = curso;
-    }
-
-    public Matricula(){
-
     }
 
     public Alumno getAlumno() {
@@ -54,5 +53,4 @@ public class Matricula {
     public String toString() {
         return "Matricula [alumno=" + alumno + ", modulo=" + modulo + ", nota=" + nota + ", curso=" + curso + "]";
     }
-
 }

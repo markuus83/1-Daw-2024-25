@@ -1,13 +1,14 @@
 package marcos;
 
 public class Modulo {
-    
     private String codigo;
     private String nombre;
     private String descripcion;
     private Integer horas;
     private Integer sesiones;
-
+    
+    public Modulo() {
+    }
 
     public Modulo(String codigo, String nombre, String descripcion, Integer horas, Integer sesiones) {
         this.codigo = codigo;
@@ -15,10 +16,6 @@ public class Modulo {
         this.descripcion = descripcion;
         this.horas = horas;
         this.sesiones = sesiones;
-    }
-
-    public Modulo(){
-
     }
 
     public String getCodigo() {
@@ -68,11 +65,10 @@ public class Modulo {
     }
 
     public Integer sesionesAP() {
-        return sesiones / 2; 
-    }
-    
-    public Integer sesionesPD() {
-        return sesiones / 2; 
+        return 0;
     }
 
+    public Integer sesionesPD() {
+        return 0;
+    }
 }

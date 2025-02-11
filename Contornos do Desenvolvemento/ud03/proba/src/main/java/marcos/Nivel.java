@@ -3,12 +3,11 @@ package marcos;
 public class Nivel {
     private String nivel;
 
-    public Nivel(String nivel) {
-        this.nivel = nivel;
+    public Nivel() {
     }
 
-    public Nivel(){
-
+    public Nivel(String nivel) {
+        this.nivel = nivel;
     }
 
     public String getNivel() {

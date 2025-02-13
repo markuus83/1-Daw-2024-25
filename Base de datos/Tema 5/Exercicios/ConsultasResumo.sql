@@ -36,18 +36,18 @@
 
 --5.- Salario medio do profesorado e o 
 --dos administrativos. 
---Soluci�n1
+--Solución1
 	SELECT avg(salario_mes) as salario_medio
 	FROM EMPREGADO
 	GROUP BY cargo;
-	--Soluci�n2
+	--Solución2
 	SELECT cargo, avg(salario_mes) as salario_medio
 	FROM EMPREGADO
 	GROUP BY cargo;
 
 
 --6.- Identificador das actividades 
---realizadas por m�is dun socio.
+--realizadas por máis dun socio.
 	SELECT id_actividade
 	FROM SOCIO_REALIZA_ACTI	
 	GROUP BY id_actividade

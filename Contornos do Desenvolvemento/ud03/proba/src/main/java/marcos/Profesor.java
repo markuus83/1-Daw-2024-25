@@ -9,9 +9,8 @@ public class Profesor extends Persona{
     private boolean sustituto;
     private Date fecOposicion;
 
-    //Constructores
     public Profesor(){
-        
+        super();
     }
 
     public String getEspecialidad() {

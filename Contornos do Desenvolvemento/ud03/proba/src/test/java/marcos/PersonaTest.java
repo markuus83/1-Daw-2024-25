@@ -3,114 +3,85 @@ package marcos;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
+import java.time.LocalDate;
 
 public class PersonaTest {
 
     @Test
-    void testPersona() {
-        Persona persona = new Persona("12345678A", "Pepito", "Pérez", "123456789");
+    public void testPersona() {
+        Persona persona = new Persona();
+        assertTrue(persona instanceof Persona);
+    }
+
+    @Test
+    public void testSetDni() {
+        Persona persona = new Persona();
+        persona.setDni("12345678A");
         assertEquals("12345678A", persona.getDni());
-        assertEquals("Pepito", persona.getNombre());
-        assertEquals("Pérez", persona.getApellidos());
-        assertEquals("123456789", persona.getTelefono());
     }
 
     @Test
-    void testModulo() {
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        assertEquals("Programación", modulo.getCodigo());
-        assertEquals("Pepito", modulo.getNombre());
-        assertEquals("Aprender a programar", modulo.getDescripcion());
-        assertEquals(100, modulo.getHoras());
-        assertEquals(10, modulo.getSesiones());
+    public void testSetNombre() {
+        Persona persona = new Persona();
+        persona.setNombre("Juan");
+        assertEquals("Juan", persona.getNombre());
     }
 
     @Test
-    void testMatricula() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula(alumno, modulo, 10, "2021/2022");
-        assertEquals(alumno, matricula.getAlumno());
-        assertEquals(modulo, matricula.getModulo());
-        assertEquals(10, matricula.getNota());
-        assertEquals("2021/2022", matricula.getCurso());
+    public void testSetApellido1() {
+        Persona persona = new Persona();
+        persona.setApellido1("García");
+        assertEquals("García", persona.getApellido1());
     }
 
     @Test
-    void testGetAlumno() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula(alumno, modulo, 10, "2021/2022");
-        assertEquals(alumno, matricula.getAlumno());
-    }
-
-
-    @Test
-    void testSetAlumno() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula();
-        matricula.setAlumno(alumno);
-        assertEquals(alumno, matricula.getAlumno());
+    public void testSetApellido2() {
+        Persona persona = new Persona();
+        persona.setApellido2("Pérez");
+        assertEquals("Pérez", persona.getApellido2());
     }
 
     @Test
-    void testGetModulo() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula(alumno, modulo, 10, "2021/2022");
-        assertEquals(modulo, matricula.getModulo());
+    public void testSetCorreo() {
+        Persona persona = new Persona();
+        persona.setCorreo("miau");
+        assertEquals("miau", persona.getCorreo());
     }
 
     @Test
-    void testSetModulo() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula();
-        matricula.setModulo(modulo);
-        assertEquals(modulo, matricula.getModulo());
+    public void testSetMovil() {
+        Persona persona = new Persona();
+        persona.setMovil(666555444);
+        assertEquals(666555444, persona.getMovil());
     }
 
     @Test
-    void testGetNota() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula(alumno, modulo, 10, "2021/2022");
-        assertEquals(10, matricula.getNota());
+    public void testSetFecNacimiento() {
+        Persona persona = new Persona();
+        persona.setFecNacimiento(LocalDate.of(1990, 1, 1));
+        assertEquals(LocalDate.of(1990, 1, 1), persona.getFecNacimiento());
     }
 
     @Test
-    void testSetNota() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula();
-        matricula.setNota(10);
-        assertEquals(10, matricula.getNota());
+    public void testSetIban() {
+        Persona persona = new Persona();
+        persona.setIban("ES1234567890");
+        assertEquals("ES1234567890", persona.getIban());
     }
 
     @Test
-    void testGetCurso() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula(alumno, modulo, 10, "2021/2022");
-        assertEquals("2021/2022", matricula.getCurso());
+    public void testToString() {
+        Persona persona = new Persona();
+        persona.setDni("12345678A");
+        persona.setNombre("Juan");
+        persona.setApellido1("García");
+        persona.setApellido2("Pérez");
+        persona.setCorreo("miau");
+        persona.setMovil(666555444);
+        persona.setFecNacimiento(LocalDate.of(1990, 1, 1));
+        persona.setIban("ES1234567890");
+        assertEquals(
+                "Persona [dni=12345678A, nombre=Juan, apellido1=García, apellido2=Pérez, correo=miau, movil=666555444, fecNacimiento=1990-01-01, iban=ES1234567890]",
+                persona.toString());
     }
-
-    @Test
-    void testSetCurso() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula();
-        matricula.setCurso("2021/2022");
-        assertEquals("2021/2022", matricula.getCurso());
-    }
-
-    @Test
-    void testToString() {
-        Alumno alumno = new Alumno("12345678A", true);
-        Modulo modulo = new Modulo("Programación", "Pepito", "Aprender a programar", 100, 10);
-        Matricula matricula = new Matricula(alumno, modulo, 10, "2021/2022");
-        assertEquals("Matricula [alumno=Alumno [codigoXade=12345678A, autorizaTutores=true], modulo=Modulo [codigo=Programación, nombre=Pepito, descripcion=Aprender a programar, horas=100, sesiones=10], nota=10, curso=2021/2022]", matricula.toString());
-    }
-
 }

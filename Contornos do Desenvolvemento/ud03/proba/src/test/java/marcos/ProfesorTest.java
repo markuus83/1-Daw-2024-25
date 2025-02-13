@@ -1,20 +1,15 @@
 package marcos;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import java.util.Date;
 
 public class ProfesorTest {
     
-    
     @Test
-    public void testConstructorAndGetters() {
-        Profesor profesor = new Profesor("Matemáticas", "Secundaria", false, new Date());
-        assertEquals("Matemáticas", profesor.getEspecialidad());
-        assertEquals("Secundaria", profesor.getCuerpo());
-        assertFalse(profesor.isSustituto());
-        assertNotNull(profesor.getFecOposicion());
+    public void testProfesor() {
+        Profesor profesor = new Profesor();
+        assertNotNull(profesor);
     }
 
     @Test

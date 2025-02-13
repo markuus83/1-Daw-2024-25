@@ -1,4 +1,4 @@
-package Pruebas.Horas;
+package Fechas.Horas;
 
 import java.time.LocalDateTime;
 

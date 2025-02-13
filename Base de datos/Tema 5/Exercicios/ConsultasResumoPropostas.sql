@@ -62,5 +62,3 @@ use a23marcoscc_BD_EMPRESA_XG;
    FROM SUCURSAL
    group by rexion
 
-
-   

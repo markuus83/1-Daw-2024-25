@@ -34,8 +34,6 @@ public class Main {
                 String nome = scanner.nextLine();
 
                 persoas.add(nome);
-                
-
             //Mostrar nomes
             } else if (option == 2) {
                 System.out.println();
@@ -46,8 +44,6 @@ public class Main {
                         System.out.println(nome);
                     }
                 }
-                
-            
             //Eliminar nome
             } else if (option == 3) {
                 System.out.println();
@@ -63,8 +59,6 @@ public class Main {
                     persoas.remove(indice);
                     System.out.println("\nNome eliminado.");
                 }
-            
-
             //Sair
             } else if (option == 4) {
                 System.out.println("Saindo do programa...");

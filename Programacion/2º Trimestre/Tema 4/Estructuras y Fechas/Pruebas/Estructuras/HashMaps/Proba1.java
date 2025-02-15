@@ -12,16 +12,15 @@ public class Proba1 {
 
         idades.put("Nora", 18);
         idades.put("Marcos", 20);
-        idades.put("Dani", 25);
 
 
         //Obtener un valor
         Integer idade = idades.get("Nora");
-        System.out.println("\nA idade de Ana é: " + idade);
+        System.out.println("\nA idade de Nora é: " + idade);
 
 
         //Eliminar un valor
-        idades.remove("Dani");
+        idades.remove("Marcos");
 
 
         //Iterar sobre un HashMap

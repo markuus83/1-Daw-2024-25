@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 
-public class Main {
+public class Exercicio_5 {
 
     public static void main(String[] args) {
         
@@ -91,8 +91,8 @@ public class Main {
                         System.out.println("Non se poden axenciar citas en Sábados ou Domingos.");
 
                     } else {
-                        //Validamos que non existan citas 30 minutos antes ou 30 minutos despois
 
+                        //Validamos que non existan citas 30 minutos antes ou 30 minutos despois
                         boolean citaValida = true;
                         
                         for (LocalDateTime c : citas) {
@@ -105,12 +105,14 @@ public class Main {
 
                         if (!citaValida) {
                             System.out.println("Xa existe unha cita 30 minutos antes ou despois.");
+
                         } else {
                             citas.add(cita);
                             System.out.println("Cita engadida correctamente.");
                         }
                     }
-                    continue;
+                    
+                    break;
                 }
                     
                     
@@ -137,7 +139,7 @@ public class Main {
                     } else {
                         System.out.println("Índice de cita non válido.");
                     }
-                    continue;
+                    break;
                 }
                     
                 
@@ -158,20 +160,22 @@ public class Main {
                         }
                     }
 
-                    continue;
+                    break;
                 }
                     
                     
                 // Saír
                 case 4 -> {
                     System.out.println("\nSaíndo...");
-                    break;
+                    return;
                 }
                     
+
                 //Erro
                 default -> {
+
                     System.out.println("\nErro: Ingrese unha opción válida");
-                    continue;
+                    break;
                 }
             }
         }

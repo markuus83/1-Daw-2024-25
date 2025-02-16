@@ -1,0 +1,277 @@
+
+
+											FUNDAMENTACIÓN MATEMÁTICA DEL MODELO RELACIONAL (MR)
+
+
+	En este apartado, veramos la parte dinámica del Modelo Relacional, podemos dividir en:
+
+	   - Álgebra Relacional.
+
+	   - Normalización de Relaciones.
+
+
+	1. ÁLGEBRA RELACIONAL:
+
+	   - Desarrollada por Codd con definición tal que ==> **Operaciones formales, que actúan sobre relaciones, y que producen relaciones como resultado.**
+
+	   - El álgebra relacional es propia del Modelo Relacional, se puede considerar como un lenguaje de consulta procedimental:
+
+		a) De consulta --> Mediante él se solicita información contenida en la Base de Datos.
+
+		b) Procedimental --> Porque es necesario indicar la secuencia de operaciones a realizar para obtener el resultado deseado.
+
+
+	2. TIPOS DE OPERACIONES DE ÁLGEBRA RELACIONAL:
+
+	   - SELECCIÓN o RESTRICCIÓN:
+
+		a) Construye una nueva tabla tomando un subconjunto de tuplas de una relación existente.
+
+		b) Este subconjunto debe satisfacer la condición --> 	R2 = O~ F(R1)
+
+		   · F es una fórmula o predicado que involucara a:
+
+			I. Operadores:
+
+			   + Aritméticos: <  <=  =  >=  >  =/ (desigual)
+
+			   + Lógicos: ^(and), ^ [hacia abajo] (or), ¬ (not)
+
+
+			II. Operandos: constantes y variables.
+
+
+		   · R1 es la tabla sobre la que se realiza O~.
+
+		   · R2 es la tabla resultante después de O~.
+
+
+
+	   - PROYECCIÓN ('NumeroPi'):
+
+		a) Extrae un subconjunto de una tabla. creando otra relación:	R2 = 'NumeroPi' (A1,A2,...,An)(R1)
+
+		   · Cada Ai es un nombre de atributo de R1
+
+		   · R1 es la tabla sobre la que se realiza 'NumeroPi'.
+
+		   · R2 es la tabla resultante después de 'NumeroPi'.
+
+
+
+	   - UNIÓN (U):
+
+		a) Construye una nueva relación, a partir de dos especificadas, uniendo sus filas. Para realizarse, las 2 relaciones deben tener el mismo número de atributos definidos sobre los mismos dominios.
+
+		b) R3 = R1 U R2
+
+		   · R1 es una tabla con 'm' tuplas y 'p' columnas.
+
+		   · R2 es una tabla con 'n' tuplas y 'p' columnas.
+
+		   · R3 es la relación resultante de la unión, formada con 'm' + 'n' tuplas y 'p' columnas.
+
+
+
+
+	   - DIFERENCIA(-):
+
+		a) La diferencia de 2 tablas R1 y R2 es otra R3 que tendrá las tuplas que están en la primera, pero no en la segunda. Para realizarse, las 2 relaciones deben tener el mismo número de astributos definifos
+		   sobre DOMINIOS COMPATIBLES.
+
+		b) R3 = R1 - R2
+
+		   · R1 es una tabla con 'm' tuplas y 'p' columnas.
+
+		   · R2 es una tabla con 'n' tuplas y 'p' columnas.
+
+		   · R3 es la relación resultante de la diferencia, formada con 'm' - 'x' tuplas y 'p' columnas, siendo 'x' el nímero de tuplas en R2 que también están en R1.
+
+
+
+	   - PRODUCTO CARTESIANO (X):
+
+		a) A partir de 2 tablar R1 y R2 se obtiene otra R3, cuyas tuplas serán todas las posibles combinaciones de tuplas de las 2 relaciones.
+
+		b) R3 = R1 X R2
+
+		   · R1 es una tabla con 'm' tuplas y 'p' columnas.
+
+		   · R2 es una tabla con 'n' tuplas y 't' columnas.
+
+		   · R3 es la relación resultante de la unión, formada por 'p' + 't' columnas y 'm' * 'n' tuplas
+
+
+
+	   - INTERESECCIÓN ('U_Inversa'):
+
+		a) Se obtiene una tabla R3 cuyas tuplas serán las comunes a las dos tablas de las que parte, R1 y R2. Estas deben tener el mismo grado y dominios compatibles.
+
+		b) R3 = R1 'U_Inversa' R2
+
+		   · Es una operación derivda, ya que ==> R1 'U_Inversa' R2 = R1 - (R1 - R2)
+
+
+
+	   - COMBINACIÓN NATURAL // REUNIÓN NATURAL // JOIN NATURAL (*):
+
+		a) R3 = (R1 * R2) condición	//	R3 = (R1 * condición R2)
+
+		b) A partir de R1 y R2 construye una relación R3 concatenando cada tupla de R1 con cada una de R2. De satisfacerse la condición dada, dicha tupla formará parte de R3.
+
+		c) Para este caso de la vcombinación natural (*), la condición es de igualdad y en R3 se elimina el o los atributos comunes.
+
+		d) Es un producto cartesiano segido de selección por igualdad y de una proyección, a menos que no tengan atributos en común, caso en el que se verifica --> R1 * R2 = R1 X R2
+
+
+
+	   - COMBINACIÓN // REUNIÓN // JOIN (0) ==>	R3 = R1 0condición R2
+
+		a) A partir de R1 y R2 construye una relación R3 seleccionando aquellas tuplas del producto cartesiano R1 x R2 que satisfagan una condición dada:
+
+		   · Condición que involucra al atributo A de R1 y B de R2, definidos en el mismo dominio.
+
+		   · Obsérvese que: R1 0 (A condición B) R2 = O~ (A condición B) (R1 X R2) 
+
+
+
+	3. OPERACIONES ADICIONALES:
+
+	   - Son aquellas que no es posible expresar en función de los operafdores básicos. Son las siguientes:
+
+		a) Asignación ( <-- // = ): Se utilizan para almacenar el resultado de una consulta en una nueva relaciójn, o para almacenar resultados intermedios.
+
+		b) Renombrar (RENAME): Sirven para cambiar el nombre del atributo.
+
+		c) Agrupación (GROUP BY): Se utilizan para usar funciones de agregación. Agrupa tuplas en subconjuntos que tienen valores comunes en ciertos atributos.
+
+
+
+	4. ACLARACIÓN DEL USO DE VALORES NULOS:
+
+	   - El producto cartesiano no se ve afectado por los valores nulos.
+
+	   - La restricción sólo devuelve tuplas cuya condición se evalúa como cierta.
+
+	   - La proyección elimina tuplas duplicadas teniendo en cuenta los nulos.
+
+
+
+	5. NORMALIZACIÓN DE RELACIONES:
+
+	   - Los pasos a seguir para modelizar un minimundo son:
+
+		a) Análisis del problema.
+
+		b) Obtener el diagrama EER.
+
+		c) Pasar del EER a MR.
+
+		d) Realizar consultas principales en álgebra relacional.
+
+		e) Implantar el modelo resultante en un SGBD relacional.
+
+
+	   - Al llevar a cabo el desarrollo del apartado c), hemos de tener en cuenta eque todas las relaciones obtenidas al pasar de EEr a MR deben estar como mínimo en Tercera Forma Personal (3FN).
+ 
+	   - Las Formas Normales son una serie de reglas que aseguran que el esquema diseñado tendrá un buen comportamiento:
+
+		a) RELACIÓN UNIVERSAL --> Aquella relación del MR que reúne todos los atributos de una base de datos en una única relación o tabla, puede almacenar cualquier tipo de informaciónque interese en esa BD.
+		   Los problemas del uso de una única relación son:
+
+		      · Actualización.
+
+		      · Borrado.
+
+		      · Inserción.
+
+
+		b) DEPENDENCIAS FUNCIONALES --> Se dice que una relación puede representarse como:
+		
+		      · Conjunto de sus atributos (AT).
+
+		      · Conjunto de las relaciones existentes entre ellos (DF).
+
+		   Esas relaciones se conocen como dependencias funcionales. Para representar una relación R, siendo AT el conjunto de sus atributos y DF el conjunto de las dependencias funcionales: R(AT, DF)
+
+		   Definimos más formalmenmte una dependencia funcional: Sea una relación R con atributos (x, y, z), el atributo depende funcionalmente de 'X'; lo que es lo mismo, 'X' implica o determina si solo si a cada 
+		   valor de 'X' le corresponde un único valor de 'Y'.
+
+		   Se representaría: 'X' --> 'Y'  ('X' e 'Y' pueden ser conjuntos de atributos).
+
+
+
+		c) FORMAS NORMALES --> Son reglas que deben cumplir cada una de las relaciones de una Base de Datos relacional correcta:
+
+		      · Primera Forma Normal (1FN):
+
+			I. Regla o restricción inherente al Modelo Relacional, su cumplimiento es obligatorio. Una relación R se encuentra en 1FN si cada elemento de la relación tiene un valor atómico; es decir,
+			   si cada intersección / columna de la tabla sólo tiene un dato.
+
+
+		      · Segunda Forma Normal (2FN):
+
+			II. Una relación R se encuentra en 2FN si solo si:
+
+			   + Está en 1FN.
+
+			   + Todos los atributios no principales, que dependen de la clave, dependen de manera completa, es decir, no existen dependecias funcionales PARCIALES.
+
+			   + Si una relación no está en 2FN, se podrá aplicar un teorema.
+
+			   + TEOREMA I ==> Sea una relación R con atributos (A, B, C, D) y con clave primaria (A, B) tal que A --> D. Entonces la relación R:
+
+
+								R =>	[R1 (A,D)]	//	[R2 (A, B, C)]
+
+
+		      · Tercera Forma Normal (3FN):
+
+			I. Una relación R se encuentra en 3FN si solo si:
+
+			   + Está en 2FN.
+
+			   + Todos los atributos que no son Clave Principal que dependen de la clave, dependen de manera directa de ella; es decir, que no existen dependencias funcionales TRANSITIVAS.
+
+			   + Si una relación no está en 3FN, se podrá aplicar el siguiente teorema.
+
+			   + TEOREMA II ==> Sea una relación R con atributos (A, B, C, D) y con calve primaria (A) tal que A --> B, B --> C y A --> D. Entonces la relación R puede descomponerse en:
+
+
+								R =>	[R1 (A, B, D)]	//	[R2 (B, C)]
+
+
+		      · Forma Normal de Boyce-Codd (FNBC):
+
+
+		      · Cuarta Forma Normal (4FN):
+
+
+		      · Quinta Forma Normal (5FN):
+
+
+		   A nosotros nos bastará con demostrar que nuestras relaciones estén en 3FN.
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+

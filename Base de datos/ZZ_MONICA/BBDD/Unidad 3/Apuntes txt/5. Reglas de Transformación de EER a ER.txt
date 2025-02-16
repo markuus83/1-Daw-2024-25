@@ -1,0 +1,167 @@
+
+
+								REGLAS DE TRANSFORMACIÓN DE UN ESQUEMA ENTIDAD RELACIÓN (EER) A UN ESQUEMA RELACIONAL (ER)
+
+
+	1. ENTIDADES:
+
+	   - Cada entidad se transforma en una tabla, con el mismo nombre que la entidad del modelo ER.
+
+
+
+	2. ATRIBUTOS:
+
+	   - Univaluados --> Pasan a ser campos o atributos en la tabla.
+
+	   - Multivaluados --> Atributos que pueden tomar más de un valor. Existen 2 tipos:
+
+		a) Si el atributo toma hasta 3 valores, se crea un atributo en relación por cada valor (Ej. Teléfonos).
+
+		b) Si toma muchos valores, dará lugar a una tabla nueva (Ej. Proveedor)
+
+
+	   - Obligatorios --> Atributos con restricción NOT NULL.
+
+	   - Identificador Principal (I.P) --> Pasan a ser la clave primaria de la relación.
+
+	   - Identificador Alternativo (I.A) --> Pasan a ser claves candidatas.
+
+	   - Compuestos --> Aquellos que son un agregado de distintos dominios. Debemos elegir lo que más nos interese dependiendo del modo en que se va a recuperar la información:
+
+		a) Dejar sólo el atributo compuesto (Ej. FechaNacimiento).
+
+		b) Eliminar el atributo compuesto y dejar como atributos sus componentes (Ej. Dirección).
+
+
+	   - Derivados --> En el Modelo Relacional pasan a ser atributos normales y se necesita un disparador que en cada modificación calcule el valor del atributo.
+
+
+
+	3. DEPENDENCIAS --> Existen 2 tipos de dependencias:
+
+	   - En EXISTENCIA --> Se propaga la Clave Primaria de la entidad fuerte a la débil, pasando a ser Clave Foránea en la entidad débil.
+
+	   - En IDENTIFICACIÓN --> Se propaga la Clave Primaria de la entidad fuerte a la débil, pasando a ser Clave Foránea en la entidad débil; además formará parte de la Clave Primaria de la débil.
+
+
+
+	4. INTERRELACIONES REFLEXIVAS --> Unitarias // Unarias:
+
+	   - En función de su tipo de correspondencia, se actuará como si fuese una relación binaria que asocia a 2 entidades iguales.
+
+
+
+	5. INTERRELACIONES BINARIAS:
+
+	   - 1:1 (uno a uno) --> Existen 2 posibilidades; o se propaga la clave o se crea uina nueva tabla. La decisión se tomará en función de las cardinalidades de mínimas.
+
+		a) Si todas las entidades tienen cardinalidad (0,1) ==> Conviene tranformarla en una tabla para evitar valores nulos en la clave propagada. La tabla nueva tendrá las dos Claves Primarias,
+		  AUNQUE SÓLO UNA DE ELLAS FORMARÁ PARTE DE LA CLAVE PRIMARIA. La otra foránea será Obligatoria y Única.
+
+		b) Si sólo una de las entidades tiene (0,1) y la otra (1,1) ==> Propagaremos la clave de la parte (1,1) a la (0,1) para evitar tener valores nulos.
+
+		c) Si ambas entidades tienen participación (1,1) ==> Se propagará la clave de cualquiera de las entidades a la otra.
+
+
+	   - 1:N (uno a varios) --> Existen dos soluciones posibles:
+
+	 	a) Propagación de la Clave Primaria de la entidad de la parte 1 a la parte N.
+
+		b) Transofrmar la intrerrelación en una Nueva Tabla ==> La cual tendrá por Clave Primaria solamente de la parte N de la interrelación; además como Clave Foránea, la Clave Primaria dela parte 1.
+		  Optar por crear una nueva tabla o no, dependerá del criterio del diseñador:
+
+		   · Cuando el número de ejemplares interrelacionados que propaga su clave es muy pequeño, y existirían muchos valores nulos.
+
+		   · Cuando se cree que en un futuro la relación puede pasar a ser M:N.
+
+		   · Cuando la interrelación tiene atributos propios y deseamos conservar la semántica.
+
+		   · Cuando al propagar las claves da lugar a la aparición de Claves Foráneas, va a implicar la definición de Borrados y Modificaciones.
+
+
+	   - N:M (varios a varios):
+
+		a) Pasará a ser una nueva tabla con el nombre de la Interrelación, cuya Clave Primaria estará formada AL MENOS por las claves primarias de las 2 entidades que relaciona.
+		   
+
+
+	6. INTERRELACIONES TERNARIAS:
+
+	   - Da lugar a una nueva tabla, que tendrá como campos los atributos propios, y además, las Claves Primarias de cada entidad que relaciona.
+
+	   - Para decidir la Clave Primaria de la nueva tabla, debemos estudiar las cardinalidades del caso concreto. 
+
+	   - Si el tipo de correspondencia es N:M:P, estará formada, al menos, por las Claves Primarias de las entidades que relaciona.
+
+	   - HACER UNA RELACIÓN TERNARIA Y NO 3 BINARIAS:
+
+		a) Siempre hay que intentar utilizar INTERRELACIONES DE MENOR GRADO; si en nuestro EER podemos representar la misma información con 3 binarias y no con una ternaria, escogeremos las binarias.
+
+		b) Debemos tener en cuenta que la descomposición de interrelaciones de grado mayor no siempre es posible, ya que la semántica recogida en una y otra no es la misma ==> A veces es inevitable usar una ternaria.
+
+
+	   - CARDINALIDADES DE MAPEO EN LAS INTERRELACIONES TERNARIAS:
+
+		a) Tal como se han definido las cardinalidades de mapeo, en una interrelación de grado 3, la cardinalidad de una de las entidades (E1) con respecto de las otras (E2, E3) es el número mínimo y máximo de
+		   ejemplares de E1 que están vinculados con uno de E2 y de E3 previamente vinculados en la interrelación.
+
+
+
+	7. INTERRELACIONES DE GENERALIZACIÓN // ESPECIALIZACIÓN:
+
+	   - Cada entidad de la asociación 'ES_UN' o 'IS_A' se transformarn en tablas.
+
+	   - El atributo discriminante pasará como campo al supertipo.
+
+	   - Los subtipos heredan la Clave Primaria del supertimo --> Será Clave Foránea y Clave Primaria en los subtipos:
+
+		a) Totalidad --> Prohibir inserciones en el supertipo y creación de un disparador ante dicha inserción NO TOME VALORES NULOS.
+
+		b) Parcialidad --> El Atributo Discriminante SÍ puede tomar valores nulos.
+
+		c) Exclusividad --> Se necesitra una ASERCIÓN que antes de insertar compruebe que no está ya en otra tabla.
+
+		d) Solapamiento --> Se controla mediante una ASERCIÓN que permita agregar nuecos tipos al discriminante.
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

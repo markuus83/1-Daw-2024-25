@@ -1,0 +1,114 @@
+
+
+
+
+														INTRODUCCIÓN
+
+
+	   · 1970: Creación del Modelo relacional (MR).
+
+	   · 1976: Creación de la Entidad Relación (ER).
+
+
+
+	1. PRINCIPAL OBJETIVO DEL MODELO RELACIONAL:
+
+	   - Siendo un modelo en red y jerárquico distinto del resto, su principal objetivo consiste en aislar al usuario de las estructuras físicas de los datos.
+
+
+
+	2. TEORÍA MATEMÁTICA DEL MODELO RELACIONAL:
+
+	   - Este modelo tiene una amplia teoría matemática respaldándolo: la Tª Matemática de las relaciones. Los avances que presenta son:
+
+		a) Uniformidad:
+
+		   · Los usuarios de la Base de Datos Relacional (BDR) la ven como una colección de tablas.
+
+		   · La relación se observa como estructura fundamental del modelo para proporcionar uniformidad.
+
+
+		b) Sencillez:
+
+		   · El concepto de tabala como conjunto de filas y columnas es mucho más sencillo de entender tanto para usuario como para desarrollador.
+
+		   · Se emplean lenguajes de tratamientos de datos muy sencillos.
+
+
+		c) Sencilla fundamentación teórica --> El Modelo Relacional está basado en:
+
+		   · Álgebra Relacional
+
+		   · Cálculo relacional de Tuplas 	>>>UNA TUPLA ES UNA FILA<<<
+
+
+		d) Independencia de la interfaz de usuario:
+
+		   · Los lenguajes relacionales, al manipular conjuntos de registros, proporcionan una gran independencia al almacenamiento de los datos.
+
+
+
+
+
+	3. EJEMPLOS DE SISTEMAS GESTORES DE DATOS RELACIONALES (SGBDR):
+
+	   - Algunos ejemplos son:
+
+		a) Oracle
+
+		b) Sybase
+
+		c) MS Access
+
+		d) MSSQLServer
+
+		e) mySQL
+
+
+
+	4. PARTES DE UN MODELO DE DATOS --> El MR presenta 2 grandes partes:
+
+	   - Parte Estática:
+
+		a) Estructura de datos.
+
+		b) Reglas o Normas
+
+
+	   - Parte Dinámica:
+
+		a) Operadores.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

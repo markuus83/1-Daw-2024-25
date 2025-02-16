@@ -1,0 +1,163 @@
+CREATE DATABASE BD_EUROVISION;
+GO
+USE BD_EUROVISION;
+GO
+-- *************ESTA PARTE LA HA HECHO MÓNICA*************
+
+create table interprete(
+
+	numero int not null,
+	nombre varchar (40) not null,
+	fechanac date null,
+	num_cancion int not null,
+
+	CONSTRAINT PK_interprete_numero PRIMARY KEY(numero),
+	CONSTRAINT UQ_interprete_nombre UNIQUE (nombre),
+	CONSTRAINT CHK_interprete_edad_minima CHECK (datediff(year,fechanac,getdate()) > 15  )
+);
+
+create table cancion(
+
+	numero int not null,
+	titulo varchar (80) not null,
+	id_pais int not null,
+
+	CONSTRAINT PK_cancion_numero PRIMARY KEY(numero),
+	CONSTRAINT UQ_cancion_id_pais UNIQUE (id_pais),
+);
+
+create table pais(
+
+	identificador int not null,
+	denominacion varchar(70) not null,
+	
+	CONSTRAINT PK_pais_identificador PRIMARY KEY(identificador),
+	CONSTRAINT UQ_pais_denominacion UNIQUE (denominacion),
+);
+
+create table votacion(
+
+	id_pais_votante int not null,
+	id_pais_votado int not null,
+	puntos int not null CONSTRAINT DF_votacion_puntos DEFAULT (0),
+	
+	CONSTRAINT PK_votacion_id_pais_votado_id_pais_votante PRIMARY KEY(id_pais_votante,id_pais_votado),
+);
+
+-- OTRO MODO DE HACERLO SERÍA:
+--ALTER TABLE votacion ADD CONTRAINT DF_votacion_puntos DEFAULT (0) FOR puntos;	
+
+--/CLAVES FORÁNEAS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- *************ESTA PARTE LA HE HECHO YO*************
+-- Taboa INTERPRETE:
+
+CREATE TABLE INTERPRETE(
+
+		numero int NOT NULL,
+		nombre char(40) NOT NULL,
+		fechanac date NULL,
+		num_cancion tinyint NOT NULL,
+
+	CONSTRAINT PK_INTERPRETE_numero PRIMARY KEY (numero),
+	CONSTRAINT UQ_INTERPRETE_nombre UNIQUE (nombre),
+
+);
+
+-- Taboa CANCION:
+
+CREATE TABLE CANCION(
+
+		numero int NOT NULL,
+		titulo VARCHAR (200) NOT NULL,
+		id_pais int NOT NULL,
+
+	CONSTRAINT PK_CANCION_numero PRIMARY KEY (numero),
+	CONSTRAINT UQ_CANCION_id_pais UNIQUE (id_pais)
+
+);
+
+
+-- Taboa PAIS:
+
+CREATE TABLE PAIS(
+
+		identificador int NOT NULL,
+		denominacion VARCHAR(50) NOT NULL,
+
+	CONSTRAINT PK_PAIS_identificador PRIMARY KEY (identificador),
+	CONSTRAINT UQ_PAIS_denominacion UNIQUE (denominacion)
+);
+
+
+-- Taboa VOTACION:
+
+CREATE TABLE VOTACION(
+
+		puntos int NULL,
+		id_pais_vota int NOT NULL,
+		id_pais_votado_por int NOT NULL,
+
+	CONSTRAINT PK_VOTACION_id_pais_vota PRIMARY KEY (id_pais_vota),
+	CONSTRAINT PK_VOTACION_id_pais_vota_por PRIMARY KEY (id_pais_vota_por),
+);
+
+
+-- CLAVES FORÁNEAS
+
+ALTER TABLE INTERPRETE ADD CONSTRAINT
+
+	FK_INTERPRETE_CANCION_num_cancion
+	FOREIGN KEY (num_cancion)
+	REFERENCES CANCION (numero)
+	ON UPDATE CASCADE;
+
+
+ALTER TABLE CANCION ADD CONSTRAINT
+
+	FK_CANCION_PAIS_id_pais
+	FOREIGN KEY (id_pais)
+	REFERENCES PAIS (identificador)
+	ON UPDATE

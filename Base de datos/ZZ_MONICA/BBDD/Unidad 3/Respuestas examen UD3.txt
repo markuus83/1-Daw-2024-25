@@ -1,0 +1,80 @@
+
+	1. La restricción que indica que los atributos que formen parte de la clave primaria no pueden tomar valores nulos, se conoce como: D
+
+	   - Restricción de integridad de autoridad
+
+
+	2. Indica cuál es la restricción del modelo relacional que nos permite definir claves candidatas:D
+
+	   - Restricción de unicidad
+
+
+	3. El concepto de grado, dentro del contexto del modelo relacional se refiere a: C 
+
+	   - El número de columnas de una relación
+
+
+	4. ¿Cuántas claves primarias tiene la siguiente relación AUSENCI representada del siguiente modo dentro de un grafo relacional? AUSENCIA( __Num_alumno, __cod_materia, num_sesiones): B
+
+	   - Una
+
+
+	5.La operación de Álgebra Relacional que me permite mostrar en el resultado sólo aquellas filas de la relación que cumplan una condición especificada, se denomina: A 
+
+	   - Selección
+
+
+	6. Indica cuál de las siguiente afirmaciones sobre desencadenadores es VERDADERA: D 
+
+	   - Son restricciones semánticas
+
+
+	7. Indica cual de las siguientes afirmaciones es FALSA: C
+
+	   - Los disparadores son restricciones inherentes
+
+
+	8. Los disparadores, desencadenadores o triggers son conocidos como reglas ECA, porque son: A
+
+	   -  Reglas de Evento-Condición-Acción
+
+
+	9. La restricción de integridad referencial indica que: C
+
+	   - Los valores de una clave foránea deben estar entre los valores de la clave primaria de la relación de la que procede o ser nulos (si se admiten en ese caso particular)
+
+
+	10. Tenemos las siguientes las siguiente intensiones de dos relaciones R1 y R2: R1(atrib1:dom1, atrib2:dom2, atrib3:dom1) // R2(atrib4,dom1). ¿Cuál de las siguientes operaciones de álgebra relacional se podrían realizar? B
+
+	   -  'numPi' atrib1, atrib2 R1
+
+
+	11. B
+
+	   - La siguiente operación* se puede realizar (MATERIA * AUSENCIA)codigo>cod_materia
+
+
+	12. La operación de Álgebra Relacional que me permite mostrar en el resultado sólo determinadas columnas de la relación, se denomina: B
+
+	   - Proyección
+
+
+	13. El concepto de cardinalidad, dentro del contexto del modelo relacional, se refiere a: C
+
+	   - El número de tuplas de una relación
+
+
+	14. Indica cuál es la restricción semántica del modelo relacional que nos permite definir claves foráneas: B
+
+	   - Restricción de clave Ajena
+
+
+	15. Un dominio que toma valores entre un mínimo y un máximo se dice que es un dominio: B 
+
+	   - General
+
+
+	16. El conjunto de tuplas que tiene en un instante determinado una relación en el contexto del modelo relacional se denomina: D
+
+	   - Extensión de la relación
+

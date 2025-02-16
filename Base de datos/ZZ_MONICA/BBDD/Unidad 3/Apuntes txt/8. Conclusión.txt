@@ -1,0 +1,8 @@
+
+
+														CONCLUSIÓN
+
+
+	   Hemos visto la parte dinámica del Modelo Relacional, es decir, sus operadores y la normalización. En la siguiente unidad empezaremos el lenguaje estándar más utilizado para manipular la infformación de las 
+
+	Bases de Datos Relacionales, el LENGUAJE SQL (Structured Query Language).

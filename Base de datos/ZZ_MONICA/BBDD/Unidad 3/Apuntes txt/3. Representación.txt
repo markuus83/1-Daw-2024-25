@@ -1,0 +1,57 @@
+
+	
+													REPRESENTACIÓN: GRAFO RELACIONAL
+
+	
+	Para la representación usaremos el Grafo Relacional (desarrollado en 1985). Las normas para utilizar el Grafo Relacional son:
+
+	   - El nombre de las relaciones está representado en MAYÚSCULAR y NEGRITA.
+
+	   - Se indica, para cada relación, su nombre entre paréntesis y con todos sus atributos, y según el tipo:
+
+		a) Las Claves Primarias --> SUBRAYAR.
+
+		b) Las Claves Candidatas --> NEGRITA.
+
+		c) Las Claves Foráneas --> CURSIVA y flecha que las relacione con su clave primaria.
+
+		d) Los Atributos Opcionales --> ASTERISCO.
+
+
+	   - Un mismo atributo puede tener varias propiedades a la vez, es decir, ser clave foránea y opcional. Para indicarlo se combinan ambas simbologías.
+
+
+
+	1. BORRADO Y MODIFICACIÓN --> Indicarse para cada Clave Foránea:
+
+	   - En Cascada (Cascade):
+
+		a) Borrado en Cascada --> Cuando se borra la tupla se borra en la relación en la que es clave foránea toda la información asociada.
+
+		b) Modificación en Cascada -->  Cuando se modifica la Clave Primaria en una tupla, se actualiza al nuevo valor en la relación en la que es clave foránea.
+
+
+	   - Restringido (Restricto // No Action) --> Es la opción por defecto, si no se indica el tipo se asume este:
+
+		a) Borrado Restringido --> Cuando se intenta borrar una tupla no se permite si en la relación en la que es clave foránea existe información asociada.
+
+		b) Modificación Restringida --> Cuando se intenta modificar la Clave Primaria, no se permite si en la relación en la que es clave foránea existe información asociada a esa tupla.
+
+
+	   - Con puesta a Nulos (Set Null):
+
+		a) Borrado con puesta a Nulos --> Cuando se borra una tupla en la que es clave foránea se pone a NULL.
+
+		b) Modificación con puesta a Nulos --> Cuando se moficia la Clave Primaria en una tupla, se modifica al nuevo valor en la relación en la que es clave foránea.
+
+
+	   - Con puesta a valor por defecto (Set Default):
+
+		a) Borrado con puesta a valor por Defecto --> Cuando se borra una tupla en la que es clave foránea, tomará el valor por defecto en la clave foránea.
+
+		b) Modificación con puesta a valor por Defecto --> Cuando se modifica la Clave Primaria en una tupla, se actualiza al nuevo valor en la relación.+
+
+
+	   En una misma Clave Foránea, el tipo de Borrado puede ser diferente al tipo de Modificación.
+
+

@@ -1,0 +1,32 @@
+
+
+
+													CLAVES
+
+	1.CLAVE PRIMARIA (C.P.) :
+
+	   - Conjunto mínimo de atributos cuyos valores identifican unívocamente a una tupla en una relación.
+
+	   - Una clave primaria de una relación 'r', es un conjunto de atributos 'K' tales que:
+
+		a) Para cualesquiera tuplas t1 y t2 se verifica que t1(K) <> t2(K).
+
+		b) No existe ningún subconjunto de k que cumpla la condición anterior.
+
+
+
+	2. CLAVE CANDIDATA / ALTERNATIVA (C.C.) :
+
+	   - Para una relación 'r' puede que existan dos conjuntos de atributos diferentes k1 y k2 que me permitan identificar unívocamente a cada tupla de la relación.
+
+	   - K1 y K2 serán claves candidatas si las dos pueden ser claves primarias. La elección de K1 o K2 como clave primaria se basará en el criterio del diseñador de la BD.
+
+
+
+	3. CLAVE FORÁNEA / AJENA (C.F.) :
+
+	   - Es un atributo deuna relación, cuyos valores o son nulos, o toman el valor de la clave primaria de alguna otra relación.
+
+
+
+

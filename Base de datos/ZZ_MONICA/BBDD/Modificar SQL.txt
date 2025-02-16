@@ -1,0 +1,5 @@
+Probar a escribir (LOCAL)
+
+irme a servicios de windows e instalar el sql serer, tiene que estar ejecutandose.
+
+Poner todo en Local, para que no me dectet ningun host y me de error.

@@ -1,0 +1,136 @@
+
+
+	
+										ESTRUCTURA DE DATOS: DOMINIOS, ATRIBUTOS Y RELACIONES
+
+
+	· La estructura básica del Modelo Relacional es la RELACIÓN, llamada informalmente TABLA, que sirve para representar tanto objetos como las asociaciones entre ellos.	
+
+	· los atributos son laGs propiedades de las relaciones, y se definen sobre los dominios.
+
+
+
+
+	   										DOMINIOS, ATRIBUTOS Y RELACIONES
+
+	· El Universo del Discurso (UD), también conodido como MINIMUNDO, está compuesto por un conjunto de Dominios {Di} y de Relaciones {Ri}.
+
+
+	1. DOMINIOS --> Es un conjunto de datos del mismo tipo:
+ 
+	   - Cada Dominio tiene un NOMBRE y un FORMATO. Pueden clasificarse en:
+
+		a) GENERALES --> Toman valores entre un mínimo y un máximo (Nos dan un baremo y a partir de ahí podemos seleccionar el valor preferente).
+
+		b) RESTRINGIDOS --> Toma valores entre unos específicos (Nos dan una serie de valores, y tenemos que escoger uno entre todos los existentes).
+
+
+	   - Cada formato puede ser definifo de 2 maneras:
+
+		a) por EXTENSIÓN --> Dando todos sus valores.
+
+		b) por INTENSIÓN --> Mediante un tipo de datos.
+
+
+
+	2. ATRIBUTOS --> Es la interpretación de un dominio en una relación:
+
+	   - Definición: El papel que desempeña en una relación.
+
+	   - Su representación será: Si D es el dominio de A --> D = Dom(A)
+
+	   - Un atributo y un dominio PUEDEN llamarse igual, pero:
+
+		a) Un ATRIBUTO siempre está asociado a una relación.
+
+		   · Un ATRIBUTO representa una propiedad (CARACTERÍSTICA) de una relación (TABLA)
+
+	
+		b) Un DOMINIO existe sin depender de una relación (TABLA)
+
+		   · Varios atributos distintos pueden tomar sus valores del mismo dominio.
+
+
+
+	3. RELACIÓN:
+
+	   - Definición formal de relación (R) --> Dada una colección de dominios D1, D2,..., Dn , R es un subconjunto del producto cartesiano D1*D2*...*Dn, de los 'n' dominios.
+
+		a) Una relación es un conjunto de elementos de la forma (d1,d2,...,dn) donde cada dj es un valor de un dominio Dj.
+
+	   	b)Precisando más en el concepto de relación:
+
+		   · Esquemas de relación R.
+
+		   · Relación r(R).
+
+
+	   - Esquema de relación R (INTENSIÓN DE LA RELACIÓN) --> Es la definición de relación.
+
+		a) Es ESTÁTICA, es decir, no varía con el tiempo. De llegar a variar, se considera que es porque previamente ha variado todo el Modelo Relacional.
+
+		b) Se compone de:
+
+		   · Un nombre de relación: R
+
+		   · Un conjunto de 'n' atributos {Ai}
+
+		   · Un conjunto de 'n' dominios {Di}, donde cada atributo será definido sobre un dominio --> R(A1:D1, A2:D2, ..., Ai:Di, ..., An:Dn)
+
+
+
+	   - Relación r(R) (EXTENSIÓN DE LA RELACIÓN) --> Es un conjunto de 'm' elementos llamados TUPLAS  {tj}:
+
+		a) Cada tupla es un conjunto de pares del tipo:
+
+		   · (<A1:V1j>, ..., <Ai:Vij>, ..., <An:Vnj>)
+		    
+		     Donde para cada Ai es el nombre de un atributo, y Vij ews un valor del correspondiente dominio Di sobre el que está definico el atributo:
+
+		   -->   r(R) = tj  {(<A1:V1j>, ... <Ai:Vij>, ..., <An:Vnj>):Vij Є Di}
+
+
+		b) Es lo que se conoce como extensión de la relación: Conjunto de tuplas que, en un instante, satisfacen el esquema de relación y se encuentran almacenadas en la Base de Datos..
+
+		   · Dicha extensión es DINÁMICA, es decir, que varía en el tiempo, puesto que el contenido de la tabla puede ser diferente.
+
+
+		c) Diremos entonces que una BD Relacional viene definida por:	
+
+		   · Su INTENSIÓN --> llamada esquema relacional y compuesta por una colección de esquemas que describenm un minimundo.
+
+		   · Su EXTENSIÓN --> se encuentra constituída por relaciones con sus tuplas.
+
+
+	   - Representación de una relación --> En el modelo relacional se representa usanto una tabla:
+
+		a) Las COLUMNAS son los ATRIBUTOS. El número de atributos se llama GRADO.
+
+		b) Cada tupla (fila), es un elemento del conjunto que constituye la relación. El número de tuplas se llama CARDINALIDAD de la relación.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

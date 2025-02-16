@@ -1,0 +1,13 @@
+
+
+												OPERADORES RELACIONALES
+
+
+
+	La parte manipulativa o dinámica del Modelo Relacional está constituída por los operadores de Álgebra Relacional.
+
+	A partir de aquí, veremos la fundamentación matemática del Modelo Relacional dedicándole especial atención a:
+
+	   - Las operaciones de Álgebra Relacional.
+
+	   - La Normalización.

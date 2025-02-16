@@ -4,9 +4,11 @@
 
 --BD Ejemplo:Join_2015
 
-create database a23marcos_BD_join_2025;
+DELETE DATABASE IF EXISTS a23marcos_BD_join_2025;
 GO
-use a23marcos_BD_join_2025;
+CRATE DATABASE a23marcos_BD_join_2025;
+GO
+USE a23marcos_BD_join_2025;
 
 create table Empleado(
     apellido char(10), 

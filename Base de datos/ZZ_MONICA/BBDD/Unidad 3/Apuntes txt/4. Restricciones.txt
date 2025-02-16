@@ -1,0 +1,89 @@
+
+
+													RESTRICCIONES
+
+
+	   Las reglas, normas o restricciones relacionales se pueden clasificar en:
+
+
+	1. RESTRICCIONES INHERENTES:
+
+	   - Son aquellas derivadas de la misma estructura del modelo; no tienen que ser definifas por el usuario --> nos imponen limitaciones de nuestro minimundo. Dichas restricciones son:
+
+		a) RESTRICCIÓN DE OBLIGATORIEDAD DE CLAVE PRIMARIA --> En una relación nopuede haber ttuplas iguales.
+
+		b) El orden de las tuplas y el de los atributos no es relevante.
+
+		c) Cada atributo sólo puede tomar un único valor del dominio sobre el que está definido. 
+
+		d) RESTRICCIÓN DE INTEGRIDAD DE ENTIDAD --> Ningún atributo que forme parte de la clave primaria puede tomar un valor nulo.
+
+
+
+	2. RESTRICCIONES SEMÁNTICAS O DE USUARIO:
+
+	   - Son facilidades proporcionadas por el Modelo Relacional para recoger en el esquema de la relación toda la información posible del universo del discurso que estamos modelando.
+
+	   - Son restricciones que tiene que definir el diseñador.
+
+	   - Las restricciones semánticas del Modelo Relacional son:
+
+		a) RESTRICCIÓN DE CLAVE PRIMARIA (Primary Key):
+
+		   · Permite declarar un atributo o conjunto de atributos como la clave primaria de una relación, que identifica unívocamente cada tupla.
+
+
+		b) RESTRICCIÓN DE UNICIDAD (Unique):
+
+		   · Permite definir claver alternativas; es decir, permitre indicar qué atributos de la relación tienen valores diferentes en las diferentes tuplas.
+
+
+		c) RESTRICCIÓN DE OBLIGATORIEDAD (Not Null):
+
+		   · Permite establecer aquellos atributos que en una relación deben tomar siempre valores distintos de NULO.
+
+
+		d) RESTRICCIÓN DE CLAVE AJENA // DE INTEGRIDAD REFERENCIAL (Foreign Key):
+
+		   · Se usa para enlazar relacions de una BD. La integridad referencial nos indica que los valores de la Clave Foránea debe tomar sus valores de la Clave Primaria de la relación de la que 
+		    procede, o bien, tomar valores nules.
+
+
+		e) RESTRICCIÓN DE VERIFICACIÓN (Check):
+
+		   · Puede ocurrir que sea precido especificar una condición a cumplir por los valores de determinados atributos de una relación.
+
+		   · Van ligadas con un único elemento, tanto a un atributo como a una relación.
+
+		   · Estas restricciones permiten especificar una CONDICIÓN a cumplir por un elemento de la base de datos. Esto provocarña que durante una operación de actualización de la relación, se 
+		    compruebe la condición, y si esta NO se verifica, se provoca el RECHAZO de la operación.
+
+		   · Si no se cumple la condición de verificación --> RECHAZO de la INSERCIÓN / BORRADO / MODIFICACIÓN.
+
+
+		f) RESTRICCIÓN DE ASERCIÓN // ASERTOS (Assertion):
+
+		   · Generaliza la verificación, por lo que se establece sobre más de un elemento de la BD, es decir, afectan a varias relaciones. Las aserciones siempre han de tener un nombre.
+
+		   · Su funcionamiento es el mismo que el de la verificación --> durante una operación de actualización de cualquiera de las relaciones, se comprueba la condición de la aserción, y si esta NO
+		    se verifica, se provoca el RECHAZO de la operación.
+
+
+		g) DISPARADORES (Trigger):
+
+		   · Puede interesar especificar una acción distinta al rechazo cuando no se cumple una determinada restricción.
+
+		   · Es decir, al contrario que en las restricciones de rechazo, en el caso de los disparadores, la acción especificada en el trigger se ejecuta siempre y cuando SÍ se cumpla la condición.
+
+
+
+
+
+
+
+
+
+
+
+
+	

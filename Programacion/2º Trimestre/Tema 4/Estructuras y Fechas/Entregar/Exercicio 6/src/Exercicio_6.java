@@ -102,9 +102,14 @@ public class Exercicio_6 {
                         ArrayList<LocalDateTime> fichajes = registros.get(dniSalario);
                         long minutosTrabajados = 0;
 
-                        //Calcular os minutos traballados
-                        for (int i = 0; i < fichajes.size() - 1; i += 2) {
-                            minutosTrabajados += Duration.between(fichajes.get(i), fichajes.get(i + 1)).toMinutes();
+
+                        /**
+                         * Calcular os minutos traballados co método until para que me calcule sempre a diferenza correcta
+                         */
+                        for (int i = 0; i < fichajes.size(); i += 2) {
+                            if (i + 1 < fichajes.size()) {
+                                minutosTrabajados += fichajes.get(i).until(fichajes.get(i + 1), java.time.temporal.ChronoUnit.MINUTES);
+                            }
                         }
 
                         //Calcular o salario

@@ -68,6 +68,7 @@ public class Exercicio_5 {
                  * Engadir cita:
                  * 
                  * Engadirá o nome do paciente e a súa cita. A cita introducirase co seguinte formato <HH:mm dd/MM/yyyy>. Comprobarase que non existen citas 30 minutos antes ou 30 minutos despois. Ademais non se pode engadir unha cita un sábado ou domingo. Se acontecera algún destes casos informarase ao usuario que non se puido realizar a cita.
+                 * 
                  */
                 case 1 -> {
                     
@@ -75,7 +76,9 @@ public class Exercicio_5 {
                     System.out.print("\nIngrese o seu nome: ");
                     String nome = scanner.nextLine();
 
-                    nomes.add(nome);
+                    /**
+                     * Engadimos a nome ao ArrayList unha vez a cita sexa validada, para non dar incompatibilidades de índices.
+                     */
 
                     //Pedimos e ingresamos cita
                     System.out.print("\nIngrese a cita co (HH:mm dd/MM/yyyy): ");
@@ -107,6 +110,9 @@ public class Exercicio_5 {
                             System.out.println("Xa existe unha cita 30 minutos antes ou despois.");
 
                         } else {
+                            
+                            //Índices correctos
+                            nomes.add(nome);
                             citas.add(cita);
                             System.out.println("Cita engadida correctamente.");
                         }
@@ -128,6 +134,8 @@ public class Exercicio_5 {
                     for (LocalDateTime c : citas) {
                         System.out.println(citas.indexOf(c) + ". " + nomes.get(citas.indexOf(c)) + " - " + c.format(formatoEliminarCita));
                     }
+
+                 
 
                     System.out.print("\nSeleccione a cita a eliminar: ");
                     int index = scanner.nextInt();

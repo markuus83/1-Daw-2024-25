@@ -9,8 +9,8 @@
  * Non é necesario comprobar que o DNI sexa correcto.
  */
 
-import java.time.Duration;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -108,7 +108,8 @@ public class Exercicio_6 {
                          */
                         for (int i = 0; i < fichajes.size(); i += 2) {
                             if (i + 1 < fichajes.size()) {
-                                minutosTrabajados += fichajes.get(i).until(fichajes.get(i + 1), java.time.temporal.ChronoUnit.MINUTES);
+                                minutosTrabajados += fichajes.get(i).until(fichajes.get(i + 1), ChronoUnit.MINUTES);
+                                
                             }
                         }
 

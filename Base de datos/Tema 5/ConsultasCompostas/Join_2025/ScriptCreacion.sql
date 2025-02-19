@@ -4,9 +4,7 @@
 
 --BD Ejemplo:Join_2015
 
-DELETE DATABASE IF EXISTS a23marcos_BD_join_2025;
-GO
-CRATE DATABASE a23marcos_BD_join_2025;
+CReATE DATABASE a23marcos_BD_join_2025;
 GO
 USE a23marcos_BD_join_2025;
 

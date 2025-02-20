@@ -98,19 +98,19 @@ use a23marcoscc_BD_EMPRESA_XG;
 --8a, Número e nome completo de todos os empregados, dos que teñen xefe, 
 --co número e nome do seu xefe nunha segunda columna. e si non teñen xefe que poña: 'Xefe por designar.'
 
-	SELECT	 CONVERT(VARCHAR(30),e.numero) + ' -- ' +  e.ape1 + ' ' + ISNULL(e.ape2,'') + ', ' + e.nome AS datosEmpregado, 
+	SELECT	CONVERT(VARCHAR(30),e.numero) + ' -- ' +  e.ape1 + ' ' + ISNULL(e.ape2,'') + ', ' + e.nome AS datosEmpregado, 
 			ISNULL(CONVERT(VARCHAR(30),x.numero) + ' -- ' + x.nome, 'Xefe por designar') as nomeXefe
 
 	FROM EMPREGADO e LEFT JOIN EMPREGADO x 
-	ON e.numero = x.num_empregado_xefe
+	ON e.num_empregado_xefe = x.numero
 
 
 --9. Nome completo de todos os empregados co 
 --nome dos clientes que teñen asignado, así como os dos clientes
 --ainda que non tiveran empregado. 
 
-	SELECT e.ape1 + ' ' + ISNULL(e.ape2,'') + ', ' + e.nome AS nomeCompleto, c.nome as nomeCliente
-	FROM EMPREGADO e RIGHT JOIN CLIENTE c
+	SELECT ISNULL(e.ape1 + ' ' + ISNULL(e.ape2,'') + ', ' + e.nome, 'Sen empregado') AS nomeCompleto, c.nome as nomeCliente
+	FROM EMPREGADO e FULL JOIN CLIENTE c
 	ON e.numero = c.num_empregado_asignado
 
 	
@@ -118,7 +118,8 @@ use a23marcoscc_BD_EMPRESA_XG;
 --10. Escolle unha das túas solucións das consultas propostas 
 --nas que empregaches un LEFT JOIN, e modifícaa usando RIGHT JOIN. 
 
-	SELECT e.ape1 + ' ' + ISNULL(e.ape2,'') + ', ' + e.nome AS nomeCompleto, c.nome as nomeCliente
-	FROM CLIENTE c LEFT JOIN EMPREGADO e
-	ON e.numero = c.num_empregado_asignado
+	SELECT	CONVERT(VARCHAR(30),e.numero) + ' -- ' +  e.ape1 + ' ' + ISNULL(e.ape2,'') + ', ' + e.nome AS datosEmpregado, 
+			ISNULL(CONVERT(VARCHAR(30),x.numero) + ' -- ' + x.nome, 'Xefe por designar') as nomeXefe
 
+	FROM EMPREGADO x RIGHT JOIN EMPREGADO e 
+	ON e.num_empregado_xefe = x.numero

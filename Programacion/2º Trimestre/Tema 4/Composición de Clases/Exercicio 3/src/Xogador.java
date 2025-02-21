@@ -16,23 +16,11 @@ public class Xogador {
      * @param nome -> Nome do xogador
      * @param dorsal -> Dorsal do xogador (validado)
      */
-    public void Xogador(String nomeXogador, int dorsal){
+    public Xogador(String nomeXogador, int dorsal){
         this.setNome(nomeXogador);
         this.setDorsal(dorsal);
         this.numGolesMarcados = 0;
     }
-
-    //Getters
-    public String getNome() {
-        return nomeXogador;
-    }
-    public int getDorsal() {
-        return dorsal;
-    }
-    public int getNumGolesMarcados() {
-        return numGolesMarcados;
-    }
-
 
     /**
      * Cando o xogador non pertence a ningún equipo devolvemos unha clase Optional baleira
@@ -45,24 +33,6 @@ public class Xogador {
         } else{
             return Optional.of(this.equipo);
         }
-    }
-
-
-
-
-    //Setters
-    public void setNome(String nomeXogador) {
-        this.nomeXogador = nomeXogador;
-    }
-    public void setDorsal(int dorsal) {
-        if (dorsal <= 1 || dorsal >= 99) {
-            this.dorsal = 99;
-        } else{
-            this.dorsal = dorsal;
-        }
-    }
-    public void setEquipo(Equipo equipo) {
-        this.equipo = equipo;
     }
 
     /**
@@ -87,6 +57,33 @@ public class Xogador {
      */
     public void marcarGol(){
         this.numGolesMarcados++;
+    }
+
+
+    //Getters
+    public String getNome() {
+        return nomeXogador;
+    }
+    public int getDorsal() {
+        return dorsal;
+    }
+    public int getNumGolesMarcados() {
+        return numGolesMarcados;
+    }
+
+    //Setters
+    public void setNome(String nomeXogador) {
+        this.nomeXogador = nomeXogador;
+    }
+    public void setDorsal(int dorsal) {
+        if (dorsal <= 1 || dorsal >= 99) {
+            this.dorsal = 99;
+        } else{
+            this.dorsal = dorsal;
+        }
+    }
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
     }
 }
 

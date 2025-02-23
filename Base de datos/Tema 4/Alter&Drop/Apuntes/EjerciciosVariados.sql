@@ -1,5 +1,3 @@
-
-
 DROP DATABASE  IF EXISTS a23marcoscc_BDEmpleados2;
 						GO
 CREATE DATABASE a23marcoscc_BDEmpleados2;
@@ -12,10 +10,10 @@ create table tabla_ejemplo
 );
 
 ALTER TABLE tabla_ejemplo
-						ADD nuevo1 varchar(10);
+        ADD nuevo1 varchar(10);
 
 ALTER TABLE tabla_ejemplo
-						ADD nuevo2 tinyint  CHECK (nuevo2>10);
+        ADD nuevo2 tinyint  CHECK (nuevo2>10);
 
 -- Consulta de la tabla creada:
 SELECT *
@@ -24,18 +22,18 @@ FROM tabla_ejemplo;
 -- Borro la columna nuevo2 en tabla_ejemplo:
 
 ALTER TABLE tabla_ejemplo 
-							drop column nuevo2;
+        drop column nuevo2;
 
 -- Da error, tengo que borrar la constraint.    
 
 -- Borra la constraint Check, como no le puse nombre, tendr� el que el puso el gestor.
 
 ALTER TABLE tabla_ejemplo
-							drop constraint  CK__tabla_eje__nuevo__36B12243;
+        drop constraint  CK__tabla_eje__nuevo__36B12243;
 
 -- Repito
 ALTER TABLE tabla_ejemplo 
-							drop column nuevo2;
+        drop column nuevo2;
 
 
 
@@ -48,7 +46,7 @@ from tabla_ejemplo;
 --La vuelvo a a�adir
 
 ALTER TABLE tabla_ejemplo
-                        ADD nuevo2 tinyint  CHECK (nuevo2>10);
+        ADD nuevo2 tinyint  CHECK (nuevo2>10);
 
 
 -- Consulta de la tabla creada:                 
@@ -60,7 +58,7 @@ from tabla_ejemplo;
 -- A�ade una columna Not Null, mientras no meta valores es valido.
 
 ALTER TABLE tabla_ejemplo
-                        ADD nuevo3 varchar(10) Not Null;
+        ADD nuevo3 varchar(10) Not Null;
 
 -- A�adimos datos
 

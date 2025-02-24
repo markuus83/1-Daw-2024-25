@@ -23,8 +23,8 @@ public class App {
     
         Scanner scanner = new Scanner(System.in);
         
-        ArrayList<Pregunta> preguntas;
-        ArrayList<Resposta> respostas;
+        ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
+        ArrayList<Resposta> respostas = new ArrayList<Resposta>();
 
         System.out.println("\nOpcións: ");
         System.out.println("\t1. Engadir pregunta");
@@ -44,6 +44,17 @@ public class App {
              */
             case 1 -> {
 
+                System.out.print("Ingrese o enunciado da pregunta: ");
+                String enunciado = scanner.nextLine();
+
+                
+
+
+                
+            
+                
+
+                break;
                 
 
 
@@ -56,6 +67,8 @@ public class App {
              * 
              */
             case 2 -> {
+
+
                 break;
             }
             
@@ -66,6 +79,8 @@ public class App {
              * 
              */
             case 3 -> {
+
+
                 break;
             }
 
@@ -88,5 +103,6 @@ public class App {
         }
     }
 
+    
     
 }

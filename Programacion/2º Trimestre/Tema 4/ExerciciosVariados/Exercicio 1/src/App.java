@@ -49,44 +49,44 @@ public class App {
                  */
                 case 1 -> {
                     scanner.nextLine(); // Limpiamos el búfer del scanner
-                
+
                     System.out.print("Ingrese o enunciado da pregunta: ");
                     String enunciado = scanner.nextLine();
-                
+
                     Pregunta pregunta = new Pregunta(enunciado);
                     preguntas.add(pregunta);
-                
+
                     while (pregunta.precisoMaisRespostas()) {
                         System.out.print("Ingrese un mínimo de dúas respostas: ");
                         String resposta = scanner.nextLine();
-                
-                        //Engadimos a resposta para a pregunta
+
+                        // Engadimos a resposta para a pregunta
                         pregunta.engadirResposta(new Resposta(resposta));
                     }
-                
+
                     System.out.println("\n\tDesexa engadir máis respostas?: ");
-                        System.out.println("1. Sí ");
-                        System.out.println("2. No ");
-                
+                    System.out.println("1. Sí ");
+                    System.out.println("2. No ");
+
                     int option2 = scanner.nextInt();
-                    scanner.nextLine(); //Limpamos o búfer
-                
+                    scanner.nextLine(); // Limpamos o búfer
+
                     while (option2 == 1) { // Entramos únicamente cando o usuario elixe Sí
                         System.out.print("Ingrese unha resposta adicional: ");
                         String resposta = scanner.nextLine();
                         pregunta.engadirResposta(new Resposta(resposta));
-                
+
                         System.out.println("\n\tDesexa engadir máis respostas?: ");
                         System.out.println("1. Sí ");
                         System.out.println("2. No ");
-                
+
                         option2 = scanner.nextInt();
                         scanner.nextLine(); // Limpamos o búfer
                     }
-                
+
                     System.out.println("Entendido, moitas grazas!");
                 }
-                
+
                 /**
                  * · Responder cuestionario:
                  * 
@@ -138,27 +138,41 @@ public class App {
                  * 
                  */
                 case 3 -> {
-                    // Se non hay preguntas non podemos executar
-                    if (preguntas.size() == 0) {
+                    // Verificamos si hay preguntas disponibles
+                    if (preguntas.isEmpty()) {
                         System.out.println("Non hai preguntas dispoñibles.");
                         break;
                     }
 
-                    // Recorremos o AarrayList de preguntas e indexamos cada pregunta
-                    for (int i = 0; i < preguntas.size(); i++) {
-                        Pregunta pregunta = preguntas.get(i);
-                        System.out.println("Pregunta " + (i + 1) + ": " + pregunta.getEnunciadoPregunta());
+                    // Recorremos la lista de preguntas
+                    int numPregunta = 1;
+                    for (Pregunta pregunta : preguntas) {
+                        System.out.println("Pregunta " + numPregunta + ": " + pregunta.getEnunciadoPregunta());
+                        numPregunta = numPregunta + 1;
 
-                        // Recorremos as respostas de cada pregunta e as indexamos
-                        ArrayList<Resposta> respostas = pregunta.getRespostas();
-                        for (int j = 0; j < respostas.size(); j++) {
-                            Resposta resposta = respostas.get(j);
-                            System.out.println("\t" + (j + 1) + ". " + resposta.getContidoResposta() + " ("
-                                    + resposta.getContador() + " seleccións)");
+                        // Calculamos el total de selecciones para esta pregunta
+                        int totalSeleccions = 0;
+                        for (Resposta resposta : pregunta.getRespostas()) {
+                            totalSeleccions = totalSeleccions + resposta.getContador();
+                        }
+
+                        // Recorremos la lista de respuestas para mostrar los resultados
+                        int numResposta = 1;
+                        for (Resposta resposta : pregunta.getRespostas()) {
+                            double porcentaxe = 0;
+                            if (totalSeleccions > 0) {
+                                porcentaxe = (resposta.getContador() * 100.0) / totalSeleccions;
+                            }
+
+                            // Mostramos la respuesta con su número de selecciones y porcentaje sin
+                            // formatear
+                            System.out.println("\t" + numResposta + ". " + resposta.getContidoResposta() + " (" +
+                                    resposta.getContador() + " seleccións, '" + porcentaxe + "' %)");
+
+                            numResposta = numResposta + 1;
                         }
                     }
                     break;
-
                 }
 
                 /**

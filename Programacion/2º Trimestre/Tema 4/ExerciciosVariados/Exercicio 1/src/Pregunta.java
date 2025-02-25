@@ -1,45 +1,36 @@
 import java.util.ArrayList;
 
 public class Pregunta {
-   
-    //Atributos
-    private String enunciadoPregunta;
+    private String enunciado;
     private ArrayList<Resposta> respostas;
-    
-    /**
-     * Constructor da clase Pregunta, onde recibe como parámetro o atributo enunciadoPregunta
-     * 
-     * @param enunciadoPregunta -> Enunciado da pregunta
-     */
-    public Pregunta(String enunciadoPregunta) {
-        this.setEnunciadoPregunta(enunciadoPregunta);
+
+    public Pregunta(String enunciado) {
+        this.setEnunciadoPregunta(enunciado);;
         this.respostas = new ArrayList<>();
     }
 
-
-    /**
-     * Método encargado de engadir unha resposta a unha pregunta
-     * 
-     * @param resposta -> Resposta a engadir
-     */
-    public void engadirResposta(Resposta resposta){
-        respostas.add(resposta);
+    public void engadirResposta(Resposta resposta) {
+        this.respostas.add(resposta);
     }
 
     //GETTERS
     public String getEnunciadoPregunta() {
-        return enunciadoPregunta;
+        return enunciado;
     }
     public ArrayList<Resposta> getRespostas() {
         return respostas;
     }
 
     //SETTERS
-    public void setEnunciadoPregunta(String enunciadoPregunta) {
-        this.enunciadoPregunta = enunciadoPregunta;
+    public void setEnunciadoPregunta(String enunciado) {
+        this.enunciado = enunciado;
     }
     public void setRespostas(ArrayList<Resposta> respostas) {
         this.respostas = respostas;
+    }
+
+    public boolean precisoMaisRespostas(){
+        return this.respostas.size() < 2;
     }
 
 }

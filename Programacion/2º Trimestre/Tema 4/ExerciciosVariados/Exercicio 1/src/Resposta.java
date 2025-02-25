@@ -1,7 +1,7 @@
 public class Resposta {
     
     //Atributos
-    private String contidoResposta;
+    private String textoResposta;
 
 
     /**
@@ -9,19 +9,19 @@ public class Resposta {
      * 
      * @param contidoResposta -> Contido da resposta
      */
-    public Resposta(String contidoResposta) {
-        this.setContidoResposta(contidoResposta);
+    public Resposta(String textoResposta) {
+        this.setContidoResposta(textoResposta);
     }
 
 
     //GETTERS
     public String getContidoResposta() {
-        return contidoResposta;
+        return textoResposta;
     }
 
     //SETTERS
-    public void setContidoResposta(String contidoResposta) {
-        this.contidoResposta = contidoResposta;
+    public void setContidoResposta(String textoResposta) {
+        this.textoResposta = textoResposta;
     }
 
     

@@ -36,9 +36,9 @@ use a23marcoscc_BD_SociedadeCultural;
 
 	SELECT * 
 	FROM AULA
-	WHERE EXISTS (	SELECT *
-					FROM AULA
-					WHERE estado ='B')
+	WHERE NOT EXISTS (	SELECT numero
+						FROM AULA
+						WHERE estado ='B')
 
 
 -- 5. Datos completos das aulas se non existe algunha en bo estado
@@ -46,5 +46,60 @@ use a23marcoscc_BD_SociedadeCultural;
 	SELECT * 
 	FROM AULA
 	WHERE EXISTS (	SELECT numero
-					FROM AULA
-					WHERE estado ='B')
+						FROM AULA
+						WHERE estado NOT LIKE 'B')
+
+
+-- 6. Nome e data de inicio das actividades con prezo menor que a cota máis cara existente
+
+	SELECT nome, CONVERT(DATE, data_ini, 103) AS dataInicio
+	FROM ACTIVIDADE
+	where prezo < SOME (	SELECT MAX(importe)
+							FROM COTA)
+
+--7. -Nome e data de inicio das actividades con prezo 
+	--maior que a cota m�is cara existente.
+
+	SELECT nome, CONVERT(DATE, data_ini, 103) AS dataInicio
+	FROM ACTIVIDADE
+	where prezo > SOME	(	SELECT MAX(importe)
+							FROM COTA)
+	
+
+--8. NIF e nome completo dos socios que realizan actividades
+	--impartidas por profesores que cursan algunha actividade.
+	
+	SELECT nif, ape1 + ' ' + ISNULL(ape2,'') + ', ' + nome AS nomeCompleto
+	FROM SOCIO
+	WHERE numero IN (	SELECT num_socio
+					FROM SOCIO_REALIZA_ACTI
+					WHERE id_actividade IN (	SELECT identificador
+												FROM ACTIVIDADE
+												WHERE num_profesorado_imparte IN (	SELECT num_profesorado
+																					FROM PROFE_CURSA_ACTI
+																					)))
+
+	
+--9. NIF dos empregados cuxos salarios son maiores
+	--que a suma dos prezos das actividades	que imparten.	
+	
+
+	SELECT nif
+	FROM EMPREGADO e
+	WHERE salario_mes > (	SELECT SUM(prezo)
+							FROM ACTIVIDADE a
+							WHERE a.num_profesorado_imparte = e.numero)
+
+	
+--10. NIF e gasto en actividades realizadas dos socios
+	--que levan gastado máis do valor da cota máxima.
+
+	SELECT s.nif,s.numero, SUM(a.prezo) as gastoTotal
+	FROM SOCIO s, SOCIO_REALIZA_ACTI sr, ACTIVIDADE a
+	WHERE s.numero = sr.num_socio AND sr.id_actividade = a.identificador
+	GROUP BY s.nif, s.numero
+
+	HAVING SUM(a.prezo) > (	SELECT MAX(c.importe)
+							FROM COTA c)
+
+							

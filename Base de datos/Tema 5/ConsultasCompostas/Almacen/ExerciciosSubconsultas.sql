@@ -2,7 +2,7 @@
 /*************** SUBCONSULTAS ***********************/
 /****************************************************/
 
-use a23marcoscc_BD_Almacen_25;
+use a23marcoscc_BD_Almacen;
 
 --1. Listar los nombres y códigos de los DEPARTAMENTOS en los que haya EMPLEADOS.
 
@@ -65,7 +65,7 @@ use a23marcoscc_BD_Almacen_25;
     HAVING COUNT(c.IDCliente) >= 2;
 
 --9. Seleccionar aquellos EMPLEADOS cuyo salario sea menor a la media de los salarios de su departamento.
-    SELSELECT e.*
+    SELECT e.*
     FROM EMPLEADOS e
     WHERE e.Salario < (
         SELECT AVG(e2.Salario)

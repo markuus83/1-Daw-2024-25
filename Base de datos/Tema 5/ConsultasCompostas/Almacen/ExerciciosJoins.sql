@@ -2,7 +2,7 @@
 /********** CONSULTAS MULTITABLA ********************/
 /****************************************************/
 
-use a23marcoscc_BD_Almacen_25;
+use a23marcoscc_BD_Almacen;
 
 --1. Obtener un listado de clientes, indicando el número de cliente y su nombre, y el número y nombre de sus vendedores.
  

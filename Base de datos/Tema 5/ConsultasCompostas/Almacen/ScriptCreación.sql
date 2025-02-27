@@ -2,11 +2,11 @@
 -- Tenemos un almac?n de material y productos de Oficina repartida en varias localidades.
 -- Dada la siguiente base de datos realiza las consultas y modificaciones que se proponen
 
-DROP DATABASE IF EXISTS a23marcoscc_BD_Almacen_25;
+DROP DATABASE IF EXISTS a23marcoscc_BD_Almacen;
 GO
-CREATE DATABASE a23marcoscc_BD_Almacen_25;
+CREATE DATABASE a23marcoscc_BD_Almacen;
 GO
-USE a23marcoscc_BD_Almacen_25;
+USE a23marcoscc_BD_Almacen;
 
 
 CREATE TABLE DEPARTAMENTOS

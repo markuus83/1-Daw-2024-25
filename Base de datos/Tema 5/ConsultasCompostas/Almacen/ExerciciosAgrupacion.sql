@@ -1,7 +1,7 @@
 /****************************************************/
 /******* FUNCIONES AGREGADO Y AGRUPACION ************/
 /****************************************************/
-use a23marcoscc_BD_Almacen_25;
+use a23marcoscc_BD_Almacen;
 
 -- 1. Visualizar todos los Oficios y el número de EMPLEADOS de la empresa que los desempeñan
 

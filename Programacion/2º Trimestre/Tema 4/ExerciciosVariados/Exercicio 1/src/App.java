@@ -1,6 +1,4 @@
-
 /**
- * 
  * Deséxase realizar un programa para realizar enquisas. O programa contará cun menú cas seguintes opcións:
  * 
  *  1. Engadir pregunta: Cada pregunta consta de número indeterminado de respostas. O programa primeiro pedirá a pregunta, e a continuación pedirá un mínimo de 2 respostas. A partir de aí, cada vez que se engada unha resposta preguntaráselle ao usuario se desexa engadir alguna resposta posible máis.
@@ -10,9 +8,6 @@
  *  3. Mostrar resultados: Débense mostrar tódalas preguntas cas súas respectivas respostas, e para cada resposta a porcentaxe de selección de dita resposta.
  * 
  *  4. Saír
- * 
- * 
- * Introduce ao comezo do programa datos de proba
  */
 
 import java.util.ArrayList;
@@ -23,7 +18,6 @@ public class App {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
-
         ArrayList<Pregunta> preguntas = new ArrayList<Pregunta>();
 
         while (true) {
@@ -69,9 +63,10 @@ public class App {
                     System.out.println("2. No ");
 
                     int option2 = scanner.nextInt();
-                    scanner.nextLine(); // Limpamos o búfer
+                    scanner.nextLine(); //Limpamos o búfer
 
-                    while (option2 == 1) { // Entramos únicamente cando o usuario elixe Sí
+                    //Entramos únicamente cando o usuario elixe Sí
+                    while (option2 == 1) { 
                         System.out.print("Ingrese unha resposta adicional: ");
                         String resposta = scanner.nextLine();
                         pregunta.engadirResposta(new Resposta(resposta));
@@ -81,7 +76,7 @@ public class App {
                         System.out.println("2. No ");
 
                         option2 = scanner.nextInt();
-                        scanner.nextLine(); // Limpamos o búfer
+                        scanner.nextLine(); //Limpamos o búfer
                     }
 
                     System.out.println("Entendido, moitas grazas!");
@@ -121,7 +116,7 @@ public class App {
                         // Validamos a selección do usuario
                         if (seleccion < 1 || seleccion > respostas.size()) {
                             System.out.println("Selección inválida. Por favor, intente de novo.");
-                            i--; // Volvemos a preguntar a mesma pregunta
+                            i--; //Volvemos a preguntar a mesma pregunta
                         } else {
                             // Incrementamos o contador de seleccións da resposta seleccionada
                             respostas.get(seleccion - 1).incrementarSeleccion();
@@ -138,42 +133,29 @@ public class App {
                  * 
                  */
                 case 3 -> {
-                    // Verificamos si hay preguntas disponibles
                     if (preguntas.isEmpty()) {
                         System.out.println("Non hai preguntas dispoñibles.");
                         break;
                     }
-
-                    // Recorremos la lista de preguntas
-                    int numPregunta = 1;
+                
                     for (Pregunta pregunta : preguntas) {
-                        System.out.println("Pregunta " + numPregunta + ": " + pregunta.getEnunciadoPregunta());
-                        numPregunta = numPregunta + 1;
-
-                        // Calculamos el total de selecciones para esta pregunta
-                        int totalSeleccions = 0;
+                        System.out.println("\nPregunta: " + pregunta.getEnunciadoPregunta());
+                
+                        //Calculamos o número total de veces que se respondeu a pregunta
+                        int totalRespostas = 0;
                         for (Resposta resposta : pregunta.getRespostas()) {
-                            totalSeleccions = totalSeleccions + resposta.getContador();
+                            totalRespostas += resposta.getContador();
                         }
-
-                        // Recorremos la lista de respuestas para mostrar los resultados
-                        int numResposta = 1;
+                
+                        //Mostramos as respostas con os seus respectivos porcentaxes
                         for (Resposta resposta : pregunta.getRespostas()) {
-                            double porcentaxe = 0;
-                            if (totalSeleccions > 0) {
-                                porcentaxe = (resposta.getContador() * 100.0) / totalSeleccions;
-                            }
-
-                            // Mostramos la respuesta con su número de selecciones y porcentaje sin
-                            // formatear
-                            System.out.println("\t" + numResposta + ". " + resposta.getContidoResposta() + " (" +
-                                    resposta.getContador() + " seleccións, '" + porcentaxe + "' %)");
-
-                            numResposta = numResposta + 1;
+                            System.out.println("\tResposta: " + resposta.getContidoResposta() +
+                                " ('" + resposta.calcularPorcentaxeRespostas(totalRespostas) + "%')");
                         }
                     }
                     break;
                 }
+                
 
                 /**
                  * · Saír
@@ -198,8 +180,3 @@ public class App {
 
 }
 
-/**
- * #TODO:
- * Terminar el case 2 -> Necesito ser capaz de cubrir el cuestionario
- * HACER EL CASE -> 3
- */

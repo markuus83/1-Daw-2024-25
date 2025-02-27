@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Resposta {
     
     //Atributos
@@ -35,5 +37,17 @@ public class Resposta {
     public void incrementarSeleccion() {
         this.contador++;
     }
-    
+
+
+    /**
+     * Método que calcula a porcentaxe de seleccións da resposta.
+     * @param totalRespostas Número total de veces que a pregunta foi respondida.
+     * @return Porcentaxe de seleccións desta resposta sobre o total.
+     */
+    public double calcularPorcentaxeRespostas(int totalRespostas) {
+        if (totalRespostas == 0) {
+            return 0.0; // Evita división por cero
+        }
+        return (double) this.contador * 100 / totalRespostas;
+    }
 }

@@ -138,21 +138,17 @@ public class App {
                         break;
                     }
                 
-                    for (Pregunta pregunta : preguntas) {
-                        System.out.println("\nPregunta: " + pregunta.getEnunciadoPregunta());
-                
-                        //Calculamos o número total de veces que se respondeu a pregunta
-                        int totalRespostas = 0;
-                        for (Resposta resposta : pregunta.getRespostas()) {
-                            totalRespostas += resposta.getContador();
-                        }
-                
-                        //Mostramos as respostas con os seus respectivos porcentaxes
-                        for (Resposta resposta : pregunta.getRespostas()) {
-                            System.out.println("\tResposta: " + resposta.getContidoResposta() +
-                                " ('" + resposta.calcularPorcentaxeRespostas(totalRespostas) + "%')");
+                    for (int i = 0; i < preguntas.size(); i++) {
+                        Pregunta pregunta = preguntas.get(i);
+                        System.out.println("Pregunta " + (i + 1) + ": " + pregunta.getEnunciadoPregunta());
+
+                        ArrayList<Resposta> respostas = pregunta.getRespostas();
+                        for (int j = 0; j < respostas.size(); j++) {
+                            Resposta resposta = respostas.get(j);
+                            System.out.println("\t" + (j + 1) + ". " + resposta.getContidoResposta() + " -> " + resposta.calcularPorcentaxeRespostas() + "%");
                         }
                     }
+
                     break;
                 }
                 
@@ -173,10 +169,7 @@ public class App {
                     System.out.println("\nErro: Opción non contemplada.");
                     break;
                 }
-
             }
         }
     }
-
 }
-

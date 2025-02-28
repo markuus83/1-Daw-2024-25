@@ -1,0 +1,1 @@
+Después de la petición por teclado de un Double o de un Int, limpiar el búfer del Scanner con un scanner.nextLine()

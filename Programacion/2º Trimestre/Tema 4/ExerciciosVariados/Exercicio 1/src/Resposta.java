@@ -1,10 +1,9 @@
-import java.util.ArrayList;
-
 public class Resposta {
     
     //Atributos
     private String textoResposta;
     private int contador = 0;
+    private Pregunta pregunta;
 
     /**
      * Constructor da clase Resposta, onde recibe como parámetro o atributo contidoResposta
@@ -44,10 +43,7 @@ public class Resposta {
      * @param totalRespostas Número total de veces que a pregunta foi respondida.
      * @return Porcentaxe de seleccións desta resposta sobre o total.
      */
-    public double calcularPorcentaxeRespostas(int totalRespostas) {
-        if (totalRespostas == 0) {
-            return 0.0; // Evita división por cero
-        }
-        return (double) this.contador * 100 / totalRespostas;
+    public double calcularPorcentaxeRespostas() {
+        return (double) this.contador * 100 / pregunta.numeroRespostas();
     }
 }

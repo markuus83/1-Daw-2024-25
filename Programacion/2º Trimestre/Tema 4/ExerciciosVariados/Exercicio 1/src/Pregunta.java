@@ -51,4 +51,12 @@ public class Pregunta {
         return this.respostas.size() < 2;
     }
 
+    /**
+     * Método que devolve o número de respostas que ten unha pregunta
+     * 
+     * @return -> Número de respostas
+     */
+    public int numeroRespostas(){
+        return this.respostas.size();
+    }
 }

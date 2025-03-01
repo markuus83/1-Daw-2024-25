@@ -55,7 +55,7 @@ public class App {
                         String resposta = scanner.nextLine();
 
                         // Engadimos a resposta para a pregunta
-                        pregunta.engadirResposta(new Resposta(resposta));
+                        pregunta.engadirResposta(new Resposta(resposta,pregunta));
                     }
 
                     System.out.println("\n\tDesexa engadir máis respostas?: ");
@@ -69,7 +69,7 @@ public class App {
                     while (option2 == 1) { 
                         System.out.print("Ingrese unha resposta adicional: ");
                         String resposta = scanner.nextLine();
-                        pregunta.engadirResposta(new Resposta(resposta));
+                        pregunta.engadirResposta(new Resposta(resposta,pregunta));
 
                         System.out.println("\n\tDesexa engadir máis respostas?: ");
                         System.out.println("1. Sí ");

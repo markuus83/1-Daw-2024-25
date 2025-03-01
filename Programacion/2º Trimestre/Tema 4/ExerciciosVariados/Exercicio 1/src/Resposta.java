@@ -10,10 +10,12 @@ public class Resposta {
      * 
      * @param contidoResposta -> Contido da resposta
      */
-    public Resposta(String textoResposta) {
-        this.setContidoResposta(textoResposta);
+    public Resposta(String textoResposta, Pregunta pregunta) {
+        this.textoResposta = textoResposta;
+        this.pregunta = pregunta;
         this.contador = 0;
     }
+    
 
 
     //GETTERS
@@ -44,6 +46,19 @@ public class Resposta {
      * @return Porcentaxe de seleccións desta resposta sobre o total.
      */
     public double calcularPorcentaxeRespostas() {
-        return (double) this.contador * 100 / pregunta.numeroRespostas();
+        int totalVotos = 0;
+        
+        // Sumamos tódolos votos das respostas da mesma pregunta
+        for (Resposta r : pregunta.getRespostas()) {
+            totalVotos += r.getContador();
+        }
+        
+        // Evitamos división por cero
+        if (totalVotos == 0) {
+            return 0;
+        }
+        
+        return (double) this.contador * 100 / totalVotos;
     }
+    
 }

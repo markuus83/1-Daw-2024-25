@@ -1,30 +1,5 @@
 #!/bin/bash
 
-#Realiza un programa en BASH que realice 5 acciones diferentes:
-
-    #1. Comprobar que la variable introducida por teclado es un directorio.
-
-    #2. Multiplicar dos números introducidos por teclado.
-
-    #3. Mostrar los números primos comprendidos entre dos números introducidos por teclado.
-
-    #4. Comparar dos cadenas introducidas por teclado.
-
-    #5. Listar el contenido del directorio home.
-    #Salir.
-
-#El programa debe de cumplir con lo siguiente:
-
-    # 3 Limpiar la pantalla antes de hacer nada.
-
-    # · Mostrar el menú con las diferentes opciones.
-    
-    # · Debe ejecutarse todo el rato hasta que el usuario decida salir del programa.
-
-    # · Tienes que subir un archivo con el código y con el siguiente formato de nombre:
-
-#!/bin/bash
-
 comprobar_directorio(){
     if [ -e "$1" ]
     then
@@ -44,17 +19,20 @@ comprobar_directorio(){
     fi
 }
 
+
 limpar_pantalla(){
     clear
 }
+
 
 multiplicar_numeros(){
 
     multiplicacion=$(($1*$2))
 
     echo ""
-    echo "O resultado da multiplicación é: $multiplicacion" 
+    echo "O resultado da multiplicación é: $multiplicacion"
 }
+
 
 while [ true ]
 do
@@ -64,31 +42,28 @@ do
     echo ""
     echo "Mira o seguinte menú: "
     echo ""
-    echo " 1. Comprobar se unha variable é un directorio: "
-    echo " 2. Multilicar dous números: "
+    echo " 1. Opción A"
+    echo " 2. Opción B"
     echo " 3. Opción C"
     echo " 4. Fin"
 
     read -p "Escolla a opción desexada do menú: " option
 
         case $option in
-            #Comprobar se unha variable é un directorio
-            1) 
+            1)
                 echo ""
                 read -p "Introduce o nome do directorio: " comprobarDirectorio
                 comprobar_directorio "$comprobarDirectorio"
                 ;;
 
-            #Multiplicar dos números metidos por teclado
+	  #Multiplicar dos números metidos por teclado
             2)
                 echo ""
                 read -p "Introduce el primer número: " numeroUno
                 read -p "Introduce el segundo número: " numeroDos
 
                 multiplicar_numeros "$numeroUno" "$numeroDos"
-                ;;
-
-            3)
+                ;;          3)
                 echo "Opcion C"
                 ;;
 

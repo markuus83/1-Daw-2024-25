@@ -56,6 +56,26 @@ multiplicar_numeros(){
     echo "O resultado da multiplicación é: $multiplicacion" 
 }
 
+
+amosar_primos(){
+
+}
+
+
+
+comparar_cadeas(){
+
+
+}
+
+
+
+listar_contido_home(){
+
+}
+
+
+
 while [ true ]
 do
 
@@ -66,9 +86,11 @@ do
     echo ""
     echo " 1. Comprobar se unha variable é un directorio: "
     echo " 2. Multilicar dous números: "
-    echo " 3. Opción C"
-    echo " 4. Fin"
-
+    echo " 3. Amosar os números primos comprendidos entre dous números: "
+    echo " 4. Comparar dúas cadenas introducidas por teclado: "
+    echo " 5. Listar o contido do directorio /home: "
+    echo " 6. Saír: "
+    echo ""
     read -p "Escolla a opción desexada do menú: " option
 
         case $option in
@@ -82,17 +104,36 @@ do
             #Multiplicar dos números metidos por teclado
             2)
                 echo ""
-                read -p "Introduce el primer número: " numeroUno
-                read -p "Introduce el segundo número: " numeroDos
+                read -p "Introduce o primeiro número: " numeroUno
+                read -p "Introduce o segundo número: " numeroDos
 
                 multiplicar_numeros "$numeroUno" "$numeroDos"
                 ;;
 
+            #Mostrar los números primos comprendidos entre dos números introducidos por teclado
             3)
-                echo "Opcion C"
+                echo ""
+                read -p "Introduce o primeiro número: " numeroPequeno
+                read -p "Introduce o segundo número: " numeroGrande
+
+                amosar_primos "$numeroPequeno" "$numeroGrande"
+
                 ;;
 
             4)
+                echo ""
+                read -p "Introduce unha cadea de terxto: " primeiraCadea
+                read -p "Introduce outra cadea de texto: " segundaCadea
+
+                comparar_cadeas "$primeiraCadea" "$segundaCadea"
+                ;;
+
+            5)
+                echo ""
+                listar_contido_home
+                ;;
+
+            6)
                 echo ""
                 echo "Saindo..."
                 break

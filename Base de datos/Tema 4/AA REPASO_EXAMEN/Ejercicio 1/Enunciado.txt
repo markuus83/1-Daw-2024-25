@@ -1,0 +1,30 @@
+EJERCICIO1  DDL:
+
+Emplea las sentencias del DDL necesarias para implementar el siguiente modelo lógico en el SGBD Ms Sql Server 2017: 
+
+	- Empleado (codemp, nombre, apellido1, apellido2, direccion, provincia, dni, coddepto, salario, fecalta, dto) 
+	- Departamento (coddepto, depto, codjefe, presupuesto) 
+	- Horas_extra (codemp, fecha, num_horas)
+
+1. Asigna a cada campo el tipo de datos y formato que consideres más adecuado, y asígnale las propiedades que veas necesario, teniendo en cuenta las siguientes indicaciones:
+	 - Los códigos de empleado y departamento serán numéricos, y se deben cubrir solos al insertar registros. 
+	- Cuando se da de alta un empleado se debe indicar al menos su nombre y apellidos, y cuando se da de alta un departamento se debe indicar su nombre, y si no se conoce su presupuesto se le asignará un presupuesto de 0€. 
+	- El DNI estará formado por 8 dígitos y una letra. 
+	- A cada empleado se le aplica un % de descuento en las compras que realice de productos de la empresa. El % de descuento que se aplica se almacena en la el campo Empleado.dto.
+	- Prácticamente todos los empleados viven en la provincia de Pontevedra. 
+	- Todos los empleados nuevos comienzan cobrando un sueldo de 800€. 
+	- Un empleado no puede tener dos entradas registradas de horas extras el mismo día.
+	- La fecha de alta del empleado se quiere guardar como un texto con formato DD/MM/YYYY, en lugar de guardarla como fecha.
+
+ 2. Realiza el modelo ER , teniendo en cuenta las siguientes consideraciones: 
+	- Cada empleado pertenece a un solo departamento, y un departamento puede tener varios empleados.
+ 	- Cada departamento tiene un jefe, que será un empleado de la empresa.
+	- Un empleado puede tener varias horas extras registradas en distintos días. Cada hora extra corresponde a un solo empleado. 
+
+
+3. Realiza los siguientes cambios en la BD: 
+	- Añade un campo a la tabla empleado para guardar el importe que cobra el empleado por sus horas extras.                                                              
+	 - Todos los empleados del mismo departamento cobran lo mismo, así que mejor elimina el campo que acabas de crear y añádelo a la tabla departamento.
+	- Se han dado cuenta que guardar la fecha de alta del empleado como texto es una tontería, así que la cambiaremos para que sea una fecha. Además, debe tomar por defecto el valor de la fecha actual.
+	 - Modifica el campo dni del empleado para que tenga que ser indicado obligatoriamente. 
+	- Cambia el nombre del campo Empleado.dto por Empleado.descuento y del campo Departamento.depto por Departamento.departamento

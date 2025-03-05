@@ -1,0 +1,42 @@
+La dirección del instituto nos pide implementar una BD para gestionar las matrículas de los alumnos. Parece ser que los alumnos del año pasado ya dejaron hecho un modelo lógico de la BD que necesitan: 
+
+    TFNO_PROFE (codprof (UC, DC) [PRIMARY KEY],  numero [PRIMARY KEY], principal)
+
+    PROFESOR (codprof [PRIMARY KEY], DNI [UNIQUE], nombre, dirección, tipocarnet)
+
+    MODULO (codmod [PRIMARY KEY], nombre, codprof (UC, DSN), coddelegado (UC, DSN), ciclo)
+
+    MATRICULA (codmod (UC, DNA) [PRIMARY KEY],  codalumno (UC, DNA) [PRIMARY KEY],  fecmatricula)
+
+    ALUMNO (numexp [PRIMARY KEY], nombre, apellidos, fecnac)
+
+- Crea las tablas en la BD manteniendo todas las restricciones que se indican en el modelo lógico. Asigna los tipos de datos que consideres más convenientes, teniendo en cuenta lo siguiente: 
+
+- Todos los códigos deben ser numéricos, y en todos los casos en que sea posible se necesitaría que se cubran automáticamente sus valores al insertar nuevos registros.
+
+-  El DNI del profesor estará formado por 8 números y un carácter, y no pueden existir DNI duplicados. 
+
+-  En la fecha de nacimiento de los alumnos se guardará únicamente la fecha, no la hora. La fecha de matriculación de la tabla MATRICULA sí incluirá la hora. 
+
+- El campo principal de la tabla TFNO_PROFE indica si el número es el número principal del profesor o no. 
+
+- El ciclo del módulo podrá tomar únicamente uno de los siguientes valores: SMIR, ASIR, DAM o DAW. 
+
+- El tipo de carnet de conducir del profesor tendrá que tomar un valor entre A1, A2, B1 y B2, pero un profesor puede no tener ninguno). 
+
+- En las primeras pruebas se han dado cuenta que hay algunas cosas que no están del todo bien. Realiza los siguientes cambios en la BD: 
+    - Añade los campos “apellido1” y “apellido2” a la tabla PROFESOR.
+
+    - Modifica el campo “fecnac” de la tabla ALUMNO para que pase a llamarse “fechanac” 
+
+    - Por otros motivos , nos han pedido que el número de teléfono del profesor lo guardemos como un texto en lugar de como número. 
+
+    - Cambia el nombre de la tabla TFNO_PROFE  from TELEFONOS. Busca en internet.
+
+    - Elimina la FK que tiene el campo “coddelegado” 
+
+    - Añade en la tabla MODULO un campo llamado “seguimiento”, que será un número entero de tamaño máximo 999.999. 
+
+    - Modifica el campo MODULO.codprof para que no pueda ser nulo. 
+
+    - Nos interesa emplear la tabla de TFNO_PROFE para guardar teléfonos también de los alumnos, por lo que necesitamos añadir un nuevo campo a la tabla que indique el tipo de teléfono (podrá ser ‘ALUMNO’ o ‘PROFESOR’)  y eliminar la foreign key que teníamos en el campo codprof.

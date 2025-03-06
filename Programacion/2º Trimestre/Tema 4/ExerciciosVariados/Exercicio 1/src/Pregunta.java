@@ -59,4 +59,20 @@ public class Pregunta {
     public int numeroRespostas(){
         return this.respostas.size();
     }
+
+    /**
+     * Método que devolve o número total de respostas que ten unha pregunta
+     * 
+     * @return -> Número total de respostas
+     */
+    public int getNumeroRespostas(){
+        int totalVotos = 0;
+        
+        // Sumamos tódolos votos das respostas da mesma pregunta
+        for (Resposta r : this.getRespostas()) {
+            totalVotos += r.getContador();
+        }
+
+        return totalVotos;
+    }
 }

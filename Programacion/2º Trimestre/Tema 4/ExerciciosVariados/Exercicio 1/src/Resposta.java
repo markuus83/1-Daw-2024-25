@@ -46,19 +46,16 @@ public class Resposta {
      * @return Porcentaxe de seleccións desta resposta sobre o total.
      */
     public double calcularPorcentaxeRespostas() {
-        int totalVotos = 0;
         
-        // Sumamos tódolos votos das respostas da mesma pregunta
-        for (Resposta r : pregunta.getRespostas()) {
-            totalVotos += r.getContador();
-        }
-        
+        //Almacenamos nunha variable o número de respostas que ten a pregunta
+        int numRespostas = this.pregunta.getNumeroRespostas();
+
         // Evitamos división por cero
-        if (totalVotos == 0) {
+        if (numRespostas == 0) {
             return 0;
         }
         
-        return (double) this.contador * 100 / totalVotos;
+        return (double) this.contador * 100 / numRespostas;
     }
     
 }

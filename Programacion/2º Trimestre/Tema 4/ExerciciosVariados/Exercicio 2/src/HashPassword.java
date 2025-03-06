@@ -2,6 +2,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class HashPassword {
+    
     /**
      * Método que devolve o Hash dunha cadea
      * 
@@ -30,8 +31,4 @@ public class HashPassword {
             throw new RuntimeException(e);
         }
     }
-
-
-
-    
 }

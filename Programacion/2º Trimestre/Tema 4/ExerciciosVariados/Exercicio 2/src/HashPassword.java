@@ -2,7 +2,12 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 public class HashPassword {
-
+    /**
+     * Método que devolve o Hash dunha cadea
+     * 
+     * @param password -> String de constrasinal
+     * @return -> String de hash
+     */
     public static String hashPassword(String password) {
         try {
             // Crear unha instancia de MessageDigest para SHA-256
@@ -25,4 +30,8 @@ public class HashPassword {
             throw new RuntimeException(e);
         }
     }
+
+
+
+    
 }

@@ -72,7 +72,7 @@ use a23marcoscc_BD_Almacen;
 	WHERE d.Nombre <> 'COMERCIALES' AND e.FechaAlta > '1982-01-01'
 
 
---8. Obtener una lista de los apellidos de los vendedores con el importe acumulado de sus pedidos.
+--8. Obtener una lista de los nombres de los vendedores con el importe acumulado de sus pedidos.
 
 	SELECT e.Nombre nomeEmpregado, SUM(p.Unidades * pr.PrecioActual) AS Importe_Acumulado
 	FROM EMPLEADOS e JOIN CLIENTES c

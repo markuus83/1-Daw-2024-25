@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Usuario {
@@ -106,5 +107,42 @@ public class Usuario {
             }
         }
         return false;
+    }
+
+    /**
+     * Método que devolve a lista de tarefas realizadas do usuario en formato de cadea.
+     * 
+     * @return -> String coa lista de tarefas pendentes
+     */
+    public ArrayList<Tarefa> getPendentes48horas() {
+        ArrayList<Tarefa> tarefas48Horas = new ArrayList<>();
+        LocalDateTime ahora = LocalDateTime.now();
+        LocalDateTime dosDiasDespues = ahora.plusHours(48);
+
+        for (Tarefa tarefa : this.tarefasPendentes) {
+            if (tarefa.getDataLimite().isAfter(ahora) && tarefa.getDataLimite().isBefore(dosDiasDespues)) {
+                tarefas48Horas.add(tarefa);
+            }
+        }
+
+        return tarefas48Horas;
+    }
+
+    /**
+     * Método que devolve a lista de tarefas realizadas do usuario en formato de cadea.
+     * 
+     * @return -> String coa lista de tarefas pendentes
+     */
+    public ArrayList<Tarefa> getTarefasRetrasadas() {
+        ArrayList<Tarefa> tarefasRetrasadas = new ArrayList<>();
+        LocalDateTime ahora = LocalDateTime.now();
+    
+        for (Tarefa tarefa : this.tarefasPendentes) {
+            if (tarefa.getDataLimite().isBefore(ahora)) {
+                tarefasRetrasadas.add(tarefa);
+            }
+        }
+    
+        return tarefasRetrasadas;
     }
 }

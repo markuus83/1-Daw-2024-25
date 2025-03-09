@@ -1,4 +1,3 @@
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -158,26 +157,20 @@ public class App {
                                 // Mostrar tarefas pendentes nas próximas 48 horas
                                 case 5 -> {
                                     scanner.nextLine(); // Limpiar buffer
-
-                                    LocalDateTime ahora = LocalDateTime.now();
-                                    LocalDateTime dosDiasDespues = ahora.plusHours(48);
-
+                                
                                     System.out.println("Tarefas pendentes nas próximas 48 horas:");
-
-                                    boolean tarefasEncontradas = false;
-
-                                    // Mostrar tarefas pendentes nas próximas 48 horas
-                                    for (Tarefa tarefa : usuarioActivo.getTarefasPendentes()) {
-                                        if (tarefa.getDataLimite().isAfter(ahora) && tarefa.getDataLimite().isBefore(dosDiasDespues)) {
+                                
+                                    ArrayList<Tarefa> tarefas48Horas = usuarioActivo.getPendentes48horas();
+                                
+                                    if (tarefas48Horas.isEmpty()) {
+                                        System.out.println("Non hai tarefas pendentes nas próximas 48 horas.");
+                                    } else {
+                                        for (Tarefa tarefa : tarefas48Horas) {
                                             System.out.println("Título: " + tarefa.getTitulo());
-                                            tarefasEncontradas = true;
                                         }
                                     }
-
-                                    if (!tarefasEncontradas) {
-                                        System.out.println("Non hai tarefas pendentes nas próximas 48 horas.");
-                                    }
                                 }
+                                
 
                                 // Mostrar tarefas realizadas
                                 case 6 -> {
@@ -202,32 +195,27 @@ public class App {
                                     }
                                 }
 
-                                // Mostrar tarefas pendentes sobrepasadas
+                                // Mostrar tarefas pendentes 
                                 case 7 -> {
                                     scanner.nextLine(); // Limpiar buffer
-
-                                    LocalDateTime ahora = LocalDateTime.now();
-
+                                
                                     System.out.println("Tarefas pendentes sobrepasadas:");
-
-                                    boolean tarefasEncontradas = false;
-
-                                    // Mostrar tarefas pendentes sobrepasadas
-                                    for (Tarefa tarefa : usuarioActivo.getTarefasPendentes()) {
-                                        if (tarefa.getDataLimite().isBefore(ahora)) {
+                                
+                                    ArrayList<Tarefa> tarefasRetrasadas = usuarioActivo.getTarefasRetrasadas();
+                                
+                                    if (tarefasRetrasadas.isEmpty()) {
+                                        System.out.println("Non hai tarefas pendentes sobrepasadas.");
+                                    } else {
+                                        
+                                        for (Tarefa tarefa : tarefasRetrasadas) {
                                             System.out.println("Título: " + tarefa.getTitulo());
                                             System.out.println("Descrición: " + tarefa.getDescricion());
                                             System.out.println("Data de inicio: " + tarefa.getDataInicio().format(Tarefa.formato_data));
                                             System.out.println("Data límite: " + tarefa.getDataLimite().format(Tarefa.formato_data));
-                                            tarefasEncontradas = true;
                                         }
                                     }
-
-                                    // Se non hai tarefas pendentes sobrepasadas, mostrar unha mensaxe
-                                    if (!tarefasEncontradas) {
-                                        System.out.println("Non hai tarefas pendentes sobrepasadas.");
-                                    }
                                 }
+                                
 
                                 // Cerrar sesión
                                 case 8 -> {
@@ -246,25 +234,30 @@ public class App {
 
                 case 2 -> {
                     scanner.nextLine(); // Limpiar buffer
-
+                
                     System.out.print("Ingrese o teu NOME DE PILA: ");
                     String nomePilaRexistro = scanner.nextLine();
-
+                
                     System.out.print("Ingrese o teu USUARIO: ");
                     String nomeUsuarioRexistro = scanner.nextLine();
-
+                
                     // Non permitir que se rexistre un usuario con un nome de usuario xa existente
                     if (Usuario.existeUsuario(personas, nomeUsuarioRexistro)) {
                         System.out.println("Erro: O nome de usuario xa existe. Escolla outro.");
-
                     } else {
                         System.out.print("Ingrese o CONTRASINAL: ");
                         String contrasinalStringRexistro = scanner.nextLine();
-
-                        Usuario usuario = new Usuario(nomeUsuarioRexistro, nomePilaRexistro, contrasinalStringRexistro);
-                        personas.add(usuario);
-
-                        System.out.println("Rexistro aceptado.");
+                
+                        System.out.print("Confirme o CONTRASINAL: ");
+                        String contrasinalConfirmacion = scanner.nextLine();
+                
+                        if (contrasinalStringRexistro.equals(contrasinalConfirmacion)) {
+                            Usuario usuario = new Usuario(nomeUsuarioRexistro, nomePilaRexistro, contrasinalStringRexistro);
+                            personas.add(usuario);
+                            System.out.println("Rexistro aceptado.");
+                        } else {
+                            System.out.println("Erro: Os contrasinais non coinciden.");
+                        }
                     }
                 }
 

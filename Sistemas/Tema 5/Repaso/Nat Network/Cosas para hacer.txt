@@ -1,0 +1,11 @@
+1.  RED NAT
+
+    Lo primero quie tenemos que hacer es crear una nueva red NAT en los ajustes de VirtualBox con las especificaciones dadas por el profesor.
+
+    Posteriormente, tendremos de configurar cada máquina para que esté en la red previamente creada.
+
+    WINDOWS:
+        Tendremos de desactivar el firewall, pero, como eso es una medida muy drástica, con acvtivar las reglas de entrada/salida de IPv4 llegaría
+
+
+2. INTERNAL NETWORK

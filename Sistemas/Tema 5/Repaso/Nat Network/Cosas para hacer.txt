@@ -1,6 +1,6 @@
 1.  RED NAT
 
-    Lo primero quie tenemos que hacer es crear una nueva red NAT en los ajustes de VirtualBox con las especificaciones dadas por el profesor.
+    Lo primero que tenemos que hacer es crear una nueva red NAT en los ajustes de VirtualBox con las especificaciones dadas por el profesor.
 
     Posteriormente, tendremos de configurar cada máquina para que esté en la red previamente creada.
 
@@ -8,4 +8,51 @@
         Tendremos de desactivar el firewall, pero, como eso es una medida muy drástica, con acvtivar las reglas de entrada/salida de IPv4 llegaría
 
 
+
 2. INTERNAL NETWORK
+
+    Lo primero que tenemos que hacer es meter todas las máquinas necesarias en la misma red interna, seleccionandolo en la interfaz del gestor VirtualBox.
+
+    Una vez lo hayamos hecho, tendremos de realizar los siguientes pasos:
+
+        - Desactivar el firewall del sistema Windows. Una vez lo hayamos hecho, modificaremos de forma manual la ip.
+
+            Tras haberlo hecho, tendremos de reiniciar la conexión de la máquina para que adoopte la nueva ip
+
+
+        - En el sistema operativo Ubuntu, es más fácul, modificamos de forma gráfica y manualmente la ip y ya quedaría modificada.
+
+
+        - En Debian, sin forma gráfica, es un poco más complicado:
+
+            · Nos dirigimos (con permisos de root) al archivo /etc/network/interfaces . Una vez dentro, tendremos de configurar la dirección ip de forma manual: 
+            
+                auto enp0s3
+                iface enp0s3 inet static
+
+                    address x.x.x.x
+                    netmask x.x.x.x
+                    gateway x.x.x.1
+
+            · Una vez tengamos el fichero modificado, tendremos de reiniciar el servicio de red del sistema, para ello, ejecutaremos el siguiente comando:
+
+                $ /etc/init.d/networking restart
+
+                (Si el comando no funciona, al reiniciar la máquina virtual se establecería la nueva ip)
+
+
+
+    a)
+        WINDOWS - DEBIAN -> FUNCIONA
+
+        WINDOWS - UBUNTU -> FUNCIONA
+
+    b)
+        DEBIAN - WINDOWS -> FUNCIONA
+
+        DEBIAN - UBUNTU -> FUNCIONA
+
+    c) 
+        UBUNTU - WINDOWS -> FUNCIONA
+
+        UBUNTU - DEBIAN -> FUNCIONA

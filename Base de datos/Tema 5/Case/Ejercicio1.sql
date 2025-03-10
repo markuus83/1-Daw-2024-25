@@ -1,3 +1,4 @@
+
 use a23marcoscc_BD_EMPRESA;
 
 -- 1. Descrición e existencias dos produtos. Na terceira columna porá: 
@@ -33,3 +34,17 @@ use a23marcoscc_BD_EMPRESA;
 	FROM PRODUTO pr JOIN pedido pe
 	ON pr.identificador = pe.id_produto
 	
+
+-- 6. Numero, nombre completo (los 4 campos en una unica columna, de nombre socio, con el formato numero - ape1 ape2, nombre) y salario de todo el profesorado. 
+--En el resultado deberan aparecer primero los que mas cobran. 
+--El campo cargo contiene PRF para el profesorado, y ADM si es un o una administrativa.
+
+	SELECT CONVERT(VARCHAR(10), numero) + '   -   ' + ape1 + '    ' + ISNULL(ape2,'') + ',   ' + nome AS datos_Empregado, 
+			salario_mes AS salario, 
+			"cargo" = case 
+				WHEN cargo LIKE 'PRF' THEN 'Profesorado'
+				WHEN cargo LIKE 'ADM' THEN 'Administrativa'
+				ELSE 'Erro'
+			END
+	FROM EMPREGADO
+	ORDER BY salario_mes DESC

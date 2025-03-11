@@ -62,7 +62,7 @@ use a23marcoscc_BD_EMPRESA;
 		SELECT num_empregado_director
 		FROM SUCURSAL
 
-		UNION all
+		UNION 
 
 		SELECT numero
 		FROM EMPREGADO
@@ -70,3 +70,12 @@ use a23marcoscc_BD_EMPRESA;
 
 
 	-- SOLUCION 2
+
+	SELECT num_empregado_director
+	FROM SUCURSAL
+
+	UNION ALL
+
+	SELECT numero
+	FROM EMPREGADO
+	WHERE cota_de_vendas > 250000

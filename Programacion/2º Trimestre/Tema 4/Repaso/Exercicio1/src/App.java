@@ -4,13 +4,13 @@
  *  a) Engadir restaurante: Deberemos engadir un restaurante. Deberemos almacenar a cidade e o número de teléfono deste.
  * 
  * 
- *  b) Facer 
+ *  b) Facer unha reserva: Poderemos anotar unha reserva para un día nun restaurante. O día da reserva egadirase no formato <dd/MM/yyyy> e deberase introducr o nome da cidade para realizar a selección do restaurante. Na reserva deberemos indicar o número de comensais. Debemos ter en conta que cada restaurante tan só pode acoller nun mesmo día a 20 comensais. Se a reserva sobrepasa o límite de comensais non se poderá realizar a reserva. Ademáis tamén se debe indicar o nome de quen realiza a reserva.
  * 
  * 
- *  c) 
+ *  c) Ver número de comensais do día: Debes de mostrar o número de comensais que hai para o día actua indicando a cidade do restaurante.
  * 
  * 
- *  d)  
+ *  d) Ver primeiro día do mes sen reservas: Indicarase o número de mes do primeiro día dende o día actual no que non hai reservas pero tan só deste mes indicando a cidade do restaurante. Devolve un obxecto da clase Optional xa que pode ser que non haxa ningún día.
  * 
  */
 
@@ -78,6 +78,7 @@ public class App {
                  */
                 case 3 -> {
 
+                    
                     break;
                 } 
 

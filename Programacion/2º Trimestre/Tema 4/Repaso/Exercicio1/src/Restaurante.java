@@ -3,7 +3,8 @@ public class Restaurante {
     //Atributos
     private String cidade;
     private String numTelefono;
-    
+    private Reserva reservaRestaurante;
+
     //Constructor
     public Restaurante(String cidade, String numTelefono) {
         this.setCidade(cidade);
@@ -20,6 +21,10 @@ public class Restaurante {
     public String getNumTelefono() {
         return numTelefono;
     }
+    /**
+     * 
+     * @param numTelefono
+     */
     public void setNumTelefono(String numTelefono) {
         int lonxitude = numTelefono.length();
         //Comprobamos que a lonxitude do numero do teléfono sexa de 9 caracteres
@@ -36,4 +41,5 @@ public class Restaurante {
         }
     }   
 
+    
 }

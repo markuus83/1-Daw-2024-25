@@ -1,0 +1,26 @@
+1. PARTICIÓNS
+
+    a) Tipos de particións:
+
+    b) RAIDs:
+
+    c) Administración de particións en Linux
+
+
+
+2. SCRIPT NUMEROS PRIMOS
+
+    a) Bash
+
+    b) Powershell
+
+    c) Python
+
+
+3. REDES
+
+    a) Teoría
+
+    b) Administracións de IPs
+
+    c) DHCP

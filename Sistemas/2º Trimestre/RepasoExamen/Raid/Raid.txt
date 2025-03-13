@@ -1,0 +1,67 @@
+A. RAID 0:
+
+    - Consiste en repartir a información entre os discos
+
+    - Vantaxes:
+
+        · Rápido
+        · Pódese utilizar toda a capacidade de ambos discos
+        · Rápido de configurar
+        · É o RAID máis rápido
+
+    - Desvantaxes: 
+
+        · Non proporciona protección de datos, se unha unidade se estropea, todos os datos de dita unidade serán perdidos.
+
+
+B. RAID 1:
+
+    - Consiste en duplicar a información dos discos
+
+    - Vantaxes:
+
+        · Moi redundante. Cada unidade é unha copia da outra.
+        · Se unha unidade falla, o sistema continúa de forma normal sen perda de datos.
+
+    - Desvantaxes:
+
+        · Perdemos o 50% da capacidade de almacenamento.
+        · Sempre teñen que ser discos ca mesma capacidade.
+        · Só mellora o rendemento nas lecturas.
+
+
+C. RAID 3/4
+
+    - Aparece o concepto de paridade. Consiste en metadata (información da información) que nos permite recuperar a información dun dos discos.
+
+    - Precisamos un mínimo de 3 discos.
+
+    - Vantaxes:
+
+        · En caso de perda dun disco, só perderíamos un 33% da información total
+
+    - Desvantaxes: 
+
+        · É moito máis lento ca os anteriores RAIDs
+
+
+D. RAID 6
+
+    - Mellora do RAID 5 (casi idéntico ao RAID 3/4).
+
+    - Vantaxes:
+
+        · Permite a perda de ata 2 discos á vez
+
+    - Precisamos un mínimo de 4 discos.
+
+
+
+E. RAID 1 + 0
+
+    - Se temos 4 discos os dous primeiros terían a mesma información e ous dous últimos outra igual entre eles.
+
+
+F. RAID 0 + 1
+
+    - A diferenza do 1 + 0, Os discos iguais serían 1=3 e 2=4

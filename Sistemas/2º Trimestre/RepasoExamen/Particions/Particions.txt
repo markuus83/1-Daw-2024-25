@@ -1,0 +1,34 @@
+1. FORMATEO LÓXICO.
+
+    - Antes de instalar un S.O. nun disco duro temos de particionalo.
+
+    - O primeiro, sería crear unha ou varias particións, que non deixan de ser un conxunto de cilindros que forman unha unidade lóxica independente.
+
+
+2. DISCOS MBR -> Master Boot Record
+
+    - Antes de facer as particións, o discoduro pódese representar como un conxunto  lineal de sectores (conxuntos de 512 Bytes)
+
+        · O primeiro Sector é denominado o MBR.
+        
+        · Ademáis de MBR, tamén é denominado coma Rexistro de Arranque Mestre ou Sector de arranque
+        
+        ·  No seu interior gárdase:
+        
+            a) Os parámetros físicos do disco duro.
+
+            b) Unha estructura de datos chamada táboa de particións.
+
+            c) Un pequeno código executable que se encarga de leer dita táboa de particións.
+
+
+    - En MBR temos as seguintes particións:
+
+        · Particións Primarias -> Poden ser 4 como máximo.
+
+        · Partición Activa -> É a partición primaria elixida para arrincar o equipo.
+
+        · Partición Estendida -> 1 como máximo. Nesta, non se poden gardar arquivos directamente, senón que temos de dividila en Particións Lóxicas.
+
+        · Particións Lóxicas -> Todas as que se queiran.
+

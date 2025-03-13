@@ -80,3 +80,27 @@ while($true){
     }
 }
 
+
+
+def es_primo(num: int) -> bool:
+    if num < 2:
+        return False
+    
+    for i in range(2, int(num**0.5) + 1):
+        if num%i==0:
+            return False
+    return True
+
+numero1 = int(input("Ingrese o primeiro número: "))
+numero2 = int(input("Ingrese o segundo número: "))
+
+if numero1 == numero2:
+    print("Intervalo vacío.")
+    
+elif numero2 < numero1:
+    print("O segundo número non pode ser maior.")
+    
+else:
+    for num in range(numero1, numero2 + 1):
+        if es_primo(num):
+            print(num)

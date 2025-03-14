@@ -1,0 +1,108 @@
+<# SCRIPT #>
+
+<# Implementa unha calculadora (pedir dous números pe realizar as operacións básicas de sumar, restar , multiplicar e dividir) 
+
+    O Script deberá cumprir co seguinte:
+    
+        · Deberá incluiarse todo o código nun único arquivo de TEXTO con extensión '.txt' . Deberá denominarse ChouzaMarcos_Script.txt 
+#>
+
+
+function sumar(){
+
+    <# Error de casteo, recoge las variables como cadenas de texto #>
+
+    $suma = $numero1 + $numero2
+
+    return $suma
+
+}
+
+function restar(){
+
+    $resta = $numero1 - $numero2
+
+    return $resta
+
+}
+
+function multiplicar(){
+
+    <# Error de casteo, recoge las variables como cadenas de texto #>
+
+    $multiplicacion = $numero1 * $numero2
+
+    return $multiplicacion
+
+}
+
+function dividir(){
+
+    if($numero1 -eq 0 -or $numero2 -eq 0){
+
+        Write-Host "Non se pode realizar unha división entre 0:"
+
+    } else{
+
+        $division = $numero1 / $numero2
+
+        return $division
+    }
+}
+
+
+while($true){
+
+    Write-Host "Menú: "
+    Write-Host "1. Sumar"
+    Write-Host "2. Restar"
+    Write-Host "3. Multiplicar"
+    Write-Host "4. Dividir"
+
+    $option = Read-Host "Ingrese a opción desexada: "
+
+    if($option -eq 1){
+
+        Write-Host ""
+        $numero1 = Read-Host "Ingrese o primeiro número: "
+        $numero2 = Read-Host "Ingrese o segundo número: "
+
+        sumar($numero1, $numero2)
+    
+
+    } elseif ($option -eq 2){
+        
+        Write-Host ""
+        $numero1 = Read-Host "Ingrese o primeiro número: "
+        $numero2 = Read-Host "Ingrese o segundo número: "
+
+        restar($numero1, $numero2)
+    
+
+    } elseif ($option -eq 3){
+        
+        Write-Host ""
+        $numero1 = Read-Host "Ingrese o primeiro número: "
+        $numero2 = Read-Host "Ingrese o segundo número: "
+
+        multiplicar($numero1, $numero2)
+
+
+    } elseif ($option -eq 4){
+        
+        Write-Host ""
+        $numero1 = Read-Host "Ingrese o primeiro número: "
+        $numero2 = Read-Host "Ingrese o segundo número: "
+
+        dividir($numero1, $numero2)
+
+
+    } else{
+        
+        Write-Host ""
+        Write-Host "Erro. Opción non contemplada!"
+
+    }
+    Write-Host ""
+    Read-Host "Presione Enter para volver ao menú."
+}

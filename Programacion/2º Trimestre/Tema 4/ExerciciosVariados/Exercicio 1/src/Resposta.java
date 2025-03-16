@@ -15,8 +15,6 @@ public class Resposta {
         this.pregunta = pregunta;
         this.contador = 0;
     }
-    
-
 
     //GETTERS
     public String getContidoResposta() {

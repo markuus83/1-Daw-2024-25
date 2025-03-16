@@ -13,7 +13,7 @@ public class Pregunta {
      * @param enunciado -> Enunciado do obxecto Pregunta
      */
     public Pregunta(String enunciado) {
-        this.setEnunciadoPregunta(enunciado);;
+        this.setEnunciadoPregunta(enunciado);
         this.setRespostas(new ArrayList<Resposta>());
     }
 

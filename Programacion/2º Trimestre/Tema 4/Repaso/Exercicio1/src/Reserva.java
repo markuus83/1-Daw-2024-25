@@ -1,57 +1,34 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 
 public class Reserva {
-
+    
     //Atributos
-    private LocalDateTime fechaReserva;
-    private String cidade;
+    private String nomeTitular;
+    private LocalDate dia;
     private int numComensais;
     
 
-    //Formato fecha
-    private static final DateTimeFormatter formato = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-
-    //Getters&Setters
-    public LocalDateTime getFechaReserva() {
-        return fechaReserva;
+    /**
+     * Constructor da clase Reserva, onde pasamos como parámetros o nome do reservante, o día e o número de comensais.
+     * 
+     * @param nomeTitular -> 
+     * @param dia -> 
+     * @param numComensais -> 
+     */
+    public Reserva(String nomeTitular, LocalDate dia, int numComensais) {
+        this.nomeTitular = nomeTitular;
+        this.dia = dia;
+        this.numComensais = numComensais;
     }
-    public boolean setFechaReserva(LocalDateTime fechaReserva) {
 
-        LocalDateTime horaActual = LocalDateTime.now();
-
-        if (!fechaReserva.isBefore(horaActual)) {
-            this.fechaReserva = fechaReserva;
-        }
-
-        this.fechaReserva = horaActual.set
-        
+    //Getters
+    public String getNomeTitular() {
+        return nomeTitular;
     }
-    public String getCidade() {
-        return cidade;
-    }
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
+    public LocalDate getDia() {
+        return dia;
     }
     public int getNumComensais() {
         return numComensais;
     }
-
-    /**
-     * 
-     * @param numComensais
-     */
-    public void setNumComensais(int numComensais) {
-
-        if (numComensais >= 1) {
-            this.numComensais=numComensais;
-        } 
-        //Unha reserva poderá ter como mínimo un comensal
-        this.numComensais = 1;
-    }
-
-
-    
 }

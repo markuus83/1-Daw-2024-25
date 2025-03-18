@@ -69,6 +69,7 @@ public class App {
                     while (option2 == 1) { 
                         System.out.print("Ingrese unha resposta adicional: ");
                         String resposta = scanner.nextLine();
+                        
                         pregunta.engadirResposta(new Resposta(resposta,pregunta));
 
                         System.out.println("\n\tDesexa engadir máis respostas?: ");

@@ -86,7 +86,7 @@ public class Main {
                     //Limpamos o búfer
                     scanner.nextLine();
 
-                    if (preguntas.size() == 0) {
+                    if (preguntas.isEmpty()) {
                         //Se non hai preguntas posibles, non as podemos responder.
                         System.out.println("\nNon hai preguntas dispoñibles. Engada primeiro unha pregunta");
                     }
@@ -106,14 +106,14 @@ public class Main {
                         for (int j = 0; j < respostas.size(); j++) {
 
                             //Indicamos o índice da resposta, accedemos a cada resposta e amosamos o seu contido.
-                            System.out.println("\tResposta: " + (j + 1) + ": " + respostas.get(j).getContido());
+                            System.out.println("\tResposta " + (j + 1) + ": " + respostas.get(j).getContido());
                         }
 
                         //Pedímoslle ao usuario que seleccione unha resposta
                         System.out.println("Seleccione unha resposta: ");
                         int seleccion = scanner.nextInt();
 
-                        if (seleccion < 0 || seleccion>respostas.size()) {
+                        if (seleccion < 1 || seleccion > respostas.size()) {
                             System.out.println("\nErro. Fora de parámetros!");
 
                             //Volvemos a preguntar a mesma pregunta
@@ -128,7 +128,7 @@ public class Main {
                         } else{
 
                             //Incrementamos o contador de dita resposta
-                            respostas.get(seleccion).incrementarSeleccion();
+                            respostas.get(seleccion - 1).incrementarSeleccion();
                         }
                     }
 
@@ -143,13 +143,30 @@ public class Main {
                  *  Débense mostrar tódalas preguntas cas súas respectivas respostas e para cada resposta a porcentaxe de selección de dita resposta.
                  */
                 case 3 -> {
-
-                    //Limpamos o búfer
-                    scanner.nextLine();
-
+                    if (preguntas.isEmpty()) {
+                        System.out.println("Non hai preguntas dispoñibles.");
+                        break;
+                    }
+                
+                    for (int i = 0; i < preguntas.size(); i++) {
+                        Pregunta pregunta = preguntas.get(i);
+                        System.out.println("Pregunta " + (i + 1) + ": " + pregunta.getEnunciado());
+                
+                        ArrayList<Resposta> respostas = pregunta.getRespostas();
+                        for (int j = 0; j < respostas.size(); j++) {
+                            Resposta resposta = respostas.get(j);
+                            System.out.println("\t" + (j + 1) + ". " + resposta.getContido() + " -> " + resposta.calcularPorcentaxeRespostas() + "%");
+                        }
+                    }
+                
                     break;
                 }
             
+                case 4 -> {
+
+                    System.out.println("Saíndo...");
+                }
+
                 default -> {
                     System.out.println("Erro");
                     break;

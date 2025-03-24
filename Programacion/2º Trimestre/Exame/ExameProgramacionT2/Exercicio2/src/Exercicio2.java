@@ -1,5 +1,3 @@
-import java.util.Optional;
-
 public class Exercicio2 {
     
     public static void main(String[] args) throws Exception {
@@ -82,60 +80,15 @@ public class Exercicio2 {
 
     }
 
-    /**
-     * Método encargado de devolver o producto escalar de dous vectores
-     * 
-     * @param vector1 -> Vector 1
-     * @param vector2 -> Vector 2
-     * @return -> Optional vacío se son diferentes.
-     */
-    public static Optional<Integer> productoEscalar(int[] vector1, int[] vector2){
-
-        Optional<Integer> optionalVacio = Optional.empty();
-
-        
-        int contador1 = 0;
-        for (int i = 0; i < vector1.length; i++) {
-            contador1++;
-        }
-
-        int contador2 = 0;
-        for (int i = 0; i < vector2.length; i++) {
-            contador2++;
-        }
-
-        if (contador1 != contador2) {
-            return optionalVacio;
-
-        } else{
-
-            int suma = 0;
-            
-            for (int i : vector1) {
-                
-                suma += vector1[i];
-                
-            }
-
-            for (int i : vector2) {
-                suma += vector2[i];
-            }
-
-            return Optional.of(contador);
     
-        }
+    public static Optional<Integer> productoEscalar(int[] vector1, int[] vector2){
     }
     
 
     public static boolean eMatrizIdentidade(int[][] matriz){
-
-        return true;
-        
     }
 
 
     public static Optional<Double> distanciaEntreDousPuntos(double[] vector1, double[] vector2){
-        Optional<Double> optionalVacio = Optional.empty();
-        return optionalVacio;
     }
 }

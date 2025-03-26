@@ -94,6 +94,7 @@ public abstract class Contrato {
 
     @Override
     public String toString() {
-        return "<"+getNumContrato() +">: <"+ getApelidos()+">, <"+getNome()+">. Salario mensual: <"+getSalarioMensualNeto()+">";
+        return "<" + getNumContrato() + ">: <" + getApelidos() + 
+        ">, <" + getNome() + ">. Salario mensual: <" + getSalarioMensualNeto() + ">";
     }
 }

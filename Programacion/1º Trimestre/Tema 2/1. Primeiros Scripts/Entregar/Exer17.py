@@ -14,6 +14,5 @@ euros = float(input("Introduce o en euros a canto custa un litro de combustible:
 
 custo_euros_litro = (l * euros)/100
 custoViaxe = custo_euros_litro * km
-
 #Amosamos por pantalla
 print("O custo total da viaxe é de", custoViaxe, "€")

@@ -90,7 +90,7 @@ public class Exer1 {
 
             contador++;
         }
-
+        String hola = "";
         System.out.println("Número de iteraciones necesarias: " + contador);
         
         scanner.close();

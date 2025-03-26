@@ -1,5 +1,5 @@
 USE a23marcoscc_BD_EMPRESA_XG;
-+
+
 -- 1. Media de unidades vendidas por vendedor.
 
 	SELECT num_empregado, AVG(cantidade) AS media_Ventas

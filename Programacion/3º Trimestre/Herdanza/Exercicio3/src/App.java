@@ -1,9 +1,6 @@
-import java.util.ArrayList;
-
-import Componhentes.Componhente;
-import Componhentes.Procesador;
 import Enum.Conector;
 import Enum.Zocalo;
+import java.util.ArrayList;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -11,7 +8,7 @@ public class App {
         // Estruturas de datos
         ArrayList<Produto> produtos = new ArrayList<Produto>();
         ArrayList<Componhente> componhentes = new ArrayList<Componhente>();
-        ArrayList<Perifericos.Periferico> perifericos = new ArrayList<Periferico>();
+        ArrayList<Periferico> perifericos = new ArrayList<Periferico>();
         ArrayList<Procesador> procesadores = new ArrayList<Procesador>();
         ArrayList<PlacaBase> placasbase = new ArrayList<PlacaBase>();
         ArrayList<MemoriaRam> memorias = new ArrayList<MemoriaRam>();
@@ -39,7 +36,7 @@ public class App {
         placasbase.add(asus);
 
         //Memorias RAM
-        MemoriaRam acer = new MemoriaRam("ACER", "Predator Vesta II", 125.99, 6, 16);
+        MemoriaRam acer = new MemoriaRam("ACER", "Predator Vesta II", 125.99, 6 , 16);
         MemoriaRam corsair = new MemoriaRam("Corsair", "Corsair Vengeance", 139.98, 6.4, 16);
         produtos.add(acer);
         produtos.add(corsair);
@@ -92,47 +89,3 @@ public class App {
     }
 
 }
-
-
-
-/**
- * 
-    Procesador AMD 7600X: 219.99€ con 6 e socket AM5
-    Procesador Intel i5-12400F: 117.99€ con 6 e socket LGA1700
-    Placa Base MSI MAG B650 TOMAHAWK: 189.99€ con socket AM5
-    Placa Base ASUS PRIME B760-PLUS: 125.99€ con socket LGA1700
-    Memoria RAM ACER Predator Vesta II: 125.99€ con 16.0 GB e valocidade 6000.0 MHz
-    Memoria RAM Corsair Corsair Vengeance: 139.98€ con 16.0 GB e valocidade 6400.0 MHz
-    Monitor Alurin CoreVision: 84.99€ con 23.8 pulgadas e conectores: HDMI VGA
-    Monitor AOC C27G4ZXE: 169.99€ con 27.0 pulgadas e conectores: DisplayPort
-    Teclado PcCom Essential Combo Low Profile: 13.99€ con conectores: USB
-    Teclado Tempest Oblivion: 25.39€ con conectores: PS2
-    ----------
-    Procesador AMD 7600X: 219.99€ con 6 e socket AM5
-    Procesador Intel i5-12400F: 117.99€ con 6 e socket LGA1700
-    Placa Base MSI MAG B650 TOMAHAWK: 189.99€ con socket AM5
-    Placa Base ASUS PRIME B760-PLUS: 125.99€ con socket LGA1700
-    Memoria RAM ACER Predator Vesta II: 125.99€ con 16.0 GB e valocidade 6000.0 MHz
-    Memoria RAM Corsair Corsair Vengeance: 139.98€ con 16.0 GB e valocidade 6400.0 MHz
-    ----------
-    Monitor Alurin CoreVision: 84.99€ con 23.8 pulgadas e conectores: HDMI VGA
-    Monitor AOC C27G4ZXE: 169.99€ con 27.0 pulgadas e conectores: DisplayPort
-    Teclado PcCom Essential Combo Low Profile: 13.99€ con conectores: USB
-    Teclado Tempest Oblivion: 25.39€ con conectores: PS2
-    ----------
-    Procesador AMD 7600X: 219.99€ con 6 e socket AM5
-    Procesador Intel i5-12400F: 117.99€ con 6 e socket LGA1700
-    ----------
-    Placa Base MSI MAG B650 TOMAHAWK: 189.99€ con socket AM5
-    Placa Base ASUS PRIME B760-PLUS: 125.99€ con socket LGA1700
-    ----------
-    Memoria RAM ACER Predator Vesta II: 125.99€ con 16.0 GB e valocidade 6000.0 MHz
-    Memoria RAM Corsair Corsair Vengeance: 139.98€ con 16.0 GB e valocidade 6400.0 MHz
-    ----------
-    Monitor Alurin CoreVision: 84.99€ con 23.8 pulgadas e conectores: HDMI VGA
-    Monitor AOC C27G4ZXE: 169.99€ con 27.0 pulgadas e conectores: DisplayPort
-    ----------
-    Teclado PcCom Essential Combo Low Profile: 13.99€ con conectores: USB
-    Teclado Tempest Oblivion: 25.39€ con conectores: PS2
-    ----------
- */

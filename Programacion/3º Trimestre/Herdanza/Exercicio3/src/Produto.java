@@ -13,6 +13,7 @@ public abstract class Produto {
      * @param modelo -> Modelo do produto
      * @param prezo -> Prezo do produto
      */
+    @SuppressWarnings("OverridableMethodCallInConstructor")
     public Produto(String marca, String modelo, double prezo) {
         this.setMarca(marca);
         this.setModelo(modelo);
@@ -50,21 +51,12 @@ public abstract class Produto {
 
         Produto produto = (Produto) obj;
 
-        if (this.marca.equals(produto.getMarca()) && this.modelo.equals(produto.getModelo())) {
-            return true;
-        } else{
-            return false;
-        }
-
+        return this.marca.equals(produto.getMarca()) && this.modelo.equals(produto.getModelo());
     }
 
 
     @Override
     public String toString() {
-        return "Produto [marca=" + marca + ", modelo=" + modelo + ", prezo=" + prezo + "]";
-    }
-
-   
-    
-    
+        return "Produto [marca=" + this.getMarca() + ", modelo=" + this.getModelo() + ", prezo=" + this.getPrezo() + "]";
+    }   
 }

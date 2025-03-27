@@ -11,6 +11,7 @@ public class ContratoTemporal extends Contrato {
 
     public static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
+
     /**
      * Constructor de ContratoTemporal.
      * Recibe la fecha como String en formato "dd/MM/yyyy" y la convierte a LocalDate.
@@ -79,10 +80,11 @@ public class ContratoTemporal extends Contrato {
 
     @Override
     public String toString(){
-        return "Contrato Temporal <" + this.getNumContrato() + 
-        ">: <" + this.getApelidos() + ">, <" + this.getNome() + 
+        return "Contrato Temporal " + this.getNumContrato() + 
+        ": <" + this.getApelidos() + ">, <" + this.getNome() + 
         ">. Salario mensual: <" + this.getSalarioMensualNeto() + 
         ">. Contratado dende " + this.getDataInicioFormato() + 
         " ata " + this.getFinContrato() + ">";
     }
+
 }

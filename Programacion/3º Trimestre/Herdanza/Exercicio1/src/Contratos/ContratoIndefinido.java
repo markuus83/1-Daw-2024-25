@@ -40,9 +40,9 @@ public class ContratoIndefinido extends Contrato {
 
     @Override
     public String toString(){
-        return "Contrato Indefinido <" + this.getNumContrato() + 
-        ">: <" + this.getApelidos() + ">, <" + this.getNome() + 
+        return "Contrato Indefinido " + this.getNumContrato() + 
+        ": <" + this.getApelidos() + ">, <" + this.getNome() + 
         ">. Salario mensual: <" + this.getSalarioMensualNeto() + 
-        ">. Pagas anuais: <"+ this.getTipopagaExtra() + ">";
+        ">. Pagas anuais: <"+ TipoPagasExtra.valor(getNumContrato());
     }
 }

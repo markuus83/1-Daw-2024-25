@@ -54,9 +54,8 @@ public abstract class Produto {
         return this.marca.equals(produto.getMarca()) && this.modelo.equals(produto.getModelo());
     }
 
-
-    @Override
+    
     public String toString() {
-        return "Produto [marca=" + this.getMarca() + ", modelo=" + this.getModelo() + ", prezo=" + this.getPrezo() + "]";
+        return this.getMarca()+" "+this.getModelo()+": "+this.getPrezo();
     }   
 }

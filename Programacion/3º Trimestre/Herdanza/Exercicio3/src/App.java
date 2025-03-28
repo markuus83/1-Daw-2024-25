@@ -80,8 +80,9 @@ public class App {
         App.imprimirLista(monitores);
         App.imprimirLista(teclados);
     }
-
-    private static void imprimirLista(ArrayList lista) {
+    
+    @SuppressWarnings("rawtypes")
+    private static void imprimirLista( ArrayList lista) {
         for(Object obj: lista){
             System.out.println(obj);
         }

@@ -16,8 +16,12 @@ public abstract class Periferico extends Produto{
     }
     
     protected String getConectoresString(){
+
+        String msx = "";
+
         for (Conector conector : conectores) {
-            System.out.println(conector.);
+            msx += conector.name()+" ";
         }
+        return msx;
     }
 }

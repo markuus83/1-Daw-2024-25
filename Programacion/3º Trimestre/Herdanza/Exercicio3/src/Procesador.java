@@ -41,6 +41,6 @@ public class Procesador extends Componhente{
 
     @Override
     public String toString(){
-        return this.getMarca()+" "+ this.getModelo()+": "+this.getPrezo()+"€ con "+this.getNumeroColores()+" e socket "+this.getZocalo();
+        return "Procesador "+super.toString()+" con "+this.getNumeroColores()+" e socket "+this.getZocalo();
     }
 }

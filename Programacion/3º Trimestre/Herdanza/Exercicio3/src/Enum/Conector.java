@@ -6,5 +6,4 @@ public enum Conector {
     DisplayPort,
     USB,
     PS2;
-    
 }

@@ -1,42 +1,25 @@
-public class MemoriaRam extends Componhente{
-    
-    //Atributos
+public class MemoriaRam extends Componhente {
     private long memoriaBytes;
     private long velocidadeMemoriaHz;
 
-    /**
-     * 
-     * @param memoriaBytes
-     * @param velocidadeMemoriaHz
-     * @param marca
-     * @param modelo
-     * @param prezo
-     */
-    public MemoriaRam(String marca, String modelo, double prezo, long memoriaBytes, long velocidadeMemoriaHz) {
+    public MemoriaRam(String marca, String modelo, double prezo, double velocidadeMemoriaGz, double memoriaGB){
         super(marca, modelo, prezo);
-
-        this.memoriaBytes = memoriaBytes;
-        this.velocidadeMemoriaHz = velocidadeMemoriaHz;
+        this.memoriaBytes = Componhente.gigaBytesToBytes(memoriaGB);
+        this.velocidadeMemoriaHz = Componhente.gigaHzToHz(velocidadeMemoriaGz);
     }
 
-    //Getters&Setters
-    public long getMemoriaBytes() {
-        return memoriaBytes;
+    public double getMemoriaGB(){
+        return Componhente.bytesToGigaBytes(memoriaBytes);
     }
-    public void setMemoriaBytes(long memoriaBytes) {
-        this.memoriaBytes = memoriaBytes;
-    }
-    public long getVelocidadeMemoriaHz() {
-        return velocidadeMemoriaHz;
-    }
-    public void setVelocidadeMemoriaHz(long velocidadeMemoriaHz) {
-        this.velocidadeMemoriaHz = velocidadeMemoriaHz;
+
+    public double getMemoriaMHz(){
+        return Componhente.hzToMhz(velocidadeMemoriaHz);
     }
 
     @Override
     public String toString() {
-        return "Memoria Ram "+this.getMarca()+" "+this.getModelo()+": "+this.getPrezo()+"€ con ";
+        return "Memoria RAM " + super.toString() + " con " + this.getMemoriaGB() + " GB e velocidade " + this.getMemoriaMHz()+" MHz";
     }
 
-    
 }
+

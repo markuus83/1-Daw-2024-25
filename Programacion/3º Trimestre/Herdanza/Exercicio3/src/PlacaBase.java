@@ -29,6 +29,6 @@ public class PlacaBase extends Componhente {
     
     @Override
     public String toString(){
-        return "Placa Base "+this.getMarca()+" "+this.getModelo()+": "+this.getPrezo()+"€ con socket "+this.getZocalo();
+        return "Placa Base "+super.toString()+" con socket "+this.getZocalo();
     }
 }

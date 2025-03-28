@@ -9,8 +9,8 @@ public abstract class Componhente extends Produto {
      * @param bytes -> bytes a convertir
      * @return -> double con el valor en gigabytes
      */
-    public static double bytesToGigabytes(long bytes){
-        return (double) bytes / 1073741824;
+    public static double bytesToGigaBytes(long bytes){
+        return (double) bytes / 1000000000;
     }
 
     /**
@@ -20,7 +20,7 @@ public abstract class Componhente extends Produto {
      * @return -> long con el valor en bytes
      */
     public static long gigaBytesToBytes(double gigaBytes){
-        return (long) (gigaBytes * 1073741824);
+        return (long) (gigaBytes * 1000000000);
     }
 
     /**

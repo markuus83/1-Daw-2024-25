@@ -1,4 +1,5 @@
 public abstract class Piloto extends Deportista {
+    
     private String nomeEquipo;
 
     /**

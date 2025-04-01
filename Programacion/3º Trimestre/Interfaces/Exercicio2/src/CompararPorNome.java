@@ -1,6 +1,6 @@
 import java.util.Comparator;
 
-public class CompararPoNome implements Comparator<Cliente>{
+public class CompararPorNome implements Comparator<Cliente>{
     
     @Override
     public int compare(Cliente ob1, Cliente ob2){

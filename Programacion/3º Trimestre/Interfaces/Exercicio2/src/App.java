@@ -4,7 +4,7 @@ import java.util.Collections;
 public class App {
     public static void main(String[] args) throws Exception {
 
-        ArrayList<Cliente> clientes = new ArrayList<Cliente>();
+        ArrayList<Cliente> clientes = new ArrayList<>();
 
         clientes.add(new Cliente("12345678A", "Ana", 25, 1500.50));
         clientes.add(new Cliente("87654321B", "Xoán", 30, 1800.75));
@@ -14,14 +14,18 @@ public class App {
         clientes.add(new Cliente("55667788F", "Carlos", 40, 2200.10));
         clientes.add(new Cliente("66778899G", "Sabela", 27, 1700.80));
 
-        CompararPoNome comparador = new CompararPoNome();
-        Collections.sort(clientes, comparador);
-        
-        System.out.println();
-
-        for (Cliente cliente : clientes) {
-            System.out.println(cliente.toString());
+        Collections.sort(clientes);
+        for(Cliente c: clientes){
+            System.out.println(c);
         }
+
+        System.out.println("--------------");
+
+        Collections.sort(clientes, new CompararPorNome());
+        for(Cliente c: clientes){
+            System.out.println(c);
+        }
+
     }
 
     

@@ -2,7 +2,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 
-public abstract class Deportista  implements Comparable<Deportista>{
+public abstract class Deportista implements Comparable<Deportista>{
 
     //Atributos
     private String nomeCompleto;
@@ -11,6 +11,7 @@ public abstract class Deportista  implements Comparable<Deportista>{
 
     /**
      * Constructor de deportista
+     * 
      * @param nomeCompleto do deportista
      * @param nomeDeportivo do deportista
      * @param dataNacemento no formato dd/MM/yyyy
@@ -21,6 +22,7 @@ public abstract class Deportista  implements Comparable<Deportista>{
         this.setDataNacemento(dataNacemento);
     }
 
+    //Getters&Setters
     public String getNomeCompleto() {
         return nomeCompleto;
     }
@@ -41,11 +43,6 @@ public abstract class Deportista  implements Comparable<Deportista>{
         return dataNacemento;
     }
 
-    @Override
-    public int compareTo(Deportista d) {
-        return this.getDataNacemento().compareTo(d.getDataNacemento());
-    }
-
     public void setDataNacemento(String dataNacemento) {
         DateTimeFormatter formatoPersonalizado = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         this.dataNacemento = LocalDate.parse(dataNacemento, formatoPersonalizado);
@@ -60,9 +57,14 @@ public abstract class Deportista  implements Comparable<Deportista>{
         return intervalo.getYears();
     }
 
+    @Override
+    public int compareTo(Deportista d){
+        return this.getDataNacemento().compareTo(d.getDataNacemento());
+    }
 
     @Override
     public String toString(){
-        return this.getNomeDeportivo() + " : " + this.getIdade() + " anos.";
+        return this.nomeDeportivo + " : " + this.getIdade() + " anos.";
     }
+
 }

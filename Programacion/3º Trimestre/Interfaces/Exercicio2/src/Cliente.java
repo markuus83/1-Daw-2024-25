@@ -52,9 +52,10 @@ public class Cliente implements Comparable<Cliente>{
 
     @Override
     public String toString() {
-        return this.getDni()+" - "+this.getNome()+". Idade"+this.getIdade()+". Soldo: "+this.getSoldo();
+        return this.getDni()+" - "+this.getNome()+". Idade "+this.getIdade()+". Soldo: "+this.getSoldo();
     }
     
+    @Override
     public boolean equals(Object obj){
         Cliente cliente = (Cliente) obj;
 

@@ -1,5 +1,5 @@
 public class Tenista extends Deportista{
-    private int ranking;
+    private Integer ranking;
 
     /**
      * Construtor de tenista
@@ -8,10 +8,8 @@ public class Tenista extends Deportista{
      * @param dataNacemento do tenista no formato dd/MM/yyyy
      * @param ranking mundial do tenista
      */
-    public Tenista(String nomeCompleto, String nomeDeportivo, String dataNacemento, int ranking) {
-
+    public Tenista(String nomeCompleto, String nomeDeportivo, String dataNacemento, Integer ranking) {
         super(nomeCompleto, nomeDeportivo, dataNacemento);
-        
         this.setRanking(ranking);
     }
 
@@ -20,11 +18,11 @@ public class Tenista extends Deportista{
         return super.toString() + " Nº " + this.ranking + " do mundo.";
     }
 
-    public int getRanking() {
+    public Integer getRanking() {
         return ranking;
     }
 
-    public void setRanking(int ranking) {
+    public void setRanking(Integer ranking) {
         this.ranking = ranking;
     }
  

@@ -1,16 +1,18 @@
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class App {
+
     public static void main(String[] args) throws Exception {
 
         ArrayList<Deportista> deportistas = new ArrayList<>();
         ArrayList<Tenista> tenistas = new ArrayList<>();
 
-        ArrayList<Piloto> pilotos = new ArrayList<Piloto>();
-        ArrayList<PilotoF1> pilotosF1 = new ArrayList<PilotoF1>();
-        ArrayList<PilotoMotoGP> pilotosMotoGP = new ArrayList<PilotoMotoGP>();
-
+        ArrayList<Piloto> pilotos = new ArrayList<>();
+        ArrayList<PilotoF1> pilotosF1 = new ArrayList<>();
+        ArrayList<PilotoMotoGP> pilotosMotoGP = new ArrayList<>();
 
         Tenista alcaraz = new Tenista("Carlos Jonás Alcaraz", "Carlos Alcaraz", "23/05/2003", 3);
         Tenista djokovic = new Tenista("Novak Djokovic", "Djokovic", "29/07/1987", 2);
@@ -47,17 +49,23 @@ public class App {
          */
         Collections.sort(deportistas);
         System.out.println("\nDeportistas: ");
-        for(Deportista d: deportistas ){
-            System.out.println("\t"+d);
+        for (Deportista d : deportistas) {
+            System.out.println("\t" + d);
         }
 
         /**
          * Establecemos o criterio de ordenación dos tenistas
          */
-        Collections.sort(tenistas, new CompararTenistaporRanking());
+        Collections.sort(tenistas, new Comparator<Tenista>() {
+            @Override
+            public int compare(Tenista t1, Tenista t2) {
+                return t1.getRanking().compareTo(t2.getRanking());
+            }
+        });
+
         System.out.println("\nTenistas: ");
-        for(Tenista t: tenistas ){
-            System.out.println("\t"+t);
+        for (Tenista t : tenistas) {
+            System.out.println("\t" + t);
         }
 
         /**
@@ -66,17 +74,17 @@ public class App {
         Collections.sort(pilotos, new CompararPilotosPorPuntos());
 
         System.out.println("\nPilotos: ");
-        for(Piloto p: pilotos ){
-            System.out.println("\t"+p);
+        for (Piloto p : pilotos) {
+            System.out.println("\t" + p);
         }
-        
+
         /**
          * Establecemos o criterio de ordenación dos pilotos de Formula 1
          */
         Collections.sort(pilotosF1, new CompararPilotosPorPuntos());
         System.out.println("\nPilotos de Formula 1");
-        for(PilotoF1 pF1: pilotosF1 ){
-            System.out.println("\t"+pF1);
+        for (PilotoF1 pF1 : pilotosF1) {
+            System.out.println("\t" + pF1);
         }
 
         /**
@@ -85,8 +93,8 @@ public class App {
         Collections.sort(pilotosMotoGP, new CompararPilotosPorPuntos());
         Collections.reverse(pilotosMotoGP);
         System.out.println("\nPilotos de MotoGP");
-        for(PilotoMotoGP pMGP: pilotosMotoGP ){
-            System.out.println("\t"+pMGP);
+        for (PilotoMotoGP pMGP : pilotosMotoGP) {
+            System.out.println("\t" + pMGP);
         }
 
     }

@@ -3,14 +3,14 @@ USE a23marcoscc_BD_EMPRESA;
 -- Proposta 1 -> Desexamos coñecer o código ASCII da vogal E. Na consulta deberás devolver nunha columna a vogal en maiúscula,
 --e nunha segunda o código ASCII que lle corresponde.
 
---Solución:
---SELECT 'E' AS VOGAL, ASCII('E') AS CODIGO_ASCII
+	SELECT 'E' AS VOGAL, ASCII('E') AS CODIGO_ASCII
 
 
 -- Proposta 2 -> Consulta que devolve o carácter que lle corresponde aos seguintes códigos ASCII: 70, 80, 90
 
-
-
+	SELECT '70' AS vogal1, NCHAR('70') AS codAscii
+	SELECT '80' AS vogal1, NCHAR('80') AS codAscii
+	SELECT '90' AS vogal1, NCHAR('90') AS codAscii
 
 
 -- Proposta 3 -> Queremos obter unha listaxe que en cada liña teña o seguinte texto:
@@ -18,15 +18,22 @@ USE a23marcoscc_BD_EMPRESA;
 --Sendo X o nome e os apelidos do empregado, e Y a cota de vendas. É importante fixarse no segundo apelido.
 --A listaxe terá por título Empregados e cotas.
 
+	USE a23marcoscc_BD_EMPRESA
 
+	SELECT CONCAT(	'O empregado con nome e apelidos: ', nome+' '+ape1+ ' '+ISNULL(ape2,''),
+					' ten que acadar unha cota de vendas anual de ',cota_de_vendas ) as 'Empregados e cotas'
+	FROM EMPREGADO 
 
 
 
 -- Proposta 4 -> Consulta que devolva as datas nas que se contrataron empregados. 
 --O formato das diferentes datas será dd-mm-aaaa e o nome da columna Datas de contratación.
 
+	select * 
+	from empregado
 
-
+	SELECT CONVERT(date,data_contrato,103) as dataColumna
+	FROM EMPREGADO
 
 
 -- Proposta 5 -> Queremos obter un nome abreviado das sucursais.
@@ -34,7 +41,7 @@ USE a23marcoscc_BD_EMPRESA;
 --os dous últimos da rexión e separado por un guión baixo, o número de caracteres do nome da cidade.
 
 
-
+	
 
 
 -- Proposta 6 -> Queremos obter un nome abreviado dos produtos.
@@ -43,14 +50,14 @@ USE a23marcoscc_BD_EMPRESA;
 --e nunha segunda en maiúsculas
 
 
-
+	
 
 
 -- Proposta 7 -> Listaxe cos nomes dos empregados co formato ape1 ape2, nome. 
 --Se algún empregado non ten segundo apelido, por exemplo Susanne Smith, no resultado aparecerá Smith,
 --Sussane, sen espazos antes da coma.
 
-
+	
 
 
 
@@ -58,7 +65,7 @@ USE a23marcoscc_BD_EMPRESA;
 --e para iso deberemos substituír a palabra VENDAS por VENTAS
 
 
-
+	
 
 
 -- Proposta 9 -> Consulta que devolva a seguinte información de tempo en distintas columnas co nome adecuado cada unha:

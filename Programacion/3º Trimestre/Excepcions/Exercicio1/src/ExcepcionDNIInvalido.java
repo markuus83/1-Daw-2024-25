@@ -1,54 +1,43 @@
 public class ExcepcionDNIInvalido extends Exception{
     
-    /**
-     * Método constructor da clase ExcepcionDNIInvalido
-     * 
-     * @param mensaxe -> Mensaxe de erro
-     */
     public ExcepcionDNIInvalido(String mensaxe){
         super(mensaxe);
     }
-
-    /**
-     * Método para comprobar se o DNI é válido
-     * 
-     * @param dni -> DNI a comprobar
-     * @return true se o DNI é válido, false se non
-     */
+    
     public static boolean comprobarDNI(String dni) {
-
-        //Conjunto de letras utilizadas en la validación del DNI
-        String letras = "TRWAGMYFPDXBNJZSQVHLCKE";
-        
-        //Eliminamos espacios en blanco y convertimos a mayúsculas
+        //Inicializamos as variables precisas
+        String letrasNecesarias = "TRWAGMYFPDXBNJZSQVHLCKE";
         dni = dni.trim().toUpperCase();
-        
-        //Verificamos que la longitud sea exactamente de 9 caracteres
+    
+        //Se o DNI non ten exactamente 9 caracteres devolvemos falso
         if (dni.length() != 9) {
             return false;
         }
+    
+        //Obtenemos os 8 primeros caracteres (números)
+        String numerosDni = dni.substring(0, 8);
         
-        //Extraemos los primeros 8 caracteres (números) y la última letra
-        String numeroStr = dni.substring(0, 8);
-        char letra = dni.charAt(8);
-        
-        //Verificamos que los primeros 8 caracteres sean dígitos sin usar matches
-        for (char c : numeroStr.toCharArray()) {
+        //Comprobamos que os 8 primeros caracteres son números
+        for (char c : numerosDni.toCharArray()) {
             if (!Character.isDigit(c)) {
                 return false;
             }
         }
-        
-        //Verificamos que el último carácter sea una letra
-        if (!Character.isLetter(letra)) {
+    
+        //Extraemos a letra (último carácter)
+        char letraDni = dni.charAt(8);
+        if (!Character.isLetter(letraDni)) {
             return false;
         }
-        
-        //Convertimos el número a entero y calculamos la letra correspondiente
-        int numero = Integer.parseInt(numeroStr);
-        char letraCalculada = letras.charAt(numero % 23);
-        
-        //Comparamos la letra calculada con la proporcionada en el DNI
-        return letra == letraCalculada;
+    
+        //Convertimos os números a enteiros
+        int numero = Integer.parseInt(numerosDni);
+    
+        //Calculamos a letra correspondiente
+        char letraCalculada = letrasNecesarias.charAt(numero % 23);
+    
+        //Comparamos la letra dada con la calculada
+        return letraDni == letraCalculada;
     }
+    
 }

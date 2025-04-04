@@ -1,28 +1,30 @@
-class Factura {
-
+public class Factura {
+    
     //Atributos
-    private static int contador = 0;
     private int numeroFactura;
     private String dni;
     private double cantidade;
 
+    //Contador para aumentar o numero de factura
+    private static int contador = 0;
+
     /**
-     * Método constructor da clase factura
+     * Constructor da clase Factura
      * 
      * @param dni -> DNI do cliente
-     * @param cantidade ->  Cantidade da factura
-     * @throws ExcepcionNumeroNegativo -> Se a cantidade é negativa
-     * @throws ExcepcionDNIInvalido -> Se o DNI non é válido
+     * @param cantidade -> Cantidade a pagar
+     * @throws ExcepcionNumeroNegativo -> Posible excepción personalizada
+     * @throws ExcepcionDNIInvalido -> Posible excepción personalizada
      */
-    public Factura(String dni, double cantidade) throws ExcepcionNumeroNegativo, ExcepcionDNIInvalido {
+    public Factura(String dni, double cantidade) throws ExcepcionNumeroNegativo, ExcepcionDNIInvalido{
 
         setDni(dni);
         setCantidade(cantidade);
 
-        //Incrementamos o contador únicamente se non hai excepcións
+        //Únicamente aumentamos o contador cando non se capture ninguna das excepcións
         this.numeroFactura = ++contador;
     }
-    
+
     public int getNumeroFactura() {
         return numeroFactura;
     }
@@ -30,40 +32,40 @@ class Factura {
     public String getDni() {
         return dni;
     }
+    public double getCantidade() {
+        return cantidade;
+    }
+
+    @Override
+    public String toString(){
+        return this.getNumeroFactura()+": "+this.getDni()+" -> "+this.getCantidade()+"€";
+    }
 
     /**
-     * Método para comprobar se o DNI é válido
+     * Método encargado de avaliar se un dni é válido ou non.
+     * De non selo, lanza unha excepción personalizada
      * 
-     * @param dni -> DNI a comprobar
-     * @return true se o DNI é válido, false se non
+     * @param dni -> Dni a avaliar
+     * @throws ExcepcionDNIInvalido -> Posible excepción personalizada
      */
     public void setDni(String dni) throws ExcepcionDNIInvalido {
         if (!ExcepcionDNIInvalido.comprobarDNI(dni)) {
-            throw new ExcepcionDNIInvalido("Inválido DNI");
+            throw new ExcepcionDNIInvalido("Inválido DNI!");
         } else{
             this.dni = dni;
         }
     }
 
-    public double getCantidade() {
-        return cantidade;
-}
-
     /**
-     * Método para establecer a cantidade da factura
+     * Método encargado de avaliar se unha cantidade é válida ou non
      * 
-     * @param cantidade -> Cantidade da factura
-     * @throws ExcepcionNumeroNegativo -> Se a cantidade é negativa
+     * @param cantidade -> Cantidade a avaliar
+     * @throws ExcepcionNumeroNegativo -> Posible excepción personalizada
      */
     public void setCantidade(double cantidade) throws ExcepcionNumeroNegativo {
-        if (cantidade < 0) {
-            throw new ExcepcionNumeroNegativo("Inválido Prezo");
+        if (cantidade<0) {
+            throw new ExcepcionNumeroNegativo("Inválido Negativo!");
         }
         this.cantidade = cantidade;
-    }
-    
-    @Override
-    public String toString(){
-        return this.getNumeroFactura()+": "+this.getDni()+" -> "+this.getCantidade()+" €";
     }
 }

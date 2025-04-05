@@ -1,0 +1,36 @@
+1. FUNCIÓNS INTEGRADAS:
+
+    · CAST() -> Cambiar o tipado dunha expresión.
+
+
+    · CONVERT() -> Cambiar o tipado dunha expresión.
+
+
+    · ASCII() -> Devolve o código ascii do caracter máis a esquerda da expresión requerida.
+
+
+    · CHAR() -> Recibe como paránmetro un número enteiro entre 0 e 255 e devolve e carácter correspondente a ese número ascii.
+
+
+    · LEFT() ->
+
+    · LEN() ->
+
+    · LOWER() ->
+
+    · LTRIM() ->
+
+    · NCHAR() ->
+
+    · REPLACE() ->
+
+    · RIGHT() ->
+
+    · RTRIM() ->
+
+    · SUBSTRING() ->
+
+    · UNICODE() ->
+
+
+2. FUNCIÓNS DATAS:

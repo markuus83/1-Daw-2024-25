@@ -6,7 +6,7 @@ public class Email {
     //Atributos
     private String email;
 
-    private final Pattern regex = Pattern.compile("([^@]+)@([^@]+\\.[a-zA-Z]{2,})");
+    private static final Pattern regex = Pattern.compile("([^@]+)@([^@]+\\.[a-zA-Z]{2,})");
     
 
     /**

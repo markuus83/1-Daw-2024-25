@@ -14,7 +14,6 @@
 
 	USE a23marcoscc_BD_SociedadeCultural;
 
-
 	SELECT nome as nome_actividade, CONVERT(date,data_ini,105) as data_inicio_da_actividade
 	FROM ACTIVIDADE
 

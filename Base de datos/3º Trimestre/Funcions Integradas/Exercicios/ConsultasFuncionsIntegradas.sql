@@ -1,4 +1,3 @@
-USE a23marcoscc_BD_EMPRESA;
 
 -- Proposta 1 -> Desexamos coñecer o código ASCII da vogal E. Na consulta deberás devolver nunha columna a vogal en maiúscula,
 --e nunha segunda o código ASCII que lle corresponde.

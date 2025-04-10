@@ -2,15 +2,15 @@ package Menus;
 
 import java.util.Scanner;
 
-public abstract class Menu{
+public abstract class Menu {
     
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public Menu(){
         scanner = new Scanner(System.in);
     }
 
-    protected abstract void mostrar();
+    protected abstract void mostrar() throws IllegalAccessException;
 
     /**
      * Pide por teclado unha cadea de texto

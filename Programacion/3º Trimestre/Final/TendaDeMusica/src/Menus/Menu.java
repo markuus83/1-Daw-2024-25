@@ -2,6 +2,8 @@ package Menus;
 
 import java.util.Scanner;
 
+import Excepcions.UsuarioExistente;
+
 public abstract class Menu {
     
     private final Scanner scanner;
@@ -10,7 +12,7 @@ public abstract class Menu {
         scanner = new Scanner(System.in);
     }
 
-    protected abstract void mostrar() throws IllegalAccessException;
+    protected abstract void mostrar() throws IllegalAccessException, UsuarioExistente;
 
     /**
      * Pide por teclado unha cadea de texto

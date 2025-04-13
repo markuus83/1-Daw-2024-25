@@ -1,4 +1,4 @@
-package Modelo.Produtos;
+package Modelo.Produtos.Instrumentos;
 
 import Modelo.Excepcions.PrezoNegativo;
 import Modelo.Excepcions.StockNegativo;
@@ -19,21 +19,20 @@ public class Frauta extends InstrumentoMusical{
      * @throws Excepcions.PrezoNegativo -> Posible excepción de prezo negativo
      * @throws Excepcions.StockNegativo -> Posible excepción de stock negativo
      */
-    public Frauta(int idProduto, double prezo, int cantidadeEnStock, String descricion, boolean pe)
-            throws PrezoNegativo, StockNegativo {
-        super(idProduto, prezo, cantidadeEnStock, descricion);
+    public Frauta(String marca, String modelo, double prezo, int cantidadeEnStock, String descricion, boolean pe) throws PrezoNegativo, StockNegativo {
+        super(marca, modelo, prezo, cantidadeEnStock, descricion);
         this.pe = pe;
     }
 
-    // Metodos
+    //Getters&Setters
+    public boolean getPe(){
+        return pe;
+    }
+
+    //Metodos
     @Override
     public String toString(){
         return "Frauta: "+super.toString();
-    }
-
-    // Getters & Setters
-    public boolean getPe(){
-        return pe;
     }
 
 }

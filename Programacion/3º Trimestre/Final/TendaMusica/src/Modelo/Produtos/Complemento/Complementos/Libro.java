@@ -1,8 +1,9 @@
-package Modelo.Produtos.Complementos;
+package Modelo.Produtos.Complemento.Complementos;
 
 import Modelo.Excepcions.ISBNIncorrecto;
 import Modelo.Excepcions.PrezoNegativo;
 import Modelo.Excepcions.StockNegativo;
+import Modelo.Produtos.Complemento.Complemento;
 
 public class Libro extends Complemento{
     

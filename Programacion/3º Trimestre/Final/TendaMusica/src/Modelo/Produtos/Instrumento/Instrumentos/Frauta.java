@@ -1,7 +1,8 @@
-package Modelo.Produtos.Instrumentos;
+package Modelo.Produtos.Instrumento.Instrumentos;
 
 import Modelo.Excepcions.PrezoNegativo;
 import Modelo.Excepcions.StockNegativo;
+import Modelo.Produtos.Instrumento.InstrumentoMusical;
 
 public class Frauta extends InstrumentoMusical{
 

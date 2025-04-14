@@ -1,7 +1,8 @@
-package Modelo.Produtos.Complementos;
+package Modelo.Produtos.Complemento.Complementos;
 
 import Modelo.Excepcions.PrezoNegativo;
 import Modelo.Excepcions.StockNegativo;
+import Modelo.Produtos.Complemento.Complemento;
 import Utiles.Enumerandos.TipoInstrumentoMusical;
 
 public class Estoxo extends Complemento{
@@ -14,7 +15,6 @@ public class Estoxo extends Complemento{
      * @param prezo
      * @param cantidadeEnStock
      * @param descricion
-     * @param miau
      * @param instrumento
      * @param marca
      * @throws PrezoNegativo

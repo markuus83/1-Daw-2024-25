@@ -1,4 +1,4 @@
-package Modelo.Produtos.Instrumentos;
+package Modelo.Produtos.Instrumento;
 
 import Modelo.Excepcions.PrezoNegativo;
 import Modelo.Excepcions.StockNegativo;

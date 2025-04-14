@@ -3,6 +3,7 @@ package Utiles;
 public class ComprobarISBN10 {
     
     public static boolean comprobarISBN10(String isbn) {
+        
         if (isbn == null || isbn.length() != 10) {
             return false;
         }

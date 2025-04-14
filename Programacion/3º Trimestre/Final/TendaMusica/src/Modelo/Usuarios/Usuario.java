@@ -40,7 +40,4 @@ public abstract class Usuario {
     public TipoUsuario getRol() {
         return rol;
     }
-    public void setRol(TipoUsuario rol) {
-        this.rol = rol;
-    }
 }

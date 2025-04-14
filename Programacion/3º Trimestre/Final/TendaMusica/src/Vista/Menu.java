@@ -78,4 +78,10 @@ public abstract class Menu {
             printMessage(elemento.toString());
         }
     }
+
+    static class MenuCliente {
+
+        public MenuCliente() {
+        }
+    }
 }

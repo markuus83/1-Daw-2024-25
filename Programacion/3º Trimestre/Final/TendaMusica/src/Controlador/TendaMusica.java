@@ -66,7 +66,7 @@ public class TendaMusica {
      */
     public void ingresarCliente(String nome, String contrasinal){
 
-        Cliente c = new Cliente(HashPasword.hashPassword(contrasinal), nome, TipoUsuario.CLIENTE);
+        Cliente c = new Cliente(contrasinal, nome, TipoUsuario.CLIENTE);
 
         usuarios.put(nome, c);
         clientes.add(c);
@@ -77,7 +77,7 @@ public class TendaMusica {
      */
     public void ingresarAdministrador(String nome, String contrasinal){
 
-        Administrador a = new Administrador(HashPasword.hashPassword(contrasinal), nome, TipoUsuario.ADMINISTRADOR);
+        Administrador a = new Administrador(contrasinal, nome, TipoUsuario.ADMINISTRADOR);
 
         usuarios.put(nome, a);
         administradores.add(a);

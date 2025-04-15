@@ -52,16 +52,18 @@ public class MenuInicio extends Menu {
                                     TendaMusica.getInstance().nonExisteUsuario(nome);
                                     
                                 } catch (UsuarioNonExiste e) {
+
                                     System.out.println("Erro: "+e.getMessage());
                                 }
 
                                 //Comprobamos que os datos son correctos
                                 if (!TendaMusica.getInstance().comprobarDatos(nome, contrasinal)) {
-                                    System.out.println("Erro. O usuario ou o contrasinal son inválidos");  
+                                    System.out.println("Erro. O usuario ou o contrasinal son inválidos");
+                                    break;
                                 }
 
+                                System.out.println("Inicio existoso!");
                                 new Vista.MenuCliente().run();
-                                menuTipoUser = false;
                                 menuActivo = false;
                                 break;
                             }
@@ -83,11 +85,12 @@ public class MenuInicio extends Menu {
                                 //Comprobamos que os datos son correctos
                                 if (!TendaMusica.getInstance().comprobarDatos(nome, contrasinal)) {
                                     System.out.println("Erro. O usuario ou o contrasinal son inválidos");  
+                                    break;
                                 }
 
+                                System.out.println("Inicio existoso!");
                                 new Vista.MenuAdministrador().run();
                                 menuTipoUser = false;
-                                menuActivo = false;
                                 break;
                             }
 

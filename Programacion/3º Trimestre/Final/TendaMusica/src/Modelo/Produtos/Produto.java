@@ -83,6 +83,28 @@ public abstract class Produto {
         }
     }
 
+    /**
+     * Método encargado de aumentar o stock
+     * 
+     * @param engadirStock
+     */
+    public void aumentarStock(int engadirStock){
+        this.cantidadeEnStock += engadirStock;
+    }
+
+    /**
+     * Método encargado de diminuir o stock
+     * 
+     * @param diminuirStock
+     * @throws StockNegativo
+     */
+    public void diminuirStock(int diminuirStock) throws StockNegativo{
+        if (this.cantidadeEnStock< diminuirStock) {
+            throw new StockNegativo("Eliminarches Stock de mais!");
+        }
+        this.cantidadeEnStock -= diminuirStock;
+    }
+
     @Override
     public String toString(){
         return "Prezo con IVE "+this.getPrezoConIVE()+" €; Prezo sen IVE: "+this.getPrezoSenIVE()+" €; Stock: "+this.getCantidadeEnStock()+" unidades; Descrición: "+this.getDescricion()+".";

@@ -2,6 +2,7 @@ package Vista;
 
 import Controlador.TendaMusica;
 import Modelo.Excepcions.UsuarioExistente;
+import Modelo.Excepcions.UsuarioNonExiste;
 
 public class MenuInicio extends Menu {
 
@@ -9,180 +10,164 @@ public class MenuInicio extends Menu {
     protected void mostrar() {
 
         boolean menuActivo = true;
-
         while (menuActivo) {
 
-            System.out.println("\n-----------------");
-            System.out.println("Benvido a Musi.com!");
-            System.out.println("\t1. Inicio de sesión: ");
+            System.out.println("\nBenivos a nosa tenda Musi.com");
+            System.out.println("\t1. Iniciar sesión: ");
             System.out.println("\t2. Rexistrarse: ");
             System.out.println("\t3. Saír: ");
-    
+
             int option = getInt("> ");
 
             switch (option) {
 
                 /**
-                 * Iniciar sesión
+                 * Iniciar Sesión
                  */
                 case 1 -> {
-
-                    System.out.println("\nIniciar sesión: ");
-                    System.out.println("\t1. Cliente");
-                    System.out.println("\t2. Administrador");
-
-                    int tipoCliente = getInt("> ");
-                    String nome = getString("Nome de usuario: ");
-                    String contrasinal = getString("Contrasinal: ");
                     
-                    switch (tipoCliente) {
+                    String nome = getString("Ingrese o nome de usuario: ");
+                    String contrasinal = getString("Ingrese o contrasinal: ");
 
-                        /**
-                         * Cliente
-                         */
-                        case 1 -> {
+                    boolean menuTipoUser = true;
 
-                            //Comprobar que existe o usuario
-                            try {
+                    while (menuTipoUser) { 
 
-                                if (!(TendaMusica.getInstance().existeNomeUsuario(nome))) {
-                                    System.out.println("Erro. Non existe o usuario!");
-                                    break;
+                        System.out.println("\n Escolla o tipo de usuario: ");
+                        System.out.println("1. Cliente: ");
+                        System.out.println("2. Administrador");
+                        
+                        int optionTipoUser = getInt("> ");
+
+                        switch (optionTipoUser) {
+
+                            /**
+                             * Ingreso Cliente
+                             */
+                            case 1 -> {
+
+                                //Comprobamos que existe o usuario
+                                try {
+                                    
+                                    TendaMusica.getInstance().nonExisteUsuario(nome);
+                                    
+                                } catch (UsuarioNonExiste e) {
+                                    System.out.println("Erro: "+e.getMessage());
                                 }
 
-                            } catch (UsuarioExistente e) {
-                                System.out.println("Erro: " + e.getMessage());
-                            }
+                                //Comprobamos que os datos son correctos
+                                if (!TendaMusica.getInstance().comprobarDatos(nome, contrasinal)) {
+                                    System.out.println("Erro. O usuario ou o contrasinal son inválidos");  
+                                }
 
-                            //Comprobar que o usuario é un Cliente
-                            if (!(TendaMusica.getInstance().usuarioECliente(nome))) {
-                                System.out.println("Erro. O usuario non é un cliente!");
+                                new Vista.MenuCliente().run();
+                                menuTipoUser = false;
+                                menuActivo = false;
                                 break;
                             }
                             
-                            //Comprobamos que os datos coinciden
-                            if (!TendaMusica.getInstance().comprobarDatosInicio(nome, contrasinal)) {
-                                System.out.println("Erro. Datos incorrectos!");
-                                break;
-                            }
-                            
-                            //Cambiar de Menu
-                            menuActivo = false;
-                            new Vista.MenuCliente().run();
-                            break;
-                        }
+                            /**
+                             * Ingreso Administrador
+                             */
+                            case 2 -> {
 
-                        /**
-                         * Administrador
-                         */
-                        case 2 -> {
-
-                            //Comprobar que existe o usuario
-                            try {
-
-                                if (!(TendaMusica.getInstance().existeNomeUsuario(nome))) {
-                                    System.out.println("Erro. Non existe o usuario!");
-                                    break;
+                                //Comprobamos que existe o usuario
+                                try {
+                                    
+                                    TendaMusica.getInstance().nonExisteUsuario(nome);
+                                    
+                                } catch (UsuarioNonExiste e) {
+                                    System.out.println("Erro: "+e.getMessage());
                                 }
 
-                            } catch (UsuarioExistente e) {
-                                System.out.println("Erro: " + e.getMessage());
-                            }
+                                //Comprobamos que os datos son correctos
+                                if (!TendaMusica.getInstance().comprobarDatos(nome, contrasinal)) {
+                                    System.out.println("Erro. O usuario ou o contrasinal son inválidos");  
+                                }
 
-                            //Comprobar que o usuario é un Cliente
-                            if (TendaMusica.getInstance().usuarioECliente(nome)) {
-                                System.out.println("Erro. O usuario non é un cliente!");
+                                new Vista.MenuAdministrador().run();
+                                menuTipoUser = false;
+                                menuActivo = false;
                                 break;
                             }
 
-                            //Comprobamos que os datos coinciden
-                            if (!TendaMusica.getInstance().comprobarDatosInicio(nome, contrasinal)) {
-                                System.out.println("Erro. Datos incorrectos!");
+                            /**
+                             * Erro
+                             */
+                            default -> {
+                                System.out.println("Erro: Opción inválida!");
                                 break;
                             }
-
-                            //Cambiar de Menu
-                            menuActivo = false;
-                            new Vista.MenuAdministrador().run();
-                            break;
-                        }
-                    
-                        default -> {
-                            System.out.println("Erro. Opción inválida!");   
-                            break;
                         }
                     }
-                    break;
                 }
-    
+
                 /**
                  * Rexistrarse
                  */
                 case 2 -> {
+                    
+                    String nome = getString("\nIngrese o seu nome de usuario: ");
+                    String contrasinal = getString("Ingrese o seu contrasinal: ");
 
-                    boolean menuRexistro = true;
+                    boolean menuEscollaTipoUser = true;
 
-                    String nome = getString("Nome de usuario: ");
-                    String contrasinal = getString("Contrasinal: ");
+                    while (menuEscollaTipoUser) {
 
-                    while (menuRexistro) {
-                        
-                        System.out.println("\nQue tipo de usuario quere rexistrar?");
-                        System.out.println("\t1. Cliente");
-                        System.out.println("\t2. Administrador");
-                        int tipoCliente = getInt("> ");
+                        System.out.println("\nEscolla o tipo de usuario: ");
+                        System.out.println("1. Cliente: ");
+                        System.out.println("2. Administrador: ");
 
-                        switch (tipoCliente) {
+                        int tipoUser = getInt(">: ");
+
+                        switch (tipoUser) {
 
                             /**
-                             * Cliente
+                             * Rexistro Cliente
                              */
                             case 1 -> {
-
+                                
                                 try {
+                                    
+                                    if(TendaMusica.getInstance().existeUsuario(nome)){
+                                        TendaMusica.getInstance().ingresarCliente(nome, contrasinal);
 
-                                    if (TendaMusica.getInstance().existeNomeUsuario(nome)) {
-                                        System.out.println("Erro. Nome de usuario xa existe!");
-                                        break;
+                                        System.out.println("\nCliente ingresado con éxito!");
                                     }
 
                                 } catch (UsuarioExistente e) {
-                                    System.out.println("Erro: " + e.getMessage());
+                                    System.out.println("Erro: "+e.getMessage());
                                 }
-                                    
-                                TendaMusica.getInstance().ingresarCliente(nome, contrasinal);
-                                System.out.println("Cliente rexistrado correctamente!");
-                        
-                                menuRexistro = false;
 
+                                menuEscollaTipoUser = false;
                                 break;
                             }
 
                             /**
-                             * Administrador
+                             * Rexistro Administrador
                              */
                             case 2 -> {
 
                                 try {
-
-                                    if (TendaMusica.getInstance().existeNomeUsuario(nome)) {
-                                        System.out.println("Erro. Nome de usuario xa existe!");
-                                        break;
-                                    }
                                     
+                                    if(TendaMusica.getInstance().existeUsuario(nome)){
+                                        TendaMusica.getInstance().ingresarAdministrador(nome, contrasinal);
+
+                                        System.out.println("\nAdministrador ingresado con éxito!");
+                                    }
+
                                 } catch (UsuarioExistente e) {
-                                    System.out.println("Erro: " + e.getMessage());
+                                    System.out.println("Erro: "+e.getMessage());
                                 }
 
-                                TendaMusica.getInstance().ingresarAdministrador(nome, contrasinal);
-                                System.out.println("Administrador rexistrado correctamente!");
-                                    
-                                menuRexistro = false;
-                                
+                                menuEscollaTipoUser = false;
                                 break;
-                            } 
-
-                            default -> {
+                            }
+                            
+                            /**
+                             * Erro
+                             */
+                            default-> {
                                 System.out.println("Erro. Opción inválida!");
                                 break;
                             }
@@ -196,18 +181,19 @@ public class MenuInicio extends Menu {
                  */
                 case 3 -> {
                     System.out.println("Saíndo...");
-                    menuActivo = false;
                     break;
                 }
-
+                
                 /**
-                 * Inválido
+                 * Erro
                  */
-                default -> {
+                default-> {
                     System.out.println("Erro. Opción inválida!");
                     break;
                 }
+                    
             }
+            
         }
     }
 }

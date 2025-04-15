@@ -1,28 +1,22 @@
 package Controlador;
 
-//Estructura de datos
-import java.util.HashMap;
-import java.util.ArrayList;
-
-//Imports usuarios
-import Modelo.Usuarios.Usuario;
+import Modelo.Excepcions.IndiceInvalido;
+import Modelo.Excepcions.UsuarioExistente;
+import Modelo.Produtos.Produto;
 import Modelo.Usuarios.Administrador;
 import Modelo.Usuarios.Cliente;
-
-//Imports Enumerandos
+import Modelo.Usuarios.Usuario;
 import Utiles.Enumerandos.TipoUsuario;
-
-//Imports Métodos Static
 import Utiles.HashPasword;
-
-//Imports Excepcións
-import Modelo.Excepcions.UsuarioExistente;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TendaMusica {
     
     private static HashMap <String, Usuario> usuarios;
     private static ArrayList<Cliente> clientes;
     private static ArrayList<Administrador> administradores;
+    private static ArrayList<Produto> produtos;
 
     /**
      * Constructores
@@ -57,6 +51,7 @@ public class TendaMusica {
         throw new CloneNotSupportedException();
     }
 
+
     /************* A PARTIR DE AQUI SON OS MÉTODOS PROPIOS PARA AMOSAR NO MENU ***************/
 
     /**
@@ -69,9 +64,7 @@ public class TendaMusica {
                 throw new UsuarioExistente("Non existe o Usuario");
             }
         }
-
         return true;
-     
     }
     
     /**
@@ -95,7 +88,7 @@ public class TendaMusica {
     /**
      * Método encargado de devolver se un usuario é un Cliente ou non
      */
-    public boolean comprobacionParaIngresoCliente(String nomeUsuario){
+    public boolean usuarioECliente(String nomeUsuario){
 
         Usuario user = usuarios.get(nomeUsuario);
 
@@ -115,16 +108,16 @@ public class TendaMusica {
 
     }
 
-
-
-
-
-
-
-
-
-
-
-
+    /**
+     * Método encargado de devolver a información dun produto
+     */
+    public String verInformacionProduto(int id) throws IndiceInvalido {
+        if (id >= 0 && id<produtos.size()) {
+            Produto p = produtos.get(id);
+            return p.toString();
+        } else{
+            throw new IndiceInvalido("Índice inválido!");
+        }
+    }
     
 }

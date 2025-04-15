@@ -55,30 +55,55 @@ public class MenuInicio extends Menu {
                             }
 
                             //Comprobar que o usuario é un Cliente
-                            if (!(TendaMusica.getInstance().comprobacionParaIngresoCliente(nome))) {
+                            if (!(TendaMusica.getInstance().usuarioECliente(nome))) {
                                 System.out.println("Erro. O usuario non é un cliente!");
                                 break;
                             }
                             
                             //Comprobamos que os datos coinciden
                             if (!TendaMusica.getInstance().comprobarDatosInicio(nome, contrasinal)) {
-                                System.out.println("Erro. Datos incorrector!");
+                                System.out.println("Erro. Datos incorrectos!");
                                 break;
                             }
                             
                             //Cambiar de Menu
                             menuActivo = false;
-                            
                             new Vista.MenuCliente().run();
-                            
                             break;
-                            
                         }
 
                         /**
                          * Administrador
                          */
                         case 2 -> {
+
+                            //Comprobar que existe o usuario
+                            try {
+
+                                if (!(TendaMusica.getInstance().existeNomeUsuario(nome))) {
+                                    System.out.println("Erro. Non existe o usuario!");
+                                    break;
+                                }
+
+                            } catch (UsuarioExistente e) {
+                                System.out.println("Erro: " + e.getMessage());
+                            }
+
+                            //Comprobar que o usuario é un Cliente
+                            if (TendaMusica.getInstance().usuarioECliente(nome)) {
+                                System.out.println("Erro. O usuario non é un cliente!");
+                                break;
+                            }
+
+                            //Comprobamos que os datos coinciden
+                            if (!TendaMusica.getInstance().comprobarDatosInicio(nome, contrasinal)) {
+                                System.out.println("Erro. Datos incorrectos!");
+                                break;
+                            }
+
+                            //Cambiar de Menu
+                            menuActivo = false;
+                            new Vista.MenuAdministrador().run();
                             break;
                         }
                     

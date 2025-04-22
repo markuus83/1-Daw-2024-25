@@ -1,4 +1,4 @@
-package vista;
+package Vista;
 
 public class MenuCliente extends Menu {
 
@@ -8,8 +8,7 @@ public class MenuCliente extends Menu {
         boolean menuActivo = true;
         
         while (menuActivo) {
-            System.out.println("\n-----------------");
-            System.out.println("Benvido ao menú do Cliente!");
+            System.out.println("\nBenvido ao menú do Cliente!");
             System.out.println("\t1. Ver perfil");
             System.out.println("\t2. Ver produtos");
             System.out.println("\t3. Saír");

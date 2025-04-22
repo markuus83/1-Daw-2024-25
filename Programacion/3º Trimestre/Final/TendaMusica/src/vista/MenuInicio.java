@@ -1,8 +1,8 @@
-package vista;
+package Vista;
 
-import controlador.TendaMusica;
-import modelo.excepcions.UsuarioExistente;
-import modelo.excepcions.UsuarioNonExiste;
+import Controlador.TendaMusica;
+import Modelo.Excepcions.UsuarioExistente;
+import Modelo.Excepcions.UsuarioNonExiste;
 
 public class MenuInicio extends Menu {
 
@@ -26,7 +26,7 @@ public class MenuInicio extends Menu {
                  */
                 case 1 -> {
                     
-                    String nome = getString("Ingrese o nome de usuario: ");
+                    String nome = getString("\nIngrese o nome de usuario: ");
                     String contrasinal = getString("Ingrese o contrasinal: ");
 
                     //Comprobamos que existe o usuario

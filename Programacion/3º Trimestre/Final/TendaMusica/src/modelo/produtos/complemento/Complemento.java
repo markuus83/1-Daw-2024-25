@@ -1,8 +1,8 @@
-package modelo.produtos.complemento;
+package Modelo.Produtos.Complemento;
 
-import modelo.excepcions.PrezoNegativo;
-import modelo.excepcions.StockNegativo;
-import modelo.produtos.Produto;
+import Modelo.Excepcions.PrezoNegativo;
+import Modelo.Excepcions.StockNegativo;
+import Modelo.Produtos.Produto;
 
 public abstract class Complemento extends Produto {
 

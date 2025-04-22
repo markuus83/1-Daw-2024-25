@@ -1,4 +1,4 @@
-package utiles.enumerandos;
+package Utiles.Enumerandos;
 
 public enum TipoUsuario {
     CLIENTE,

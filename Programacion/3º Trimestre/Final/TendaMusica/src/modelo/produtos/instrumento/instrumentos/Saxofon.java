@@ -1,9 +1,9 @@
-package modelo.produtos.instrumento.instrumentos;
+package Modelo.Produtos.Instrumento.Instrumentos;
 
-import modelo.excepcions.PrezoNegativo;
-import modelo.excepcions.StockNegativo;
-import modelo.produtos.instrumento.InstrumentoMusical;
-import utiles.enumerandos.TipoSaxofon;
+import Modelo.Excepcions.PrezoNegativo;
+import Modelo.Excepcions.StockNegativo;
+import Modelo.Produtos.Instrumento.InstrumentoMusical;
+import Utiles.Enumerandos.TipoSaxofon;
 
 public class Saxofon extends InstrumentoMusical{
     

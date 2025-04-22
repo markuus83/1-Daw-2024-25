@@ -1,35 +1,64 @@
-package controlador;
+package Controlador;
 
-import utiles.HashPasword;
-import utiles.enumerandos.TipoUsuario;
-
+//Almacenamento de datos
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import modelo.excepcions.IndiceInvalido;
-import modelo.excepcions.StockNegativo;
-import modelo.excepcions.UsuarioExistente;
-import modelo.excepcions.UsuarioNonExiste;
-import modelo.produtos.Produto;
-import modelo.usuarios.Administrador;
-import modelo.usuarios.Cliente;
-import modelo.usuarios.Usuario;
+//Imports Excepcións
+import Modelo.Excepcions.ISBNIncorrecto;
+import Modelo.Excepcions.IndiceInvalido;
+import Modelo.Excepcions.PrezoNegativo;
+import Modelo.Excepcions.StockExcedente;
+import Modelo.Excepcions.StockNegativo;
+import Modelo.Excepcions.UsuarioExistente;
+import Modelo.Excepcions.UsuarioNonExiste;
+
+//Imports do Modelo
+import Modelo.Produtos.Produto;
+import Modelo.Produtos.Complemento.Complemento;
+import Modelo.Produtos.Complemento.Complementos.Estoxo;
+import Modelo.Produtos.Complemento.Complementos.Libro;
+import Modelo.Produtos.Instrumento.InstrumentoMusical;
+import Modelo.Produtos.Instrumento.Instrumentos.Frauta;
+import Modelo.Produtos.Instrumento.Instrumentos.Saxofon;
+import Modelo.Produtos.Instrumento.Instrumentos.Trombon;
+import Modelo.Usuarios.Administrador;
+import Modelo.Usuarios.Cliente;
+import Modelo.Usuarios.Usuario;
+
+//Imports enumerandos
+import Utiles.Enumerandos.TipoInstrumentoMusical;
+import Utiles.Enumerandos.TipoSaxofon;
+import Utiles.Enumerandos.TipoUsuario;
+
+//Imports Statics
+import Utiles.HashPasword;
 
 public class TendaMusica {
     
     private static HashMap<String, Usuario> usuarios;
-    private static ArrayList<Cliente> clientes;
-    private static ArrayList<Administrador> administradores;
-    private static ArrayList<Produto> produtos;
+    private static HashMap <Integer, Produto> produtos;
+    private static ArrayList<InstrumentoMusical> instrumentos;
+    private static ArrayList<Complemento> complementos;
+    private static ArrayList<Frauta> frautas;
+    private static ArrayList<Saxofon> saxofons;
+    private static ArrayList<Trombon> trombons;
+    private static ArrayList<Libro> libros;
+    private static ArrayList<Estoxo> estoxos;
 
     /**
      * Constructor privado (patrón Singleton)
      */
     private TendaMusica(){
         usuarios = new HashMap<>();
-        clientes = new ArrayList<>();
-        administradores = new ArrayList<>();
-        produtos = new ArrayList<>();
+        produtos = new HashMap<>();
+        instrumentos = new ArrayList<>();
+        complementos = new ArrayList<>();
+        frautas = new ArrayList<>();
+        saxofons = new ArrayList<>();
+        trombons = new ArrayList<>();
+        libros = new ArrayList<>();
+        estoxos = new ArrayList<>();
     }
 
     private static TendaMusica INSTANCE;
@@ -51,6 +80,7 @@ public class TendaMusica {
         throw new CloneNotSupportedException();
     }
 
+
     /************* MÉTODOS PARA O MENÚ DE INICIO ***************/
 
     /**
@@ -69,9 +99,7 @@ public class TendaMusica {
     public void ingresarCliente(String nome, String contrasinal){
 
         Cliente c = new Cliente(contrasinal, nome, TipoUsuario.CLIENTE);
-
         usuarios.put(nome, c);
-        clientes.add(c);
     }
 
     /**
@@ -80,9 +108,7 @@ public class TendaMusica {
     public void ingresarAdministrador(String nome, String contrasinal){
 
         Administrador a = new Administrador(contrasinal, nome, TipoUsuario.ADMINISTRADOR);
-
         usuarios.put(nome, a);
-        administradores.add(a);
     }
    
     public boolean nonExisteUsuario(String user) throws UsuarioNonExiste{
@@ -104,15 +130,92 @@ public class TendaMusica {
      * Método encargado de comprobar se un usuario é cliente ou administrador
      */
     public boolean eCliente(String nome){
-
         Usuario user = usuarios.get(nome);
-
-        if (user.getRol().equals(TipoUsuario.CLIENTE)) {
-            return true;
-        } else{
-            return false;
-        }
+        return user.getRol().equals(TipoUsuario.CLIENTE);
     }
+    
+
+    /************* MÉTODOS PARA O MENÚ DE ENGADIR PRODUTOS ***************/
+
+    /**
+     * Método encargardo de engadir unha nova Frauta
+     */
+    public void engadirFrauta(String marcaEn, String modeloEn, double prezoEn, int stockEn, String descricionEn, Boolean pdsEn) throws PrezoNegativo, StockNegativo {
+
+        Frauta frauta = new Frauta(marcaEn, modeloEn, prezoEn, stockEn, descricionEn, pdsEn);
+
+        produtos.put(frauta.getIdProduto(), frauta);
+        instrumentos.add(frauta);
+        frautas.add(frauta);
+    }
+
+    /**
+     * Método encargardo de engadir un novo Saxofon
+     */
+    public void engadirSaxofon(String marcaEn, String modeloEn, double prezoEn, int stockEn, String descricionEn, TipoSaxofon tipoSaxofon) throws PrezoNegativo, StockNegativo{
+
+        Saxofon saxofon = new Saxofon(marcaEn, modeloEn, prezoEn, stockEn, descricionEn, tipoSaxofon);
+
+        produtos.put(saxofon.getIdProduto(), saxofon);
+        instrumentos.add(saxofon);
+        saxofons.add(saxofon);
+    }
+
+    /**
+     * Método encargardo de engadir un novo Trombon
+     */
+    public void engadirTrombon(String marcaEn, String modeloEn, double prezoEn, int stockEn, String descricionEn, Boolean transpositorEn) throws PrezoNegativo, StockNegativo {
+
+        Trombon trombon = new Trombon(marcaEn, modeloEn, prezoEn, stockEn, descricionEn, transpositorEn);
+
+        produtos.put(trombon.getIdProduto(), trombon);
+        instrumentos.add(trombon);
+        trombons.add(trombon);
+    }
+
+    /**
+     * Método encargardo de engadir un novo Libro
+     */
+    public void engadirLibro(double prezoEn, int stockEn, String descricionEn, String tituloEn, String autorEn, String isbnEn) throws ISBNIncorrecto, StockNegativo, PrezoNegativo{
+
+        Libro libro = new Libro(prezoEn, stockEn, descricionEn, tituloEn, autorEn, isbnEn);
+
+        produtos.put(libro.getIdProduto(), libro);
+        complementos.add(libro);
+        libros.add(libro);
+
+    }
+
+    /**
+     * Método encargardo de engadir un novo Estoxo
+     */
+    public void engadirEstoxo(double prezoEn, int stockEn, String descricionEn,String marcaEn, TipoInstrumentoMusical tipoInstrumentoEn) throws ISBNIncorrecto, StockNegativo, PrezoNegativo{
+
+        Estoxo estoxo = new Estoxo(prezoEn, stockEn, descricionEn, tipoInstrumentoEn, marcaEn);
+
+        produtos.put(estoxo.getIdProduto(), estoxo);
+        complementos.add(estoxo);
+        estoxos.add(estoxo);
+
+    }
+
+
+    /************* MÉTODOS PARA O MENÚ DE VER PRODUTOS ***************/
+    public String mostrarProdutos(){
+
+        String resultado = "";
+
+        //Se llama automáticamente al toString()
+        //Hacemos un salto de línea automático
+        for (Produto produto : produtos.values()) {
+            resultado += produto + "\n";  
+        }
+        return resultado;
+    }
+    
+
+
+
     
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES ***************/
 
@@ -124,37 +227,33 @@ public class TendaMusica {
         if (id >= 0 && id < produtos.size()) {
             Produto p = produtos.get(id);
             return p.toString();
-
         } else {
             throw new IndiceInvalido("Índice inválido!");
         }
     }
 
-
-    //TODO: Rehacer los métodos aumentarStock y eliminarStock para añadirles la excepción de IndiceInválido
-
     /**
      * Aumenta o stock dun produto
      */
-    public void aumentarStock(int id, int stock) throws StockNegativo {
-        
-        if (stock > 0) {
-            produtos.get(id).aumentarStock(stock);
+    public void aumentarStock(int id, int stock) throws IndiceInvalido, StockNegativo{
 
-        } else{
-            throw new StockNegativo("Stock negativo!");
-        }
-        
+        System.out.println(verInformacionProduto(id));
+
+        //Capturamos as excepcións nos propios métodos da clase Produto
+        produtos.get(id).aumentarStock(stock);
     }
 
     /**
      * Elimina stock dun produto
      */
-    public void eliminarStock(int id, int stock) throws StockNegativo {
+    public void eliminarStock(int id, int stock) throws StockNegativo, StockExcedente, IndiceInvalido {
 
-        //TODO: Tengo que comprobar que el stock a eliminar no sea negativo y que, además, no sobrepase el stock del producto a eliminar.
-        
+        System.out.println(verInformacionProduto(id));
+
+        //Capturamos as excepcións nos propios métodos da clase Produto
         produtos.get(id).diminuirStock(stock);
     }
+
+
 
 }

@@ -1,7 +1,8 @@
-package modelo.produtos;
+package Modelo.Produtos;
 
-import modelo.excepcions.PrezoNegativo;
-import modelo.excepcions.StockNegativo;
+import Modelo.Excepcions.PrezoNegativo;
+import Modelo.Excepcions.StockExcedente;
+import Modelo.Excepcions.StockNegativo;
 
 public abstract class Produto {
     
@@ -25,8 +26,7 @@ public abstract class Produto {
      * @throws Excepcions.PrezoNegativo -> Posible excepción de prezo negativo
      * @throws Excepcions.StockNegativo -> Posible excepción de stock negativo
      */
-    @SuppressWarnings("OverridableMethodCallInConstructor")
-    public Produto(double prezo, int cantidadeEnStock, String descricion) throws modelo.excepcions.PrezoNegativo, modelo.excepcions.StockNegativo{
+    public Produto(double prezo, int cantidadeEnStock, String descricion) throws PrezoNegativo, StockNegativo{
         
         this.setPrezo(prezo);
         this.setCantidadeEnStock(cantidadeEnStock);
@@ -61,7 +61,7 @@ public abstract class Produto {
      * @param prezo -> Prezo a establecer 
      * @throws Excepcions.PrezoNegativo -> Posible excepción a capturar
      */
-    public void setPrezo(double prezo) throws modelo.excepcions.PrezoNegativo {
+    public void setPrezo(double prezo) throws Modelo.Excepcions.PrezoNegativo {
         if (prezo>=0) {
             this.prezo = prezo;   
         } else{
@@ -75,7 +75,7 @@ public abstract class Produto {
      * @param cantidadeEnStock -> Cantidade en stock
      * @throws Excepcions.StockNegativo -> Posible excpeción a capturar
      */
-    public void setCantidadeEnStock(int cantidadeEnStock) throws modelo.excepcions.StockNegativo{
+    public void setCantidadeEnStock(int cantidadeEnStock) throws Modelo.Excepcions.StockNegativo{
         if (cantidadeEnStock>=0) {
             this.cantidadeEnStock = cantidadeEnStock;
         } else{
@@ -98,9 +98,13 @@ public abstract class Produto {
      * @param diminuirStock
      * @throws StockNegativo
      */
-    public void diminuirStock(int diminuirStock) throws StockNegativo{
-        if (this.cantidadeEnStock< diminuirStock) {
-            throw new StockNegativo("Eliminarches Stock de mais!");
+    public void diminuirStock(int diminuirStock) throws StockExcedente, StockNegativo{
+
+        if (diminuirStock <= 0) {
+            throw new StockNegativo("Stock negativo");
+        }
+        if (this.cantidadeEnStock < diminuirStock) {
+            throw new StockExcedente("Eliminaches Stock de mais!");
         }
         this.cantidadeEnStock -= diminuirStock;
     }

@@ -1,4 +1,4 @@
-package modelo.excepcions;
+package Modelo.Excepcions;
 
 public class ProdutoNonExiste extends Exception {
     

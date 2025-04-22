@@ -1,8 +1,8 @@
-package modelo.produtos.instrumento;
+package Modelo.Produtos.Instrumento;
 
-import modelo.excepcions.PrezoNegativo;
-import modelo.excepcions.StockNegativo;
-import modelo.produtos.Produto;
+import Modelo.Excepcions.PrezoNegativo;
+import Modelo.Excepcions.StockNegativo;
+import Modelo.Produtos.Produto;
 
 public abstract class InstrumentoMusical extends Produto{
 

@@ -1,9 +1,10 @@
-package modelo.produtos.complemento.complementos;
+package Modelo.Produtos.Complemento.Complementos;
 
-import modelo.excepcions.PrezoNegativo;
-import modelo.excepcions.StockNegativo;
-import modelo.produtos.complemento.Complemento;
-import utiles.enumerandos.TipoInstrumentoMusical;
+import Modelo.Excepcions.PrezoNegativo;
+import Modelo.Excepcions.StockNegativo;
+import Modelo.Produtos.Complemento.Complemento;
+import Utiles.Enumerandos.TipoInstrumentoMusical;
+
 
 public class Estoxo extends Complemento{
     

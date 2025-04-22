@@ -1,9 +1,9 @@
-package modelo.produtos.complemento.complementos;
+package Modelo.Produtos.Complemento.Complementos;
 
-import modelo.excepcions.ISBNIncorrecto;
-import modelo.excepcions.PrezoNegativo;
-import modelo.excepcions.StockNegativo;
-import modelo.produtos.complemento.Complemento;
+import Modelo.Excepcions.ISBNIncorrecto;
+import Modelo.Excepcions.PrezoNegativo;
+import Modelo.Excepcions.StockNegativo;
+import Modelo.Produtos.Complemento.Complemento;
 
 public class Libro extends Complemento{
     
@@ -54,7 +54,7 @@ public class Libro extends Complemento{
      * @throws ISBNIncorrecto -> Posible excepción a capturar
      */
     public void setIsbnLibro(String isbnLibro) throws ISBNIncorrecto {
-        if (utiles.ComprobarISBN10.comprobarISBN10(isbnLibro)) {
+        if (Utiles.ComprobarISBN10.comprobarISBN10(isbnLibro)) {
             this.isbnLibro = isbnLibro;
         } else{
             throw new ISBNIncorrecto("ISBN incorrecto!");

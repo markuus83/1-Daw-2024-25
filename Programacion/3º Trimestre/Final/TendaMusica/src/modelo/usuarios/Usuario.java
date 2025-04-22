@@ -1,7 +1,7 @@
-package modelo.usuarios;
+package Modelo.Usuarios;
 
-import utiles.HashPasword;
-import utiles.enumerandos.TipoUsuario;
+import Utiles.HashPasword;
+import Utiles.Enumerandos.TipoUsuario;
 
 public abstract class Usuario {
     

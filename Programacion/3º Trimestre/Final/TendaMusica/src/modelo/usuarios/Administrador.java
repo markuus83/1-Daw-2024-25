@@ -1,6 +1,6 @@
-package modelo.usuarios;
+package Modelo.Usuarios;
 
-import utiles.enumerandos.TipoUsuario;
+import Utiles.Enumerandos.TipoUsuario;
 
 public class Administrador extends Usuario {
     

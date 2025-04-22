@@ -1,8 +1,9 @@
-package vista;
+package Vista;
 
-import controlador.TendaMusica;
-import modelo.excepcions.IndiceInvalido;
-import modelo.excepcions.StockNegativo;
+import Controlador.TendaMusica;
+import Modelo.Excepcions.IndiceInvalido;
+import Modelo.Excepcions.StockExcedente;
+import Modelo.Excepcions.StockNegativo;
 
 public class MenuAdministrador extends Menu {
 
@@ -47,7 +48,7 @@ public class MenuAdministrador extends Menu {
                  */
                 case 3 -> {
 
-                    int indice = getInt("Indique o índice do produto: ");
+                    int indice = getInt("\nIndique o índice do produto: ");
 
                     try {
                         System.out.println(TendaMusica.getInstance().verInformacionProduto(indice));
@@ -63,15 +64,12 @@ public class MenuAdministrador extends Menu {
                  */
                 case 4 -> {
 
-                    //TODO: tengo que mostrar una lista de todos los produtos para ver el índice a actuar
-
-                    int indice = getInt("Indique o índice do produto: "); 
+                    int indice = getInt("\nIndique o índice do produto: "); 
                     int stock = getInt("Indique o stock a aumentar: ");
 
                     try {
                         TendaMusica.getInstance().aumentarStock(indice, stock);
-
-                    } catch ( StockNegativo e) {
+                    } catch (StockNegativo | IndiceInvalido e) {
                         System.out.println("Erro: "+e.getMessage());
                         break;
                     }
@@ -84,13 +82,12 @@ public class MenuAdministrador extends Menu {
                  */
                 case 5 -> {
                     
-                    int indice = getInt("Indique o índice do produto: ");
+                    int indice = getInt("\nIndique o índice do produto: ");
                     int stock = getInt("Indique o stock a eliminar: ");
 
                     try {
                         TendaMusica.getInstance().eliminarStock(indice, stock);
-
-                    } catch (StockNegativo e) {
+                    } catch (StockExcedente | StockNegativo | IndiceInvalido e) {
                         System.out.println("Erro: "+e.getMessage());
                         break;
                     }
@@ -104,7 +101,6 @@ public class MenuAdministrador extends Menu {
                 case 6 -> {
                     System.out.println("Saíndo...");
                     menuActivo = false;
-                    //new MenuAdministrador().run();
                     break;
                 }
 

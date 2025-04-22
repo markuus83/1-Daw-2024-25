@@ -1,0 +1,121 @@
+package vista;
+
+import controlador.TendaMusica;
+import modelo.excepcions.IndiceInvalido;
+import modelo.excepcions.StockNegativo;
+
+public class MenuAdministrador extends Menu {
+
+    @Override
+    protected void mostrar() {
+
+        boolean menuActivo = true;
+
+        while (menuActivo) {
+
+            System.out.println("\n-----------------------");
+            System.out.println("Menu Administrador: ");
+            System.out.println("\t1. Engadir un produto");
+            System.out.println("\t2. Ver produtos");
+            System.out.println("\t3. Ver a información dun produto (Identificador): ");
+            System.out.println("\t4. Engadir stock a un produto (Identificador): ");
+            System.out.println("\t5. Eliminar stock a un produto (Identificador): ");
+            System.out.println("\t6. Saír: ");
+
+            int option = getInt("> ");
+
+            switch (option) {
+
+                /**
+                 * Engadir produtos
+                 */
+                case 1 -> {
+                    new MenuEngadirProduto().run();
+                    break;
+                }
+
+                /**
+                 * Ver produtos
+                 */
+                case 2 -> {                    
+                    new MenuVerProdutos().run();
+                    break;
+                }
+
+                /**
+                 * Ver información dun produto
+                 */
+                case 3 -> {
+
+                    int indice = getInt("Indique o índice do produto: ");
+
+                    try {
+                        System.out.println(TendaMusica.getInstance().verInformacionProduto(indice));
+                        
+                    } catch (IndiceInvalido e) {
+                        System.out.println("Erro: "+e.getMessage());
+                    }
+                    break;
+                }
+
+                /**
+                 * Engadir stock
+                 */
+                case 4 -> {
+
+                    //TODO: tengo que mostrar una lista de todos los produtos para ver el índice a actuar
+
+                    int indice = getInt("Indique o índice do produto: "); 
+                    int stock = getInt("Indique o stock a aumentar: ");
+
+                    try {
+                        TendaMusica.getInstance().aumentarStock(indice, stock);
+
+                    } catch ( StockNegativo e) {
+                        System.out.println("Erro: "+e.getMessage());
+                        break;
+                    }
+                    System.out.println("Stock aumentado con éxito!");
+                    break;
+                }
+
+                /**
+                 * Eliminar stock
+                 */
+                case 5 -> {
+                    
+                    int indice = getInt("Indique o índice do produto: ");
+                    int stock = getInt("Indique o stock a eliminar: ");
+
+                    try {
+                        TendaMusica.getInstance().eliminarStock(indice, stock);
+
+                    } catch (StockNegativo e) {
+                        System.out.println("Erro: "+e.getMessage());
+                        break;
+                    }
+                    System.out.println("Stock eliminado con éxito!");
+                    break;
+                }
+            
+                /**
+                 * Saír
+                 */
+                case 6 -> {
+                    System.out.println("Saíndo...");
+                    menuActivo = false;
+                    //new MenuAdministrador().run();
+                    break;
+                }
+
+                /**
+                 * Erro
+                 */
+                default -> {
+                    System.out.println("Erro. Opción inválida!");
+                    break;
+                }
+            }
+        }
+    }
+}

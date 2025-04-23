@@ -33,7 +33,7 @@ public class Saxofon extends InstrumentoMusical{
 
     @Override
     public String toString() {
-        return "Saxofon: "+this.getTipoSaxofon()+" "+super.toString();
+        return "Saxofon "+"("+this.getIdProduto()+")"+": "+this.getTipoSaxofon()+" "+super.toString();
     }
 
 }

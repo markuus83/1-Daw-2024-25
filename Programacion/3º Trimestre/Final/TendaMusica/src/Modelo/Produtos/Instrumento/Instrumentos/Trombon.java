@@ -30,9 +30,17 @@ public class Trombon extends InstrumentoMusical{
         return transpositor;
     }
 
+    public String mostrarTranspositor(){
+        if (this.getTranspositor()) {
+            return " Con Transpositor";
+        } else{
+            return " Sen Transpositor";
+        }
+    }
+
     //Metodos
     @Override
     public String toString(){
-        return "Trombon: "+super.toString();
+        return "Trombon: "+"("+this.getIdProduto()+")"+": "+this.getTranspositor()+super.toString();
     }
 }

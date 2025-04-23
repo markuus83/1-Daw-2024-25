@@ -37,6 +37,6 @@ public class Estoxo extends Complemento{
 
     @Override
     public String toString(){
-        return "Estoxo "+this.getMarca()+" para "+this.getInstrumento()+": "+super.toString();
+        return "Estoxo "+"("+this.getIdProduto()+")"+": "+this.getMarca()+" para "+this.getInstrumento()+": "+super.toString();
     }
 }

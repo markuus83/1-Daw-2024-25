@@ -30,10 +30,18 @@ public class Frauta extends InstrumentoMusical{
         return pe;
     }
 
+    public String mostrarPe(){
+        if (this.getPe()) {
+            return " Con Pe";
+        } else{
+            return " Sen Pe";
+        }
+    }
+
     //Metodos
     @Override
     public String toString(){
-        return "Frauta: "+super.toString();
+        return "Frauta "+"("+this.getIdProduto()+")"+": "+this.mostrarPe()+super.toString();
     }
 
 }

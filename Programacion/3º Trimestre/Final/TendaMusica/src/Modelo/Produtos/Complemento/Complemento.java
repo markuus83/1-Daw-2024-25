@@ -7,7 +7,7 @@ import Modelo.Produtos.Produto;
 public abstract class Complemento extends Produto {
 
     /**
-     * Constructor propio da clase Complemento
+     * Constructor propio da clase abstracta Complemento
      * 
      * @param prezo -> Prezo do complemento
      * @param cantidadeEnStock -> Cantidade no Stock de cada complemento

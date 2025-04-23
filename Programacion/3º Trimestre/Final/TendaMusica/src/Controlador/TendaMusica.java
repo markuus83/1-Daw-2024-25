@@ -1,10 +1,6 @@
 package Controlador;
 
 //Almacenamento de datos
-import java.util.ArrayList;
-import java.util.HashMap;
-
-//Imports Excepcións
 import Modelo.Excepcions.ISBNIncorrecto;
 import Modelo.Excepcions.IndiceInvalido;
 import Modelo.Excepcions.PrezoNegativo;
@@ -12,9 +8,6 @@ import Modelo.Excepcions.StockExcedente;
 import Modelo.Excepcions.StockNegativo;
 import Modelo.Excepcions.UsuarioExistente;
 import Modelo.Excepcions.UsuarioNonExiste;
-
-//Imports do Modelo
-import Modelo.Produtos.Produto;
 import Modelo.Produtos.Complemento.Complemento;
 import Modelo.Produtos.Complemento.Complementos.Estoxo;
 import Modelo.Produtos.Complemento.Complementos.Libro;
@@ -22,17 +15,16 @@ import Modelo.Produtos.Instrumento.InstrumentoMusical;
 import Modelo.Produtos.Instrumento.Instrumentos.Frauta;
 import Modelo.Produtos.Instrumento.Instrumentos.Saxofon;
 import Modelo.Produtos.Instrumento.Instrumentos.Trombon;
+import Modelo.Produtos.Produto;
 import Modelo.Usuarios.Administrador;
 import Modelo.Usuarios.Cliente;
 import Modelo.Usuarios.Usuario;
-
-//Imports enumerandos
 import Utiles.Enumerandos.TipoInstrumentoMusical;
 import Utiles.Enumerandos.TipoSaxofon;
 import Utiles.Enumerandos.TipoUsuario;
-
-//Imports Statics
 import Utiles.HashPasword;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TendaMusica {
     
@@ -76,6 +68,7 @@ public class TendaMusica {
     /**
      * Evita que se poida clonar a instancia Singleton
      */
+    @Override
     public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
     }
@@ -201,21 +194,147 @@ public class TendaMusica {
 
 
     /************* MÉTODOS PARA O MENÚ DE VER PRODUTOS ***************/
+
+    /**
+     * Método encargado de amosar únicamente o identificador do produto para, posteriormente, amosar todas as especificacións de dito produto
+     */
+    public String mostrarIdProdutos(){
+
+        if (produtos.isEmpty()) {
+            return "Non existen PRODUTOS actualmente. Tente de novo máis tarde";
+        } 
+        
+        String resultado = "";
+        for (Integer p : produtos.keySet()) {
+            resultado += p+"\n";
+        }
+        return resultado;
+    }
+
+    /**
+     * Método encargado de amosar todos os PRODUTOS existentes
+     */
     public String mostrarProdutos(){
+
+        if (produtos.isEmpty()) {
+            return "Non existen PRODUTOS actualmente. Tente de novo máis tarde";
+        }
 
         String resultado = "";
 
-        //Se llama automáticamente al toString()
+        //Almacenamos en una única variable de texto todos los valores de los PRODUTOS
+        //Se llama automáticamente al toString() de cada PRODUTOS
         //Hacemos un salto de línea automático
-        for (Produto produto : produtos.values()) {
-            resultado += produto + "\n";  
+        for (Produto p : produtos.values()) {
+            resultado += p + "\n";  
         }
         return resultado;
     }
     
+    /**
+     * Método encargado de amosar todos os INSTRUMENTOS existentes
+     */
+    public String mostrarInstrumentos(){
+        if (instrumentos.isEmpty()) {
+            return "Non existen INSTRUMENTOS actualmente. Tente de novo máis tarde";
+        }
 
+        String resultado ="";
+        for (InstrumentoMusical i : instrumentos) {
+            resultado += i+"\n";
+        }
+        return resultado;
+    }
 
+    /**
+     * Método encargado de amosar todas as FRAUTAS existentes
+     */
+    public String mostrarFrautas(){
+        if (frautas.isEmpty()) {
+            return "Non existen FRAUTAS actualmente. Tente de novo máis tarde";
+        }
 
+        String resultado ="";
+        for (Frauta f : frautas) {
+            resultado += f+"\n";
+        }
+        return resultado;
+    }
+
+    /**
+     * Método encargado de amosar todas as SAXOFONS existentes
+     */
+    public String mostrarSaxofons(){
+        if (saxofons.isEmpty()) {
+            return "Non existen SAXOFONS actualmente. Tente de novo máis tarde";
+        }
+
+        String resultado ="";
+        for (Saxofon s : saxofons) {
+            resultado += s+"\n";
+        }
+        return resultado;
+    }
+
+    /**
+     * Método encargado de amosar todas as TROMBÓNS existentes
+     */
+    public String mostrarTrombons(){
+        if (trombons.isEmpty()) {
+            return "Non existen TROMBÓNS actualmente. Tente de novo máis tarde";
+        }
+
+        String resultado ="";
+        for (Trombon t : trombons) {
+            resultado += t+"\n";
+        }
+        return resultado;
+    }
+
+    /**
+     * Método encargado de amosar todas as COMPLEMENTOS existentes
+     */
+    public String mostrarComplementos(){
+        if (complementos.isEmpty()) {
+            return "Non existen COMPLEMENTOS actualmente. Tente de novo máis tarde";
+        }
+
+        String resultado ="";
+        for (Complemento c : complementos) {
+            resultado += c+"\n";
+        }
+        return resultado;
+    }
+
+    /**
+     * Método encargado de amosar todas as LIBROS existentes
+     */
+    public String mostrarLibros(){
+        if (libros.isEmpty()) {
+            return "Non existen LIBROS actualmente. Tente de novo máis tarde";
+        }
+
+        String resultado ="";
+        for (Libro l : libros) {
+            resultado += l+"\n";
+        }
+        return resultado;
+    }
+
+    /**
+     * Método encargado de amosar todas as COMPLEMENTOS existentes
+     */
+    public String mostrarEstoxo(){
+        if (estoxos.isEmpty()) {
+            return "Non existen ESTOXOS actualmente. Tente de novo máis tarde";
+        }
+
+        String resultado ="";
+        for (Estoxo e : estoxos) {
+            resultado += e+"\n";
+        }
+        return resultado;
+    }
     
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES ***************/
 
@@ -231,7 +350,6 @@ public class TendaMusica {
             throw new IndiceInvalido("Índice inválido!");
         }
     }
-
     /**
      * Aumenta o stock dun produto
      */
@@ -239,8 +357,13 @@ public class TendaMusica {
 
         System.out.println(verInformacionProduto(id));
 
-        //Capturamos as excepcións nos propios métodos da clase Produto
-        produtos.get(id).aumentarStock(stock);
+        //Capturamos a excepción de Stock no propio método da clase Produto
+        if (id >= 0 && id < produtos.size()) {
+            produtos.get(id).aumentarStock(stock);
+        }else{
+            throw new IndiceInvalido("Índice inválido!");
+        }
+        
     }
 
     /**
@@ -250,8 +373,24 @@ public class TendaMusica {
 
         System.out.println(verInformacionProduto(id));
 
-        //Capturamos as excepcións nos propios métodos da clase Produto
-        produtos.get(id).diminuirStock(stock);
+        ///Capturamos a excepción de Stock no propio método da clase Produto
+        if (id >= 0 && id < produtos.size()) {
+            produtos.get(id).diminuirStock(stock);
+        }else{
+            throw new IndiceInvalido("Índice inválido!");
+        }
     }
 
+    
+    /************* MÉTODOS PARA O MENÚ DE CLIENTES ***************/
+
+    public void comprarProdutos(int id, int cantidade)throws StockNegativo, StockExcedente, IndiceInvalido{
+
+        ///Capturamos a excepción de Stock no propio método da clase Produto
+        if (id >= 0 && id < produtos.size()) {
+            produtos.get(id).diminuirStock(cantidade);
+        }else{
+            throw new IndiceInvalido("Índice inválido!");
+        }
+    }
 }

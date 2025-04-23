@@ -1,5 +1,10 @@
 package Vista;
 
+import Controlador.TendaMusica;
+import Modelo.Excepcions.IndiceInvalido;
+import Modelo.Excepcions.StockExcedente;
+import Modelo.Excepcions.StockNegativo;
+
 public class MenuCliente extends Menu {
 
     @Override
@@ -8,29 +13,56 @@ public class MenuCliente extends Menu {
         boolean menuActivo = true;
         
         while (menuActivo) {
+            System.out.println("\n-----------------------");
             System.out.println("\nBenvido ao menú do Cliente!");
-            System.out.println("\t1. Ver perfil");
-            System.out.println("\t2. Ver produtos");
+            System.out.println("\t1. Ver produtos");
+            System.out.println("\t2. Comprar produtos");
             System.out.println("\t3. Saír");
 
             int option = getInt("> ");
 
             switch (option) {
-                case 1:
-                    // Lógica para mostrar o perfil do cliente
-                    System.out.println("Mostrando perfil...");
-                    break;
-                case 2:
-                    // Lógica para mostrar produtos ou realizar outra acción
-                    System.out.println("Mostrando produtos...");
-                    break;
-                case 3:
+                /**
+                 * Ver Produtos
+                 */
+                case 1 -> {
+                    // Como comparten as mesmas funcións, reutilizamos o mesmo menú que os administradores
+                    new MenuVerProdutos().run();
+                }
+
+                /**
+                 * Comprar Produtos
+                 */
+                case 2 -> {
+
+                    System.out.println(TendaMusica.getInstance().mostrarProdutos());
+
+                    int id = getInt("Selecciona o id do produto a comprar: ");
+                    int cantidade = getInt("Selecciona a cantidade a comprar: ");
+
+                    try {
+                        TendaMusica.getInstance().comprarProdutos(id, cantidade);
+                    } catch (StockExcedente | StockNegativo | IndiceInvalido e) {
+                        System.out.println("Erro: "+e.getMessage());
+                    }
+                }
+
+                /**
+                 * Saír
+                 */
+                case 3 -> {
                     System.out.println("Saíndo...");
                     menuActivo = false;
                     break;
-                default:
-                    System.out.println("Opción inválida!");
+                }
+                    
+                /**
+                 * Erro
+                 */
+                default -> {
+                    System.out.println("Erro: Opción inválida!");
                     break;
+                }
             }
         }
     }

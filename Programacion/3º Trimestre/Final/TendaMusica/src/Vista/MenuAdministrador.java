@@ -15,7 +15,7 @@ public class MenuAdministrador extends Menu {
         while (menuActivo) {
 
             System.out.println("\n-----------------------");
-            System.out.println("Menu Administrador: ");
+            System.out.println("\nMenu Administrador: ");
             System.out.println("\t1. Engadir un produto");
             System.out.println("\t2. Ver produtos");
             System.out.println("\t3. Ver a información dun produto (Identificador): ");
@@ -48,6 +48,8 @@ public class MenuAdministrador extends Menu {
                  */
                 case 3 -> {
 
+                    System.out.println(TendaMusica.getInstance().mostrarIdProdutos());
+
                     int indice = getInt("\nIndique o índice do produto: ");
 
                     try {
@@ -63,6 +65,8 @@ public class MenuAdministrador extends Menu {
                  * Engadir stock
                  */
                 case 4 -> {
+
+                    System.out.println(TendaMusica.getInstance().mostrarProdutos());
 
                     int indice = getInt("\nIndique o índice do produto: "); 
                     int stock = getInt("Indique o stock a aumentar: ");
@@ -81,7 +85,9 @@ public class MenuAdministrador extends Menu {
                  * Eliminar stock
                  */
                 case 5 -> {
-                    
+
+                    System.out.println(TendaMusica.getInstance().mostrarProdutos());
+
                     int indice = getInt("\nIndique o índice do produto: ");
                     int stock = getInt("Indique o stock a eliminar: ");
 

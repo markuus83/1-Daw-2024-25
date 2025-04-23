@@ -114,6 +114,6 @@ public abstract class Produto {
 
     @Override
     public String toString(){
-        return "Prezo con IVE "+this.getPrezoConIVE()+" €; Prezo sen IVE: "+this.getPrezoSenIVE()+" €; Stock: "+this.getCantidadeEnStock()+" unidades; Descrición: "+this.getDescricion()+".";
+        return ". Prezo con IVE: "+this.getPrezoConIVE()+" €; Prezo sen IVE: "+this.getPrezoSenIVE()+" €; Stock: "+this.getCantidadeEnStock()+" unidades; Descrición: "+this.getDescricion()+".";
     }
 }

@@ -23,6 +23,7 @@ public class Libro extends Complemento{
      * @param isbnLibro -> ISBN do libro
      * @throws PrezoNegativo
      * @throws StockNegativo
+     * @throws ISBNIncorrecto
      */
     public Libro(double prezo, int cantidadeEnStock, String descricion, String titulo, String autor, String isbnLibro) throws PrezoNegativo, StockNegativo, ISBNIncorrecto {
         super(prezo, cantidadeEnStock, descricion);
@@ -63,7 +64,7 @@ public class Libro extends Complemento{
 
     @Override
     public String toString(){
-        return "Libro: "+this.getTitulo()+", ISBN: "+this.getIsbnLibro()+". "+super.toString();
+        return "Libro "+"("+this.getIdProduto()+")"+": "+this.getTitulo()+", ISBN: "+this.getIsbnLibro()+". "+super.toString();
     }
     
 }

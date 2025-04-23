@@ -14,6 +14,7 @@ public class MenuEngadirProduto extends Menu{
 
         boolean menuActivo = true;
         while (menuActivo) { 
+            System.out.println("\n-----------------------");
             System.out.println("\nEscolla a opción desexada: ");
             System.out.println("\t1. Frauta: ");
             System.out.println("\t2. Saxofón:");
@@ -48,7 +49,7 @@ public class MenuEngadirProduto extends Menu{
                         break;
                     }
 
-                    System.out.println("Frauta engadida con éxito!");
+                    System.out.println("\nFrauta engadida con éxito!");
                     break;
                 }
 
@@ -119,7 +120,7 @@ public class MenuEngadirProduto extends Menu{
                         break;
                     }
 
-                    System.out.println("Saxofón engadido correctamente!");
+                    System.out.println("\nSaxofón engadido correctamente!");
                     break;
                 }
 
@@ -145,7 +146,7 @@ public class MenuEngadirProduto extends Menu{
                         break;
                     }
 
-                    System.out.println("Trombón engadido con éxito!");
+                    System.out.println("\nTrombón engadido con éxito!");
                     break;
                 }
 
@@ -167,7 +168,7 @@ public class MenuEngadirProduto extends Menu{
                         System.out.println("Erro: "+e.getMessage());
                         break;
                     }
-                    System.out.println("Libro engadido con éxito!");
+                    System.out.println("\nLibro engadido con éxito!");
                     break;
                 }
 
@@ -229,7 +230,7 @@ public class MenuEngadirProduto extends Menu{
                         break;
                     }
 
-                    System.out.println("Estoxo engadido con éxito!");
+                    System.out.println("\nEstoxo engadido con éxito!");
                     break;
                 }
 

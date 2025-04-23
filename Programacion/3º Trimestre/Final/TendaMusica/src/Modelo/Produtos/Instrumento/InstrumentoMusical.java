@@ -42,7 +42,9 @@ public abstract class InstrumentoMusical extends Produto{
     public void setModelo(String modelo) {
         this.modelo = modelo;
     }
-    
-    
 
+    @Override
+    public String toString(){
+        return " ."+this.getMarca()+ " "+ this.getModelo()+" "+super.toString();
+    }
 }

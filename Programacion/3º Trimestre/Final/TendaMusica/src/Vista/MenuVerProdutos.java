@@ -10,6 +10,7 @@ public class MenuVerProdutos extends Menu{
         boolean menuActivo = true;
 
         while (menuActivo) {
+            System.out.println("\n-----------------------");
             System.out.println("\nMenu para ver produtos: ");
             System.out.println("\t1. Ver todos os produtos: ");
             System.out.println("\t2. Ver todos os instrumentos: ");
@@ -37,6 +38,7 @@ public class MenuVerProdutos extends Menu{
                  * Todos os INSTRUMENTOS
                  */
                 case 2 -> {
+                    System.out.println(TendaMusica.getInstance().mostrarInstrumentos());
                     break;
                 }
 
@@ -44,6 +46,7 @@ public class MenuVerProdutos extends Menu{
                  * Todas as FRAUTAS
                  */
                 case 3 -> {
+                    System.out.println(TendaMusica.getInstance().mostrarFrautas());
                     break;  
                 }
 
@@ -51,6 +54,7 @@ public class MenuVerProdutos extends Menu{
                  * Todos os SAXOFÓNS
                  */
                 case 4 -> {
+                    System.out.println(TendaMusica.getInstance().mostrarSaxofons());
                     break;  
                 }
 
@@ -58,6 +62,7 @@ public class MenuVerProdutos extends Menu{
                  * Todos os TROMBÓNS
                  */
                 case 5 -> {
+                    System.out.println(TendaMusica.getInstance().mostrarTrombons());
                     break;  
                 }
 
@@ -65,23 +70,38 @@ public class MenuVerProdutos extends Menu{
                  * Todos os COMPLEMENTOS
                  */
                 case 6 -> {
+                    System.out.println(TendaMusica.getInstance().mostrarComplementos());
                     break;  
                 }
 
+                /**
+                 * Todos os LIBROS
+                 */
                 case 7 -> {
+                    System.out.println(TendaMusica.getInstance().mostrarLibros());
                     break;  
                 }
 
+                /**
+                 * Todos os ESTOXOS
+                 */
                 case 8 -> {
+                    System.out.println(TendaMusica.getInstance().mostrarEstoxo());
                     break;  
                 }
 
+                /**
+                 * Saír
+                 */
                 case 9 -> {
                     System.out.println("Saíndo...");
                     menuActivo = false;
                     break;  
                 }
             
+                /**
+                 * Erro
+                 */
                 default-> {
                     System.out.println("Erro. Opción inválida");
                     break;  

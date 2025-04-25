@@ -1,0 +1,16 @@
+New-ADUser -DisplayName:"Alumno20 A20. Alumno20" -GivenName:"Alumno20" -Initials:"A20" -Name:"Alumno20 A20. Alumno20" -Path:"OU=Alumnos,OU=Segundo,OU=DAW,OU=Usuarios,DC=sanclemente,DC=local" -SamAccountName:"Alumno20" -Server:"SCDC-01.sanclemente.local" -Surname:"Alumno20" -Type:"user"
+
+
+New-ADUser -DisplayName:"Alumno30 A30. Alumno30" -GivenName:"Alumno30" -Initials:"A30" -Name:"Alumno30 A30. Alumno30" -Path:"OU=Alumnos,OU=Segundo,OU=DAW,OU=Usuarios,DC=sanclemente,DC=local" -SamAccountName:"Alumno30" -Server:"SCDC-01.sanclemente.local" -Surname:"Alumno30" -Type:"user"
+
+
+New-ADUser -DisplayName:"Alumno40 A40. Alumno40" -GivenName:"Alumno40" -Initials:"A40" -Name:"Alumno40 A40. Alumno40" -Path:"OU=Alumnos,OU=Segundo,OU=DAW,OU=Usuarios,DC=sanclemente,DC=local" -SamAccountName:"Alumno40" -Server:"SCDC-01.sanclemente.local" -Surname:"Alumno40" -Type:"user"
+
+
+New-ADUser -DisplayName:"Profesor10 P10. Profesor10" -GivenName:"Profesor10" -Initials:"P10" -Name:"Profesor10 P10. Profesor10" -Path:"OU=Profesores,OU=Segundo,OU=DAW,OU=Usuarios,DC=sanclemente,DC=local" -SamAccountName:"Profesor10" -Server:"SCDC-01.sanclemente.local" -Surname:"Profesor10" -Type:"user"
+
+New-ADUser -DisplayName:"Profesor20 P20. Profesor20" -GivenName:"Profesor20" -Initials:"P20" -Name:"Profesor20 P20. Profesor20" -Path:"OU=Profesores,OU=Segundo,OU=DAW,OU=Usuarios,DC=sanclemente,DC=local" -SamAccountName:"Profesor20" -Server:"SCDC-01.sanclemente.local" -Surname:"Profesor20" -Type:"user"
+
+
+
+New-ADUser -DisplayName:"Profesor30 P30. Profesor30" -GivenName:"Profesor30" -Initials:"P30" -Name:"Profesor30 P30. Profesor30" -Path:"OU=Profesores,OU=Segundo,OU=DAW,OU=Usuarios,DC=sanclemente,DC=local" -SamAccountName:"Profesor30" -Server:"SCDC-01.sanclemente.local" -Surname:"Profesor30" -Type:"user"

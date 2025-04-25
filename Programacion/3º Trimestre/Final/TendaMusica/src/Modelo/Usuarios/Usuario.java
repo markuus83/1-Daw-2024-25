@@ -9,7 +9,6 @@ public abstract class Usuario {
     private String nomeUsuario;
     private String contrasinal;
     private TipoUsuario rol;
-
     /**
      * Constructor propio da clase Usuario, onde pasamos como parámetros todos os atributos da propia clase.
      * 
@@ -17,11 +16,9 @@ public abstract class Usuario {
      * @param nomeUsuario -> Nome do usuario
      * @param rol -> Rol do usuario
      */
-    @SuppressWarnings("OverridableMethodCallInConstructor")
-    public Usuario(String contrasinal, String nomeUsuario, TipoUsuario rol) {
+    public Usuario(String contrasinal, String nomeUsuario) {
         this.setNomeUsuario(nomeUsuario);
         this.setContrasinal(contrasinal);
-        this.rol = rol;
     }
 
     //Getters&Setters

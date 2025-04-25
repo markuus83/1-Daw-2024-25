@@ -1,7 +1,7 @@
 package Vista;
 
 import Controlador.TendaMusica;
-import Modelo.Excepcions.IndiceInvalido;
+import Modelo.Excepcions.IdInvalido;
 import Modelo.Excepcions.StockExcedente;
 import Modelo.Excepcions.StockNegativo;
 
@@ -55,7 +55,7 @@ public class MenuAdministrador extends Menu {
                     try {
                         System.out.println(TendaMusica.getInstance().verInformacionProduto(indice));
                         
-                    } catch (IndiceInvalido e) {
+                    } catch (IdInvalido e) {
                         System.out.println("Erro: "+e.getMessage());
                     }
                     break;
@@ -73,7 +73,7 @@ public class MenuAdministrador extends Menu {
 
                     try {
                         TendaMusica.getInstance().aumentarStock(indice, stock);
-                    } catch (StockNegativo | IndiceInvalido e) {
+                    } catch (StockNegativo | IdInvalido e) {
                         System.out.println("Erro: "+e.getMessage());
                         break;
                     }
@@ -93,7 +93,7 @@ public class MenuAdministrador extends Menu {
 
                     try {
                         TendaMusica.getInstance().eliminarStock(indice, stock);
-                    } catch (StockExcedente | StockNegativo | IndiceInvalido e) {
+                    } catch (StockExcedente | StockNegativo | IdInvalido e) {
                         System.out.println("Erro: "+e.getMessage());
                         break;
                     }

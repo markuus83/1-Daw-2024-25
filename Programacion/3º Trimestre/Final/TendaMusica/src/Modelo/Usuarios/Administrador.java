@@ -11,8 +11,11 @@ public class Administrador extends Usuario {
      * @param nomeUsuario -> Nome do usuario
      * @param rol -> Rol do usuario
      */
-    public Administrador(String contrasinal, String nomeUsuario, TipoUsuario rol) {
-        super(contrasinal, nomeUsuario, rol);
+    public Administrador(String contrasinal, String nomeUsuario) {
+        super(contrasinal, nomeUsuario);
     }
    
+    public TipoUsuario getRol() {
+        return TipoUsuario.ADMINISTRADOR;
+    }
 }

@@ -2,7 +2,7 @@ package Controlador;
 
 //Almacenamento de datos
 import Modelo.Excepcions.ISBNIncorrecto;
-import Modelo.Excepcions.IndiceInvalido;
+import Modelo.Excepcions.IdInvalido;
 import Modelo.Excepcions.PrezoNegativo;
 import Modelo.Excepcions.StockExcedente;
 import Modelo.Excepcions.StockNegativo;
@@ -41,7 +41,7 @@ public class TendaMusica {
     /**
      * Constructor privado (patrón Singleton)
      */
-    private TendaMusica(){
+    private TendaMusica() {
         usuarios = new HashMap<>();
         produtos = new HashMap<>();
         instrumentos = new ArrayList<>();
@@ -61,6 +61,7 @@ public class TendaMusica {
     public static TendaMusica getInstance(){
         if (TendaMusica.INSTANCE == null) {
             TendaMusica.INSTANCE = new TendaMusica();
+            TendaMusica.INSTANCE.engadirDatos();
         }
         return TendaMusica.INSTANCE;
     }
@@ -91,7 +92,7 @@ public class TendaMusica {
      */
     public void ingresarCliente(String nome, String contrasinal){
 
-        Cliente c = new Cliente(contrasinal, nome, TipoUsuario.CLIENTE);
+        Cliente c = new Cliente(contrasinal, nome);
         usuarios.put(nome, c);
     }
 
@@ -100,7 +101,7 @@ public class TendaMusica {
      */
     public void ingresarAdministrador(String nome, String contrasinal){
 
-        Administrador a = new Administrador(contrasinal, nome, TipoUsuario.ADMINISTRADOR);
+        Administrador a = new Administrador(contrasinal, nome);
         usuarios.put(nome, a);
     }
    
@@ -341,27 +342,28 @@ public class TendaMusica {
     /**
      * Obtén a información dun produto polo seu ID
      */
-    public String verInformacionProduto(int id) throws IndiceInvalido {
+    public String verInformacionProduto(int id) throws IdInvalido {
 
-        if (id >= 0 && id < produtos.size()) {
+        if (produtos.containsKey(id)) {
             Produto p = produtos.get(id);
             return p.toString();
         } else {
-            throw new IndiceInvalido("Índice inválido!");
+            throw new IdInvalido("Índice inválido!");
         }
     }
+
     /**
      * Aumenta o stock dun produto
      */
-    public void aumentarStock(int id, int stock) throws IndiceInvalido, StockNegativo{
+    public void aumentarStock(int id, int stock) throws IdInvalido, StockNegativo{
 
         System.out.println(verInformacionProduto(id));
 
         //Capturamos a excepción de Stock no propio método da clase Produto
-        if (id >= 0 && id < produtos.size()) {
+        if (produtos.containsKey(id)) {
             produtos.get(id).aumentarStock(stock);
         }else{
-            throw new IndiceInvalido("Índice inválido!");
+            throw new IdInvalido("Índice inválido!");
         }
         
     }
@@ -369,28 +371,55 @@ public class TendaMusica {
     /**
      * Elimina stock dun produto
      */
-    public void eliminarStock(int id, int stock) throws StockNegativo, StockExcedente, IndiceInvalido {
+    public void eliminarStock(int id, int stock) throws StockNegativo, StockExcedente, IdInvalido {
 
         System.out.println(verInformacionProduto(id));
 
         ///Capturamos a excepción de Stock no propio método da clase Produto
-        if (id >= 0 && id < produtos.size()) {
+        if (produtos.containsKey(id)) {
             produtos.get(id).diminuirStock(stock);
         }else{
-            throw new IndiceInvalido("Índice inválido!");
+            throw new IdInvalido("Índice inválido!");
         }
     }
 
     
     /************* MÉTODOS PARA O MENÚ DE CLIENTES ***************/
 
-    public void comprarProdutos(int id, int cantidade)throws StockNegativo, StockExcedente, IndiceInvalido{
+    /**
+     * Método encargado de comprar produtos por parte de un Cliente
+     */
+    public void comprarProdutos(int id, int cantidade)throws StockNegativo, StockExcedente, IdInvalido{
 
         ///Capturamos a excepción de Stock no propio método da clase Produto
-        if (id >= 0 && id < produtos.size()) {
+        if (produtos.containsKey(id)) {
             produtos.get(id).diminuirStock(cantidade);
         }else{
-            throw new IndiceInvalido("Índice inválido!");
+            throw new IdInvalido("Índice inválido!");
         }
+    }
+
+    /************* MÉTODOS PARA O ENGADIR DATOS DE PROBA ***************/
+
+    public void engadirDatos() {
+        
+        try {
+            //Usuarios
+            this.ingresarCliente("flako", "flako");
+            this.ingresarAdministrador("flako", "flako");
+
+            //Instrumentos
+            this.engadirFrauta("Marca1", "Modelo1", 10, 10, "Miau", true);
+            this.engadirSaxofon("Marca1", "Modelo1", 20, 20, "Miau", TipoSaxofon.ALTO);
+            this.engadirTrombon("Marca1", "Modelo1", 30, 30, "Miau", true);
+
+            //Complementos
+            this.engadirEstoxo(10, 10, "Miau", null, TipoInstrumentoMusical.FRAUTA);
+            this.engadirLibro(20, 20, "Miau", "Miau", "Autor1", "8437621076");
+
+        } catch (Exception e) {
+            System.out.println("Erro: "+e.getMessage());
+        }
+        
     }
 }

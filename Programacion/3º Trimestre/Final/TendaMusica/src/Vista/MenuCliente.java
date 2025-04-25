@@ -1,7 +1,7 @@
 package Vista;
 
 import Controlador.TendaMusica;
-import Modelo.Excepcions.IndiceInvalido;
+import Modelo.Excepcions.IdInvalido;
 import Modelo.Excepcions.StockExcedente;
 import Modelo.Excepcions.StockNegativo;
 
@@ -42,7 +42,7 @@ public class MenuCliente extends Menu {
 
                     try {
                         TendaMusica.getInstance().comprarProdutos(id, cantidade);
-                    } catch (StockExcedente | StockNegativo | IndiceInvalido e) {
+                    } catch (StockExcedente | StockNegativo | IdInvalido e) {
                         System.out.println("Erro: "+e.getMessage());
                     }
                 }

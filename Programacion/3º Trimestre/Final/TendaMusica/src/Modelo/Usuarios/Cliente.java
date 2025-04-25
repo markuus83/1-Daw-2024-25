@@ -11,8 +11,11 @@ public class Cliente extends Usuario {
      * @param nomeUsuario -> Nome do usuario
      * @param rol -> Rol do usuario
      */
-    public Cliente(String contrasinal, String nomeUsuario, TipoUsuario rol) {
-        super(contrasinal, nomeUsuario, rol);
+    public Cliente(String contrasinal, String nomeUsuario) {
+        super(contrasinal, nomeUsuario);
     }
    
+    public TipoUsuario getRol() {
+        return TipoUsuario.CLIENTE;
+    }
 }

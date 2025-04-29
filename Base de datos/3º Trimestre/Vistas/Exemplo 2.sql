@@ -13,15 +13,17 @@ CREATE VIEW V_VENDEDORES AS
 GO
 
 -- Comprobamos los datos de la vista
- SELECT *  	FROM V_VENDEDORES
+	SELECT *  	FROM V_VENDEDORES
 
 -- Que pasa si se inserta en la tabla de empleados un vendedor
- INSERT INTO EMPLEADOS VALUES(1001,'Alvarez Ramon', 'VENDEDOR', 7839, '2021-03-10', 2700, 0.22, 30);
-  SELECT *  	FROM V_VENDEDORES;
-  -- Se ve en la vista tambi�n
+	INSERT INTO EMPLEADOS VALUES(1001,'Alvarez Ramon', 'VENDEDOR', 7839, '2021-03-10', 2700, 0.22, 30);
+	
+	SELECT *  	FROM V_VENDEDORES;
+-- Se ve en la vista tambi�n
 
 -- Que pasa si se insertan vendedores desde la vista:
 INSERT INTO V_VENDEDORES VALUES(1002,'Fern�ndez Rodrigo', 'VENDEDOR', 7839, '2021-04-10', 2500, 0.2, 30);
+
 INSERT INTO V_VENDEDORES VALUES(1003,'Rodr�guez Marta', 'VENDEDOR', 7839, '2021-03-10', 3000, 0.24, 30);
  
  SELECT * FROM V_VENDEDORES;
@@ -66,14 +68,14 @@ GO
 INSERT INTO V_COMERCIALES VALUES(1005, 'Mendez Ramon', 7839, '2021-03-30', 2500, 0.2, 30);
 
 
- SELECT * FROM V_COMERCIALES;
- SELECT * FROM EMPLEADOS;
+SELECT * FROM V_COMERCIALES;
+SELECT * FROM EMPLEADOS;
  
 -- Modificar datos a traves de una vista
  
 -- Cambiar el salario al vendedor Juan Calvo a 2400
- SELECT * FROM V_COMERCIALES;
- SELECT * FROM EMPLEADOS;          
+SELECT * FROM V_COMERCIALES;
+SELECT * FROM EMPLEADOS;          
 
 UPDATE V_COMERCIALES  
 	SET salario ='2400' 

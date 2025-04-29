@@ -14,22 +14,31 @@
 
     · LEFT() ->
 
+
     · LEN() ->
 
+    
     · LOWER() ->
 
+    
     · LTRIM() ->
 
+    
     · NCHAR() ->
 
+    
     · REPLACE() ->
 
+    
     · RIGHT() ->
 
+    
     · RTRIM() ->
+
 
     · SUBSTRING() ->
 
+    
     · UNICODE() ->
 
 

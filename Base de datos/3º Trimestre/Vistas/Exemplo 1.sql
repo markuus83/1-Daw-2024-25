@@ -2,12 +2,12 @@
 
 -- Crear una vista de los empleados con salario > 200
 
-			CREATE OR ALTER VIEW VEMPLE200 
-			AS SELECT *
-			FROM TEMPLE WHERE SALAR > 200;
+	CREATE OR ALTER VIEW VEMPLE200 
+	AS SELECT *
+	FROM TEMPLE WHERE SALAR > 200;
 
-			SELECT * FROM TEMPLE;
-			SELECT * FROM VEMPLE200;
+	SELECT * FROM TEMPLE;
+	SELECT * FROM VEMPLE200;
 
 -- Crear una vista que nos de n�mero y nombre de los empleados 
 -- con salario > 200.
@@ -15,44 +15,44 @@
 -- Se podr�a hacer a partir de la tabla TEMPLE o de la vista VEMPLE200.
 -- Aqu� la vista la hago a partir de la vista.
 
-			CREATE OR ALTER VIEW VEMPLE2001 
-			AS SELECT NUMEM, NOMEM
-			FROM VEMPLE200;
-			
-		
-			SELECT * FROM VEMPLE2001;
-			
-			
--- Para borrar una vista
+	CREATE OR ALTER VIEW VEMPLE2001 
+	AS SELECT NUMEM, NOMEM
+	FROM VEMPLE200;
 	
-			DROP VIEW VEMPLE200;
+
+	SELECT * FROM VEMPLE2001;
+	
+	
+-- Para borrar una vista
+
+	DROP VIEW VEMPLE200;
 
 --Si consultamos ahora la VEMPLE2001 que iba sobre la VEMPLE200
 --da error.
-			
-			SELECT * FROM VEMPLE2001;
+	
+	SELECT * FROM VEMPLE2001;
 
 --Para modificar una vista
-		
-		    CREATE OR ALTER VIEW VEMPLE200
-			AS SELECT *
-			FROM TEMPLE WHERE SALAR > 250;
+
+	CREATE OR ALTER VIEW VEMPLE200
+	AS SELECT *
+	FROM TEMPLE WHERE SALAR > 250;
 
 -- En este caso la crea, ya que la hab�amos borrado
 
 -- Voy a modificarlo, volviendo a poner 200 
 
-		CREATE OR ALTER VIEW	VEMPLE200
-				AS SELECT *
-				FROM TEMPLE WHERE SALAR > 200;
+	CREATE OR ALTER VIEW	VEMPLE200
+		AS SELECT *
+		FROM TEMPLE WHERE SALAR > 200;
 
-			
-			SELECT * FROM VEMPLE200;	
-			SELECT * FROM VEMPLE2001;
+	
+	SELECT * FROM VEMPLE200;	
+	SELECT * FROM VEMPLE2001;
 
 --Si quiero saber como son:
-			Exec sp_helptext VEMPLE200;
-			Exec sp_helptext VEMPLE2001;
+	Exec sp_helptext VEMPLE200;
+	Exec sp_helptext VEMPLE2001;
 
 			
 -- **************************************************************************************			
@@ -73,49 +73,49 @@
 -- **********************************************************************
 -- Sin CHECKOPTION ******************************************************
 -- **********************************************************************
-			select * from TDEPTO
+	select * from TDEPTO
 
 -- Inserta cualquier dato este o no en la vista.  Solo tiene que cumplir 
 -- las condiciones de insert de la vista
 
-            SELECT * FROM TEMPLE;
-			SELECT * FROM VEMPLE200;
-			SELECT * FROM VEMPLE2001;
-	
-			INSERT INTO VEMPLE2001 VALUES (105,'Prueba0');
-		
-					
---No aparece 105 en la vista ya que su sueldo no es mayor que 200, pero se inserta =
+	SELECT * FROM TEMPLE;
+	SELECT * FROM VEMPLE200;
+	SELECT * FROM VEMPLE2001;
+
+	INSERT INTO VEMPLE2001 VALUES (105,'Prueba0');
+
 			
-			SELECT * FROM VEMPLE2001;
+--No aparece 105 en la vista ya que su sueldo no es mayor que 200, pero se inserta =
+	
+	SELECT * FROM VEMPLE2001;
 
 --pero si aparece en Temple ya que se insert�.
 
-			SELECT * FROM TEMPLE;
+	SELECT * FROM TEMPLE;
 
 
 -- Creamos una nueva vista a partir de la vista VEMPLE200
 
-			CREATE OR ALTER VIEW VEMPLE2002 
-			AS SELECT NUMEM, NOMEM, SALAR
-			FROM VEMPLE200;
-			
-			SELECT * FROM VEMPLE2002;
-			SELECT * FROM TEMPLE;
+	CREATE OR ALTER VIEW VEMPLE2002 
+	AS SELECT NUMEM, NOMEM, SALAR
+	FROM VEMPLE200;
 	
+	SELECT * FROM VEMPLE2002;
+	SELECT * FROM TEMPLE;
+
 -- Insertamos ahora 
 
-			INSERT INTO VEMPLE2002 VALUES (108,'Prueba1',100);-- No aparece en la vista, pero si en la tabla
-			INSERT INTO VEMPLE2002 VALUES (112,'Prueba2',500);-- Si aparece en la vista y en la tabla
+	INSERT INTO VEMPLE2002 VALUES (108,'Prueba1',100);-- No aparece en la vista, pero si en la tabla
+	INSERT INTO VEMPLE2002 VALUES (112,'Prueba2',500);-- Si aparece en la vista y en la tabla
 
 --Los borro a traves de la tabla. 
-			
-		  
-		DELETE TEMPLE WHERE NUMEM = 112   
-		DELETE TEMPLE WHERE NUMEM = 105       
-		DELETE TEMPLE WHERE NUMEM = 108	     
 		
-					
+		
+	DELETE TEMPLE WHERE NUMEM = 112   
+	DELETE TEMPLE WHERE NUMEM = 105       
+	DELETE TEMPLE WHERE NUMEM = 108	     
+	
+				
 -- **********************************************************************
 -- Con CHECKOPTION ******************************************************
 -- **********************************************************************		
@@ -124,17 +124,17 @@
 
 -- Da error. 
 
-            SELECT * FROM TEMPLE;
-            
-            CREATE OR ALTER VIEW VEMPLE2003
-			AS SELECT NUMEM, NOMEM, SALAR 
-			FROM VEMPLE200 with check option;
+	SELECT * FROM TEMPLE;
+	
+	CREATE OR ALTER VIEW VEMPLE2003
+	AS SELECT NUMEM, NOMEM, SALAR 
+	FROM VEMPLE200 with check option;
 
-	       INSERT INTO VEMPLE2003 VALUES (108,'Prueba3',100);   -- Da error, no cumple las condiciones de la vista
-		   INSERT INTO VEMPLE2003 VALUES (109,'Prueba4',500);	-- Si lo inserta
-		   
-		   SELECT * FROM TEMPLE;
-		   SELECT * FROM VEMPLE2003;
+	INSERT INTO VEMPLE2003 VALUES (108,'Prueba3',100);   -- Da error, no cumple las condiciones de la vista
+	INSERT INTO VEMPLE2003 VALUES (109,'Prueba4',500);	-- Si lo inserta
+	
+	SELECT * FROM TEMPLE;
+	SELECT * FROM VEMPLE2003;
 			
 
 -- *******************************************
@@ -147,36 +147,36 @@
 
 -- Solo modifica los datos que estan en la vista
 
-            SELECT * FROM TEMPLE;
-			SELECT * FROM VEMPLE200;
+	SELECT * FROM TEMPLE;
+	SELECT * FROM VEMPLE200;
 
-			SELECT * FROM VEMPLE200
-			WHERE NUMEM = 150;-- Est� en la vista
+	SELECT * FROM VEMPLE200
+	WHERE NUMEM = 150;-- Est� en la vista
 
 -- Si lo hace, ya que est� en la vista. Modificar el nombre a �ngel
 
 
-			UPDATE VEMPLE200  
-			SET nomem ='�ngel' 
-			WHERE numem =150;
+	UPDATE VEMPLE200  
+	SET nomem ='�ngel' 
+	WHERE numem =150;
 
-			SELECT * FROM VEMPLE200
-			WHERE NUMEM = 150;
-			
+	SELECT * FROM VEMPLE200
+	WHERE NUMEM = 150;
+	
 -- No Deja    
 
-			SELECT * FROM VEMPLE2001
-			WHERE NUMEM = 370; -- No est� en la vista
+	SELECT * FROM VEMPLE2001
+	WHERE NUMEM = 370; -- No est� en la vista
 
 
 --Si intento cambiar el nombre al 370 no lo hace.
-			UPDATE VEMPLE2001  
-			SET nomem ='Lasa,Mata' 
-			WHERE numem =370
-			
-			
-			SELECT * FROM temple
-			SELECT * FROM VEMPLE2001
+	UPDATE VEMPLE2001  
+	SET nomem ='Lasa,Mata' 
+	WHERE numem =370
+	
+	
+	SELECT * FROM temple
+	SELECT * FROM VEMPLE2001
 
 
 			
@@ -185,52 +185,52 @@
 
 -- Creamos otra vista sin 'WITH CHECK OPTION'
 
-			CREATE OR ALTER VIEW VEMPLE2004
-			AS SELECT NUMEM, NOMEM, SALAR
-			FROM VEMPLE200;
-			
-			SELECT * FROM VEMPLE2004;
-			SELECT * FROM TEMPLE;
-			
--- Si el dato no esta en la vista, no lo actualiza		
+	CREATE OR ALTER VIEW VEMPLE2004
+	AS SELECT NUMEM, NOMEM, SALAR
+	FROM VEMPLE200;
 	
-			UPDATE VEMPLE2004 SET SALAR = 100 WHERE NUMEM = 370;
-								
+	SELECT * FROM VEMPLE2004;
+	SELECT * FROM TEMPLE;
+	
+-- Si el dato no esta en la vista, no lo actualiza		
+
+	UPDATE VEMPLE2004 SET SALAR = 100 WHERE NUMEM = 370;
+						
 -- Si esta en la vista, lo modifica, aunque desaparezca de ella
 
-			SELECT * FROM TEMPLE;
-			SELECT * FROM VEMPLE2004;
+	SELECT * FROM TEMPLE;
+	SELECT * FROM VEMPLE2004;
 
-			UPDATE VEMPLE2004 SET SALAR = 100 WHERE NUMEM = 110;
+	UPDATE VEMPLE2004 SET SALAR = 100 WHERE NUMEM = 110;
 	
 	
 	
 	
 -- Con  'WITH CHECK OPTION' 
 
-			CREATE OR ALTER  VIEW VEMPLE2004 
-			AS SELECT NUMEM, NOMEM, SALAR 
-			FROM VEMPLE200 WITH CHECK OPTION ;
+	CREATE OR ALTER  VIEW VEMPLE2004 
+	AS SELECT NUMEM, NOMEM, SALAR 
+	FROM VEMPLE200 WITH CHECK OPTION ;
 
 
-			
-			
+	
+	
 -- Si esta en la vista, no lo modifica, 
 -- si la modificacion implica que la tupla desaparezca de ella.			
-			
-			SELECT * FROM VEMPLE2004;
-			
+	
+	SELECT * FROM VEMPLE2004;
+	
 -- No deja, da error.
-			
-			UPDATE VEMPLE2004 SET SALAR = 100 WHERE NUMEM = 190;
-			
+	
+	UPDATE VEMPLE2004 SET SALAR = 100 WHERE NUMEM = 190;
+	
 -- Pero si puedo modificarlo en la tabla.
-			
-			UPDATE TEMPLE SET SALAR = 100 WHERE NUMEM = 190;
-			
-							
-			SELECT * FROM TEMPLE
-			
+	
+	UPDATE TEMPLE SET SALAR = 100 WHERE NUMEM = 190;
+	
+					
+	SELECT * FROM TEMPLE
+	
 			
 			
 			
@@ -242,34 +242,28 @@
 
 -- VEMPLE2001 no tiene check option
 
-			exec sp_helptext VEMPLE2001;
-			exec sp_helptext VEMPLE2002;
-			exec sp_helptext VEMPLE2003;
+	exec sp_helptext VEMPLE2001;
+	exec sp_helptext VEMPLE2002;
+	exec sp_helptext VEMPLE2003;
 
 -- Deja
-			SELECT * FROM TEMPLE
-			SELECT * FROM VEMPLE2001
-			DELETE VEMPLE2001 WHERE numem = 150;
-			
--- No deja		
+	SELECT * FROM TEMPLE
+	SELECT * FROM VEMPLE2001
+	DELETE VEMPLE2001 WHERE numem = 150;
 	
-			DELETE VEMPLE2001 WHERE numem = 108;
+-- No deja		
 
+	DELETE VEMPLE2001 WHERE numem = 108;
 
-
-
-
-
-			
-
+	
 -- Para ponerle nombre a las columnas las enumeramos.
 -- y da error si el n�mero de columnas no coincide.
 -- Se pueden poner los alias en la clausula SELECT:
 
 
-			CREATE OR ALTER VIEW VEMPLE2002 (N�mero, Nombre)
-			AS SELECT NUMEM, NOMEM
-			FROM TEMPLE WHERE SALAR > 200;
+	CREATE OR ALTER VIEW VEMPLE2002 (N�mero, Nombre)
+	AS SELECT NUMEM, NOMEM
+	FROM TEMPLE WHERE SALAR > 200;
 			
 
 SELECT * FROM VEMPLE2002
@@ -281,12 +275,12 @@ SELECT * FROM temple
 -- la palabra Perez en su nombre. Al n�mero de empleado le llamaremos ID 
 -- y al nombre NOMBRE, e ir?n en este orden:NOMBRE, ID.
 
-			CREATE OR ALTER VIEW VEMPLE2005 (NOMBRE, ID)
-			AS SELECT NOMEM, NUMEM
-			FROM VEMPLE2001 WHERE NOMEM like '%PEREZ%';
-			
-			SELECT * FROM VEMPLE2001;
-			SELECT * FROM VEMPLE2002;
+	CREATE OR ALTER VIEW VEMPLE2005 (NOMBRE, ID)
+	AS SELECT NOMEM, NUMEM
+	FROM VEMPLE2001 WHERE NOMEM like '%PEREZ%';
+	
+	SELECT * FROM VEMPLE2001;
+	SELECT * FROM VEMPLE2002;
 			
 -- Crear una vista vemple2006, con los empleados de VEMPLE200 y
 -- cinco columnas: el n?mero de empleado,nombre,n?mero de departamento,edad y a?os de servicio
@@ -294,36 +288,36 @@ SELECT * FROM temple
 
 
 
-			CREATE OR ALTER VIEW VEMPLE2006 (ID, NOMBRE, DEPARTAMENTO, EDAD, ANTIG�EDAD)
-			AS SELECT NUMEM, NOMEM, NUMDE,
-			ABS(DATEDIFF(YEAR, getdate(), fecna)), ABS(DATEDIFF(YEAR, getdate(), fecin))
-			FROM VEMPLE200;
-				
-			SELECT * FROM VEMPLE2006;
-			select * from temple
+	CREATE OR ALTER VIEW VEMPLE2006 (ID, NOMBRE, DEPARTAMENTO, EDAD, ANTIG�EDAD)
+	AS SELECT NUMEM, NOMEM, NUMDE,
+	ABS(DATEDIFF(YEAR, getdate(), fecna)), ABS(DATEDIFF(YEAR, getdate(), fecin))
+	FROM VEMPLE200;
+		
+	SELECT * FROM VEMPLE2006;
+	select * from temple
 			
 			
 -- Obtener las medias de edad y antig�edad de cada departamento.
 
-			SELECT DEPARTAMENTO, AVG(EDAD)as 'Media de Edad',
-			AVG(ANTIG�EDAD)as 'Media Antig�edad'
-			FROM VEMPLE2006
-			GROUP BY DEPARTAMENTO
-			ORDER BY DEPARTAMENTO;
+	SELECT DEPARTAMENTO, AVG(EDAD)as 'Media de Edad',
+	AVG(ANTIG�EDAD)as 'Media Antig�edad'
+	FROM VEMPLE2006
+	GROUP BY DEPARTAMENTO
+	ORDER BY DEPARTAMENTO;
  
  -- Crear una vista VEMPLE2007 en la que aparezcan por departamento las 
  -- edades m?nima, max?ma y media de los empleados incluidos en
  -- VEMPLE2006.
  
  
-			 CREATE OR ALTER VIEW VEMPLE2007
-			 (DEPTO,MINIMA,MAXIMA,MEDIA)
-			 AS SELECT DEPARTAMENTO, MIN(EDAD),MAX(EDAD),AVG(EDAD)
-			 FROM VEMPLE2006
-			 GROUP BY DEPARTAMENTO;
-			 		 	 	 
-			 SELECT * FROM VEMPLE2006;
-			 
+	CREATE OR ALTER VIEW VEMPLE2007
+	(DEPTO,MINIMA,MAXIMA,MEDIA)
+	AS SELECT DEPARTAMENTO, MIN(EDAD),MAX(EDAD),AVG(EDAD)
+	FROM VEMPLE2006
+	GROUP BY DEPARTAMENTO;
+					
+	SELECT * FROM VEMPLE2006;
+	
 			  
 -- Utilidad de las vistas:
 
@@ -352,36 +346,36 @@ SELECT * FROM temple
 -- directamente pues contiene datos que se consideran confidenciales:		 
 -- Creamos una vista:
 
-			CREATE OR ALTER VIEW DIRECTORIO
-			(ID,NOMBRE, NUMDEP, DEPTO,TELEFONO)
-			AS SELECT NUMEM, NOMEM, E.NUMDE,NOMDE,EXTEL
-			FROM TEMPLE E, TDEPTO D
-			WHERE E.NUMDE = D.NUMDE;	
+	CREATE OR ALTER VIEW DIRECTORIO
+	(ID,NOMBRE, NUMDEP, DEPTO,TELEFONO)
+	AS SELECT NUMEM, NOMEM, E.NUMDE,NOMDE,EXTEL
+	FROM TEMPLE E, TDEPTO D
+	WHERE E.NUMDE = D.NUMDE;	
 
 -- Insertar un empleado. Los datos tienen que ser de una sola tabla			
 
-			insert into directorio (id) values(105); 
+	insert into directorio (id) values(105); 
+	
+	SELECT * FROM TDEPTO
+	select * from TEMPLE
+	
+	SELECT * FROM directorio
 			
-			SELECT * FROM TDEPTO
-			select * from TEMPLE
-			
-			SELECT * FROM directorio
-				 
 -- Supongamos que queremos permitir a todos los directores de 
 -- departamentos que puedan acceder a todos los datos de la tabla 
 -- de empleados, pero solo aquellos de los que son directores 
 -- inmediatos y no a otros.
 
 -- Creamos la vista:
+	
+	CREATE VIEW	VSALCO
+	AS SELECT TEMPLE.*
+	FROM TDEPTO,TEMPLE
+	WHERE TEMPLE.NUMDE = '112' and 
+			TDEPTO.NUMDE = TEMPLE.NUMDE;	
 			
-			CREATE VIEW	VSALCO
-			AS SELECT TEMPLE.*
-			FROM TDEPTO,TEMPLE
-			WHERE TEMPLE.NUMDE = '112' and 
-				  TDEPTO.NUMDE = TEMPLE.NUMDE;	
-				  
-			
-			SELECT * FROM VSALCO	 
+	
+	SELECT * FROM VSALCO	 
 		
 
 	--------------------------------------------------------------------------------------------
@@ -427,53 +421,52 @@ INSERT INTO TEMPLE VALUES (550, 111,  780, '10-01-1970', '21-01-1988', 100,  120
 -- sp_help: Presenta informaci�n acerca de un objeto de base de datos (cualquier objeto de la vista de compatibilidad
 -- sys.sysobjects).
 
-                sp_help VEMPLE200;
-				sp_helptext VEMPLE2003;
-				sp_helptext VEMPLE2005;
+	EXEC sp_help VEMPLE200;
+	EXEC sp_helptext VEMPLE2003;
+	EXEC sp_helptext VEMPLE2005;
 
 -- sp_depends: Muestra informaci?n acerca de las dependencias de los objetos de la base de datos, tales como las vistas 
 -- y procedimientos que dependen de una tabla o de una vista, y las tablas y vistas de las que depende la vista o el 
 -- procedimiento. 
 
-               sp_depends VEMPLE200;
-               sp_depends VEMPLE2001;
-			   go
+	EXEC sp_depends VEMPLE200;
+	EXEC sp_depends VEMPLE2001;
+	go
 
 -- sp_helptext: Muestra definiciones de reglas definidas por el usuario, valores predeterminados, procedimientos 
 -- almacenados de Transact-SQL no cifrados, funciones Transact-SQL definidas por el usuario, desencadenadores, columnas 
 -- calculadas, restricciones CHECK, vistas u objetos del sistema, como un procedimiento almacenado del sistema.
 
 
-	            sp_helptext VEMPLE2003;
-				go
-	            sp_helptext VEMPLE2005;
+	EXEC sp_helptext VEMPLE2003;
+	go
+
+	EXEC sp_helptext VEMPLE2005;
+
+
 -- Encriptada
-			    CREATE VIEW VEMPLE11 with encryption
-                as SELECT * FROM TEMPLE
-			    WHERE SALAR > 200;
-			
-			   
-			    sp_helptext VEMPLE11
+	CREATE VIEW VEMPLE11 with encryption
+	as SELECT * FROM TEMPLE
+	WHERE SALAR > 200;
+
+	
+	EXEC sp_helptext VEMPLE11
 
 			
 			
-			 
-			
-		
-
 
 -- sys.columns :Devuelve una fila por cada columna de cada tabla y vista, y una fila por cada 
 -- par?metro de un procedimiento almacenado de la base de datos.
 
-            SELECT * FROM sys.columns
-            
+	SELECT * FROM sys.columns
+	
 -- sys.objects :Contiene una fila para cada objeto de ?mbito de esquema definido por el usuario
 -- que se cree en la base de datos.
 
-            SELECT * FROM sys.objects
-            
+	SELECT * FROM sys.objects
+	
 -- sys.syscomments : Contiene una entrada por cada vista, regla, valor predeterminado, desencadenador, restricci?n CHECK,
 -- restricci?n DEFAULT y procedimiento almacenado de la base de datos. La columna text contiene las instrucciones de 
 --definici?n de SQL originales.
 
-            SELECT * FROM sys.syscomments
+	SELECT * FROM sys.syscomments

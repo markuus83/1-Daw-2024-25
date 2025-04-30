@@ -24,7 +24,6 @@
 	FROM EMPREGADO 
 
 
-
 -- Proposta 4 -> Consulta que devolva as datas nas que se contrataron empregados. 
 --O formato das diferentes datas será dd-mm-aaaa e o nome da columna Datas de contratación.
 

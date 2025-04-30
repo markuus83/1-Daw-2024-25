@@ -8,7 +8,7 @@ public abstract class Usuario {
     //Atributos
     private String nomeUsuario;
     private String contrasinal;
-    private TipoUsuario rol;
+    
     /**
      * Constructor propio da clase Usuario, onde pasamos como parámetros todos os atributos da propia clase.
      * 
@@ -34,7 +34,5 @@ public abstract class Usuario {
     public void setContrasinal(String contrasinal) {
         this.contrasinal = HashPasword.hashPassword(contrasinal);
     }
-    public TipoUsuario getRol() {
-        return rol;
-    }
+    public abstract TipoUsuario getRol();
 }

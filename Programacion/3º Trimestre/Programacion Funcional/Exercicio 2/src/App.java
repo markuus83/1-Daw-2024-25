@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class App {
@@ -65,7 +66,8 @@ public class App {
                 .filter(n -> n.getData().getYear() == 2023 && n.getPosition() == 1) //Filtramos 
                 .map(n -> n.getArtist()) //Convertimos a unha lista de artistas
                 .distinct() //Evitamos repetidos
-                .forEach(n -> System.out.println("\t"+n)); //Imprimimos
+                .forEach(n -> System.out.println("\t- "+n)); //Imprimimos
+
 
 
     //2.Indica o número de canción diferentes que foron número 1 en 2024
@@ -76,17 +78,19 @@ public class App {
                     .filter(n -> n.getData().getYear() == 2024 && n.getPosition() == 1) //Filtramos
                     .count(); //Contamos
 
-        System.out.println("\tExisitiron "+numeroCancionsTop1+" cancións que foron Top1 en 2024");
+        System.out.println("\tExisitiron "+numeroCancionsTop1+" cancións que foron Top 1 en 2024.");
+
 
 
     //3.Indica as cancións de Aitana que estiveron nas 10 primeiras posicións das máis escoitadas.
         System.out.println("\n3. Cancións de Aitana no top 10: ");
 
         datos   .stream() //Iniciamos o Stream
-                .filter(n -> n.getArtist().contentEquals("Aitana") && n.getPosition() <= 10) //Filtramos
+                .filter(n -> n.getArtist().contentEquals("Aitana") && n.getPosition() <= 10) //Filtramos -> Interpretamos cancións de Aitana como única artista
                 .map(n -> n.getSong()) //Convertimos a unha lista de cancións
                 .distinct() //Eliminamos repetidos
-                .forEach(n -> System.out.println("\t"+n)); //Imprimimos
+                .forEach(n -> System.out.println("\t- "+n)); //Imprimimos
+
 
 
     //4.Indica as cancións que foron máis escoitadas durante o mes de agosto de 2024.
@@ -96,7 +100,8 @@ public class App {
                 .filter(n -> n.getData().getMonthValue() == 8 && n.getPosition() == 1) //Filtramos
                 .map(n -> n.getSong()) //Convertimos a unha lista de cancións
                 .distinct() //Eliminamos repetidos
-                .forEach(n -> System.out.println("\t"+n)); //Imprimimos
+                .forEach(n -> System.out.println("\t- "+n)); //Imprimimos
+
 
 
     //5.Indica as posicións diferentes que obtiveron as cancións de Aitana ordenadas de menor a maior nunha cadea de texto separada por comas
@@ -104,7 +109,7 @@ public class App {
 
         List<Integer> listaAitana = 
         datos   .stream() //Iniciamos o Stream
-                .filter(n -> n.getArtist().contentEquals("Aitana")) //Filtramos
+                .filter(n -> n.getArtist().contentEquals("Aitana")) //Filtramos -> Interpretamos cancións de Aitana como única artista
                 .map(n -> n.getPosition()) //Convertimos a unha lsita de posicións
                 .distinct() //Eliminamos repetidos
                 .collect(Collectors.toList()); //Devolvemos a unha nova lista
@@ -112,12 +117,13 @@ public class App {
         //Ordenamos de menor a maior (Dámoslle a volta)
         Collections.sort(listaAitana, (a1,a2) -> a2.compareTo(a1));
         
-        String resposta = "\t";
-        for (Integer i : listaAitana) {
-            resposta += i+", ";
-        }
+        //Engadimos todos os datos nunha cadea de texto
+        String resposta = "\t" +listaAitana.stream().map(i -> i.toString()).collect(Collectors.joining(", "));
+        
+        //Imprimimos
         System.out.println(resposta);
         
+
 
     //6.Indica a posición máis alta de escoitadas que chegou unha canción de “Cris Mj”.
         System.out.println("\n6. Posición máis alta que acadou 'Cris Mj': ");
@@ -130,33 +136,51 @@ public class App {
 
         List<Integer> listaPosicionCris = 
         datos   .stream() //Iniciamos o Stream
-                .filter(n -> n.getArtist().contentEquals("Cris Mj")) //Filtramos
+                .filter(n -> n.getArtist().contains("Cris Mj")) //Filtramos 
+
+                /**
+                 * IMPORTANTE:
+                 *    
+                 *    Usamos .contains() en vez de .containsEqual() porque opinamos que é importante a súa participación na canción
+                 */
+
                 .map(n -> n.getPosition()) //Convertimos a unha lista de posicións
                 .distinct() //Eliminamos repetidos
                 .sorted() //Ordenamos de maior a menor
                 .collect(Collectors.toList()); //Devolvemos a unha nova lista
         
         //Imprimimos
-        System.out.println("\tA posición máis alta acadada foi: "+listaPosicionCris.getFirst());
+        System.out.println("\tA posición máis alta acadada foi: "+listaPosicionCris.getFirst()+".");
+
 
 
     //7.Agrupa as cancións por artista nun map.
         System.out.println("\n7. Agrupar as cancións por artistas nun map: ");
 
-        Map<String, List<String>> mapaArtistas = 
-        
-        datos   .stream()
-                .collect(Collectors.groupingBy( c -> c.getArtist(), Collectors.mapping(c -> c.getSong(), Collectors.toList())));
-    
+        /**
+         * ACLARACIÓN:
+         * 
+         * Tras intentar eliminar as diferentes cancións duplicadas do map de cada artista, buscando por StackOverflow apareceu unha solución interesante: Utilizar un Set.
+         * 
+         * Un Set contén internamente un método .equals() que non permite duplicados, polo que ao atopar a mesma canción do artista, non permite engadilo novamente.
+         */
 
-        mapaArtistas.forEach((artista, canciones) -> {
-            System.out.println("\n\tArtista: " + artista);
-            canciones.forEach(c -> System.out.println("\t\t- " + c));
-        });
-                
-
+        Map<String, Set<String>> mapaArtistas = 
         
+        datos   .stream() //Iniciamos o Stream 
+                .collect(Collectors.groupingBy( //Agrupamos por artista
+                                                    c -> c.getArtist(), //Función que agrupa por artista
+                                                    Collectors.mapping( //Agregamos os datos
+                                                                        c -> c.getSong(), Collectors.toSet() //Función que agrupa por canción
+                                                                        ) 
+                                                )
+                        );
+
+        //Recorremos o mapa e imprimimos os datos
+        mapaArtistas.forEach((artista, canciones) -> System.out.println("\n\tArtista: " + artista + "\n\t\t- " + String.join("\n\t\t- ", canciones)));
+
        
+
     // 8.Indica a número de cancións que superan os 6 minutos que estiveron nas 5 primeiras posicións.
         System.out.println("\n8. Número de cancións que superan os 6 minutos que estiveron nas 5 primeiras posicións: ");
 
@@ -164,7 +188,8 @@ public class App {
         datos   .stream() //Iniciamos o Stream
                 .filter(n -> n.getPosition() <= 5 && n.getDuration_ms() > 6*60000) //Filtramos
                 .count(); //Contamos
-
-        System.out.println("\tExisten "+cantidadeTotal+" cancións que cumpren os requisitos.");
+        
+        //Imprimimos
+        System.out.println("\tExisten "+cantidadeTotal+" cancións.");
     }
 }

@@ -2,6 +2,9 @@ package utiles.clasesStatic;
 
 public class ComprobarISBN10 {
     
+    /**
+     * Método encargado de comprobar se un ISBN-10 é correcto ou non
+     */
     public static boolean comprobarISBN10(String isbn) {
         
         if (isbn == null || isbn.length() != 10) {

@@ -2,6 +2,9 @@ package utiles.clasesStatic;
 
 public class ComprobarDNI {
     
+    /**
+     * Método encargado de comprobar se un DNI é correcto ou non
+     */
     public static boolean comprobarDNI(String dni) {
         //Inicializamos as variables precisas
         String letrasNecesarias = "TRWAGMYFPDXBNJZSQVHLCKE";

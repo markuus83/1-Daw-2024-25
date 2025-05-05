@@ -8,8 +8,6 @@ public class HashPasword {
     /**
      * Método encargado de avaliar o contrasinal dun usuario
      * 
-     * @param password -> Constrasinal a avaliar
-     * @return -> String co hash do contrasinal
      */
     public static String hashPassword(String password) {
         try {

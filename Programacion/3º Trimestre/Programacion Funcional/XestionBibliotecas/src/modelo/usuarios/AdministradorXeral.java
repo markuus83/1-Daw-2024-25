@@ -1,6 +1,5 @@
-package modelo.usuarios.administradores;
+package modelo.usuarios;
 
-import modelo.usuarios.Usuario;
 import utiles.enumerandos.TipoUsuario;
 
 public class AdministradorXeral extends Usuario {

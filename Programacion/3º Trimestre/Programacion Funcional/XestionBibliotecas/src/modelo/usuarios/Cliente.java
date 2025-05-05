@@ -1,6 +1,5 @@
-package modelo.usuarios.cliente;
+package modelo.usuarios;
 
-import modelo.usuarios.Usuario;
 import utiles.clasesStatic.ComprobarCorreo;
 import utiles.clasesStatic.ComprobarDNI;
 import utiles.enumerandos.TipoUsuario;

@@ -1,5 +1,10 @@
+package utiles.clasesStatic;
+
 public class ComprobarISBN13 {
 
+    /**
+     * Método encarfado de comprobar se un ISBN-13 é correcto ou non
+     */
     public static boolean comprobarISBN13(String isbn) {
 
         if (isbn == null || isbn.length() != 13) {

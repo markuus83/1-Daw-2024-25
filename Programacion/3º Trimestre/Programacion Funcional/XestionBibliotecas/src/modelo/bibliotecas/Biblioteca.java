@@ -1,5 +1,9 @@
 package modelo.bibliotecas;
 
+import java.util.Optional;
+
+import modelo.usuarios.AdministradorBiblioteca;
+
 public class Biblioteca {
     
     //Atributos
@@ -8,6 +12,8 @@ public class Biblioteca {
     private String direccion;
     private String cidade;
     private String provincia;
+    private AdministradorBiblioteca admin;
+    private boolean tenAdmin;
 
     //Atributo static
     private static int contador = 0;
@@ -25,6 +31,7 @@ public class Biblioteca {
         this.setDireccion(direccion);
         this.setCidade(cidade);
         this.setProvincia(provincia);
+        this.tenAdmin = false;
 
         //Non fai falta que vaia de último posto que non existen excepcións a capturar.
         this.idBiblioteca = contador++;
@@ -56,6 +63,26 @@ public class Biblioteca {
     }
     public int getIdBiblioteca(){
         return idBiblioteca;
+    }
+
+    public void setAdministradorBiblioteca(AdministradorBiblioteca adminB){
+        this.admin = adminB;
+        this.tenAdmin = true;
+    }
+    
+    /**
+     * 
+     */
+    public Optional<AdministradorBiblioteca> getAdmin() {
+        if (this.tenAdmin) return Optional.of(this.admin);
+        else return Optional.empty();
+    }
+
+    /**
+     * 
+     */
+    public boolean isTenAdmin() {
+        return tenAdmin;
     }
 
     @Override

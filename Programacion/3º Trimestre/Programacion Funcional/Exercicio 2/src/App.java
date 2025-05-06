@@ -161,7 +161,6 @@ public class App {
         //Recorremos o mapa e imprimimos os datos
         //mapaArtistas.forEach((artista, canciones) -> System.out.println("\n\tArtista: " + artista + "\n\t\t- " + String.join("\n\t\t- ", canciones)));
 
-       
 
     // 8.Indica a número de cancións que superan os 6 minutos que estiveron nas 5 primeiras posicións.
         System.out.println("\n8. Número de cancións que superan os 6 minutos que estiveron nas 5 primeiras posicións: ");

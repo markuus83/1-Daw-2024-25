@@ -8,7 +8,13 @@ public abstract class Usuario {
     //Atributos
     private String nomeUsuario;
     private String contrasinal;
-    
+
+    /**
+     * Método Constructor da clase Usuario
+     * 
+     * @param contrasinal -> Contrasinal 
+     * @param nomeUsuario -> Nome de usuario
+     */
     public Usuario(String contrasinal, String nomeUsuario) {
         this.setNomeUsuario(nomeUsuario);
         this.setContrasinal(contrasinal);
@@ -27,5 +33,6 @@ public abstract class Usuario {
     public void setContrasinal(String contrasinal) {
         this.contrasinal = HashPasword.hashPassword(contrasinal);
     }
+
     public abstract TipoUsuario getRol();
 }

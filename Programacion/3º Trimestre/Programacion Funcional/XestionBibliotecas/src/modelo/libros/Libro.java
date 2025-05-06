@@ -25,9 +25,9 @@ public class Libro {
      * @param lingua -> Lingua na que está escrita o libro
      * @throws ISBNIncorrecto -> Posible excepción personalizada a capturar
      */
-    public Libro(String titulo, ArrayList<String> autores, String editorial, String isbn, TipoLinguaLibros lingua) throws ISBNIncorrecto {
+    public Libro(String titulo, String editorial, String isbn, TipoLinguaLibros lingua) throws ISBNIncorrecto {
         this.setTitulo(titulo);
-        this.autores = autores;
+        this.autores = new ArrayList<>();
         this.setEditorial(editorial);
         this.setIsbn(isbn);
         this.setLingua(lingua);
@@ -54,11 +54,19 @@ public class Libro {
     public void setLingua(TipoLinguaLibros lingua) {
         this.lingua = lingua;
     }
+
     /**
      * Método encargado de devolver nunha cadea de texto todos os autores separados por un ";"
      */
     public String getAutores(){
         return this.autores.stream().collect(Collectors.joining("; ","",""));
+    }
+
+    /**
+     * Método encargado para engadir autores ao ArrayList
+     */
+    public void engadirAutores(String a){
+        autores.add(a);
     }
 
     /**

@@ -1,14 +1,25 @@
 package controlador;
 
+//Imports estructuras de datos
 import java.util.HashMap;
+
+//Imports modelo
 import modelo.bibliotecas.Biblioteca;
+import modelo.libros.Libro;
+import modelo.usuarios.AdministradorBiblioteca;
 import modelo.usuarios.AdministradorXeral;
 import modelo.usuarios.Cliente;
 import modelo.usuarios.Usuario;
+
+//Imports utiles
 import utiles.clasesStatic.HashPasword;
+import utiles.enumerandos.TipoLinguaLibros;
 import utiles.enumerandos.TipoUsuario;
+import utiles.excepcions.BibliotecasNonExiste;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
+import utiles.excepcions.ISBNIncorrecto;
+import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.UsuarioExistente;
 import utiles.excepcions.UsuarioNonExiste;
 
@@ -16,6 +27,7 @@ public class XestionBibliotecas {
 
     private static HashMap<String, Usuario> usuarios;
     private static HashMap<Integer, Biblioteca> bibliotecas;
+    private static HashMap<String, Libro> libros;
 
     /**
      * Constructor privado (patrón Singleton)
@@ -23,6 +35,7 @@ public class XestionBibliotecas {
     private XestionBibliotecas() {
         usuarios = new HashMap<>();
         bibliotecas = new HashMap<>();
+        libros = new HashMap<>();
     }
 
     private static XestionBibliotecas INSTANCE;
@@ -66,6 +79,9 @@ public class XestionBibliotecas {
 
     /************* MÉTODOS PARA O MENÚ DE INICIO ***************/
 
+    /**
+     * Método encargado de comprobar se non existen usuarios
+     */
     public boolean nonExisteUsuario(String user) throws UsuarioNonExiste{
         if (!(usuarios.containsKey(user))) {
             throw new UsuarioNonExiste("O usuario non existe!");
@@ -73,6 +89,9 @@ public class XestionBibliotecas {
         return true;
     }
 
+    /**
+     * Método encargado de comprobar que existen usuarios
+     */
     public boolean existeUsuario(String user) throws UsuarioExistente{
         if (usuarios.containsKey(user)) {
             throw new UsuarioExistente("O usuario xa existe!");
@@ -98,13 +117,28 @@ public class XestionBibliotecas {
     }
 
     /**
-     * método encargado de engadir un Administrador Xeral
+     * Método encargado de engadir un Administrador Xeral
      */
     public void ingresarAdministradorXeral(String contrasinal, String nomeUsuario){
 
         AdministradorXeral a = new AdministradorXeral(contrasinal, nomeUsuario);
-
         usuarios.put(nomeUsuario, a);
+    }
+
+    /**
+     * Método encargado de ingresar un administrador de Biblioteca
+     */
+    public void ingresarAdministradorBiblioteca(String contrasinal, String nomeUsuario, int id) throws IndiceInvalido{
+
+        if (bibliotecas.containsKey(id)) {
+            
+            AdministradorBiblioteca b = new AdministradorBiblioteca(contrasinal, nomeUsuario, id);
+
+            usuarios.put(nomeUsuario, b);
+
+        } else{
+            throw new IndiceInvalido("Indice inválido!");
+        }
     }
 
     /**
@@ -123,20 +157,36 @@ public class XestionBibliotecas {
         return user.getRol().equals(TipoUsuario.ADMINISTRADOR_XERAL);
     }
 
-
+    /**
+     * Método encargado de comprobar se existen bibliotecas
+     */
+    public boolean existenBibliotecas() throws BibliotecasNonExiste{
+        if (bibliotecas.isEmpty()) {
+            throw new BibliotecasNonExiste("Non existen Bibliotecas!");
+        } else{
+            return true;
+        }
+    }
 
     
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES XERAIS ***************/
+
+    /**
+     * Método encargado de ingresar unha Biblioteca
+     */
     public void ingresarBiblioteca(String nome, String direccion, String cidade, String provincia){
 
         Biblioteca b = new Biblioteca(nome, direccion, cidade, provincia);
         bibliotecas.put(b.getIdBiblioteca(), b);
     }
 
-    public boolean existeBiblioteca(int id){
-        if (bibliotecas.isEmpty()) {
-            return false;
-        }
-        return bibliotecas.containsKey(id);
+    /**
+     * Método encargado de ingresar un Libro
+     */
+    public void ingresarLibro(String libro, String editorial, String isbn, TipoLinguaLibros tipoLingua) throws ISBNIncorrecto{
+
+        Libro l = new Libro(libro, editorial, isbn, tipoLingua);
+        libros.put(isbn, l);
     }
+
 }

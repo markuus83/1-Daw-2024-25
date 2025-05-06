@@ -417,7 +417,7 @@ public class TendaMusica {
             this.engadirEstoxo(10, 10, "Miau", null, TipoInstrumentoMusical.FRAUTA);
             this.engadirLibro(20, 20, "Miau", "Miau", "Autor1", "8437621076");
 
-        } catch (Exception e) {
+        } catch (ISBNIncorrecto | PrezoNegativo | StockNegativo e) {
             System.out.println("Erro: "+e.getMessage());
         }
         

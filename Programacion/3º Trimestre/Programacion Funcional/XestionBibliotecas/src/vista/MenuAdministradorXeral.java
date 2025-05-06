@@ -1,6 +1,9 @@
 package vista;
 
 import controlador.XestionBibliotecas;
+import utiles.enumerandos.TipoLinguaLibros;
+import utiles.excepcions.ISBNIncorrecto;
+import utiles.excepcions.LibroExistente;
 
 public class MenuAdministradorXeral extends Menu{
 
@@ -39,11 +42,57 @@ public class MenuAdministradorXeral extends Menu{
 
                 }
 
+
                 /**
                  * Novo Libro
                  */
                 case 2 -> {
+                    String titulo = getString("\nIngrese o título: ");
+                    String editorial = getString("Ingrese a editorial: ");
+                    String isbn = getString("Ingrese o ISBN: ");
+
+                    System.out.println("\nEn que lingua está o libro?");
+                    System.out.println("\t1. Galego: ");
+                    System.out.println("\t2. Castelán: ");
+                    System.out.println("\t3. Ingés: ");
+
+                    int optionLingua = getInt("> ");
+
+                    TipoLinguaLibros tipo;
+
+                    switch (optionLingua) {
+
+                        case 1 -> {
+                            tipo = TipoLinguaLibros.GALEGO;
+                        }
+
+                        case 2 -> {
+                            tipo = TipoLinguaLibros.CASTELAN;
+                        }
+
+                        case 3 -> {
+                            tipo = TipoLinguaLibros.INGLES;
+                        }
+                    
+                        default -> {
+                            System.out.println("Erro: Opción inválida!");
+                            continue;
+                        }
+                    }
+                    
+                    try {
+
+                        XestionBibliotecas.getInstance().existeLibro(isbn);
+
+                        XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, tipo);
+
+                    } catch (ISBNIncorrecto | LibroExistente e) {
+                        System.out.println("Erro: "+e.getMessage());
+                        break;
+                    }
+                    System.out.println("Libro creado exitosamente!");
                 }
+
 
                 /**
                  * Saír
@@ -54,6 +103,7 @@ public class MenuAdministradorXeral extends Menu{
                     break;
                 }
             
+
                 /**
                  * Erro
                  */

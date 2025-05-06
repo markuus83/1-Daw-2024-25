@@ -2,16 +2,12 @@ package controlador;
 
 //Imports estructuras de datos
 import java.util.HashMap;
-
-//Imports modelo
 import modelo.bibliotecas.Biblioteca;
 import modelo.libros.Libro;
 import modelo.usuarios.AdministradorBiblioteca;
 import modelo.usuarios.AdministradorXeral;
 import modelo.usuarios.Cliente;
 import modelo.usuarios.Usuario;
-
-//Imports utiles
 import utiles.clasesStatic.HashPasword;
 import utiles.enumerandos.TipoLinguaLibros;
 import utiles.enumerandos.TipoUsuario;
@@ -20,6 +16,7 @@ import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
 import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.IndiceInvalido;
+import utiles.excepcions.LibroExistente;
 import utiles.excepcions.UsuarioExistente;
 import utiles.excepcions.UsuarioNonExiste;
 
@@ -183,10 +180,27 @@ public class XestionBibliotecas {
     /**
      * Método encargado de ingresar un Libro
      */
-    public void ingresarLibro(String libro, String editorial, String isbn, TipoLinguaLibros tipoLingua) throws ISBNIncorrecto{
+    public void ingresarLibro(String titulo, String editorial, String isbn, TipoLinguaLibros tipoLingua) throws ISBNIncorrecto{
 
-        Libro l = new Libro(libro, editorial, isbn, tipoLingua);
+        Libro l = new Libro(titulo, editorial, isbn, tipoLingua);
         libros.put(isbn, l);
     }
 
+    /**
+     * Método encargado de avaliar se existe un libro
+     */
+    public boolean  existeLibro(String isbn) throws LibroExistente{
+        if (libros.containsKey(isbn)) {
+            throw new LibroExistente("O libro xá existe!");
+        }else{
+            return true;
+        }
+
+    }
+
+    public void ingresarAutoresLibro(String isbn){
+        Libro l = libros.get(isbn);
+
+        l.engadirAutores(isbn);
+    }
 }

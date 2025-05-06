@@ -2,6 +2,9 @@ package controlador;
 
 //Imports estructuras de datos
 import java.util.HashMap;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import modelo.bibliotecas.Biblioteca;
 import modelo.libros.Libro;
 import modelo.usuarios.AdministradorBiblioteca;
@@ -11,6 +14,7 @@ import modelo.usuarios.Usuario;
 import utiles.clasesStatic.HashPasword;
 import utiles.enumerandos.TipoLinguaLibros;
 import utiles.enumerandos.TipoUsuario;
+import utiles.excepcions.BibliotecaTenAdmin;
 import utiles.excepcions.BibliotecasNonExiste;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
@@ -22,9 +26,14 @@ import utiles.excepcions.UsuarioNonExiste;
 
 public class XestionBibliotecas {
 
+    //Estructuras de control
     private static HashMap<String, Usuario> usuarios;
     private static HashMap<Integer, Biblioteca> bibliotecas;
     private static HashMap<String, Libro> libros;
+    
+
+
+    /************* MÉTODOS PARA A CREACIÓN DO PATRÓN SINGLETON ***************/
 
     /**
      * Constructor privado (patrón Singleton)
@@ -57,8 +66,12 @@ public class XestionBibliotecas {
     }
 
 
+
     /************* MÉTODOS PARA ENGADIR DATOS Á INSTANCIA ***************/
 
+    /**
+     * Método encargado de engadir un Administrador Xeral cada vez que se cree unha nova Instancia.
+     */
     public void engadirDatos() {
         
         try {
@@ -139,6 +152,31 @@ public class XestionBibliotecas {
     }
 
     /**
+     * Método encargado de comprobar se unha biblioteca ten administrador
+     */
+    public boolean bibliotecaTenAdmin() throws BibliotecaTenAdmin{
+        
+        for (Biblioteca b : bibliotecas.values()) {
+            if (!(b.getAdmin().equals(Optional.empty()))) {
+                throw new BibliotecaTenAdmin("A biblioteca xa ten administrador!");
+            }
+        }
+        return false;
+    }
+
+
+    /**
+     * Método encargado de amosar todas as Bibliotecas nunha cadea de texto
+     */
+    public String amosarBibliotecas(){
+
+        return bibliotecas.entrySet()
+                      .stream()
+                      .map(entry -> entry.getKey() + " - " + entry.getValue())
+                      .collect(Collectors.joining("\n"));
+    }
+
+    /**
      * Método encargado de comprobar se un usuario é cliente ou administrador
      */
     public boolean eCliente(String nome){
@@ -189,18 +227,28 @@ public class XestionBibliotecas {
     /**
      * Método encargado de avaliar se existe un libro
      */
-    public boolean  existeLibro(String isbn) throws LibroExistente{
+    public boolean existeLibro(String isbn) throws LibroExistente{
         if (libros.containsKey(isbn)) {
             throw new LibroExistente("O libro xá existe!");
-        }else{
+        } else {
             return true;
         }
-
     }
 
-    public void ingresarAutoresLibro(String isbn){
+    /**
+     * Método encargado de ingresar autores a un libro
+     */
+    public void ingresarAutoresLibro(String isbn,String autor){
         Libro l = libros.get(isbn);
 
-        l.engadirAutores(isbn);
+        l.engadirAutores(autor);
     }
 }
+
+
+
+    /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES de BIBLIOTECA ***************/
+
+
+
+//EXEMPLO ISBN: 0901690546

@@ -39,6 +39,7 @@ public class MenuAdministradorXeral extends Menu{
                         System.out.println("Erro: "+e.getMessage());
                         break;
                     }
+                    System.out.println("\nBiblioteca creada exitosamente!");
 
                 }
 
@@ -50,7 +51,6 @@ public class MenuAdministradorXeral extends Menu{
                     String titulo = getString("\nIngrese o título: ");
                     String editorial = getString("Ingrese a editorial: ");
                     String isbn = getString("Ingrese o ISBN: ");
-
                     System.out.println("\nEn que lingua está o libro?");
                     System.out.println("\t1. Galego: ");
                     System.out.println("\t2. Castelán: ");
@@ -86,11 +86,23 @@ public class MenuAdministradorXeral extends Menu{
 
                         XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, tipo);
 
+                        boolean engadirAutores = true;
+                        while (engadirAutores) {
+                            System.out.println("\nEscriba 'fin' para rematar: ");
+                            String autores = getString("Ingrese o autor/es: ");
+
+                            if (autores.equals("fin")) {
+                                engadirAutores = false;
+                                break;
+                            }
+                            XestionBibliotecas.getInstance().ingresarAutoresLibro(isbn, autores);
+                        } 
+
                     } catch (ISBNIncorrecto | LibroExistente e) {
                         System.out.println("Erro: "+e.getMessage());
                         break;
                     }
-                    System.out.println("Libro creado exitosamente!");
+                    System.out.println("\nLibro creado exitosamente!");
                 }
 
 

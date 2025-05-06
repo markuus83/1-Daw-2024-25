@@ -1,8 +1,11 @@
 package vista;
 
 import controlador.XestionBibliotecas;
+import utiles.excepcions.BibliotecaTenAdmin;
+import utiles.excepcions.BibliotecasNonExiste;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
+import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.UsuarioExistente;
 import utiles.excepcions.UsuarioNonExiste;
 
@@ -35,13 +38,13 @@ public class MenuInicio extends Menu{
                         XestionBibliotecas.getInstance().nonExisteUsuario(nomeUsuario);
                         
                     } catch (UsuarioNonExiste e) {
-                        System.out.println("Erro: "+e.getMessage());
+                        System.out.println("\nErro: "+e.getMessage());
                         break;
                     }
 
                     //Comprobamos que os datos son correctos
                     if (!XestionBibliotecas.getInstance().comprobarDatos(nomeUsuario, contrasinal)) {
-                        System.out.println("Erro. O usuario ou o contrasinal son inválidos");
+                        System.out.println("\nErro. O usuario ou o contrasinal son inválidos");
                         break;
                     }
 
@@ -62,16 +65,15 @@ public class MenuInicio extends Menu{
                  * Rexistrarse
                  */
                 case 2 -> {
-                    String nomeUsuario = getString("\nIngrese o nome de usuario: ");
-                    String contrasinal = getString("Ingrese o seu contrasinal: ");
+                    
 
                     boolean menuEscollaTipoUser = true;
                     
                     while (menuEscollaTipoUser) {
                         System.out.println("\nEscolla o tipo de usuario: ");
-                        System.out.println("1. Cliente: ");
-                        System.out.println("2. Administrador Xeral: ");
-                        System.out.println("3. Administrador de Biblioteca");
+                        System.out.println("\t1. Cliente: ");
+                        System.out.println("\t2. Administrador Xeral: ");
+                        System.out.println("\t3. Administrador de Biblioteca");
 
                         int tipoUser = getInt("> ");
 
@@ -81,7 +83,8 @@ public class MenuInicio extends Menu{
                              * Rexistro Cliente
                              */
                             case 1 -> {
-                                
+                                String nomeUsuario = getString("\nIngrese o nome de usuario: ");
+                                String contrasinal = getString("Ingrese o seu contrasinal: ");
                                 String nome = getString("\nIngrese o nome do Cliente: ");
                                 String apelidos = getString("Ingrese os apelidos: ");
                                 String dni = getString("Ingrese o DNI: ");
@@ -93,12 +96,14 @@ public class MenuInicio extends Menu{
 
                                         XestionBibliotecas.getInstance().ingresarCliente(contrasinal, nomeUsuario, nome, apelidos, dni, correo);
 
-                                        System.out.println("\nCliente ingresado con éxito!");
                                     }
 
                                 } catch (UsuarioExistente | DNIIncorrecto | CorreoInvalido e) {
-                                    System.out.println("Erro: "+e.getMessage());
+                                    System.out.println("\nErro: "+e.getMessage());
+                                    break;
                                 }
+
+                                System.out.println("\nCliente ingresado con éxito!");
 
                                 menuEscollaTipoUser = false;
                                 break;
@@ -111,17 +116,21 @@ public class MenuInicio extends Menu{
                             case 2 -> {
 
                                 try {
-                                    
+                                    String nomeUsuario = getString("\nIngrese o nome de usuario: ");
+                                    String contrasinal = getString("Ingrese o seu contrasinal: ");
+
                                     if(XestionBibliotecas.getInstance().existeUsuario(nomeUsuario)){
 
                                         XestionBibliotecas.getInstance().ingresarAdministradorXeral(contrasinal, nomeUsuario);
-
-                                        System.out.println("\nAdministrador Xeral ingresado con éxito!");
+                                        
                                     }
 
                                 } catch (UsuarioExistente e) {
-                                    System.out.println("Erro: "+e.getMessage());
+                                    System.out.println("\nErro: "+e.getMessage());
+                                    break;
                                 }
+
+                                System.out.println("\nAdministrador Xeral ingresado con éxito!");
 
                                 menuEscollaTipoUser = false;
                                 break;
@@ -132,6 +141,31 @@ public class MenuInicio extends Menu{
                              * Rexistro Administrador Biblioteca
                              */
                             case 3 -> {
+                                String nomeUsuario = getString("\nIngrese o nome de usuario: ");
+                                String contrasinal = getString("Ingrese o seu contrasinal: ");
+
+                                if (XestionBibliotecas.getInstance().amosarBibliotecas().isEmpty()) {
+                                    System.out.println("\nNon existen bibliotecas neste momento!");
+                                    break;
+                                }
+                                System.out.println(XestionBibliotecas.getInstance().amosarBibliotecas());
+
+                                int id = getInt("Ingrese o id da biblioteca a administrar: ");
+
+                                try {
+                                    XestionBibliotecas.getInstance().existenBibliotecas();
+
+                                    if (!(XestionBibliotecas.getInstance().bibliotecaTenAdmin())) {
+
+                                        XestionBibliotecas.getInstance().ingresarAdministradorBiblioteca(contrasinal, nomeUsuario, id);
+                                    } 
+
+                                } catch (BibliotecaTenAdmin |BibliotecasNonExiste |IndiceInvalido e) {
+                                    System.out.println("\nErro: "+e.getMessage());
+                                    break;
+                                }
+
+                                System.out.println("\nAdministrador de Biblioteca ingresado con éxito!");
 
                                 menuEscollaTipoUser = false;
                                 break;
@@ -142,7 +176,7 @@ public class MenuInicio extends Menu{
                              * Erro
                              */
                             default-> {
-                                System.out.println("Erro. Opción inválida!");
+                                System.out.println("\nErro. Opción inválida!");
                                 break;
                             }
                         }
@@ -153,7 +187,7 @@ public class MenuInicio extends Menu{
                  * Saír
                  */
                 case 3 -> {
-                    System.out.println("Saíndo...");
+                    System.out.println("\nSaíndo...\nGrazas por usar a nosa rede de Bibliotecas!!");
                     menuActivo = false;
                     break;
                 }
@@ -162,7 +196,7 @@ public class MenuInicio extends Menu{
                  * Erro
                  */
                 default-> {
-                    System.out.println("Erro. Opción inválida!");
+                    System.out.println("\nErro. Opción inválida!");
                     break;
                 }
             }

@@ -30,14 +30,19 @@
 	select * 
 	from empregado
 
-	SELECT CONVERT(date,data_contrato,103) as dataColumna
+	SELECT DATEFROMPARTS(DAY(data_contrato), MONTH(data_contrato), YEAR(data_contrato))
 	FROM EMPREGADO
 
+	SELECT CONVERT(date, data_contrato, 103) as DataComlumna
+	FROM EMPREGADO
 
 -- Proposta 5 -> Queremos obter un nome abreviado das sucursais.
 --Ese nome comporase polos tres primeiros caracteres da cidade, 
 --os dous últimos da rexión e separado por un guión baixo, o número de caracteres do nome da cidade.
 
+	SELECT LEFT(cidade,3) as Cidade, RIGHT(rexion,2)+'_'+convert(VARCHAR(10),COUNT(cidade)) AS nose
+	FROM SUCURSAL
+	GROUP BY cidade,rexion
 
 	
 

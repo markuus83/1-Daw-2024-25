@@ -56,7 +56,7 @@ public class MenuCliente extends Menu {
                  * Erro
                  */
                 default -> {
-                    System.out.println("Erro: Opción inválida!");
+                    System.out.println("\nErro: Opción inválida!");
                     break;
                 }
             }

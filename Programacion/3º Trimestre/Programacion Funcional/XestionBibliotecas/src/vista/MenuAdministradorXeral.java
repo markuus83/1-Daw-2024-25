@@ -2,6 +2,7 @@ package vista;
 
 import controlador.XestionBibliotecas;
 import utiles.enumerandos.TipoLinguaLibros;
+import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.LibroExistente;
 
@@ -36,7 +37,7 @@ public class MenuAdministradorXeral extends Menu{
                     try {
                         XestionBibliotecas.getInstance().ingresarBiblioteca(nome, direccion, cidade, provincia);
                     } catch (Exception e) {
-                        System.out.println("Erro: "+e.getMessage());
+                        System.out.println("\nErro: "+e.getMessage());
                         break;
                     }
                     System.out.println("\nBiblioteca creada exitosamente!");
@@ -51,6 +52,7 @@ public class MenuAdministradorXeral extends Menu{
                     String titulo = getString("\nIngrese o título: ");
                     String editorial = getString("Ingrese a editorial: ");
                     String isbn = getString("Ingrese o ISBN: ");
+                    int exemplares = getInt("Ingrese a cantidade de exemplares: ");
                     System.out.println("\nEn que lingua está o libro?");
                     System.out.println("\t1. Galego: ");
                     System.out.println("\t2. Castelán: ");
@@ -75,7 +77,7 @@ public class MenuAdministradorXeral extends Menu{
                         }
                     
                         default -> {
-                            System.out.println("Erro: Opción inválida!");
+                            System.out.println("\nErro: Opción inválida!");
                             continue;
                         }
                     }
@@ -84,22 +86,22 @@ public class MenuAdministradorXeral extends Menu{
 
                         XestionBibliotecas.getInstance().existeLibro(isbn);
 
-                        XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, tipo);
+                        XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, tipo, exemplares);
 
                         boolean engadirAutores = true;
                         while (engadirAutores) {
                             System.out.println("\nEscriba 'fin' para rematar: ");
                             String autores = getString("Ingrese o autor/es: ");
 
-                            if (autores.equals("fin")) {
+                            if (autores.toLowerCase().trim().equals("fin")) {
                                 engadirAutores = false;
                                 break;
                             }
                             XestionBibliotecas.getInstance().ingresarAutoresLibro(isbn, autores);
                         } 
 
-                    } catch (ISBNIncorrecto | LibroExistente e) {
-                        System.out.println("Erro: "+e.getMessage());
+                    } catch (ISBNIncorrecto | LibroExistente | ExemplarInvalido e) {
+                        System.out.println("\nErro: "+e.getMessage());
                         break;
                     }
                     System.out.println("\nLibro creado exitosamente!");
@@ -120,7 +122,7 @@ public class MenuAdministradorXeral extends Menu{
                  * Erro
                  */
                 default -> {
-                    System.out.println("Erro: Opción inválida!");
+                    System.out.println("\nErro: Opción inválida!");
                     break;
                 }
             }

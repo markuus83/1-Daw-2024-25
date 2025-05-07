@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import utiles.clasesStatic.ComprobarISBN10;
 import utiles.enumerandos.TipoLinguaLibros;
+import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ISBNIncorrecto;
 
 public class Libro {
@@ -14,6 +15,7 @@ public class Libro {
     private String editorial;
     private String isbn;
     private TipoLinguaLibros lingua;
+    private int exemplares;
 
     /**
      * Método constructor da clase Libro
@@ -24,13 +26,15 @@ public class Libro {
      * @param isbn -> ISBN do libro
      * @param lingua -> Lingua na que está escrita o libro
      * @throws ISBNIncorrecto -> Posible excepción personalizada a capturar
+     * @throws ExemplarInvalido -> Posible excepción personalizada a capturar
      */
-    public Libro(String titulo, String editorial, String isbn, TipoLinguaLibros lingua) throws ISBNIncorrecto {
+    public Libro(String titulo, String editorial, String isbn, TipoLinguaLibros lingua, int exemplares) throws ISBNIncorrecto, ExemplarInvalido {
         this.setTitulo(titulo);
         this.autores = new ArrayList<>();
         this.setEditorial(editorial);
         this.setIsbn(isbn);
         this.setLingua(lingua);
+        this.setExemplares(exemplares);
     }
 
     public String getTitulo() {
@@ -53,6 +57,20 @@ public class Libro {
     }
     public void setLingua(TipoLinguaLibros lingua) {
         this.lingua = lingua;
+    }
+    public int getExemplares(){
+        return exemplares;
+    }
+    
+    /**
+     * Método encargado de avaliar os exemplares dun libro
+     */
+    public void setExemplares(int exemplares) throws ExemplarInvalido{
+        if (exemplares <=0) {
+            throw new ExemplarInvalido("Exemplar inválido!");
+        } else{
+            this.exemplares = exemplares;
+        }
     }
 
     /**

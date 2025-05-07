@@ -29,26 +29,27 @@ EXEC ObtenerEmpleadosPorDepartamento @IDDepartamento = 10;
 
 /* 2. Realizar un procedimiento que acepte un nombre de departamento y devuelva mediante dos parámetros de tipo OUTPUT su número y nombre del director (director).
 */
- 
-CREATE PROCEDURE ObtenerInfoDepartamentoPorNombre
-    @NombreDepto NVARCHAR(50),
-    @IDDepartamento INT OUTPUT,
-    @NombreDirector NVARCHAR(100) OUTPUT
-AS
-BEGIN
-    DECLARE @IDDir INT
 
-    SELECT TOP 1 @IDDepartamento = D.IDDepartamento,
-                 @IDDir = E.Director
-    FROM DEPARTAMENTOS D
-    JOIN EMPLEADOS E ON D.IDDepartamento = E.IDDepartamento
-    WHERE D.Nombre = @NombreDepto
+    CREATE PROCEDURE ObtenerInfoDepartamentoPorNombre
+        @NombreDepto NVARCHAR(50),
+        @IDDepartamento INT OUTPUT,
+        @NombreDirector NVARCHAR(100) OUTPUT
+    AS
+    BEGIN
+        DECLARE @IDDir INT
 
-    SELECT @NombreDirector = Nombre
-    FROM EMPLEADOS
-    WHERE IDEmpleado = @IDDir
-END
-GO
+        SELECT TOP 1 @IDDepartamento = D.IDDepartamento,
+                    @IDDir = E.Director
+        FROM DEPARTAMENTOS D
+        JOIN EMPLEADOS E ON D.IDDepartamento = E.IDDepartamento
+        WHERE D.Nombre = @NombreDepto
+
+        SELECT @NombreDirector = Nombre
+        FROM EMPLEADOS
+        WHERE IDEmpleado = @IDDir
+    END
+    GO
+
 
 -- Ejemplo de uso
 DECLARE @ID INT, @Director NVARCHAR(100)

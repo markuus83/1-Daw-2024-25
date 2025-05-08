@@ -1,5 +1,5 @@
 /*********************** EJERCICIOS FUNCIONES *********************************/
-
+use a23marcoscc_BD_Almacen_Procedimientos;
 /* 1- Crear una función que dada una fecha devuelva el nombre del mes en gallego
 
 SET @mesNome = 
@@ -70,7 +70,7 @@ RETURNS VARCHAR(15)
 		END
 GO
 
-SELECT dbo.nomeSemanaGalego(GETDATE()) AS nomeMesGalego
+SELECT dbo.nomeSemanaGalego(GETDATE()) AS nomeMesGalego;
 
 /* 3- Crear una funci?n que utilizando las definidas en los ejercicios anteriores devuelva la fecha formateada
 -- en el cuerpo de la funci?n se analiza si el dato enviado corresponde a una fecha, 
@@ -95,7 +95,7 @@ RETURNS VARCHAR(15)
 		DECLARE @notaTexto VARCHAR(15)
 		SET @notaTexto = 
 				case 
-				when @nota > 0 AND @nota < 5 THEN 'Aprobado'
+				when @nota >= 0 AND @nota < 5 THEN 'suspenso'
 				when @nota >= 5 AND @nota<7 THEN 'Bien'
 				when @nota >= 7 AND @nota<9 THEN 'Notable'
 				when @nota >= 9 AND @nota<=10 THEN 'Sobresaliente'
@@ -105,7 +105,11 @@ RETURNS VARCHAR(15)
 	END
 GO
 
-SELECT dbo.nomeNotas(11) as nota
+SELECT dbo.nomeNotas(-1) as nota
+SELECT dbo.nomeNotas(3) as nota
+SELECT dbo.nomeNotas(6) as nota
+SELECT dbo.nomeNotas(8) as nota
+SELECT dbo.nomeNotas(10) as nota
 
 /* 5- Crear una funci?n que pas?ndole como par?metro las 8 cifras de un DNI, devuelva la letra que le corresponde seg?n el siguiente algoritmo */
 	/*  algoritmo - m?dulo 23  
@@ -122,12 +126,78 @@ SELECT dbo.nomeNotas(11) as nota
 /* 6- Para la base de datos almacen, crear una funci?n que devuelva un 1 si existe un departamento que
 se le pasa como par?metro y un 0 sino.  */
 
+SELECT Nombre FROM DEPARTAMENTOS
+
+CREATE OR ALTER FUNCTION dbo.existeDepartamento(@departamento AS VARCHAR(15))
+RETURNS INT
+	AS
+		BEGIN
+			DECLARE @existe INT;
+			IF EXISTS (SELECT 1 FROM DEPARTAMENTOS WHERE Nombre = @departamento)
+				BEGIN
+					SET @existe = 1;
+				END;
+			ELSE 
+				BEGIN
+					SET @existe = 0;
+				END;
+			RETURN @existe
+		END
+GO
+
+SELECT 'CONTABILIDAD' as NomeDepartamento, dbo.existeDepartamento('CONTABILIDAD') AS EXISTE;
+
+
 /* 7- Para la tabla de empleados, crear una funci?n que devuelva la suma total de los salarios del departamento
 que se le pasa como par?metro. Utiliza la funci?n definida en el ejercicio anterior. */
+
+SELECT * FROM DEPARTAMENTOS
+SELECT * FROM EMPLEADOS;
+
+CREATE OR ALTER FUNCTION dbo.sumaSalarios(@departamento AS VARCHAR(30))
+RETURNS varchar(30)
+	AS
+	BEGIN
+		
+		DECLARE @resultado varchar(30);
+
+		if dbo.existeDepartamento(@departamento) = 1
+		BEGIN
+			SET @resultado = (SELECT SUM(E.Salario)
+			FROM EMPLEADOS E JOIN DEPARTAMENTOS D 
+			ON E.IDDepartamento = D.IDDepartamento
+			WHERE D.Nombre = @departamento)
+		END
+		ELSE
+			SET @resultado = 'Non existe';
+		RETURN @resultado 
+		
+	END;
+GO
+
+SELECT 'CONTABILIDAD' as NomeDepartamento, dbo.sumaSalarios('CONTABILIDAD') AS sumaSalario;
+SELECT 'COMERCIAL' as NomeDepartamento, dbo.sumaSalarios('COMERCIAL') AS sumaSalario;
+SELECT 'X' as NomeDepartamento, dbo.sumaSalarios('X') AS sumaSalario;
+
 
 /* 8 - Crea una funci?n que dado un id de producto, devuelva los datos de pedido de un producto detallando 
 su descripci?n, precio, unidades y total */
 
+exec sp_help PRODUCTOS
+select * from PRODUCTOS
+select * from PEDIDOS
+
+CREATE OR ALTER FUNCTION dbo.datosPedido(@id INT)
+RETURNS TABLE
+	AS
+	RETURN
+	(SELECT	pr.Descripcion, pr.PrecioActual, pe.UNIDADES
+	FROM PEDIDOS pe JOIN PRODUCTOS pr
+	ON pr.IDProducto = pe.IDProducto
+	where pr.IDProducto = @id
+	);
+GO
+SELECT '10' as ID_Departamento, dbo.datosPedido(10)
 
 
 /* 9- Crear una funci?n de login que devuelva 1 si un usuario est? registrado y su contrase?a es correcta 

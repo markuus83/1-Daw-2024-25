@@ -245,7 +245,7 @@ BEGIN
 	  END
 END;
 
-PRINT 'Bucle finalizado. Se repiti? '+ cast(@num_value as VARCHAR(10)) + ' veces';
+PRINT 'Bucle finalizado. Se repite? '+ cast(@num_value as VARCHAR(10)) + ' veces';
 GO
 
 -- WHILE EXISTS

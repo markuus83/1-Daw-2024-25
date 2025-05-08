@@ -4,44 +4,49 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import utiles.clasesStatic.ComprobarISBN10;
 import utiles.enumerandos.TipoLinguaLibros;
-import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ISBNIncorrecto;
 
 public class Libro {
     
-    //Atributos
-    private String titulo;
-    private ArrayList<String> autores;
-    private String editorial;
+    //atributos
     private String isbn;
+    private String titulo;
+    private ArrayList<String> autor;
     private TipoLinguaLibros lingua;
-    private int exemplares;
+    private String editorial;
 
+    
     /**
      * Método constructor da clase Libro
      * 
-     * @param titulo -> Título do libro
-     * @param autores -> Autor/es do libro
-     * @param editorial -> Editorial do libro
      * @param isbn -> ISBN do libro
-     * @param lingua -> Lingua na que está escrita o libro
-     * @throws ISBNIncorrecto -> Posible excepción personalizada a capturar
-     * @throws ExemplarInvalido -> Posible excepción personalizada a capturar
+     * @param titulo -> Titulo do libro
+     * @param autor -> Autor/es do libro
+     * @param tipo -> Lingua na que está escrita o libro
+     * @param editorial -> Editorial do libro
+     * @throws ISBNIncorrecto -> Posible excepción personalizada do libro
      */
-    public Libro(String titulo, String editorial, String isbn, TipoLinguaLibros lingua, int exemplares) throws ISBNIncorrecto, ExemplarInvalido {
-        this.setTitulo(titulo);
-        this.autores = new ArrayList<>();
-        this.setEditorial(editorial);
+    public Libro(String isbn, String titulo, TipoLinguaLibros tipo, String editorial) throws ISBNIncorrecto {
         this.setIsbn(isbn);
-        this.setLingua(lingua);
-        this.setExemplares(exemplares);
+        this.setTipo(tipo);
+        this.autor = new ArrayList<>();
+        this.setTipo(tipo);
+        this.setEditorial(editorial);
     }
-
+    public String getIsbn() {
+        return isbn;
+    }
     public String getTitulo() {
         return titulo;
     }
-    public void setTitulo(String titulo) {
+    public void setLingua(String titulo) {
         this.titulo = titulo;
+    }
+    public TipoLinguaLibros getLingua() {
+        return lingua;
+    }
+    public void setTipo(TipoLinguaLibros lingua) {
+        this.lingua = lingua;
     }
     public String getEditorial() {
         return editorial;
@@ -49,46 +54,9 @@ public class Libro {
     public void setEditorial(String editorial) {
         this.editorial = editorial;
     }
-    public String getIsbn() {
-        return isbn;
-    }
-    public TipoLinguaLibros getLingua() {
-        return lingua;
-    }
-    public void setLingua(TipoLinguaLibros lingua) {
-        this.lingua = lingua;
-    }
-    public int getExemplares(){
-        return exemplares;
-    }
-    
-    /**
-     * Método encargado de avaliar os exemplares dun libro
-     */
-    public void setExemplares(int exemplares) throws ExemplarInvalido{
-        if (exemplares <=0) {
-            throw new ExemplarInvalido("Exemplar inválido!");
-        } else{
-            this.exemplares = exemplares;
-        }
-    }
 
     /**
-     * Método encargado de devolver nunha cadea de texto todos os autores separados por un ";"
-     */
-    public String getAutores(){
-        return this.autores.stream().collect(Collectors.joining("; ","",""));
-    }
-
-    /**
-     * Método encargado para engadir autores ao ArrayList
-     */
-    public void engadirAutores(String a){
-        autores.add(a);
-    }
-
-    /**
-     * Método encargado de avaliar o ISBN dun libro
+     * Método encargado de avaliar se un ISBN é correcto
      */
     public void setIsbn(String isbn) throws ISBNIncorrecto {
         if (ComprobarISBN10.comprobarISBN10(isbn)) {
@@ -97,10 +65,24 @@ public class Libro {
             throw new ISBNIncorrecto("ISBN incorrecto!");
         }
     }
+
+    /**
+     * Método encargado de engadir autor/es a un libro
+     */
+    public void engadirAutores(String a){
+        autor.add(a);
+    }
     
-    @Override
-    public String toString(){
-        return this.getIsbn()+", "+this.getTitulo()+" de "+this.getAutores()+" en "+this.getLingua()+" ("+this.getEditorial()+"):";
+    /**
+     * Método encargado de devolver nunha cadea de texto todos os autores separados por un ";"
+     */
+    public String getAutores(){
+        return this.autor   .stream()
+                            .collect(Collectors.joining("; ","",""));
     }
 
+    @Override
+    public String toString(){
+        return this.getIsbn()+", "+this.getTitulo()+" de "+this.getAutores()+" en "+this.getLingua()+" ("+this.getEditorial()+")";
+    }
 }

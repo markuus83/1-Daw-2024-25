@@ -106,7 +106,8 @@ public class App {
     //5.Indica as posicións diferentes que obtiveron as cancións de Aitana ordenadas de menor a maior nunha cadea de texto separada por comas
         System.out.println("\n5. Posicións de aitana ordenadas de menor a maior: ");
 
-        String resposta = datos.stream()
+        String resposta = 
+                datos.stream()
                 .filter(n -> n.getArtist().contentEquals("Aitana")) // Só cancións onde Aitana é a única artista
                 .map(n -> n.getPosition()) // Extraemos as posicións
                 .distinct() // Eliminamos repetidos

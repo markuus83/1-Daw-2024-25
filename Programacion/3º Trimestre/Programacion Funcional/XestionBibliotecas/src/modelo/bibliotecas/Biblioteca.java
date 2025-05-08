@@ -65,22 +65,22 @@ public class Biblioteca {
         return idBiblioteca;
     }
 
+    /**
+     * Método encargado de asignar un administrador
+     */
     public void setAdministradorBiblioteca(AdministradorBiblioteca adminB){
         this.admin = adminB;
         this.tenAdmin = true;
     }
     
     /**
-     * 
+     * Método encargado de devovler se unha biblioteca ten ou non Administrador
      */
     public Optional<AdministradorBiblioteca> getAdmin() {
         if (this.tenAdmin) return Optional.of(this.admin);
         else return Optional.empty();
     }
 
-    /**
-     * 
-     */
     public boolean isTenAdmin() {
         return tenAdmin;
     }

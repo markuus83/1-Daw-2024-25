@@ -18,7 +18,6 @@ import utiles.excepcions.BibliotecaTenAdmin;
 import utiles.excepcions.BibliotecasNonExiste;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
-import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.LibroExistente;
@@ -31,7 +30,6 @@ public class XestionBibliotecas {
     private static HashMap<String, Usuario> usuarios;
     private static HashMap<Integer, Biblioteca> bibliotecas;
     private static HashMap<String, Libro> libros;
-    
 
 
     /************* MÉTODOS PARA A CREACIÓN DO PATRÓN SINGLETON ***************/
@@ -214,15 +212,7 @@ public class XestionBibliotecas {
 
         Biblioteca b = new Biblioteca(nome, direccion, cidade, provincia);
         bibliotecas.put(b.getIdBiblioteca(), b);
-    }
 
-    /**
-     * Método encargado de ingresar un Libro
-     */
-    public void ingresarLibro(String titulo, String editorial, String isbn, TipoLinguaLibros tipoLingua, int exemplares) throws ISBNIncorrecto, ExemplarInvalido{
-
-        Libro l = new Libro(titulo, editorial, isbn, tipoLingua, exemplares);
-        libros.put(isbn, l);
     }
 
     /**
@@ -235,15 +225,24 @@ public class XestionBibliotecas {
             return true;
         }
     }
+    
+    public void ingresarLibro(String titulo, String editorial, String isbn, TipoLinguaLibros tipo, int exemplares) throws ISBNIncorrecto{
+
+        Libro l = new Libro(isbn, titulo, tipo, editorial);
+
+        libros.put(isbn, l);
+
+    }
 
     /**
      * Método encargado de ingresar autores a un libro
      */
-    public void ingresarAutoresLibro(String isbn,String autor){
+    public void ingresarAutoresLibro(String isbn, String autor){
         Libro l = libros.get(isbn);
 
         l.engadirAutores(autor);
     }
+     
 }
 
 

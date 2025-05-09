@@ -18,7 +18,9 @@ public class MenuAdministradorXeral extends Menu{
             System.out.println("\nBenvido ao menu de Administradores Xerais: ");
             System.out.println("\t1. Nova Biblioteca: ");
             System.out.println("\t2. Novo Libro: ");
-            System.out.println("\t3. Saír: ");
+            System.out.println("\t3. Ver Bibliotecas: ");
+            System.out.println("\t4. Ver Libros: ");
+            System.out.println("\t5. Saír: ");
 
             int option = getInt("> ");
 
@@ -100,7 +102,7 @@ public class MenuAdministradorXeral extends Menu{
                             XestionBibliotecas.getInstance().ingresarAutoresLibro(isbn, autores);
                         } 
 
-                    } catch (ISBNIncorrecto | LibroExistente | ExemplarInvalido e) {
+                    } catch (ISBNIncorrecto | ExemplarInvalido | LibroExistente e) {
                         System.out.println("\nErro: "+e.getMessage());
                         break;
                     }
@@ -109,15 +111,30 @@ public class MenuAdministradorXeral extends Menu{
 
 
                 /**
-                 * Saír
+                 * Ver Bibliotecas
                  */
                 case 3 -> {
+                    System.out.println(XestionBibliotecas.getInstance().amosarBibliotecas());
+                    break;
+                }
+
+                /**
+                 * Ver Libros
+                 */
+                case 4 -> {
+                    System.out.println(XestionBibliotecas.getInstance().amosarLibos());
+                    break;
+                }
+
+                /**
+                 * Saír
+                 */
+                case 5 -> {
                     System.out.println("Saíndo...");
                     menuActivo = false;
                     break;
                 }
             
-
                 /**
                  * Erro
                  */
@@ -127,7 +144,5 @@ public class MenuAdministradorXeral extends Menu{
                 }
             }
         }
-        
     }
-    
 }

@@ -4,17 +4,18 @@ import java.util.ArrayList;
 import java.util.stream.Collectors;
 import utiles.clasesStatic.ComprobarISBN10;
 import utiles.enumerandos.TipoLinguaLibros;
+import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ISBNIncorrecto;
 
 public class Libro {
     
-    //atributos
+    //Atributos
     private String isbn;
     private String titulo;
     private ArrayList<String> autor;
     private TipoLinguaLibros lingua;
+    private int exemplares;
     private String editorial;
-
     
     /**
      * Método constructor da clase Libro
@@ -25,16 +26,21 @@ public class Libro {
      * @param tipo -> Lingua na que está escrita o libro
      * @param editorial -> Editorial do libro
      * @throws ISBNIncorrecto -> Posible excepción personalizada do libro
+     * @throws ExemplarInvalido -> Posible excepción personalizada do libro
      */
-    public Libro(String isbn, String titulo, TipoLinguaLibros tipo, String editorial) throws ISBNIncorrecto {
+    public Libro(String isbn, String titulo, TipoLinguaLibros tipo, String editorial, int exemplares) throws ISBNIncorrecto, ExemplarInvalido {
         this.setIsbn(isbn);
-        this.setTipo(tipo);
+        this.setTitulo(titulo);
         this.autor = new ArrayList<>();
         this.setTipo(tipo);
         this.setEditorial(editorial);
+        this.setExemplares(exemplares);
     }
     public String getIsbn() {
         return isbn;
+    }
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
     public String getTitulo() {
         return titulo;
@@ -53,6 +59,21 @@ public class Libro {
     }
     public void setEditorial(String editorial) {
         this.editorial = editorial;
+    }
+    public int getExemplares(){
+        return exemplares;
+    }
+
+    /**
+     * Método encargado de avaliar a cantidade de exemplares
+     */
+    public void setExemplares(int exemplares) throws ExemplarInvalido{
+        if (exemplares <= 0) {
+            throw new ExemplarInvalido("Cantidade inválida!");
+        }
+        else{
+            this.exemplares = exemplares;
+        }
     }
 
     /**

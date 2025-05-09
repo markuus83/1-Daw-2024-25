@@ -18,6 +18,7 @@ import utiles.excepcions.BibliotecaTenAdmin;
 import utiles.excepcions.BibliotecasNonExiste;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
+import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.LibroExistente;
@@ -163,18 +164,6 @@ public class XestionBibliotecas {
         return false;
     }
 
-
-    /**
-     * Método encargado de amosar todas as Bibliotecas nunha cadea de texto
-     */
-    public String amosarBibliotecas(){
-
-        return bibliotecas.entrySet()
-                      .stream()
-                      .map(entry -> entry.getKey() + " - " + entry.getValue())
-                      .collect(Collectors.joining("\n"));
-    }
-
     /**
      * Método encargado de comprobar se un usuario é cliente ou administrador
      */
@@ -226,9 +215,9 @@ public class XestionBibliotecas {
         }
     }
     
-    public void ingresarLibro(String titulo, String editorial, String isbn, TipoLinguaLibros tipo, int exemplares) throws ISBNIncorrecto{
+    public void ingresarLibro(String titulo, String editorial, String isbn, TipoLinguaLibros tipo, int exemplares) throws ISBNIncorrecto, ExemplarInvalido{
 
-        Libro l = new Libro(isbn, titulo, tipo, editorial);
+        Libro l = new Libro(isbn, titulo, tipo, editorial, exemplares);
 
         libros.put(isbn, l);
 
@@ -242,7 +231,29 @@ public class XestionBibliotecas {
 
         l.engadirAutores(autor);
     }
+
+    /**
+     * Método encargado de amosar todas as Bibliotecas nunha cadea de texto
+     */
+    public String amosarBibliotecas(){
+        if (bibliotecas.isEmpty()) {
+            return "Non existen bibliotecas! ";
+        }
+        return bibliotecas  .entrySet()
+                            .stream()
+                            .map(entry -> entry.getKey() + " - " + entry.getValue())
+                            .collect(Collectors.joining("\n"));
+    }
      
+    public String amosarLibos(){
+        if (libros.isEmpty()) {
+            return "Non existen bibliotecas! ";
+        }
+        return libros  .entrySet()
+                            .stream()
+                            .map(entry -> entry.getKey() + " - " + entry.getValue())
+                            .collect(Collectors.joining("\n"));
+    }
 }
 
 

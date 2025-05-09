@@ -1,18 +1,20 @@
-## Getting Started
+# TODO
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+### NOTE - Clase Libro -> (EXEMPLAR)
 
-## Folder Structure
+    Atributo ArrayList<Exemplares>: Almacenar os diferentes exemplares de cada Libro
 
-The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+### NOTE - Clase EXEMPLAR -> (LIBRO)
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+    Atributo Libro libro: Almacenamos o libro ao cal pertence
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
 
-## Dependency Management
+### NOTE - Clase EXEMPLAR -> (BIBLIOTECA)
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+    Atributo ArrayList<Exemplares>: Almacenar os diferentes exemplares de cada Libro
+
+
+### NOTE - Clase BIBLIOTECA -> (EXEMPLAR)
+
+    Atributo Exemplar exemplar: Almacenamos o exemplar

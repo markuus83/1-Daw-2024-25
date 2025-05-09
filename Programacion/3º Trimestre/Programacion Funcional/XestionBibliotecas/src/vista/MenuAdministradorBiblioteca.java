@@ -10,7 +10,7 @@ public class MenuAdministradorBiblioteca extends Menu{
         while (menuActivo) {
             System.out.println("\n-----------------------");
             System.out.println("\nBenvido ao menu de Administradores de Bibliotecas: ");
-            System.out.println("\t1. : ");
+            System.out.println("\t1. Ver exemplares dun libro: ");
             System.out.println("\t2. : ");
             System.out.println("\t3. Saír: ");
 

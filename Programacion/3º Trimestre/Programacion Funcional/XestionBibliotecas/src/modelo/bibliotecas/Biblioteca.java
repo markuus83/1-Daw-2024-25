@@ -1,7 +1,9 @@
 package modelo.bibliotecas;
 
+import java.util.HashMap;
 import java.util.Optional;
 
+import modelo.libros.Exemplar;
 import modelo.usuarios.AdministradorBiblioteca;
 
 public class Biblioteca {
@@ -14,6 +16,7 @@ public class Biblioteca {
     private String provincia;
     private AdministradorBiblioteca admin;
     private boolean tenAdmin;
+    private HashMap<Integer,Exemplar> exemplares;
 
     //Atributo static
     private static int contador = 0;
@@ -32,6 +35,7 @@ public class Biblioteca {
         this.setCidade(cidade);
         this.setProvincia(provincia);
         this.tenAdmin = false;
+        this.exemplares = new HashMap<>();
 
         //Non fai falta que vaia de último posto que non existen excepcións a capturar.
         this.idBiblioteca = contador++;
@@ -74,15 +78,32 @@ public class Biblioteca {
     }
     
     /**
-     * Método encargado de devovler se unha biblioteca ten ou non Administrador
+     * Método encargado de devolver o Administrador dunha biblioteca
      */
     public Optional<AdministradorBiblioteca> getAdmin() {
         if (this.tenAdmin) return Optional.of(this.admin);
         else return Optional.empty();
     }
 
+    /**
+     * Método encargado de devolver se unha biblioteca ten administrador ou non
+     */
     public boolean isTenAdmin() {
         return tenAdmin;
+    }
+
+    /**
+     * Método encargado de engadir un exemplar
+     */
+    public void engadirExemplares(Exemplar e){
+       exemplares.put(e.getIdentificador(), e);
+    }
+
+    /**
+     * Método encargado de eliminar un exemplar
+     */
+    public void eliminarExemplar(int id){
+        exemplares.remove(id);
     }
 
     @Override

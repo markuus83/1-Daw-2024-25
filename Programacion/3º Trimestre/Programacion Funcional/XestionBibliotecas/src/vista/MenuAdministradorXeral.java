@@ -20,7 +20,9 @@ public class MenuAdministradorXeral extends Menu{
             System.out.println("\t2. Novo Libro: ");
             System.out.println("\t3. Ver Bibliotecas: ");
             System.out.println("\t4. Ver Libros: ");
-            System.out.println("\t5. Saír: ");
+            System.out.println("\t5. Asignar exemplares a unha biblioteca: ");
+            System.out.println("\t6. Ingresar Adminstrador de biblioteca: ");
+            System.out.println("\t7. Saír: ");
 
             int option = getInt("> ");
 
@@ -127,9 +129,23 @@ public class MenuAdministradorXeral extends Menu{
                 }
 
                 /**
-                 * Saír
+                 * Asignar exemplares a unha biblioteca
                  */
                 case 5 -> {
+                    
+                }
+
+                /**
+                 * Ingresar novo Administrador de Biblioteca
+                 */
+                case 6 -> {
+                    break;
+                }
+
+                /**
+                 * Saír
+                 */
+                case 7 -> {
                     System.out.println("Saíndo...");
                     menuActivo = false;
                     break;

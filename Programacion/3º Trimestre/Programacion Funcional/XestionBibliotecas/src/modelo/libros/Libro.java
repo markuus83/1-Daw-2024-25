@@ -1,6 +1,7 @@
 package modelo.libros;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.stream.Collectors;
 import utiles.clasesStatic.ComprobarISBN10;
 import utiles.enumerandos.TipoLinguaLibros;
@@ -14,8 +15,9 @@ public class Libro {
     private String titulo;
     private ArrayList<String> autor;
     private TipoLinguaLibros lingua;
-    private int exemplares;
+    private int numExemplares;
     private String editorial;
+    private HashMap<Integer,Exemplar> exemplares;
     
     /**
      * Método constructor da clase Libro
@@ -28,14 +30,17 @@ public class Libro {
      * @throws ISBNIncorrecto -> Posible excepción personalizada do libro
      * @throws ExemplarInvalido -> Posible excepción personalizada do libro
      */
-    public Libro(String isbn, String titulo, TipoLinguaLibros tipo, String editorial, int exemplares) throws ISBNIncorrecto, ExemplarInvalido {
+    public Libro(String isbn, String titulo, TipoLinguaLibros tipo, String editorial, int numExemplares) throws ISBNIncorrecto, ExemplarInvalido {
         this.setIsbn(isbn);
         this.setTitulo(titulo);
         this.autor = new ArrayList<>();
         this.setTipo(tipo);
         this.setEditorial(editorial);
-        this.setExemplares(exemplares);
+        this.setNumExemplares(numExemplares);
+        this.exemplares = new HashMap<>();
     }
+
+    //Getters&Setters
     public String getIsbn() {
         return isbn;
     }
@@ -60,19 +65,19 @@ public class Libro {
     public void setEditorial(String editorial) {
         this.editorial = editorial;
     }
-    public int getExemplares(){
-        return exemplares;
+    public int getnumExemplares(){
+        return numExemplares;
     }
 
     /**
      * Método encargado de avaliar a cantidade de exemplares
      */
-    public void setExemplares(int exemplares) throws ExemplarInvalido{
-        if (exemplares <= 0) {
+    public void setNumExemplares(int numExemplares) throws ExemplarInvalido{
+        if (numExemplares <= 0) {
             throw new ExemplarInvalido("Cantidade inválida!");
         }
         else{
-            this.exemplares = exemplares;
+            this.numExemplares = numExemplares;
         }
     }
 
@@ -100,6 +105,14 @@ public class Libro {
     public String getAutores(){
         return this.autor   .stream()
                             .collect(Collectors.joining("; ","",""));
+    }
+
+    
+    /**
+     * Método encargado de eliminar un exemplar
+     */
+    public void eliminarExemplar(int id){
+        exemplares.remove(id);
     }
 
     @Override

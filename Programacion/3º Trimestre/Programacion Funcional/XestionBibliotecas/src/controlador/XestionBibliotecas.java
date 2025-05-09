@@ -215,6 +215,9 @@ public class XestionBibliotecas {
         }
     }
     
+    /**
+     * Método encargado de ingresar un Libro
+     */
     public void ingresarLibro(String titulo, String editorial, String isbn, TipoLinguaLibros tipo, int exemplares) throws ISBNIncorrecto, ExemplarInvalido{
 
         Libro l = new Libro(isbn, titulo, tipo, editorial, exemplares);
@@ -247,7 +250,7 @@ public class XestionBibliotecas {
      
     public String amosarLibos(){
         if (libros.isEmpty()) {
-            return "Non existen bibliotecas! ";
+            return "Non existen Libros! ";
         }
         return libros  .entrySet()
                             .stream()

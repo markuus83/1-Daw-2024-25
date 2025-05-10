@@ -115,6 +115,14 @@ public class Libro {
         exemplares.remove(id);
     }
 
+    /**
+     * Método encargado de engadir un exemplar a un Libro
+     */
+    public void engadirExemplar(int idExemplar, Exemplar e) {
+
+        exemplares.put(idExemplar, e);
+    }
+
     @Override
     public String toString(){
         return this.getIsbn()+", "+this.getTitulo()+" de "+this.getAutores()+" en "+this.getLingua()+" ("+this.getEditorial()+")";

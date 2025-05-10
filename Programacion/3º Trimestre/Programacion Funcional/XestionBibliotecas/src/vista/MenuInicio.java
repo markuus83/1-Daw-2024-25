@@ -3,6 +3,7 @@ package vista;
 import controlador.XestionBibliotecas;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
+import utiles.excepcions.DNIRepetido;
 import utiles.excepcions.UsuarioExistente;
 import utiles.excepcions.UsuarioNonExiste;
 
@@ -75,13 +76,13 @@ public class MenuInicio extends Menu{
 
                     try {
                         
-                        if(XestionBibliotecas.getInstance().existeUsuario(nomeUsuario)){
+                        if(XestionBibliotecas.getInstance().existeUsuario(nomeUsuario) && XestionBibliotecas.getInstance().dniUnico(dni)){
 
                             XestionBibliotecas.getInstance().ingresarCliente(contrasinal, nomeUsuario, nome, apelidos, dni, correo);
 
                         }
 
-                    } catch (UsuarioExistente | DNIIncorrecto | CorreoInvalido e) {
+                    } catch (UsuarioExistente | DNIIncorrecto | CorreoInvalido | DNIRepetido e) {
                         System.out.println("\nErro: "+e.getMessage());
                         break;
                     }

@@ -41,15 +41,8 @@ public class Xogador {
      * @return true or false dependendo de si o xogador está asociado a un equipo ou non
      */
     public boolean isLibre(){
-        if (equipo != null) {
-
-            //Se non é null non está libre
-            return false;
-        } else{
-
-            //Se é null está asociado a un equipo
-            return true;
-        }
+        return equipo == null; //Se non é null non está libre
+        //Se é null está asociado a un equipo
     }
  
     /**

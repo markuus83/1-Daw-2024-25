@@ -21,7 +21,7 @@ public class Exemplar {
      * @param libro -> Libro ao cal pertence o exemplar
      * @param biblioteca -> Biblioteca á cal pertence o exemplar
      */
-    public Exemplar(int identificador) {
+    public Exemplar() {
         this.identificador = contador++;
         this.setLibro(libro);
         this.setBiblioteca(biblioteca);

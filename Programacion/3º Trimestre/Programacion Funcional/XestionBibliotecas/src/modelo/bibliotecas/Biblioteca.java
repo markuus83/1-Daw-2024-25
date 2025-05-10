@@ -2,9 +2,9 @@ package modelo.bibliotecas;
 
 import java.util.HashMap;
 import java.util.Optional;
-
 import modelo.libros.Exemplar;
 import modelo.usuarios.AdministradorBiblioteca;
+import utiles.excepcions.ExemplarExistente;
 
 public class Biblioteca {
     
@@ -41,6 +41,7 @@ public class Biblioteca {
         this.idBiblioteca = contador++;
     }
 
+    //Getters&Setters
     public String getNome() {
         return nome;
     }
@@ -72,7 +73,7 @@ public class Biblioteca {
     /**
      * Método encargado de asignar un administrador
      */
-    public void setAdministradorBiblioteca(AdministradorBiblioteca adminB){
+    public void engadirAdministradorBiblioteca(AdministradorBiblioteca adminB){
         this.admin = adminB;
         this.tenAdmin = true;
     }
@@ -90,6 +91,16 @@ public class Biblioteca {
      */
     public boolean isTenAdmin() {
         return tenAdmin;
+    }
+
+    /**
+     * Método encargado de comprobar se existe un exemplar nunha biblioteca
+     */
+    public boolean comprobarIdExistente(int idE) throws ExemplarExistente{
+        if (exemplares.containsKey(idE)) {
+            throw new ExemplarExistente("Exempalr existente nesta biblioteca!");
+        }
+        return true;
     }
 
     /**

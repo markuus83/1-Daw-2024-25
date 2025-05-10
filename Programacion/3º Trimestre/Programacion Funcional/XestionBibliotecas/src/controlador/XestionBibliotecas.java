@@ -4,8 +4,8 @@ package controlador;
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
 import modelo.bibliotecas.Biblioteca;
+import modelo.libros.Exemplar;
 import modelo.libros.Libro;
 import modelo.usuarios.AdministradorBiblioteca;
 import modelo.usuarios.AdministradorXeral;
@@ -18,6 +18,8 @@ import utiles.excepcions.BibliotecaTenAdmin;
 import utiles.excepcions.BibliotecasNonExiste;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
+import utiles.excepcions.DNIRepetido;
+import utiles.excepcions.ExemplarExistente;
 import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.IndiceInvalido;
@@ -31,10 +33,11 @@ public class XestionBibliotecas {
     private static HashMap<String, Usuario> usuarios;
     private static HashMap<Integer, Biblioteca> bibliotecas;
     private static HashMap<String, Libro> libros;
-
+    private static HashMap<Integer, Exemplar> exemplares;
+    private static HashMap<String, Cliente> clientes;
 
     /************* MÉTODOS PARA A CREACIÓN DO PATRÓN SINGLETON ***************/
-
+    
     /**
      * Constructor privado (patrón Singleton)
      */
@@ -42,6 +45,8 @@ public class XestionBibliotecas {
         usuarios = new HashMap<>();
         bibliotecas = new HashMap<>();
         libros = new HashMap<>();
+        exemplares = new HashMap<>();
+        clientes = new HashMap<>();
     }
 
     private static XestionBibliotecas INSTANCE;
@@ -87,6 +92,9 @@ public class XestionBibliotecas {
 
 
 
+
+
+
     /************* MÉTODOS PARA O MENÚ DE INICIO ***************/
 
     /**
@@ -121,9 +129,11 @@ public class XestionBibliotecas {
      * Método encargado de engadir un Cliente
      */
     public void ingresarCliente(String contrasinal, String nomeUsuario,String nome, String Apelidos, String dni, String correo ) throws DNIIncorrecto, CorreoInvalido{
+        
         Cliente c = new Cliente(contrasinal, nomeUsuario, nome, Apelidos, dni, correo);
         
         usuarios.put(nomeUsuario, c);
+        clientes.put(dni, c);
     }
 
     /**
@@ -133,22 +143,6 @@ public class XestionBibliotecas {
 
         AdministradorXeral a = new AdministradorXeral(contrasinal, nomeUsuario);
         usuarios.put(nomeUsuario, a);
-    }
-
-    /**
-     * Método encargado de ingresar un administrador de Biblioteca
-     */
-    public void ingresarAdministradorBiblioteca(String contrasinal, String nomeUsuario, int id) throws IndiceInvalido{
-
-        if (bibliotecas.containsKey(id)) {
-            
-            AdministradorBiblioteca b = new AdministradorBiblioteca(contrasinal, nomeUsuario, id);
-
-            usuarios.put(nomeUsuario, b);
-
-        } else{
-            throw new IndiceInvalido("Indice inválido!");
-        }
     }
 
     /**
@@ -191,7 +185,32 @@ public class XestionBibliotecas {
         }
     }
 
-    
+    /**
+     * Método encargado de comprobar que non se repite un dni
+     */
+    public boolean dniUnico(String dni) throws DNIRepetido{
+        if (clientes.containsKey(dni)) {
+            throw new DNIRepetido("DNI xa rexistrado!");
+        } else{
+            return true;
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES XERAIS ***************/
 
     /**
@@ -236,6 +255,23 @@ public class XestionBibliotecas {
     }
 
     /**
+     * Método encargado de ingresar exemplares
+     * 
+     * Tal e como está plantexado o código non fai falta engadir unha excepción neste bloque, pero está aberto a futuras remodelacións no caso de cambiar a lóxica do programa
+     */
+    public void ingresarExemplares(int cantidade, String isbnLibro) {
+
+        for (int i = 0; i < cantidade; i++) {
+
+            Exemplar e = new Exemplar();
+            exemplares.put(e.getIdentificador(), e);
+
+            Libro l = libros.get(isbnLibro);
+            l.engadirExemplar(cantidade, e);
+        }
+    }
+
+    /**
      * Método encargado de amosar todas as Bibliotecas nunha cadea de texto
      */
     public String amosarBibliotecas(){
@@ -247,7 +283,10 @@ public class XestionBibliotecas {
                             .map(entry -> entry.getKey() + " - " + entry.getValue())
                             .collect(Collectors.joining("\n"));
     }
-     
+    
+    /**
+     * Método encargado de amosar os Libros existentes
+     */
     public String amosarLibos(){
         if (libros.isEmpty()) {
             return "Non existen Libros! ";
@@ -257,7 +296,68 @@ public class XestionBibliotecas {
                             .map(entry -> entry.getKey() + " - " + entry.getValue())
                             .collect(Collectors.joining("\n"));
     }
+
+
+    /**
+     * Método encargado de engadir un Exemplar a unha Biblioteca
+     */
+    public void engadirExemplarABiblioteca(int idB, int idE) throws ExemplarExistente {
+
+        Biblioteca b = bibliotecas.get(idB);
+        Exemplar e = exemplares.get(idE);
+
+        if (b.comprobarIdExistente(idE)) {
+            b.engadirExemplares(e);
+        }
+        
+    }
+
+    /**
+     * Método encargado de comprobar se unha biblioteca ten admin ou non
+     */
+    public boolean bibliotecaNonTenAdmin(int idB) throws BibliotecaTenAdmin, IndiceInvalido{
+
+        if (!(bibliotecas.containsKey(idB))) {
+            throw new IndiceInvalido("Índice inválido!");
+        }
+        
+        Biblioteca b = bibliotecas.get(idB);
+
+        if (b.isTenAdmin()) {
+            throw new BibliotecaTenAdmin("A biblioteca seleccionada xa ten un Administrador!");
+        }
+        return true;
+    }
+    
+    /**
+     * Método encargado de ingresar un Administrador a unha biblioteca
+     */
+    public void ingresarAdministradorBiblioteca(String nomeUser, String contrasinal, int id) throws IndiceInvalido{
+
+        if (bibliotecas.containsKey(id)) {
+            AdministradorBiblioteca ab = new AdministradorBiblioteca(HashPasword.hashPassword(contrasinal), nomeUser, id);
+
+            usuarios.put(nomeUser, ab);
+        } else{
+            throw new IndiceInvalido("Índice inválido");
+        }
+        
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

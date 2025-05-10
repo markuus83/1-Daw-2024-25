@@ -1,0 +1,63 @@
+Exercicio 1. Crea un programa en Java para realizar a xestión da Rede de Bibliotecas de Galicia.
+
+O programa contará con tres partes ben diferenciadas: administración xeral, administración dunha biblioteca concreta e o portal para usuarios. O acceso a calquera destas dúas partes está restrinxido mediante credenciais de nome de usuario e contrasinal.
+
+Ademais o programa debe de contar con persistencia de datos mediante ficheiros binarios.
+
+Administradores xerais
+
+Os administradores xerais poderán dar de alta novas bibliotecas. Cada unha das bibliotecas constará dun nome (pode haber dúas bibliotecas co mesmo nome), dirección, cidade e provincia. Para poder diferencialas, cada biblioteca disporá dun identificador único.
+
+Estes tamén poderán ver a lista de tódalas bibliotecas. Cada biblioteca mostrarase co seguinte formato: <id> <nome>, <direccion>; <cidade> (<provincia>).
+
+Outra función dos administradores xerais é poder dar de alta novos libros. A información que se desexa almacenar sobre cada libro e o seu título título, autor (pode ter varios), editorial e ISBN de tamaño 10 (débese comprobar que é correcto) e lingua (só se compran libros en galego, castelán e inglés). No momento de engadir un libro, comproba que o libro non está aínda engadido. Se está engadido, non o engadas. Para que dous libros sexan iguais, tan só deben de coincidir os seus ISBN.
+
+Ao igual que para as bibliotecas, estes poderán seleccionar ver tódolos libros. Cada libro mostrarase co seguinte formato: <isbn>, <titulo> de <autores> en <lingua> (<editorial>) (Os autores separados por ;).
+
+No momento de dar de alta cada libro débense de poder indicar o número de exemplares comprados. Cada un destes exemplares debe de asignárselle un identificador único para poder realizar o seguimento de cada un deles. Esta identificador debe de conter o ISBN do libro do exemplar.
+
+
+Existen dúas opcións para dar de alta novos libros:
+
+Introducíndoos mediante a liña de comandos.
+
+Cargándoos mediante un arquivo csv co seguinte formato:
+
+
+
+titulo,editorial,lingua,autores,isbn,numExemplares
+Artificial Intelligence: A Modern Approach,Pearson,INGLES,Stuart Russell & Peter Norvig,0201633612,5
+Historia da literatura galega,Xerais,GALEGO,Xosé Ramón Pena & Dolores Vilavedra & Anxo Tarrío & María do Cebreiro Rábade Villar & Arturo Casas,0307474720,3
+El nombre del viento,Plaza & Janés,ESPAÑOL,Patrick Rothfuss,8499890946,1
+
+
+
+
+
+O administrador xeral debe de poder asignar exemplares a unha biblioteca. Tan só poderá asignar aqueles que non estean xa asignados a unha biblioteca. Pode haber na mesma biblioteca máis dun exemplar dun mesmo libro.
+
+Por último, este administrador pode dar de alta administradores de bibliotecas (incluído nome de usuario e contrasinal). No momento da súa alta xa se lle asignará unha única biblioteca.
+
+No momento de iniciar o programa debe de existir a seguinte conta para acceder como administrador xeral: admin:abc123..
+
+
+
+ADMINISTRADORES DE BIBLIOECA
+
+Os administradores de bibliotecas son os encargados de marcar os préstamos e devolucións da súa biblioteca.
+
+Para iso pode ver tódolos exemplares libres (é dicir, que non están prestados) que ten na súa biblioteca. O formato para mostrar cada exemplar é: <isbn>, <titulo> de <autores> en <lingua> (<editorial>). ID Exemplar: <id_exemplar>.
+
+Entón, para realizar cada préstamo ou devolución débese de indicar o identificador do exemplar e o usuario do préstamo/devolución mediante o seu DNI. Para cada préstamo débese de almacenar a data do préstamo (que é a data actual do momento en realizar o préstamo), a data límite de devolución (2 semanas dende a data de préstamo). Se está coincidira en domingo, a data límite sería ao día seguinte. Ademais deberase saber a data na que se produciu a devolución do exemplar se este foi xa devolto.
+
+No momento que se fai o préstamo débese de comprobar que o usuario non ten máis libros en préstamo (só se pode ter un ao mesmo tempo) e que non está sancionado.
+
+Un usuario está sancionado sen poder levar libros prestados cando supera dúas veces a data límite de devolución dun libro no último ano. O ano conta dende a data de préstamo.
+
+Usuarios
+
+Os usuarios para darse de alta na aplicación deben de indicar o seu nome, apelidos, DNI(débese comprobar que é correcto e que non hai dous DNIs iguais no sistema), correo electrónico (débese comprobar que é correcto o correo electrónico), nome de usuario e contrasinal.
+
+Estes poderán buscar libros por título e autor. Como resultado indicaráselle os libros con exemplares libres que concorden ca súa busca por orde alfabética por título. O sistema de busca debe de implantarse mediante programación funcional e expresións regulares.
+
+Tamén poderá consultar a data límite de devolución no formato dd/mm/yyyy do préstamo en curso, se é que conta con algún libro prestado.

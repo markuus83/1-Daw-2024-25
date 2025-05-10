@@ -2,6 +2,9 @@ package modelo.bibliotecas;
 
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+
 import modelo.libros.Exemplar;
 import modelo.usuarios.AdministradorBiblioteca;
 import utiles.excepcions.ExemplarExistente;
@@ -115,6 +118,16 @@ public class Biblioteca {
      */
     public void eliminarExemplar(int id){
         exemplares.remove(id);
+    }
+
+    /**
+     * Método encargado de devolver nunha cadea de texto todos os exemplares dun libro nunha biblioteca
+     */
+    public String getExemplares(){
+        return exemplares   .entrySet()
+                            .stream()
+                            .map(e -> e.getKey() + " -> " + e.getValue())
+                            .collect(Collectors.joining("\n"));
     }
 
     @Override

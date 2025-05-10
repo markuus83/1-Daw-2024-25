@@ -1,5 +1,8 @@
 package modelo.usuarios;
 
+import java.util.ArrayList;
+
+import modelo.libros.Prestamo;
 import utiles.clasesStatic.ComprobarCorreo;
 import utiles.clasesStatic.ComprobarDNI;
 import utiles.enumerandos.TipoUsuario;
@@ -13,6 +16,8 @@ public class Cliente extends Usuario {
     private String apelidos;
     private String dni;
     private String correo;
+
+    private ArrayList<Prestamo> historialPrestamos = new ArrayList<>();
 
     /**
      * Método constructor da clase Cliente
@@ -79,6 +84,33 @@ public class Cliente extends Usuario {
         } else {
             throw new CorreoInvalido("Correo inválida!");
         }
+    }
+
+    /**
+     * Devolve true se o cliente ten algún préstamo sen devolver.
+     */
+    public boolean tenPrestamoActivo() {
+        return historialPrestamos   .stream()
+                                    .filter(p -> !p.estaDevolto())
+                                    .findFirst()
+                                    .isPresent(); //Verificamos se o Optional contén algún préstamo
+    }
+
+
+    /**
+     * Engade un préstamo ao historial do cliente.
+     * @param p Préstamo a engadir
+     */
+    public void engadirPrestamo(Prestamo p) {
+        historialPrestamos.add(p);
+    }
+
+    /**
+     * Devolve o historial completo de préstamos do cliente.
+     * @return Lista de préstamos
+     */
+    public ArrayList<Prestamo> getHistorialPrestamos() {
+        return historialPrestamos;
     }
 
     @Override

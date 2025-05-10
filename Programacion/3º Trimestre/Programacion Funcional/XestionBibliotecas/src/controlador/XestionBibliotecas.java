@@ -344,10 +344,6 @@ public class XestionBibliotecas {
         
     }
 
-}
-
-
-
 
 
 
@@ -362,6 +358,16 @@ public class XestionBibliotecas {
 
 
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES de BIBLIOTECA ***************/
+    public String verExemplaresLibres(int id){
+        Biblioteca b = bibliotecas.get(id);
+
+        
+    }
+
+}
+
+
+
 
 
 

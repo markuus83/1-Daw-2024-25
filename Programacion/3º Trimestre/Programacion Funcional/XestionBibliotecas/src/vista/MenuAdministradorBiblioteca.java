@@ -11,7 +11,7 @@ public class MenuAdministradorBiblioteca extends Menu{
             System.out.println("\n-----------------------");
             System.out.println("\nBenvido ao menu de Administradores de Bibliotecas: ");
             System.out.println("\t1. Ver exemplares dun libro: ");
-            System.out.println("\t2. : ");
+            System.out.println("\t2. Realizar préstamo: ");
             System.out.println("\t3. Saír: ");
 
             int option = getInt("> ");
@@ -19,16 +19,16 @@ public class MenuAdministradorBiblioteca extends Menu{
             switch (option) {
 
                 /**
-                 * Nova Biblioteca
+                 * Ver exemplares dun libro
                  */
                 case 1 -> {
-
+                    int idBiblioteca = getInt("Ingrese o ID da biblioteca: ");
                     break;
 
                 }
 
                 /**
-                 * Novo Libro
+                 * Realizar préstamo
                  */
                 case 2 -> {
 

@@ -1,14 +1,17 @@
 package modelo.libros;
 
+import java.io.Serializable;
+
 import modelo.bibliotecas.Biblioteca;
 import utiles.enumerandos.TipoLinguaLibros;
 
-public class Exemplar {
+public class Exemplar implements Serializable{
     
     //Atributos
     private int identificador;
     private Libro libro;
     private Biblioteca biblioteca;
+
 
     //atributos static
     private static int contador;

@@ -1,5 +1,6 @@
 package modelo.libros;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -10,7 +11,7 @@ import modelo.usuarios.Cliente;
 import utiles.excepcions.ClienteSancionado;
 import utiles.excepcions.PrestamoActivo;
 
-public class Prestamo {
+public class Prestamo implements Serializable{
     
     public static final DateTimeFormatter FORMATO = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
@@ -86,7 +87,7 @@ public class Prestamo {
     }
 
     public boolean estaDevolto() {
-        return dataDevolucion.isPresent();
+        return dataDevolucion != null;
     }
 
     public boolean foiDevoltoForaDePrazo() {
@@ -122,7 +123,7 @@ public class Prestamo {
         }
 
         this.cliente = cliente;
-        cliente.engadirPrestamo(this); // Suposto método
+        cliente.engadirPrestamo(this); 
     }
 
     

@@ -1,5 +1,6 @@
 package modelo.libros;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.stream.Collectors;
@@ -8,7 +9,7 @@ import utiles.enumerandos.TipoLinguaLibros;
 import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ISBNIncorrecto;
 
-public class Libro {
+public class Libro implements Serializable{
     
     //Atributos
     private String isbn;

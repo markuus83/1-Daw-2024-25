@@ -1,9 +1,11 @@
 package modelo.usuarios;
 
+import java.io.Serializable;
+
 import utiles.clasesStatic.HashPasword;
 import utiles.enumerandos.TipoUsuario;
 
-public abstract class Usuario {
+public abstract class Usuario implements Serializable{
     
     //Atributos
     private String nomeUsuario;

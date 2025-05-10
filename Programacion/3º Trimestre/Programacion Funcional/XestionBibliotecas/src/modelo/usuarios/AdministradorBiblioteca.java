@@ -1,8 +1,10 @@
 package modelo.usuarios;
 
+import java.io.Serializable;
+
 import utiles.enumerandos.TipoUsuario;
 
-public class AdministradorBiblioteca extends Usuario {
+public class AdministradorBiblioteca extends Usuario implements Serializable{
 
     //Atributos
     private int idBiblioteca;

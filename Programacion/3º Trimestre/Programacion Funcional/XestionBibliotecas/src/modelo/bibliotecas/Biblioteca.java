@@ -1,15 +1,15 @@
 package modelo.bibliotecas;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Optional;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import modelo.libros.Exemplar;
 import modelo.usuarios.AdministradorBiblioteca;
 import utiles.excepcions.ExemplarExistente;
 
-public class Biblioteca {
+public class Biblioteca implements Serializable{
     
     //Atributos
     private int idBiblioteca; 

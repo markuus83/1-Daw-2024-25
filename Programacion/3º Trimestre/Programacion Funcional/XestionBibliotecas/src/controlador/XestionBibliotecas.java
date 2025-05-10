@@ -1,9 +1,12 @@
 package controlador;
 
+import java.io.Serializable;
 //Imports estructuras de datos
 import java.util.HashMap;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import io.XestionBibliotecasIO;
 import modelo.bibliotecas.Biblioteca;
 import modelo.libros.Exemplar;
 import modelo.libros.Libro;
@@ -27,7 +30,7 @@ import utiles.excepcions.LibroExistente;
 import utiles.excepcions.UsuarioExistente;
 import utiles.excepcions.UsuarioNonExiste;
 
-public class XestionBibliotecas {
+public class XestionBibliotecas implements Serializable{
 
     //Estructuras de control
     private static HashMap<String, Usuario> usuarios;
@@ -55,12 +58,27 @@ public class XestionBibliotecas {
      * Método para obter a instancia Singleton
      */
     public static XestionBibliotecas getInstance(){
-        if (XestionBibliotecas.INSTANCE == null) {
-            XestionBibliotecas.INSTANCE = new XestionBibliotecas();
-            XestionBibliotecas.INSTANCE.engadirDatos();
+
+        if (INSTANCE == null) {
+            Optional<XestionBibliotecas> lectura = XestionBibliotecasIO.cargar();
+            if (lectura.isEmpty()) {
+                INSTANCE = new XestionBibliotecas();
+                INSTANCE.gardar();
+                XestionBibliotecas.INSTANCE.engadirDatos();
+            } else{
+                INSTANCE = lectura.get();
+            }
         }
-        return XestionBibliotecas.INSTANCE;
+        return INSTANCE;
     }
+
+    /**
+     * Método encargado de gardar os datos no arquivo correspondente
+     */
+    private void gardar() {
+        XestionBibliotecasIO.gardar(INSTANCE);
+    }
+
 
     /**
      * Evita que se poida clonar a instancia Singleton
@@ -134,6 +152,8 @@ public class XestionBibliotecas {
         
         usuarios.put(nomeUsuario, c);
         clientes.put(dni, c);
+        
+        this.gardar();
     }
 
     /**
@@ -143,6 +163,8 @@ public class XestionBibliotecas {
 
         AdministradorXeral a = new AdministradorXeral(contrasinal, nomeUsuario);
         usuarios.put(nomeUsuario, a);
+
+        this.gardar();
     }
 
     /**
@@ -221,6 +243,7 @@ public class XestionBibliotecas {
         Biblioteca b = new Biblioteca(nome, direccion, cidade, provincia);
         bibliotecas.put(b.getIdBiblioteca(), b);
 
+        this.gardar();
     }
 
     /**
@@ -242,6 +265,7 @@ public class XestionBibliotecas {
         Libro l = new Libro(isbn, titulo, tipo, editorial, exemplares);
 
         libros.put(isbn, l);
+        this.gardar();
 
     }
 
@@ -252,6 +276,7 @@ public class XestionBibliotecas {
         Libro l = libros.get(isbn);
 
         l.engadirAutores(autor);
+        this.gardar();
     }
 
     /**
@@ -269,6 +294,7 @@ public class XestionBibliotecas {
             Libro l = libros.get(isbnLibro);
             l.engadirExemplar(cantidade, e);
         }
+        this.gardar();
     }
 
     /**
@@ -309,6 +335,7 @@ public class XestionBibliotecas {
         if (b.comprobarIdExistente(idE)) {
             b.engadirExemplares(e);
         }
+        this.gardar();
         
     }
 
@@ -341,6 +368,7 @@ public class XestionBibliotecas {
         } else{
             throw new IndiceInvalido("Índice inválido");
         }
+        this.gardar();
         
     }
 
@@ -358,11 +386,7 @@ public class XestionBibliotecas {
 
 
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES de BIBLIOTECA ***************/
-    public String verExemplaresLibres(int id){
-        Biblioteca b = bibliotecas.get(id);
-
-        
-    }
+    
 
 }
 

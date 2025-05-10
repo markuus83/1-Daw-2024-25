@@ -1,5 +1,6 @@
 package modelo.usuarios;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import modelo.libros.Prestamo;
@@ -9,7 +10,7 @@ import utiles.enumerandos.TipoUsuario;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
 
-public class Cliente extends Usuario {
+public class Cliente extends Usuario implements Serializable{
 
     //Atributos
     private String nome;
@@ -17,7 +18,7 @@ public class Cliente extends Usuario {
     private String dni;
     private String correo;
 
-    private ArrayList<Prestamo> historialPrestamos = new ArrayList<>();
+    private ArrayList<Prestamo> prestamos = new ArrayList<>();
 
     /**
      * Método constructor da clase Cliente
@@ -82,18 +83,23 @@ public class Cliente extends Usuario {
         if (ComprobarCorreo.comprobarCorreo(correo)) {
             this.correo = correo;
         } else {
-            throw new CorreoInvalido("Correo inválida!");
+            throw new CorreoInvalido("Correo inválido!");
         }
     }
 
     /**
-     * Devolve true se o cliente ten algún préstamo sen devolver.
+     * Método encargado de devolver se o cliente ten un prestamo activo
      */
     public boolean tenPrestamoActivo() {
-        return historialPrestamos   .stream()
-                                    .filter(p -> !p.estaDevolto())
-                                    .findFirst()
-                                    .isPresent(); //Verificamos se o Optional contén algún préstamo
+        return prestamos    .stream()
+                            .filter(p -> !p.estaDevolto())
+                            .findFirst()
+                            .isPresent(); //Verificamos se o Optional contén algún préstamo
+
+                            
+    /**
+     * Is present devolve true se o valor != null, senon devolve false
+     */
     }
 
 
@@ -102,7 +108,7 @@ public class Cliente extends Usuario {
      * @param p Préstamo a engadir
      */
     public void engadirPrestamo(Prestamo p) {
-        historialPrestamos.add(p);
+        prestamos.add(p);
     }
 
     /**
@@ -110,7 +116,7 @@ public class Cliente extends Usuario {
      * @return Lista de préstamos
      */
     public ArrayList<Prestamo> getHistorialPrestamos() {
-        return historialPrestamos;
+        return prestamos;
     }
 
     @Override

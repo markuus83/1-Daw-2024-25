@@ -62,9 +62,9 @@ public class XestionBibliotecas implements Serializable{
         if (INSTANCE == null) {
             Optional<XestionBibliotecas> lectura = XestionBibliotecasIO.cargar();
             if (lectura.isEmpty()) {
+                XestionBibliotecas.INSTANCE.engadirDatos();
                 INSTANCE = new XestionBibliotecas();
                 INSTANCE.gardar();
-                XestionBibliotecas.INSTANCE.engadirDatos();
             } else{
                 INSTANCE = lectura.get();
             }

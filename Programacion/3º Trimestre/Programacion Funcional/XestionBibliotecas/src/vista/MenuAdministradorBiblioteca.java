@@ -1,8 +1,13 @@
 package vista;
 
-public class MenuAdministradorBiblioteca extends Menu{
+import modelo.usuarios.Usuario;
 
-    @Override
+public class MenuAdministradorBiblioteca extends MenuUsuario{
+
+    public MenuAdministradorBiblioteca(Usuario user){
+        super(user);
+    }
+    
     protected void mostrar() {
 
         boolean menuActivo = true;
@@ -22,7 +27,9 @@ public class MenuAdministradorBiblioteca extends Menu{
                  * Ver exemplares dun libro
                  */
                 case 1 -> {
-                    int idBiblioteca = getInt("Ingrese o ID da biblioteca: ");
+                    
+
+
                     break;
 
                 }

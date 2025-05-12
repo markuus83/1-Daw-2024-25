@@ -36,5 +36,11 @@ public abstract class Usuario implements Serializable{
         this.contrasinal = HashPasword.hashPassword(contrasinal);
     }
 
+    public boolean comprobarPassword(String password) {
+        if(this.getContrasinal().equals(HashPasword.hashPassword(password))) return true;
+        return false;
+    }
+
+
     public abstract TipoUsuario getRol();
 }

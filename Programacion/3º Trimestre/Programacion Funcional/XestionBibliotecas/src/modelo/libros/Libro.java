@@ -24,7 +24,6 @@ public class Libro implements Serializable{
      * Método constructor da clase Libro
      * 
      * @param isbn -> ISBN do libro
-     * @param titulo -> Titulo do libro
      * @param autor -> Autor/es do libro
      * @param tipo -> Lingua na que está escrita o libro
      * @param editorial -> Editorial do libro
@@ -120,7 +119,6 @@ public class Libro implements Serializable{
      * Método encargado de engadir un exemplar a un Libro
      */
     public void engadirExemplar(int idExemplar, Exemplar e) {
-
         exemplares.put(idExemplar, e);
     }
 

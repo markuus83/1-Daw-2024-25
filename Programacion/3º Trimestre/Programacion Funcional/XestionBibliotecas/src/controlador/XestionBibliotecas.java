@@ -4,7 +4,6 @@ import java.io.Serializable;
 //Imports estructuras de datos
 import java.util.HashMap;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import io.XestionBibliotecasIO;
 import modelo.bibliotecas.Biblioteca;
@@ -30,16 +29,37 @@ import utiles.excepcions.LibroExistente;
 import utiles.excepcions.UsuarioExistente;
 import utiles.excepcions.UsuarioNonExiste;
 
+
+
 public class XestionBibliotecas implements Serializable{
 
     //Estructuras de control
-    private static HashMap<String, Usuario> usuarios;
-    private static HashMap<Integer, Biblioteca> bibliotecas;
-    private static HashMap<String, Libro> libros;
-    private static HashMap<Integer, Exemplar> exemplares;
-    private static HashMap<String, Cliente> clientes;
+    private HashMap<String, Usuario> usuarios;
+    private HashMap<Integer, Biblioteca> bibliotecas;
+    private HashMap<String, Libro> libros;
+    private HashMap<Integer, Exemplar> exemplares;
+    private HashMap<String, Cliente> clientes;
 
     /************* MÉTODOS PARA A CREACIÓN DO PATRÓN SINGLETON ***************/
+    
+    private static XestionBibliotecas INSTANCE;
+
+
+    /**
+     * Método encargado de engadir un Administrador Xeral cada vez que se cree unha nova Instancia.
+     */
+    public void engadirDatos() {
+        
+        try {
+            AdministradorXeral a = new AdministradorXeral("abc123.", "admin");
+
+            usuarios.put(a.getNomeUsuario(), a);
+
+        } catch (Exception e) {
+            System.out.println("Erro: "+e.getMessage());
+        }
+        
+    }
     
     /**
      * Constructor privado (patrón Singleton)
@@ -52,8 +72,6 @@ public class XestionBibliotecas implements Serializable{
         clientes = new HashMap<>();
     }
 
-    private static XestionBibliotecas INSTANCE;
-
     /**
      * Método para obter a instancia Singleton
      */
@@ -62,8 +80,8 @@ public class XestionBibliotecas implements Serializable{
         if (INSTANCE == null) {
             Optional<XestionBibliotecas> lectura = XestionBibliotecasIO.cargar();
             if (lectura.isEmpty()) {
-                XestionBibliotecas.INSTANCE.engadirDatos();
                 INSTANCE = new XestionBibliotecas();
+                INSTANCE.engadirDatos();
                 INSTANCE.gardar();
             } else{
                 INSTANCE = lectura.get();
@@ -72,6 +90,7 @@ public class XestionBibliotecas implements Serializable{
         return INSTANCE;
     }
 
+    
     /**
      * Método encargado de gardar os datos no arquivo correspondente
      */
@@ -92,28 +111,29 @@ public class XestionBibliotecas implements Serializable{
 
     /************* MÉTODOS PARA ENGADIR DATOS Á INSTANCIA ***************/
 
-    /**
-     * Método encargado de engadir un Administrador Xeral cada vez que se cree unha nova Instancia.
-     */
-    public void engadirDatos() {
-        
-        try {
-            AdministradorXeral a = new AdministradorXeral("abc123.", "admin");
-
-            usuarios.put(a.getNomeUsuario(), a);
-
-        } catch (Exception e) {
-            System.out.println("Erro: "+e.getMessage());
-        }
-        
-    }
-
-
-
+    
 
 
 
     /************* MÉTODOS PARA O MENÚ DE INICIO ***************/
+
+    private Optional<Usuario> getUsuario(String username) {
+        if (this.usuarios.containsKey(username)) {
+            return Optional.of(this.usuarios.get(username));
+        }
+        return Optional.empty();
+    }
+
+    public Optional<Usuario> login(String username, String password) {
+        Optional<Usuario> user = this.getUsuario(username);
+        if(user.isPresent()) {
+            if(user.get().comprobarPassword(password)) return user;
+            return Optional.empty();
+        }
+        return Optional.empty();
+        
+
+    }
 
     /**
      * Método encargado de comprobar se non existen usuarios
@@ -287,14 +307,21 @@ public class XestionBibliotecas implements Serializable{
     public void ingresarExemplares(int cantidade, String isbnLibro) {
 
         for (int i = 0; i < cantidade; i++) {
-
             Exemplar e = new Exemplar();
             exemplares.put(e.getIdentificador(), e);
 
             Libro l = libros.get(isbnLibro);
-            l.engadirExemplar(cantidade, e);
+            l.engadirExemplar(e.getIdentificador(), e);
+            
+            this.gardar();
         }
-        this.gardar();
+        
+    }
+
+    public void impri(){
+        for (Usuario u : usuarios.values()) {
+            System.out.println(u.getNomeUsuario());
+        }
     }
 
     /**
@@ -304,10 +331,8 @@ public class XestionBibliotecas implements Serializable{
         if (bibliotecas.isEmpty()) {
             return "Non existen bibliotecas! ";
         }
-        return bibliotecas  .entrySet()
-                            .stream()
-                            .map(entry -> entry.getKey() + " - " + entry.getValue())
-                            .collect(Collectors.joining("\n"));
+        String resposta = bibliotecas.values().stream().toString();
+        return resposta;
     }
     
     /**
@@ -317,26 +342,30 @@ public class XestionBibliotecas implements Serializable{
         if (libros.isEmpty()) {
             return "Non existen Libros! ";
         }
-        return libros  .entrySet()
-                            .stream()
-                            .map(entry -> entry.getKey() + " - " + entry.getValue())
-                            .collect(Collectors.joining("\n"));
+        String resposta = libros.values().stream().toString();
+        return  resposta;
+           
     }
 
 
     /**
      * Método encargado de engadir un Exemplar a unha Biblioteca
      */
-    public void engadirExemplarABiblioteca(int idB, int idE) throws ExemplarExistente {
+    public void engadirExemplarABiblioteca(int idB, int idE) throws ExemplarExistente, IndiceInvalido {
 
-        Biblioteca b = bibliotecas.get(idB);
-        Exemplar e = exemplares.get(idE);
+        if (bibliotecas.containsKey(idB) || exemplares.containsKey(idE)) {
+            Biblioteca b = bibliotecas.get(idB);
+            Exemplar e = exemplares.get(idE);
 
-        if (b.comprobarIdExistente(idE)) {
-            b.engadirExemplares(e);
+            if (b.comprobarIdExistente(idE)) {
+                b.engadirExemplares(e);
+                this.gardar();
+            } else{
+                throw new ExemplarExistente("Exemplar xa existente!");
+            }
+        } else{
+            throw new IndiceInvalido("Indice inválido!");
         }
-        this.gardar();
-        
     }
 
     /**
@@ -362,29 +391,21 @@ public class XestionBibliotecas implements Serializable{
     public void ingresarAdministradorBiblioteca(String nomeUser, String contrasinal, int id) throws IndiceInvalido{
 
         if (bibliotecas.containsKey(id)) {
-            AdministradorBiblioteca ab = new AdministradorBiblioteca(HashPasword.hashPassword(contrasinal), nomeUser, id);
+
+            Biblioteca b = bibliotecas.get(id);
+            AdministradorBiblioteca ab = new AdministradorBiblioteca(HashPasword.hashPassword(contrasinal), nomeUser, b);
 
             usuarios.put(nomeUser, ab);
+            this.gardar();
+
         } else{
             throw new IndiceInvalido("Índice inválido");
         }
-        this.gardar();
-        
+
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+    
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES de BIBLIOTECA ***************/
     
 

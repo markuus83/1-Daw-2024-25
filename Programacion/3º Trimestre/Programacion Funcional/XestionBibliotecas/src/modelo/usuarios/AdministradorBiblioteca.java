@@ -1,29 +1,31 @@
 package modelo.usuarios;
 
-import java.io.Serializable;
+import java.util.List;
 
+import modelo.bibliotecas.Biblioteca;
+import modelo.libros.Exemplar;
 import utiles.enumerandos.TipoUsuario;
 
-public class AdministradorBiblioteca extends Usuario implements Serializable{
+public class AdministradorBiblioteca extends Usuario {
 
     //Atributos
-    private int idBiblioteca;
+    private Biblioteca biblioteca;
 
     /**
      * 
      * @param contrasinal
      * @param nomeUsuario
      */
-    public AdministradorBiblioteca(String contrasinal, String nomeUsuario, int idBiblioteca) {
+    public AdministradorBiblioteca(String contrasinal, String nomeUsuario, Biblioteca biblioteca) {
         super(contrasinal, nomeUsuario);
-        this.setIdBiblioteca(idBiblioteca);
+        this.setBiblioteca(biblioteca);
     }
 
-    public int getIdBiblioteca() {
-        return idBiblioteca;
+    public Biblioteca getBiblioteca() {
+        return biblioteca;
     }
-    public void setIdBiblioteca(int idBiblioteca) {
-        this.idBiblioteca = idBiblioteca;
+    public void setBiblioteca(Biblioteca biblioteca) {
+        this.biblioteca = biblioteca;
     }
 
     @Override
@@ -31,4 +33,8 @@ public class AdministradorBiblioteca extends Usuario implements Serializable{
         return TipoUsuario.ADMINISTRADOR_BIBLIOTECA;
     }
 
+
+    public List<Exemplar> getExemplaresLibresBiblioteca(){
+        return this.biblioteca.getExemplaresLibres();
+    }
 }

@@ -1,6 +1,5 @@
 package modelo.usuarios;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 import modelo.libros.Prestamo;
@@ -10,7 +9,7 @@ import utiles.enumerandos.TipoUsuario;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
 
-public class Cliente extends Usuario implements Serializable{
+public class Cliente extends Usuario {
 
     //Atributos
     private String nome;
@@ -96,10 +95,16 @@ public class Cliente extends Usuario implements Serializable{
                             .findFirst()
                             .isPresent(); //Verificamos se o Optional contén algún préstamo
 
-                            
-    /**
-     * Is present devolve true se o valor != null, senon devolve false
-     */
+       
+            /**
+             * Is present no es un método propio de los flujos de stream, es descendiente de la clase Optional.
+             * 
+             * El método .findFirst() de la clase Stream ME DEVUELVE UN OPTIONAL -> Por lo cual puedo utilizar .isPresent
+             */
+                                    
+            /**
+             * Is present devolve true se o valor != null, senon devolve false
+             */
     }
 
 

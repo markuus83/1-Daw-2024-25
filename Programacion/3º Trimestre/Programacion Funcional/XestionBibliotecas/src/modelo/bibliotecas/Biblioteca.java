@@ -2,6 +2,7 @@ package modelo.bibliotecas;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -133,5 +134,9 @@ public class Biblioteca implements Serializable{
     @Override
     public String toString(){
         return this.getIdBiblioteca()+" "+this.getNome()+", "+this.getDireccion()+"; "+this.getCidade()+" ("+this.getProvincia()+").";
+    }
+
+    public List<Exemplar> getExemplaresLibres(){
+        return null;
     }
 }

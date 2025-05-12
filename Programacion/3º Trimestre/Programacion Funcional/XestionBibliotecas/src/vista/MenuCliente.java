@@ -1,6 +1,12 @@
 package vista;
 
-public class MenuCliente extends Menu {
+import modelo.usuarios.Usuario;
+
+public class MenuCliente extends MenuUsuario {
+
+    public MenuCliente(Usuario usuario) {
+        super(usuario);
+    }
 
     @Override
     protected void mostrar() {

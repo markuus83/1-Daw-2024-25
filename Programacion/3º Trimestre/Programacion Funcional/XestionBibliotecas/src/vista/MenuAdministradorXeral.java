@@ -1,6 +1,7 @@
 package vista;
 
 import controlador.XestionBibliotecas;
+import modelo.usuarios.Usuario;
 import utiles.enumerandos.TipoLinguaLibros;
 import utiles.excepcions.BibliotecaTenAdmin;
 import utiles.excepcions.BibliotecasNonExiste;
@@ -10,7 +11,11 @@ import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.LibroExistente;
 
-public class MenuAdministradorXeral extends Menu{
+public class MenuAdministradorXeral extends MenuUsuario{
+
+    public MenuAdministradorXeral(Usuario usuario) {
+        super(usuario);
+    }
 
     @Override
     protected void mostrar() {
@@ -92,25 +97,24 @@ public class MenuAdministradorXeral extends Menu{
                     
                     try {
 
-                        XestionBibliotecas.getInstance().existeLibro(isbn);
+                        if (XestionBibliotecas.getInstance().existeLibro(isbn)) {
+                            
+                            XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, tipo, exemplares);
 
-                        XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, tipo, exemplares);
+                            XestionBibliotecas.getInstance().ingresarExemplares(exemplares, isbn);
 
-                        XestionBibliotecas.getInstance().ingresarExemplares(exemplares, isbn);
+                            boolean engadirAutores = true;
+                            while (engadirAutores) {
+                                System.out.println("\nEscriba 'fin' para rematar: ");
+                                String autores = getString("Ingrese o autor/es: ");
 
-                        boolean engadirAutores = true;
-
-                        while (engadirAutores) {
-                            System.out.println("\nEscriba 'fin' para rematar: ");
-                            String autores = getString("Ingrese o autor/es: ");
-
-                            if (autores.toLowerCase().trim().equals("fin")) {
-                                engadirAutores = false;
-                                break;
+                                if (autores.toLowerCase().trim().equals("fin")) {
+                                    engadirAutores = false;
+                                    break;
+                                }
+                                XestionBibliotecas.getInstance().ingresarAutoresLibro(isbn, autores);
                             }
-                            XestionBibliotecas.getInstance().ingresarAutoresLibro(isbn, autores);
                         }
-
 
                     } catch (ISBNIncorrecto | ExemplarInvalido | LibroExistente e) {
                         System.out.println("\nErro: "+e.getMessage());
@@ -143,19 +147,21 @@ public class MenuAdministradorXeral extends Menu{
 
                     try {
                         
-                        XestionBibliotecas.getInstance().existenBibliotecas();
+                        if(XestionBibliotecas.getInstance().existenBibliotecas()){
 
-                        int idBiblioteca = getInt("\nIngrese o ID da biblioteca: ");
-                        int idExemplar = getInt("Ingrese o ID do exemplar: ");
+                            int idBiblioteca = getInt("\nIngrese o ID da biblioteca: ");
+                            int idExemplar = getInt("Ingrese o ID do exemplar: ");
 
-                        XestionBibliotecas.getInstance().engadirExemplarABiblioteca(idBiblioteca, idExemplar);
+                            XestionBibliotecas.getInstance().engadirExemplarABiblioteca(idBiblioteca, idExemplar);
 
-                    } catch (BibliotecasNonExiste | ExemplarExistente e) {
-                        System.out.println("Erro: "+e.getMessage());
+                        }
+
+                    } catch (BibliotecasNonExiste | IndiceInvalido |ExemplarExistente e) {
+                        System.out.println("\nErro: "+e.getMessage());
                         break;
                     }
 
-                    System.out.println("Exemplar engadido correctamente!");
+                    System.out.println("\nExemplar engadido correctamente!");
                     
                 }
 
@@ -179,7 +185,7 @@ public class MenuAdministradorXeral extends Menu{
                         }
 
                     } catch (BibliotecasNonExiste | BibliotecaTenAdmin | IndiceInvalido e) {
-                        System.out.println("Erro: "+e.getMessage());
+                        System.out.println("\nErro: "+e.getMessage());
                         break;
                     }
                     System.out.println("\nAdministrador de Biblioteca ingresado correctamente!");

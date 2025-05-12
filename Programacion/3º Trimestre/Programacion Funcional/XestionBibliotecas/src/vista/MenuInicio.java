@@ -1,6 +1,10 @@
 package vista;
 
+import java.util.Optional;
+
 import controlador.XestionBibliotecas;
+import modelo.usuarios.Usuario;
+import utiles.enumerandos.TipoUsuario;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
 import utiles.excepcions.DNIRepetido;
@@ -20,6 +24,8 @@ public class MenuInicio extends Menu{
             System.out.println("\t1. Iniciar sesión: ");
             System.out.println("\t2. Rexistrarse: ");
             System.out.println("\t3. Saír: ");
+
+            XestionBibliotecas.getInstance().impri();
 
             int option = getInt("> ");
 
@@ -48,16 +54,27 @@ public class MenuInicio extends Menu{
                         break;
                     }
 
-                    //Iniciamos os seus respectivos menús
-                    if (XestionBibliotecas.getInstance().eCliente(nomeUsuario)) {
-                        new MenuCliente().run();
+                    Optional<Usuario> usuario = XestionBibliotecas.getInstance().login(nomeUsuario, contrasinal);
 
-                    } else if (XestionBibliotecas.getInstance().eAdministradorXeral(nomeUsuario)){
-                        new MenuAdministradorXeral().run();
-                        
-                    } else{
-                        new MenuAdministradorBiblioteca().run();
+                    if (usuario.isPresent()) {
+
+                        if (usuario.get().getRol() == TipoUsuario.CLIENTE) {
+                            System.out.println("Entra");
+                            new MenuCliente(usuario.get()).run();
+
+                        } else if (usuario.get().getRol() == TipoUsuario.ADMINISTRADOR_XERAL){
+                            System.out.println("Entra");
+                            new MenuAdministradorXeral(usuario.get()).run();
+                            
+                        } else{
+                            System.out.println("Entra");
+                            new MenuAdministradorBiblioteca(usuario.get()).run();
+                        }
                     }
+                    
+                    else {
+                        System.out.println("Non son as credenciais correctas");
+                    }                 
 
                 }
 

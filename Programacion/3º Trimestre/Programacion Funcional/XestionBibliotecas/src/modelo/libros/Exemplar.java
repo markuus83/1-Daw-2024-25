@@ -11,7 +11,7 @@ public class Exemplar implements Serializable{
     private int identificador;
     private Libro libro;
     private Biblioteca biblioteca;
-
+    
 
     //atributos static
     private static int contador;
@@ -25,9 +25,9 @@ public class Exemplar implements Serializable{
      * @param biblioteca -> Biblioteca á cal pertence o exemplar
      */
     public Exemplar() {
-        this.identificador = contador++;
         this.setLibro(libro);
         this.setBiblioteca(biblioteca);
+        this.identificador = contador++;
     }
 
     //Getters&Setters

@@ -1,6 +1,8 @@
 package modelo.libros;
 
 import java.io.Serializable;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import modelo.bibliotecas.Biblioteca;
 import utiles.enumerandos.TipoLinguaLibros;
@@ -11,10 +13,11 @@ public class Exemplar implements Serializable{
     private int identificador;
     private Libro libro;
     private Biblioteca biblioteca;
-    
+    private boolean tenPrestamo;
+
 
     //atributos static
-    private static int contador;
+    private static int contador=0;
 
     
     /**
@@ -27,6 +30,7 @@ public class Exemplar implements Serializable{
     public Exemplar() {
         this.setLibro(libro);
         this.setBiblioteca(biblioteca);
+        this.tenPrestamo = false;
         this.identificador = contador++;
     }
 
@@ -34,6 +38,18 @@ public class Exemplar implements Serializable{
     public int getIdentificador() {
         return identificador;
     }
+
+    public boolean getPrestamo(){
+        return tenPrestamo;
+    }
+
+    public void engadirPrestamo(){
+        this.tenPrestamo = true;
+    }
+
+    public void eliminarPrestamo(){
+        this.tenPrestamo = true;
+    } 
 
     /**
      * MÉTODOS PARA OBTER OS DATOS DO LIBRO
@@ -45,8 +61,24 @@ public class Exemplar implements Serializable{
         return libro.getIsbn();
     }
     public String getAutoresLibro(){
-        return libro.getAutores();
+        return libro.getAutoresTexto();
     }
+
+     /**
+     * Método encargado de devolver nunha lista cos autores ordenados por nome
+     */
+    public List<String> getAutoresOrdenados(){
+
+        List<String> autoresOrdenados = 
+        libro   .getAutores()
+                .stream()
+                .sorted((c1,c2) -> c1.compareTo(c2))
+                .collect(Collectors.toList());
+
+        return autoresOrdenados;
+    }
+
+
     public TipoLinguaLibros getLinguaLibro(){
         return libro.getLingua();
     }

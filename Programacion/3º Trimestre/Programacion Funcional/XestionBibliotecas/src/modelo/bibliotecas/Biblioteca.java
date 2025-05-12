@@ -124,19 +124,30 @@ public class Biblioteca implements Serializable{
     /**
      * Método encargado de devolver nunha cadea de texto todos os exemplares dun libro nunha biblioteca
      */
-    public String getExemplares(){
+    public String getExemplaresTexto(){
         return exemplares   .entrySet()
                             .stream()
                             .map(e -> e.getKey() + " -> " + e.getValue())
                             .collect(Collectors.joining("\n"));
     }
 
+    /**
+     * Método encargado de devolver os exemplares libres
+     */
+    public List<Exemplar> getExemplaresLibres(){
+        List<Exemplar> exemplaresLibres =
+            exemplares  .values()
+                        .stream()
+                        .filter(c -> c.getPrestamo() == false)
+                        .toList();
+
+        return exemplaresLibres;
+    }
+
+    
+    
     @Override
     public String toString(){
         return this.getIdBiblioteca()+" "+this.getNome()+", "+this.getDireccion()+"; "+this.getCidade()+" ("+this.getProvincia()+").";
-    }
-
-    public List<Exemplar> getExemplaresLibres(){
-        return null;
     }
 }

@@ -25,7 +25,8 @@ public class MenuInicio extends Menu{
             System.out.println("\t2. Rexistrarse: ");
             System.out.println("\t3. Saír: ");
 
-            XestionBibliotecas.getInstance().impri();
+
+            System.out.println(XestionBibliotecas.getInstance().imprimirNomesUsuarios()); 
 
             int option = getInt("> ");
 
@@ -48,34 +49,22 @@ public class MenuInicio extends Menu{
                         break;
                     }
 
-                    //Comprobamos que os datos son correctos
-                    if (!XestionBibliotecas.getInstance().comprobarDatos(nomeUsuario, contrasinal)) {
-                        System.out.println("\nErro. O usuario ou o contrasinal son inválidos");
-                        break;
-                    }
-
                     Optional<Usuario> usuario = XestionBibliotecas.getInstance().login(nomeUsuario, contrasinal);
 
                     if (usuario.isPresent()) {
 
                         if (usuario.get().getRol() == TipoUsuario.CLIENTE) {
-                            System.out.println("Entra");
                             new MenuCliente(usuario.get()).run();
 
                         } else if (usuario.get().getRol() == TipoUsuario.ADMINISTRADOR_XERAL){
-                            System.out.println("Entra");
                             new MenuAdministradorXeral(usuario.get()).run();
                             
-                        } else{
-                            System.out.println("Entra");
+                        } else if (usuario.get().getRol() == TipoUsuario.ADMINISTRADOR_BIBLIOTECA) {
                             new MenuAdministradorBiblioteca(usuario.get()).run();
+                        }{
+                            System.out.println("Erro de lóxica no programa interno!");
                         }
                     }
-                    
-                    else {
-                        System.out.println("Non son as credenciais correctas");
-                    }                 
-
                 }
 
 
@@ -126,6 +115,7 @@ public class MenuInicio extends Menu{
                 }
             }
         }
-    }
+    
    
+}
 }

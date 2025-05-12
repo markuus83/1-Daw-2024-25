@@ -113,7 +113,7 @@ public class Prestamo implements Serializable{
     }
 
     
-
+    
     public void setCliente(Cliente cliente) throws PrestamoActivo, ClienteSancionado {
         if (cliente.tenPrestamoActivo()) {
             throw new PrestamoActivo("Préstamo activo!");

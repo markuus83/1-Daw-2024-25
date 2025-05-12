@@ -1,23 +1,27 @@
 package controlador;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Comparator;
 //Imports estructuras de datos
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import io.XestionBibliotecasIO;
 import modelo.bibliotecas.Biblioteca;
 import modelo.libros.Exemplar;
 import modelo.libros.Libro;
+import modelo.libros.Prestamo;
 import modelo.usuarios.AdministradorBiblioteca;
 import modelo.usuarios.AdministradorXeral;
 import modelo.usuarios.Cliente;
 import modelo.usuarios.Usuario;
-import utiles.clasesStatic.HashPasword;
 import utiles.enumerandos.TipoLinguaLibros;
 import utiles.enumerandos.TipoUsuario;
 import utiles.excepcions.BibliotecaTenAdmin;
 import utiles.excepcions.BibliotecasNonExiste;
+import utiles.excepcions.ClienteSancionado;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
 import utiles.excepcions.DNIRepetido;
@@ -26,6 +30,7 @@ import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.LibroExistente;
+import utiles.excepcions.PrestamoActivo;
 import utiles.excepcions.UsuarioExistente;
 import utiles.excepcions.UsuarioNonExiste;
 
@@ -35,10 +40,12 @@ public class XestionBibliotecas implements Serializable{
 
     //Estructuras de control
     private HashMap<String, Usuario> usuarios;
+    private HashMap<String, AdministradorBiblioteca> administradoresBiblioteca;
     private HashMap<Integer, Biblioteca> bibliotecas;
     private HashMap<String, Libro> libros;
     private HashMap<Integer, Exemplar> exemplares;
     private HashMap<String, Cliente> clientes;
+    private ArrayList<Prestamo> prestamos;
 
     /************* MÉTODOS PARA A CREACIÓN DO PATRÓN SINGLETON ***************/
     
@@ -70,6 +77,8 @@ public class XestionBibliotecas implements Serializable{
         libros = new HashMap<>();
         exemplares = new HashMap<>();
         clientes = new HashMap<>();
+        administradoresBiblioteca = new HashMap<>();
+        prestamos = new ArrayList<>();
     }
 
     /**
@@ -156,14 +165,6 @@ public class XestionBibliotecas implements Serializable{
     }
 
     /**
-     * Método encargado de comprobar se os datos son correctos
-     */
-    public boolean comprobarDatos(String user, String password){
-        Usuario u = usuarios.get(user);
-        return u.getContrasinal().equals(HashPasword.hashPassword(password));
-    }
-
-    /**
      * Método encargado de engadir un Cliente
      */
     public void ingresarCliente(String contrasinal, String nomeUsuario,String nome, String Apelidos, String dni, String correo ) throws DNIIncorrecto, CorreoInvalido{
@@ -239,20 +240,6 @@ public class XestionBibliotecas implements Serializable{
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES XERAIS ***************/
 
     /**
@@ -318,10 +305,15 @@ public class XestionBibliotecas implements Serializable{
         
     }
 
-    public void impri(){
-        for (Usuario u : usuarios.values()) {
-            System.out.println(u.getNomeUsuario());
-        }
+    public String imprimirNomesUsuarios(){
+        String resposta;
+
+        resposta = usuarios .values()
+                            .stream()
+                            .map(c-> c.getNomeUsuario())
+                            .collect(Collectors.joining("\n","Usuarios existentes:\n",""));
+
+        return resposta;
     }
 
     /**
@@ -331,7 +323,10 @@ public class XestionBibliotecas implements Serializable{
         if (bibliotecas.isEmpty()) {
             return "Non existen bibliotecas! ";
         }
-        String resposta = bibliotecas.values().stream().toString();
+        String resposta = bibliotecas   .values()
+                                        .stream()
+                                        .map(c -> c.toString())
+                                        .collect(Collectors.joining("\n"));
         return resposta;
     }
     
@@ -342,7 +337,10 @@ public class XestionBibliotecas implements Serializable{
         if (libros.isEmpty()) {
             return "Non existen Libros! ";
         }
-        String resposta = libros.values().stream().toString();
+        String resposta = libros    .values()
+                                    .stream()
+                                    .map(c -> c.toString())
+                                    .collect(Collectors.joining("\n"));
         return  resposta;
            
     }
@@ -361,9 +359,12 @@ public class XestionBibliotecas implements Serializable{
                 b.engadirExemplares(e);
                 this.gardar();
             } else{
+                this.gardar();
                 throw new ExemplarExistente("Exemplar xa existente!");
+                
             }
         } else{
+            this.gardar();
             throw new IndiceInvalido("Indice inválido!");
         }
     }
@@ -393,12 +394,14 @@ public class XestionBibliotecas implements Serializable{
         if (bibliotecas.containsKey(id)) {
 
             Biblioteca b = bibliotecas.get(id);
-            AdministradorBiblioteca ab = new AdministradorBiblioteca(HashPasword.hashPassword(contrasinal), nomeUser, b);
+            AdministradorBiblioteca ab = new AdministradorBiblioteca(contrasinal, nomeUser, b);
 
             usuarios.put(nomeUser, ab);
+            administradoresBiblioteca.put(ab.getNomeUsuario(), ab);
             this.gardar();
 
         } else{
+            this.gardar();
             throw new IndiceInvalido("Índice inválido");
         }
 
@@ -408,6 +411,92 @@ public class XestionBibliotecas implements Serializable{
     
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES de BIBLIOTECA ***************/
     
+    public String amosarExemplaresLibresDunhaBiblioteca(String nomeAdmin){
+
+        AdministradorBiblioteca a = administradoresBiblioteca.get(nomeAdmin);
+
+        Biblioteca b = a.getBiblioteca();
+
+        return b    .getExemplaresLibres()
+                    .stream()
+                    .map(c -> c.toString())
+                    .collect(Collectors.joining("\n"));
+    }
+
+    /**
+     * Método encargado de comprobar se un cliente ten un préstamo activo
+     */
+    public boolean tenPrestamoActivo(String dni) throws PrestamoActivo{
+        Cliente c = clientes.get(dni);
+
+        if (c.tenPrestamoActivo()) {
+            throw new PrestamoActivo("Xa ten un préstamo activo");
+        } else{
+            return true;
+        }
+
+    }
+
+    /**
+     * Método encargado de ingresar un préstamo
+     */
+    public void ingresarPrestamo(int idE, String dniC) throws IndiceInvalido, PrestamoActivo, ClienteSancionado{
+
+        if (exemplares.containsKey(idE) && clientes.containsKey(dniC)) {
+            Exemplar e = exemplares.get(idE);
+            Cliente c = clientes.get(dniC);
+            
+            Prestamo p = new Prestamo(e, c);
+
+            prestamos.add(p);
+            this.gardar();
+            
+        } else{
+            this.gardar();
+            throw new IndiceInvalido("Índice inválido!");
+        }
+        
+    }
+
+    /**
+     * Método encargado de amosar os exemplares libres dunha biblioteca ordenados por titulo
+     */
+    public String amosarExemplaresLibresOrdenadosTitulo(int idB) throws IndiceInvalido{
+        
+        if (bibliotecas.containsKey(idB)) {
+            Biblioteca b = bibliotecas.get(idB);
+
+            String resultado = b    .getExemplaresLibres()
+                                    .stream()
+                                    .map(c -> c.getTituloLibro())
+                                    .sorted((c1,c2) -> c1.compareTo(c2))
+                                    .collect(Collectors.joining("\n"));
+            
+
+            return resultado;
+        }else{
+            throw new IndiceInvalido("Índice inválido!");
+        }
+    }
+
+    /**
+     * Método encargado de ordenaro os exemplares libres dunha biblioteca por Autor
+     */
+    public String amosarExemplaresLibresOrdenadosAutor(int idB) throws IndiceInvalido {
+    if (bibliotecas.containsKey(idB)) {
+        Biblioteca b = bibliotecas.get(idB);
+
+        String resultado = b.getExemplaresLibres()
+                            .stream()
+                            .sorted(Comparator.comparing(ejemplar -> String.join(", ", ejemplar.getAutoresLibro())))
+                            .map(c -> c.toString()) 
+                            .collect(Collectors.joining("\n"));
+
+        return resultado;
+    } else {
+        throw new IndiceInvalido("Índice inválido!");
+    }
+}
 
 }
 

@@ -102,11 +102,14 @@ public class Libro implements Serializable{
     /**
      * Método encargado de devolver nunha cadea de texto todos os autores separados por un ";"
      */
-    public String getAutores(){
+    public String getAutoresTexto(){
         return this.autor   .stream()
                             .collect(Collectors.joining("; ","",""));
     }
 
+    public ArrayList<String> getAutores(){
+        return this.autor;
+    }
     
     /**
      * Método encargado de eliminar un exemplar

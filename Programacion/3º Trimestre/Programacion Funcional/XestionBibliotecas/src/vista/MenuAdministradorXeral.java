@@ -24,7 +24,7 @@ public class MenuAdministradorXeral extends MenuUsuario{
 
         while (menuActivo) {
             System.out.println("\n-----------------------");
-            System.out.println("\nBenvido ao menu de Administradores Xerais: ");
+            System.out.println("\nBenvido ao menu de Administradores Xerais: "+this.getUsuario().getNomeUsuario());
             System.out.println("\t1. Nova Biblioteca: ");
             System.out.println("\t2. Novo Libro: ");
             System.out.println("\t3. Ver Bibliotecas: ");

@@ -1,5 +1,8 @@
 package vista;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+
 import controlador.XestionBibliotecas;
 import modelo.usuarios.Usuario;
 import utiles.enumerandos.TipoLinguaLibros;
@@ -7,11 +10,12 @@ import utiles.excepcions.BibliotecaTenAdmin;
 import utiles.excepcions.BibliotecasNonExiste;
 import utiles.excepcions.ExemplarExistente;
 import utiles.excepcions.ExemplarInvalido;
+import utiles.excepcions.ExemplarNonExiste;
 import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.LibroExistente;
 
-public class MenuAdministradorXeral extends MenuUsuario{
+public class MenuAdministradorXeral extends MenuUsuario {
 
     public MenuAdministradorXeral(Usuario usuario) {
         super(usuario);
@@ -19,12 +23,12 @@ public class MenuAdministradorXeral extends MenuUsuario{
 
     @Override
     protected void mostrar() {
-        
+
         boolean menuActivo = true;
 
         while (menuActivo) {
             System.out.println("\n-----------------------");
-            System.out.println("\nBenvido ao menu de Administradores Xerais: "+this.getUsuario().getNomeUsuario());
+            System.out.println("\nBenvido ao menu de Administradores Xerais: " + this.getUsuario().getNomeUsuario());
             System.out.println("\t1. Nova Biblioteca: ");
             System.out.println("\t2. Novo Libro: ");
             System.out.println("\t3. Ver Bibliotecas: ");
@@ -50,79 +54,159 @@ public class MenuAdministradorXeral extends MenuUsuario{
                     try {
                         XestionBibliotecas.getInstance().ingresarBiblioteca(nome, direccion, cidade, provincia);
                     } catch (Exception e) {
-                        System.out.println("\nErro: "+e.getMessage());
+                        System.out.println("\nErro: " + e.getMessage());
                         break;
                     }
                     System.out.println("\nBiblioteca creada exitosamente!");
 
                 }
 
-
                 /**
                  * Novo Libro
                  */
                 case 2 -> {
-                    String titulo = getString("\nIngrese o título: ");
-                    String editorial = getString("Ingrese a editorial: ");
-                    String isbn = getString("Ingrese o ISBN: ");
-                    int exemplares = getInt("Ingrese a cantidade de exemplares: ");
-                    System.out.println("\nEn que lingua está o libro?");
-                    System.out.println("\t1. Galego: ");
-                    System.out.println("\t2. Castelán: ");
-                    System.out.println("\t3. Ingés: ");
+                    System.out.println("\nComo quere ingresar o novo libro:");
+                    System.out.println("\t1. Liña de comandos:");
+                    System.out.println("\t2. Cargándoo da base de datos:");
 
-                    int optionLingua = getInt("> ");
+                    int option2 = getInt("> ");
 
-                    TipoLinguaLibros tipo;
+                    switch (option2) {
 
-                    switch (optionLingua) {
-
+                        /**
+                         * Comandos
+                         */
                         case 1 -> {
-                            tipo = TipoLinguaLibros.GALEGO;
-                        }
 
-                        case 2 -> {
-                            tipo = TipoLinguaLibros.CASTELAN;
-                        }
+                            String titulo = getString("\nIngrese o título: ");
+                            String editorial = getString("Ingrese a editorial: ");
+                            String isbn = getString("Ingrese o ISBN: ");
+                            int exemplares = getInt("Ingrese a cantidade de exemplares: ");
+                            System.out.println("\nEn que lingua está o libro?");
+                            System.out.println("\t1. Galego: ");
+                            System.out.println("\t2. Castelán: ");
+                            System.out.println("\t3. Ingés: ");
 
-                        case 3 -> {
-                            tipo = TipoLinguaLibros.INGLES;
-                        }
-                    
-                        default -> {
-                            System.out.println("\nErro: Opción inválida!");
-                            continue;
-                        }
-                    }
-                    
-                    try {
+                            int optionLingua = getInt("> ");
 
-                        if (XestionBibliotecas.getInstance().existeLibro(isbn)) {
-                            
-                            XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, tipo, exemplares);
+                            TipoLinguaLibros tipo;
 
-                            XestionBibliotecas.getInstance().ingresarExemplares(exemplares, isbn);
+                            switch (optionLingua) {
 
-                            boolean engadirAutores = true;
-                            while (engadirAutores) {
-                                System.out.println("\nEscriba 'fin' para rematar: ");
-                                String autores = getString("Ingrese o autor/es: ");
-
-                                if (autores.toLowerCase().trim().equals("fin")) {
-                                    engadirAutores = false;
-                                    break;
+                                case 1 -> {
+                                    tipo = TipoLinguaLibros.GALEGO;
                                 }
-                                XestionBibliotecas.getInstance().ingresarAutoresLibro(isbn, autores);
+
+                                case 2 -> {
+                                    tipo = TipoLinguaLibros.CASTELAN;
+                                }
+
+                                case 3 -> {
+                                    tipo = TipoLinguaLibros.INGLES;
+                                }
+
+                                default -> {
+                                    System.out.println("\nErro: Opción inválida!");
+                                    continue;
+                                }
+                            }
+
+                            try {
+
+                                if (XestionBibliotecas.getInstance().existeLibro(isbn)) {
+
+                                    XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, tipo,
+                                            exemplares);
+
+                                    XestionBibliotecas.getInstance().ingresarExemplares(exemplares, isbn);
+
+                                    boolean engadirAutores = true;
+                                    while (engadirAutores) {
+                                        System.out.println("\nEscriba 'fin' para rematar: ");
+                                        String autores = getString("Ingrese o autor/es: ");
+
+                                        if (autores.toLowerCase().trim().equals("fin")) {
+                                            engadirAutores = false;
+                                            break;
+                                        }
+                                        XestionBibliotecas.getInstance().ingresarAutoresLibro(isbn, autores);
+                                    }
+                                }
+
+                            } catch (ISBNIncorrecto | ExemplarInvalido | LibroExistente e) {
+                                System.out.println("\nErro: " + e.getMessage());
+                                break;
+                            }
+                            System.out.println("\nLibro e exemplares creados exitosamente!");
+
+                        }
+
+                        /**
+                         * CSV
+                         */
+                        case 2 -> {
+
+                            String ruta = "Libos.csv";
+
+                            try (BufferedReader reader = new BufferedReader(new FileReader(ruta))) {
+
+                                reader.readLine();
+                                String liña;
+
+                                while ((liña = reader.readLine()) != null) {
+
+                                    String[] campos = liña.split(",", -1);
+
+                                    // Casteamos os datos segundo o precismoe
+                                    String titulo = campos[0].trim();
+                                    String editorial = campos[1].trim();
+
+                                    TipoLinguaLibros lingua = null;
+
+                                    switch (campos[2]) {
+                                        case "INGLES" -> {
+                                            lingua = TipoLinguaLibros.INGLES;
+                                        }
+
+                                        case "ESPAÑOL" -> {
+                                            lingua = TipoLinguaLibros.CASTELAN;
+                                        }
+
+                                        case "GALEGO" -> {
+                                            lingua = TipoLinguaLibros.GALEGO;
+                                        }
+
+                                        default -> {
+                                            lingua = TipoLinguaLibros.GALEGO;
+                                        }
+                                    }
+
+                                    String[] autores = campos[3].split("&");
+                                    String isbn = campos[4].trim();
+                                    int numExemplares = Integer.parseInt(campos[5].trim());
+
+                                    if (XestionBibliotecas.getInstance().existeLibro(isbn)) {
+
+                                        XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, lingua, numExemplares);
+
+                                        XestionBibliotecas.getInstance().ingresarExemplares(numExemplares, isbn);
+                                    }
+                                }
+
+                            } catch (Exception e) {
+                                printMessage(e.getMessage());
                             }
                         }
 
-                    } catch (ISBNIncorrecto | ExemplarInvalido | LibroExistente e) {
-                        System.out.println("\nErro: "+e.getMessage());
-                        break;
+                        /**
+                         * Default
+                         */
+                        default -> {
+                            System.out.println("Erro: Opciçon non contemplada!");
+                        }
                     }
-                    System.out.println("\nLibro e exemplares creados exitosamente!");
-                }
 
+                }
 
                 /**
                  * Ver Bibliotecas
@@ -146,23 +230,24 @@ public class MenuAdministradorXeral extends MenuUsuario{
                 case 5 -> {
 
                     try {
-                        
-                        if(XestionBibliotecas.getInstance().existenBibliotecas()){
+
+                        if (XestionBibliotecas.getInstance().existenBibliotecas()) {
 
                             int idBiblioteca = getInt("\nIngrese o ID da biblioteca: ");
                             int idExemplar = getInt("Ingrese o ID do exemplar: ");
 
-                            XestionBibliotecas.getInstance().engadirExemplarABiblioteca(idBiblioteca, idExemplar);
+                            if (XestionBibliotecas.getInstance().existeExemplar(idExemplar)) {
+                                XestionBibliotecas.getInstance().engadirExemplarABiblioteca(idBiblioteca, idExemplar);
+                            }
 
                         }
 
-                    } catch (BibliotecasNonExiste | IndiceInvalido |ExemplarExistente e) {
-                        System.out.println("\nErro: "+e.getMessage());
+                    } catch (BibliotecasNonExiste | IndiceInvalido | ExemplarExistente | ExemplarNonExiste e) {
+                        System.out.println("\nErro: " + e.getMessage());
                         break;
                     }
 
                     System.out.println("\nExemplar engadido correctamente!");
-                    
                 }
 
                 /**
@@ -176,20 +261,21 @@ public class MenuAdministradorXeral extends MenuUsuario{
 
                         int idBiblioteca = getInt("\nIngrese o ID da biblioteca a engadir: ");
 
-                        if (XestionBibliotecas.getInstance().bibliotecaNonTenAdmin(idBiblioteca)){
+                        if (XestionBibliotecas.getInstance().bibliotecaNonTenAdmin(idBiblioteca)) {
 
                             String nomeUser = getString("Ingrese o nome de usuario: ");
                             String contrasinal = getString("Ingrese o contrasinal: ");
 
-                            XestionBibliotecas.getInstance().ingresarAdministradorBiblioteca(nomeUser, contrasinal, idBiblioteca);
+                            XestionBibliotecas.getInstance().ingresarAdministradorBiblioteca(nomeUser, contrasinal,
+                                    idBiblioteca);
                         }
 
                     } catch (BibliotecasNonExiste | BibliotecaTenAdmin | IndiceInvalido e) {
-                        System.out.println("\nErro: "+e.getMessage());
+                        System.out.println("\nErro: " + e.getMessage());
                         break;
                     }
                     System.out.println("\nAdministrador de Biblioteca ingresado correctamente!");
-                    
+
                 }
 
                 /**
@@ -200,7 +286,7 @@ public class MenuAdministradorXeral extends MenuUsuario{
                     menuActivo = false;
                     break;
                 }
-            
+
                 /**
                  * Erro
                  */

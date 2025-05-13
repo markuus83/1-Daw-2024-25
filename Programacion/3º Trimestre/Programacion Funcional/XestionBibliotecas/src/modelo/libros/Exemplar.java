@@ -2,6 +2,7 @@ package modelo.libros;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import modelo.bibliotecas.Biblioteca;
@@ -98,6 +99,13 @@ public class Exemplar implements Serializable{
      */
     public void setBiblioteca(Biblioteca biblioteca){
         this.biblioteca = biblioteca;
+    }
+
+    /**
+     * Método encargado de devolver a Biblioteca do exemplar
+     */
+    public Optional<Biblioteca> getBiblioteca(){
+        return Optional.of(biblioteca);
     }
 
     @Override

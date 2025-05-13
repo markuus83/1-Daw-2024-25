@@ -127,6 +127,6 @@ public class Libro implements Serializable{
 
     @Override
     public String toString(){
-        return this.getIsbn()+", "+this.getTitulo()+" de "+this.getAutores()+" en "+this.getLingua()+" ("+this.getEditorial()+")";
+        return this.getIsbn()+", "+this.getTitulo()+" de "+this.getAutoresTexto()+" en "+this.getLingua()+" ("+this.getEditorial()+")";
     }
 }

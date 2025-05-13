@@ -3,6 +3,7 @@ package controlador;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
+
 //Imports estructuras de datos
 import java.util.HashMap;
 import java.util.Optional;
@@ -27,6 +28,8 @@ import utiles.excepcions.DNIIncorrecto;
 import utiles.excepcions.DNIRepetido;
 import utiles.excepcions.ExemplarExistente;
 import utiles.excepcions.ExemplarInvalido;
+import utiles.excepcions.ExemplarNonExiste;
+import utiles.excepcions.ExemplarXaAsignado;
 import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.LibroExistente;
@@ -115,12 +118,6 @@ public class XestionBibliotecas implements Serializable{
     public Object clone() throws CloneNotSupportedException {
         throw new CloneNotSupportedException();
     }
-
-
-
-    /************* MÉTODOS PARA ENGADIR DATOS Á INSTANCIA ***************/
-
-    
 
 
 
@@ -407,6 +404,33 @@ public class XestionBibliotecas implements Serializable{
 
     }
 
+    /**
+     * Método encargado de comprobar que o exemplar existe
+     */
+    public boolean existeExemplar(int idE) throws ExemplarNonExiste{
+        if (exemplares.containsKey(idE)) {
+            return true;
+        } else{
+            throw new ExemplarNonExiste("O exemplar non existe!");
+        }
+    }
+
+
+    /**
+     * Método encargado de comprobar se o exemplar xa está asignado a outra biblioteca
+     */
+    public boolean exemplarXaAsignado(int idE) throws ExemplarXaAsignado{
+
+        Exemplar e = exemplares.get(idE);
+
+        if (e.getBiblioteca().isPresent()) {
+            throw new ExemplarXaAsignado("O exemplar xa está asignado noutra biblioteca!");
+        } else{
+            return true;
+        }
+
+    }
+
 
     
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES de BIBLIOTECA ***************/
@@ -500,7 +524,13 @@ public class XestionBibliotecas implements Serializable{
 
 }
 
-
+/**TODO - 
+ * 
+ * Crear un método que me relacione el crear un libro de CSV y me añada los autores.
+ * 
+ * Dicho método tiene que hacer una conversión de Array a ArrayList y llamar al método propio de la clase libro .engadirAutores()
+ * 
+ */
 
 
 

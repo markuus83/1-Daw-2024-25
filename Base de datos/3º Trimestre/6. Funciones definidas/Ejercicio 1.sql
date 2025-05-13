@@ -200,8 +200,8 @@ GO
 SELECT '10' as ID_Departamento, dbo.datosPedido(10)
 
 
-/* 9- Crear una funci?n de login que devuelva 1 si un usuario est? registrado y su contrase?a es correcta 
-	y 0 si la contrase?a es incorrecta.
+/* 9- Crear una función de login que devuelva 1 si un usuario está registrado y su contraseña es correcta 
+	y 0 si la contraseña es incorrecta.
 	Crea primero las tablas y a?ade datos de ejemplo
 	La tabla usuarios tendr?: login, password y fechaAcceso con lafecha y hora del ?ltimo acceso correcto; */
 

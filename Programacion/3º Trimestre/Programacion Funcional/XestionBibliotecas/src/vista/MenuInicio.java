@@ -5,6 +5,7 @@ import java.util.Optional;
 import controlador.XestionBibliotecas;
 import modelo.usuarios.Usuario;
 import utiles.enumerandos.TipoUsuario;
+import utiles.excepcions.ContrasinalIncorrecto;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
 import utiles.excepcions.DNIRepetido;
@@ -19,7 +20,7 @@ public class MenuInicio extends Menu{
         boolean menuActivo = true;
 
         while (menuActivo) {
-
+            System.out.println("\n---------------------");
             System.out.println("\nBenvidos a xestión de Bibliotecas galegas: ");
             System.out.println("\t1. Iniciar sesión: ");
             System.out.println("\t2. Rexistrarse: ");
@@ -49,9 +50,10 @@ public class MenuInicio extends Menu{
                         break;
                     }
 
-                    Optional<Usuario> usuario = XestionBibliotecas.getInstance().login(nomeUsuario, contrasinal);
+                    try {
+                        Optional<Usuario> usuario = XestionBibliotecas.getInstance().login(nomeUsuario, contrasinal);
 
-                    if (usuario.isPresent()) {
+                        if (usuario.isPresent()) {
 
                         if (usuario.get().getRol() == TipoUsuario.CLIENTE) {
                             new MenuCliente(usuario.get()).run();
@@ -61,10 +63,14 @@ public class MenuInicio extends Menu{
                             
                         } else if (usuario.get().getRol() == TipoUsuario.ADMINISTRADOR_BIBLIOTECA) {
                             new MenuAdministradorBiblioteca(usuario.get()).run();
-                        }{
+                        } else{
                             System.out.println("Erro de lóxica no programa interno!");
                         }
                     }
+                    } catch (ContrasinalIncorrecto e) {
+                        System.out.println("Erro: "+e.getMessage());
+                    }
+                    
                 }
 
 

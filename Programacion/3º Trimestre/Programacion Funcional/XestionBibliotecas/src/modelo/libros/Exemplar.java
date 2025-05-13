@@ -19,7 +19,6 @@ public class Exemplar implements Serializable{
 
     //atributos static
     private static int contador=0;
-
     
     /**
      * Método constructor da clase Exemplar
@@ -28,7 +27,7 @@ public class Exemplar implements Serializable{
      * @param libro -> Libro ao cal pertence o exemplar
      * @param biblioteca -> Biblioteca á cal pertence o exemplar
      */
-    public Exemplar() {
+    public Exemplar(Libro libro) {
         this.setLibro(libro);
         this.setBiblioteca(biblioteca);
         this.tenPrestamo = false;

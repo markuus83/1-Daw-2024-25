@@ -2,6 +2,7 @@ package vista;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 
 import controlador.XestionBibliotecas;
 import modelo.usuarios.Usuario;
@@ -142,43 +143,40 @@ public class MenuAdministradorXeral extends MenuUsuario {
                         }
 
                         /**
-                         * CSV
+                         * Engadir libro mediante un .CSV
                          */
                         case 2 -> {
+                            String ruta = "Libros.csv";
 
-                            String ruta = "Libos.csv";
+                            System.out.println("\nOs libros dispoñibles son: ");
+                            this.mostrarTitulosDisponiblesCSV();
+
+                            System.out.print("Introduce o título do libro que queres dar de alta: ");
+                            String tituloBuscado = getString("Ingrese o título: ");
 
                             try (BufferedReader reader = new BufferedReader(new FileReader(ruta))) {
 
-                                reader.readLine();
+                                reader.readLine(); // Saltar a cabeceira
                                 String liña;
+                                boolean atopado = false;
 
                                 while ((liña = reader.readLine()) != null) {
-
                                     String[] campos = liña.split(",", -1);
 
-                                    // Casteamos os datos segundo o precismoe
                                     String titulo = campos[0].trim();
+
+                                    if (!titulo.equalsIgnoreCase(tituloBuscado)) {
+                                        continue; // Saltamos este libro
+                                    }
+
                                     String editorial = campos[1].trim();
+                                    TipoLinguaLibros lingua;
 
-                                    TipoLinguaLibros lingua = null;
-
-                                    switch (campos[2]) {
-                                        case "INGLES" -> {
-                                            lingua = TipoLinguaLibros.INGLES;
-                                        }
-
-                                        case "ESPAÑOL" -> {
-                                            lingua = TipoLinguaLibros.CASTELAN;
-                                        }
-
-                                        case "GALEGO" -> {
-                                            lingua = TipoLinguaLibros.GALEGO;
-                                        }
-
-                                        default -> {
-                                            lingua = TipoLinguaLibros.GALEGO;
-                                        }
+                                    switch (campos[2].trim()) {
+                                        case "INGLES" -> lingua = TipoLinguaLibros.INGLES;
+                                        case "ESPAÑOL" -> lingua = TipoLinguaLibros.CASTELAN;
+                                        case "GALEGO" -> lingua = TipoLinguaLibros.GALEGO;
+                                        default -> lingua = TipoLinguaLibros.GALEGO;
                                     }
 
                                     String[] autores = campos[3].split("&");
@@ -186,15 +184,21 @@ public class MenuAdministradorXeral extends MenuUsuario {
                                     int numExemplares = Integer.parseInt(campos[5].trim());
 
                                     if (XestionBibliotecas.getInstance().existeLibro(isbn)) {
-
-                                        XestionBibliotecas.getInstance().ingresarLibro(titulo, editorial, isbn, lingua, numExemplares);
-
+                                        XestionBibliotecas.getInstance().ingresarLibroConCSV(titulo, editorial, isbn, lingua, numExemplares, autores);
                                         XestionBibliotecas.getInstance().ingresarExemplares(numExemplares, isbn);
+                                        atopado = true;
+                                        break; // Xa cargamos o libro, non seguimos lendo
                                     }
                                 }
 
-                            } catch (Exception e) {
-                                printMessage(e.getMessage());
+                                if (!atopado) {
+                                    System.out.println("Libro non atopado ou xa existe.");
+                                } else {
+                                    System.out.println("Libro cargado correctamente!");
+                                }
+
+                            } catch (IOException | ISBNIncorrecto | LibroExistente | ExemplarInvalido e) {
+                                System.out.println("Erro: " + e.getMessage());
                             }
                         }
 
@@ -202,7 +206,7 @@ public class MenuAdministradorXeral extends MenuUsuario {
                          * Default
                          */
                         default -> {
-                            System.out.println("Erro: Opciçon non contemplada!");
+                            System.out.println("Erro: Opción non contemplada!");
                         }
                     }
 
@@ -297,4 +301,26 @@ public class MenuAdministradorXeral extends MenuUsuario {
             }
         }
     }
+
+    private void mostrarTitulosDisponiblesCSV() {
+    String ruta = "Libros.csv";
+
+    try (BufferedReader reader = new BufferedReader(new FileReader(ruta))) {
+        reader.readLine(); // Saltar la cabecera
+        String linea;
+
+        System.out.println("Títulos dispoñibles no CSV:");
+
+        while ((linea = reader.readLine()) != null) {
+            String[] campos = linea.split(",", -1);
+            if (campos.length > 0) {
+                System.out.println("- " + campos[0].trim());
+            }
+        }
+
+    } catch (IOException e) {
+        System.out.println("Erro lendo o ficheiro CSV: " + e.getMessage());
+    }
+}
+
 }

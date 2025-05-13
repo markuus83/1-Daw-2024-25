@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import utiles.clasesStatic.HashPasword;
 import utiles.enumerandos.TipoUsuario;
+import utiles.excepcions.ContrasinalIncorrecto;
 
 public abstract class Usuario implements Serializable{
     
@@ -36,9 +37,13 @@ public abstract class Usuario implements Serializable{
         this.contrasinal = HashPasword.hashPassword(contrasinal);
     }
 
-    public boolean comprobarPassword(String password) {
-        if(this.getContrasinal().equals(HashPasword.hashPassword(password))) return true;
-        return false;
+    public boolean comprobarPassword(String password) throws ContrasinalIncorrecto{
+        if(this.getContrasinal().equals(HashPasword.hashPassword(password))){
+            return true;
+        } else{
+            throw new ContrasinalIncorrecto("Contrasinal incorrecto!");
+        }
+        
     }
 
 

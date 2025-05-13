@@ -23,6 +23,7 @@ import utiles.enumerandos.TipoUsuario;
 import utiles.excepcions.BibliotecaTenAdmin;
 import utiles.excepcions.BibliotecasNonExiste;
 import utiles.excepcions.ClienteSancionado;
+import utiles.excepcions.ContrasinalIncorrecto;
 import utiles.excepcions.CorreoInvalido;
 import utiles.excepcions.DNIIncorrecto;
 import utiles.excepcions.DNIRepetido;
@@ -130,7 +131,7 @@ public class XestionBibliotecas implements Serializable{
         return Optional.empty();
     }
 
-    public Optional<Usuario> login(String username, String password) {
+    public Optional<Usuario> login(String username, String password) throws ContrasinalIncorrecto {
         Optional<Usuario> user = this.getUsuario(username);
         if(user.isPresent()) {
             if(user.get().comprobarPassword(password)) return user;
@@ -286,22 +287,25 @@ public class XestionBibliotecas implements Serializable{
     /**
      * Método encargado de ingresar exemplares
      * 
-     * Tal e como está plantexado o código non fai falta engadir unha excepción neste bloque, pero está aberto a futuras remodelacións no caso de cambiar a lóxica do programa
      */
     public void ingresarExemplares(int cantidade, String isbnLibro) {
+        Libro l = libros.get(isbnLibro);
 
         for (int i = 0; i < cantidade; i++) {
-            Exemplar e = new Exemplar();
+            Exemplar e = new Exemplar(l);
+            
             exemplares.put(e.getIdentificador(), e);
 
-            Libro l = libros.get(isbnLibro);
             l.engadirExemplar(e.getIdentificador(), e);
             
             this.gardar();
-        }
-        
+        }   
     }
 
+
+    /**
+     * Método encargado de devolver nunha cadea de texto todos os nomes de usuarios existentes no programa
+     */
     public String imprimirNomesUsuarios(){
         String resposta;
 
@@ -372,12 +376,14 @@ public class XestionBibliotecas implements Serializable{
     public boolean bibliotecaNonTenAdmin(int idB) throws BibliotecaTenAdmin, IndiceInvalido{
 
         if (!(bibliotecas.containsKey(idB))) {
+            this.gardar();
             throw new IndiceInvalido("Índice inválido!");
         }
         
         Biblioteca b = bibliotecas.get(idB);
 
         if (b.isTenAdmin()) {
+            this.gardar();
             throw new BibliotecaTenAdmin("A biblioteca seleccionada xa ten un Administrador!");
         }
         return true;
@@ -411,6 +417,7 @@ public class XestionBibliotecas implements Serializable{
         if (exemplares.containsKey(idE)) {
             return true;
         } else{
+            this.gardar();
             throw new ExemplarNonExiste("O exemplar non existe!");
         }
     }
@@ -424,6 +431,7 @@ public class XestionBibliotecas implements Serializable{
         Exemplar e = exemplares.get(idE);
 
         if (e.getBiblioteca().isPresent()) {
+            this.gardar();
             throw new ExemplarXaAsignado("O exemplar xa está asignado noutra biblioteca!");
         } else{
             return true;
@@ -435,17 +443,23 @@ public class XestionBibliotecas implements Serializable{
     
     /************* MÉTODOS PARA O MENÚ DE ADMINISTRADORES de BIBLIOTECA ***************/
     
-    public String amosarExemplaresLibresDunhaBiblioteca(String nomeAdmin){
+    public String amosarExemplaresLibresDunhaBiblioteca(String nomeAdmin) {
+    AdministradorBiblioteca a = administradoresBiblioteca.get(nomeAdmin);
 
-        AdministradorBiblioteca a = administradoresBiblioteca.get(nomeAdmin);
-
-        Biblioteca b = a.getBiblioteca();
-
-        return b    .getExemplaresLibres()
-                    .stream()
-                    .map(c -> c.toString())
-                    .collect(Collectors.joining("\n"));
+    if (a == null) {
+        return "Erro: O administrador non existe ou non está rexistrado.";
     }
+
+    Biblioteca b = a.getBiblioteca();
+    if (b == null) {
+        return "Erro: O administrador non ten unha biblioteca asignada.";
+    }
+
+    return b.getExemplaresLibres()
+            .stream()
+            .map(c -> c.toString())
+            .collect(Collectors.joining("\n"));
+}
 
     /**
      * Método encargado de comprobar se un cliente ten un préstamo activo
@@ -454,6 +468,7 @@ public class XestionBibliotecas implements Serializable{
         Cliente c = clientes.get(dni);
 
         if (c.tenPrestamoActivo()) {
+            this.gardar();
             throw new PrestamoActivo("Xa ten un préstamo activo");
         } else{
             return true;
@@ -499,6 +514,7 @@ public class XestionBibliotecas implements Serializable{
 
             return resultado;
         }else{
+            this.gardar();
             throw new IndiceInvalido("Índice inválido!");
         }
     }
@@ -507,30 +523,41 @@ public class XestionBibliotecas implements Serializable{
      * Método encargado de ordenaro os exemplares libres dunha biblioteca por Autor
      */
     public String amosarExemplaresLibresOrdenadosAutor(int idB) throws IndiceInvalido {
-    if (bibliotecas.containsKey(idB)) {
+        if (bibliotecas.containsKey(idB)) {
         Biblioteca b = bibliotecas.get(idB);
 
-        String resultado = b.getExemplaresLibres()
+            String resultado = b.getExemplaresLibres()
                             .stream()
                             .sorted(Comparator.comparing(ejemplar -> String.join(", ", ejemplar.getAutoresLibro())))
                             .map(c -> c.toString()) 
                             .collect(Collectors.joining("\n"));
 
-        return resultado;
-    } else {
-        throw new IndiceInvalido("Índice inválido!");
+            return resultado;
+        } else {
+            this.gardar();
+            throw new IndiceInvalido("Índice inválido!");
+        }
+    }
+
+
+    /**
+     * Método encargado de ingresar un libro mediante el .CSV
+     */
+    public void ingresarLibroConCSV(String titulo, String editorial, String isbn, TipoLinguaLibros lingua, int numExemplares, String[] autores) throws ISBNIncorrecto, ExemplarInvalido{
+
+        Libro libro = new Libro(isbn, titulo, lingua, editorial, numExemplares);
+
+        for (String autor : autores) {
+            libro.engadirAutores(autor.trim());
+        }
+
+        libros.put(isbn, libro);
+        this.gardar();
     }
 }
 
-}
 
-/**TODO - 
- * 
- * Crear un método que me relacione el crear un libro de CSV y me añada los autores.
- * 
- * Dicho método tiene que hacer una conversión de Array a ArrayList y llamar al método propio de la clase libro .engadirAutores()
- * 
- */
+
 
 
 

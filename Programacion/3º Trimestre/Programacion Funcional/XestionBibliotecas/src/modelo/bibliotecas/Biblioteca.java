@@ -102,7 +102,7 @@ public class Biblioteca implements Serializable{
      */
     public boolean comprobarIdExistente(int idE) throws ExemplarExistente{
         if (exemplares.containsKey(idE)) {
-            throw new ExemplarExistente("Exempalr existente nesta biblioteca!");
+            throw new ExemplarExistente("Exemplar xa existente!");
         }
         return true;
     }

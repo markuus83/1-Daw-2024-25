@@ -35,7 +35,9 @@ public class MenuCliente extends MenuUsuario {
                     try {
                         
                         if (XestionBibliotecas.getInstance().existenBibliotecas()) {
-                            XestionBibliotecas.getInstance().amosarExemplaresLibresOrdenadosTitulo(idBiblioteca);
+                            
+                            System.out.println(XestionBibliotecas.getInstance().amosarExemplaresLibresOrdenadosTitulo(idBiblioteca));
+                     
                         }
 
                     } catch (IndiceInvalido | BibliotecasNonExiste e) {

@@ -5,6 +5,7 @@ import modelo.usuarios.Usuario;
 import utiles.excepcions.ClienteSancionado;
 import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.PrestamoActivo;
+import utiles.excepcions.UsuarioExistente;
 
 public class MenuAdministradorBiblioteca extends MenuUsuario{
 
@@ -31,11 +32,21 @@ public class MenuAdministradorBiblioteca extends MenuUsuario{
                  * Ver exemplares dun libro
                  */
                 case 1 -> {
-                    String nomeUser = this.getUsuario().getNomeUsuario();
-                    
-                    System.out.println(XestionBibliotecas.getInstance().amosarExemplaresLibresDunhaBiblioteca(nomeUser));
 
+                    try {
+                        String nomeUser = this.getUsuario().getNomeUsuario();
+                    
+                        //TODO - MODIFICADO AKI PARA FUTURA CORRECCIÓN
+                        XestionBibliotecas.getInstance().existeUsuario(nomeUser);
+
+                        System.out.println(XestionBibliotecas.getInstance().amosarExemplaresLibresDunhaBiblioteca(nomeUser));
+
+                    } catch (UsuarioExistente e) {
+                        System.out.println("Erro: "+e.getMessage());
+                    }
+                    
                 }
+
 
                 /**
                  * Realizar préstamo

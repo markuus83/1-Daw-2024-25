@@ -363,8 +363,8 @@ public class XestionBibliotecas implements Serializable{
             } else{
                 this.gardar();
                 throw new ExemplarExistente("Exemplar xa existente!");
-                
             }
+
         } else{
             this.gardar();
             throw new IndiceInvalido("Indice inválido!");
@@ -525,10 +525,10 @@ public class XestionBibliotecas implements Serializable{
 
         return exemplares   .values()
                             .stream()
-                            .filter(exemplares -> patron.matcher(exemplares.getTituloLibro()).matches())
+                            .filter(exemplares -> patron.matcher(exemplares.getAutoresLibro()).matches())
                             .filter(exemplares -> !exemplares.getPrestamo())
                             .filter(exemplares -> exemplares.getBiblioteca().isPresent())
-                            .sorted(Comparator.comparing(exemplar -> exemplar.getTituloLibro()))
+                            .sorted(Comparator.comparing(exemplar -> exemplar.getAutoresLibro()))
                             .map(exemplares -> exemplares.toString())
                             .collect(Collectors.joining("\n"));
     }

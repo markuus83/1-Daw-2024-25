@@ -12,9 +12,11 @@ import utiles.excepcions.BibliotecasNonExiste;
 import utiles.excepcions.ExemplarExistente;
 import utiles.excepcions.ExemplarInvalido;
 import utiles.excepcions.ExemplarNonExiste;
+import utiles.excepcions.ExemplarXaAsignado;
 import utiles.excepcions.ISBNIncorrecto;
 import utiles.excepcions.IndiceInvalido;
 import utiles.excepcions.LibroExistente;
+import utiles.excepcions.UsuarioExistente;
 
 public class MenuAdministradorXeral extends MenuUsuario {
 
@@ -241,12 +243,15 @@ public class MenuAdministradorXeral extends MenuUsuario {
                             int idExemplar = getInt("Ingrese o ID do exemplar: ");
 
                             if (XestionBibliotecas.getInstance().existeExemplar(idExemplar)) {
+
+                                //TODO - MODIFICADO AKI PARA FUTURA CORRECCIÓN
+                                XestionBibliotecas.getInstance().exemplarXaAsignado(idExemplar);
                                 XestionBibliotecas.getInstance().engadirExemplarABiblioteca(idBiblioteca, idExemplar);
                             }
 
                         }
 
-                    } catch (BibliotecasNonExiste | IndiceInvalido | ExemplarExistente | ExemplarNonExiste e) {
+                    } catch (BibliotecasNonExiste | IndiceInvalido | ExemplarXaAsignado | ExemplarExistente | ExemplarNonExiste e) {
                         System.out.println("\nErro: " + e.getMessage());
                         break;
                     }
@@ -262,6 +267,7 @@ public class MenuAdministradorXeral extends MenuUsuario {
                     try {
 
                         XestionBibliotecas.getInstance().existenBibliotecas();
+                        
 
                         int idBiblioteca = getInt("\nIngrese o ID da biblioteca a engadir: ");
 
@@ -270,11 +276,14 @@ public class MenuAdministradorXeral extends MenuUsuario {
                             String nomeUser = getString("Ingrese o nome de usuario: ");
                             String contrasinal = getString("Ingrese o contrasinal: ");
 
+                            //TODO - MODIFICADO AKI PARA FUTURA CORRECCIÓN
+                            XestionBibliotecas.getInstance().existeUsuario(nomeUser);
+
                             XestionBibliotecas.getInstance().ingresarAdministradorBiblioteca(nomeUser, contrasinal,
                                     idBiblioteca);
                         }
 
-                    } catch (BibliotecasNonExiste | BibliotecaTenAdmin | IndiceInvalido e) {
+                    } catch (BibliotecasNonExiste | BibliotecaTenAdmin | UsuarioExistente | IndiceInvalido e) {
                         System.out.println("\nErro: " + e.getMessage());
                         break;
                     }

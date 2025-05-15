@@ -1,4 +1,4 @@
-USE ALMACEN_25C;
+USE a23marcoscc_BD_Almacen_25;
 --- EJERCICIOS VISTAS ---
  
 
@@ -53,58 +53,103 @@ USE ALMACEN_25C;
 		
 			EXPLICACIÓN:
 		
-			IDdepartamento 20 es distinto que departamento con nombre INVESTIGACION
+			***** IDdepartamento 20 es distinto que departamento con nombre INVESTIGACION *****
 		*/
 -- Actualizamos el sueldo de los otros investigadores a 2800
 
+		-- Vemos la vista
+		SELECT * FROM v_datosEmpleado;
 
+		-- Aplicamos los cambios
+		UPDATE v_datosEmpleado
+			SET Salario = 2800
+			WHERE Oficio LIKE 'INVESTIGA'
 
-
--- Insertamos en la vista creada un nuevo Empleado, Pepe D?az, con un sueldo de 1000 en el departamento 10
-
-
-
-
+		-- Observamos los cambios tanto en vista como en la tabla
+		SELECT * FROM v_datosEmpleado;
+		
+		SELECT * 
+		FROM EMPLEADOS
+		WHERE Oficio LIKE 'INVESTIGA';
+	
+	
 
 -- Creamos una nueva Vista que muestra todos los datos de los empleados con los datos de sus departamentos 
 
+		CREATE VIEW v_datosEmpleadosDepartamentos
+		AS 
+			SELECT	e.IDEmpleado, e.Nombre, e.Oficio, e.DIRECTOR, e.FechaAlta, e.Salario, e.Comision, e.IDDepartamento as IDDep, 
+					d.IDDepartamento, d.Localidad, d.Nombre as nombreDepartamento
+			FROM EMPLEADOS e JOIN DEPARTAMENTOS d
+			ON e.IDDepartamento = d.IDDepartamento
 
-
+	   SELECT * FROM v_datosEmpleadosDepartamentos;
+	   
    
 -- Los comerciales no pueden ver los datos de los clientes de los otros Vendedores. 
 -- Crear una vista de clientes para el empleado 'CALVO JUAN'
-
-
+		
+		-- Obtenemos el id del empleado con nombre 'CALVO JUAN'
+		SELECT * FROM EMPLEADOS WHERE Nombre LIKE 'CALVO JUAN' -- ID -> 7844
+	
+		-- Creamos la vista con las especificaciones mandadas
+		CREATE VIEW v_empleadoCalvoJuan
+		AS 
+			SELECT	c.*,
+					e.IDEmpleado, e.Nombre AS nombreEmpleado, e.Oficio, e.Director, e.FechaAlta, e.Salario, e.Comision, e.IDDepartamento
+			FROM CLIENTES c JOIN EMPLEADOS e
+			ON c.IDComercial = e.IDEmpleado
+			WHERE e.IDEmpleado = 7844
+	
+		--Observamos la vista
+		SELECT * FROM v_empleadoCalvoJuan
 
 
 -- Insertar en la vista creada para JUAN CALVO un nuevo cliente, Peco Tecnolog?as de Santiago.
 
+		SELECT * FROM CLIENTES
+		
+		--Ingreamos el cliente en la vista con las especificaciones
+		INSERT INTO v_empleadoCalvoJuan(IDCliente, Nombre, Localidad, IDComercial) VALUES(200, 'Peco Tecnologías', 'Santiago',7844)
 
-
-
--- Crear una vista para los pedidos de los clientes de JUAN CALVO a�adiendo los datos del cliente
-
-
+		--Observamos los cambios
+		SELECT * FROM v_empleadoCalvoJuan
 
 
 
 -- Crear una vista con la informaci?n de los comerciales cuyo director es el 7839 CON CHECK OPTION
 
+		-- Cremamos la vista
+		CREATE VIEW v_informacionComerciales
+		 AS 
+			SELECT * 
+			FROM EMPLEADOS e
+			WHERE e.Director = 7839
+			WITH CHECK OPTION
 
+		-- Observamos la vista
+		SELECT * FROM v_informacionComerciales
 
+-- Actualizar la comision de JUAN CALVO a 0.22.
 
--- Actualizar la comision de JUAN CALVOa 0.22.
+		UPDATE EMPLEADOS
+		SET Comision = 0.22
+		WHERE Nombre LIKE 'CALVO JUAN'
 
-
-
+		SELECT * FROM EMPLEADOS
+		SELECT * FROM v_datosEmpleado
+		SELECT * FROM v_datosEmpleadosDepartamentos
+		SELECT * FROM v_empleadoCalvoJuan
+		SELECT * FROM v_informacionComerciales
+		
 
 -- Insertar un pedido de 2 mesas de despacho y 2 sillas bufalo para el nuevo cliente de juan 
 
 
 
-
+		
 
 
 /*
-ACUERDATE DE BORRAR TODAS LAS VISTAS CREADAS PREVIAMENTE
+	ACUERDATE DE BORRAR TODAS LAS VISTAS CREADAS PREVIAMENTE
 */

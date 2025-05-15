@@ -7,6 +7,7 @@ import java.util.Comparator;
 //Imports estructuras de datos
 import java.util.HashMap;
 import java.util.Optional;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import io.XestionBibliotecasIO;
@@ -500,43 +501,36 @@ public class XestionBibliotecas implements Serializable{
     /**
      * Método encargado de amosar os exemplares libres dunha biblioteca ordenados por titulo
      */
-    public String amosarExemplaresLibresOrdenadosTitulo(int idB) throws IndiceInvalido{
-        
-        if (bibliotecas.containsKey(idB)) {
-            Biblioteca b = bibliotecas.get(idB);
+    public String amosarExemplaresLibresOrdenadosTitulo(String titulo){
 
-            String resultado = b    .getExemplaresLibres()
-                                    .stream()
-                                    .map(c -> c.getTituloLibro())
-                                    .sorted((c1,c2) -> c1.compareTo(c2))
-                                    .collect(Collectors.joining("\n"));
-            
+        Pattern patron = Pattern.compile(".*"+titulo+".*");
 
-            return resultado;
-        }else{
-            this.gardar();
-            throw new IndiceInvalido("Índice inválido!");
-        }
+        return exemplares   .values()
+                            .stream()
+                            .filter(exemplares -> patron.matcher(exemplares.getTituloLibro()).matches())
+                            .filter(exemplares -> !exemplares.getPrestamo())
+                            .filter(exemplares -> exemplares.getBiblioteca().isPresent())
+                            .sorted(Comparator.comparing(exemplar -> exemplar.getTituloLibro()))
+                            .map(exemplares -> exemplares.toString())
+                            .collect(Collectors.joining("\n"));
     }
+
 
     /**
      * Método encargado de ordenaro os exemplares libres dunha biblioteca por Autor
      */
-    public String amosarExemplaresLibresOrdenadosAutor(int idB) throws IndiceInvalido {
-        if (bibliotecas.containsKey(idB)) {
-        Biblioteca b = bibliotecas.get(idB);
+    public String amosarExemplaresLibresOrdenadosAutor(String autor){
+        
+        Pattern patron = Pattern.compile(".*"+autor+".*");
 
-            String resultado = b.getExemplaresLibres()
+        return exemplares   .values()
                             .stream()
-                            .sorted(Comparator.comparing(ejemplar -> String.join(", ", ejemplar.getAutoresLibro())))
-                            .map(c -> c.toString()) 
+                            .filter(exemplares -> patron.matcher(exemplares.getTituloLibro()).matches())
+                            .filter(exemplares -> !exemplares.getPrestamo())
+                            .filter(exemplares -> exemplares.getBiblioteca().isPresent())
+                            .sorted(Comparator.comparing(exemplar -> exemplar.getTituloLibro()))
+                            .map(exemplares -> exemplares.toString())
                             .collect(Collectors.joining("\n"));
-
-            return resultado;
-        } else {
-            this.gardar();
-            throw new IndiceInvalido("Índice inválido!");
-        }
     }
 
 

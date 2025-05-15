@@ -2,8 +2,6 @@ package vista;
 
 import controlador.XestionBibliotecas;
 import modelo.usuarios.Usuario;
-import utiles.excepcions.BibliotecasNonExiste;
-import utiles.excepcions.IndiceInvalido;
 
 public class MenuCliente extends MenuUsuario {
 
@@ -19,8 +17,9 @@ public class MenuCliente extends MenuUsuario {
             System.out.println("\n-----------------------");
             System.out.println("\nBenvido ao menu de Clientes: "+this.getUsuario().getNomeUsuario());
             System.out.println("\t1. Buscar Libro por título: ");
-            System.out.println("\t2. Consultar data límite de devolución: ");
-            System.out.println("\t3. Saír: ");
+            System.out.println("\t2. Buscar Libro por autor: ");
+            System.out.println("\t3. Consultar data límite de devolución: ");
+            System.out.println("\t4. Saír: ");
 
             int option = getInt("> ");
 
@@ -30,28 +29,25 @@ public class MenuCliente extends MenuUsuario {
                  * Buscar libro por título
                  */
                 case 1 -> {
-                    int idBiblioteca = getInt("Ingrese o ID da biblioteca a buscar libros: ");
+                    String libro = getString("Ingrese o título do libro: ");
                     
-                    try {
-                        
-                        if (XestionBibliotecas.getInstance().existenBibliotecas()) {
-                            
-                            System.out.println(XestionBibliotecas.getInstance().amosarExemplaresLibresOrdenadosTitulo(idBiblioteca));
-                     
-                        }
+                    System.out.println(XestionBibliotecas.getInstance().amosarExemplaresLibresOrdenadosTitulo(libro));
+                }
 
-                    } catch (IndiceInvalido | BibliotecasNonExiste e) {
-                        System.out.println("Erro: "+e.getMessage());
-                        break;
-                    }
-                        
+                /**
+                 * Buscar libro por autor
+                 */
+                case 2 -> {
+                    String autor = getString("Ingrese o autor do libro: ");
+                    
+                    System.out.println(XestionBibliotecas.getInstance().amosarExemplaresLibresOrdenadosAutor(autor));
                 }
 
 
                 /**
                  * Consultar data de devolución;
                  */
-                case 2 -> {
+                case 3 -> {
 
                     break;
                 }
@@ -59,7 +55,7 @@ public class MenuCliente extends MenuUsuario {
                 /**
                  * Saír
                  */
-                case 3 -> {
+                case 4 -> {
                     System.out.println("Saíndo...");
                     menuActivo = false;
                     break;

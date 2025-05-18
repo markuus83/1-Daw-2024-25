@@ -225,3 +225,26 @@ USE a23marcos_BD_Almacen;
 -- 10- Recorrer la tabla empleados y mostrar por pantalla su nombre y el nombre de los clientes que tienen asignados.
 
 	
+
+
+	DECLARE @total INT = 0, 
+			@id INT = 0,
+			@nombre varchar(50);
+
+	SET @total = (	SELECT count(IDProducto) 
+					FROM PRODUCTOS 
+					WHERE Stock <=30);
+
+	PRINT 'Hay '+ cast(@total as VARCHAR(3)) + ' productos con stock bajo'
+
+	WHILE (@total > 0)
+		BEGIN
+			SELECT TOP(1) @id=IdProducto, @nombre= Descripcion 
+			FROM PRODUCTOS 
+			WHERE Stock <=30 AND IDProducto > @id 
+			ORDER BY IDProducto;
+
+			PRINT CAST(@total as VARCHAR(4)) + ' El producto  '+ @nombre  + ' - '+ CAST(@id as VARCHAR(4)) + ' tiene poco stock';
+
+			SET @total = @total - 1
+		END

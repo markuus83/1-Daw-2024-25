@@ -1,5 +1,7 @@
 /*********************** EJERCICIOS FUNCIONES *********************************/
 use a23marcoscc_BD_Almacen_Procedimientos;
+
+
 /* 1- Crear una función que dada una fecha devuelva el nombre del mes en gallego
 
 SET @mesNome = 

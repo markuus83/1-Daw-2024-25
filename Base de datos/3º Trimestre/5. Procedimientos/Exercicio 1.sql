@@ -53,7 +53,7 @@ EXEC ObtenerEmpleadosPorDepartamento @IDDepartamento = 10;
 
 -- Ejemplo de uso
 DECLARE @ID INT, @Director NVARCHAR(100)
-EXEC ObtenerInfoDepartamentoPorNombre 'Ventas', @ID OUTPUT, @Director OUTPUT
+EXEC ObtenerInfoDepartamentoPoNombrer 'Ventas', @ID OUTPUT, @Director OUTPUT
 SELECT @ID AS IDDepartamento, @Director AS Director
 
 

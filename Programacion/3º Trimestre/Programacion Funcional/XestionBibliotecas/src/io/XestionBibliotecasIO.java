@@ -1,13 +1,12 @@
 package io;
 
+import controlador.XestionBibliotecas;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Optional;
-
-import controlador.XestionBibliotecas;
 
 public class XestionBibliotecasIO {
     
@@ -47,7 +46,7 @@ public class XestionBibliotecasIO {
 
             return Optional.of(xestion);
 
-        } catch (Exception e) {
+        } catch (IOException | ClassNotFoundException e) {
             return Optional.empty();
         }
     }

@@ -6,10 +6,10 @@ public class Ejercicio3 {
         
         Scanner scanner = new Scanner(System.in);
 
-        System.out.println("Ingrese o número de filas: ");
+        System.out.print("Ingrese o número de filas: ");
         int filas = scanner.nextInt();
         
-        System.out.println("Ingrese o número de columnas: ");
+        System.out.print("Ingrese o número de columnas: ");
         int columnas = scanner.nextInt();        
 
 
@@ -31,7 +31,7 @@ public class Ejercicio3 {
         System.out.println("\nMatriz: ");
         for (int f = 0; f < filas; f++) {
             for (int c = 0; c < columnas; c++) {
-                System.out.print("\t"+matriz[f][c]);
+                System.out.print("  "+matriz[f][c]);
             }
             System.out.println(); // Salto de liña entre fila e fila
         }
@@ -44,18 +44,18 @@ public class Ejercicio3 {
             for (int c = 0; c < columnas; c++) {
                 sumaFila += matriz[f][c];
             }
-            System.out.println("A suma da fila "+f+": "+sumaFila);
+            System.out.println("\tA suma da fila "+f+": "+sumaFila);
             
         }
 
         // Calulamos e imprimimos a suma de cada fila
         System.out.println("\nSuma de cada columna:");
-        for (int f = 0; f < columnas; f++) {
+        for (int c = 0; c < columnas; c++) {
             int sumaFila = 0;
-            for (int c = 0; c < filas; c++) {
+            for (int f = 0; f < filas; f++) {
                 sumaFila += matriz[f][c];
             }
-            System.out.println("A suma da columna "+f+": "+sumaFila);
+            System.out.println("\tA suma da columna "+c+": "+sumaFila);
             
         }
 

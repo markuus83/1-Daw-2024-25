@@ -89,6 +89,7 @@ public class Exer4 {
                     break;
                     
                 } else {
+                    
                     float suma = 0;
 
                     // Calculamos a suma das notas do alumno

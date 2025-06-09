@@ -106,7 +106,7 @@ public class TresEnRaia {
                 System.out.println("Erro: Movemento inválido.");
                 continue;
             }
-            taboleiro[fila][columna] = taboleiro;
+            //taboleiro[fila][columna] = taboleiro;
 
 
 

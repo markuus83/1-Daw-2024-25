@@ -76,8 +76,8 @@ public class Exercicio2 {
             }
         };
 
-        for (int i = 0; i < matrices.length; i++) {
-            boolean identidade = eMatrizIdentidade(matrices[i]);
+        for (int[][] matrice : matrices) {
+            boolean identidade = eMatrizIdentidade(matrice);
             System.out.println("A matriz" + (identidade ? " é " : " non é ") + "unha matriz identidade.");
         }
 
@@ -91,7 +91,7 @@ public class Exercicio2 {
      */
     public static Optional<Integer> productoEscalar(int[] vector1, int[] vector2){
 
-        if (vector1.length != vector2.length || vector1 == null || vector2 == null) {
+        if (vector1.length != vector2.length) {
             return Optional.empty();
         }
 
@@ -124,6 +124,8 @@ public class Exercicio2 {
 
         int filas = matriz.length;
         int columnas = matriz[0].length;
+
+        return true;
 
     }
 }

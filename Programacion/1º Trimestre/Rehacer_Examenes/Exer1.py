@@ -5,7 +5,8 @@
 # -*- coding: utf-8 -*-
 
 """ 
-Un radar de tramo consta de dous radares fixos separador por unha cerda distancia. Se un vehículo percorre"""
+Un radar de tramo consta de dous radares fixos separador por unha cerda distancia. Se un vehículo percorre
+"""
 
 __autor__ = "Marcos Chouza Cruces"
 

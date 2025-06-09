@@ -65,6 +65,7 @@ Unha vez metidos dentro do ficheiro, teremos de escribir as seguintes liñas de 
         fixed-address 'dirección IP dentro do rango da nosa subrede'
     }
 ```
+<<<<<<< HEAD
 ## 4. SSH
 ```Shell
             $ scp -P 2345 -p ladmin@127.0.0.1:/home/ladmin/Proba2.txt .
@@ -81,3 +82,5 @@ scp → software a utilizar
 
 “.” → Destino na máuina real onde se vai copiar. O punto significa que se vai copiar no directorio no se que se executa o comando.
 ```
+=======
+>>>>>>> bfc772d9c2759a831e74e385350e7a2d52e0dd37

@@ -106,26 +106,73 @@ public class Exercicio2 {
 
 
     /**
-     * Método encargado de devolver a distancia entre dous puntos pero tan só se os puntos teén 2 elementos. En caso contrario devolve o obxecto Optional baleiro.
+     * Método encargado de devolver a distancia entre dous puntos pero tan só se os puntos teñen 2 elementos. En caso contrario devolve o obxecto Optional baleiro.
      * 
-     * Para cada vector, o primeiro elemento correspóndese coa cooordenada X e o segundo coa coordenada Y.
+     * Para cada vector, o primeiro elemento correspóndese coa coordenada X e o segundo coa coordenada Y.
      */
     public static Optional<Double> distanciaEntreDousPuntos(double[] vector1, double[] vector2){
-        return Optional.empty();
+
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+        //RECALCULAR LA DISTANCIA ENTRE DOS PUNTOS
+
+        int distancia1 = vector1.length;
+        int distancia2 = vector2.length;
+
+        if (distancia1 != 2 || distancia1 != distancia2  ) {
+            return Optional.empty();
+        }
+
+        double suma1 = vector1[0]+vector1[1];
+        double suma2 = vector2[0]+vector2[1];
+        
+        return Optional.of(Math.pow(suma1, suma1)+Math.pow(suma2, suma2));
     }
 
+    
 
     /**
      * Método encargado de comprobar que unha matriz é identidade.
      * 
-     * Unha matriz identidade é aquela que ñe cadrada (mesmo número de filas que de columnas) e que todos os elementos da diagonal principal son 1 e o resto 0.
+     * Unha matriz identidade é aquela que é cadrada (mesmo número de filas que de columnas) e que todos os elementos da diagonal principal son 1 e o resto 0.
      */
     public static boolean eMatrizIdentidade(int[][] matriz){
 
         int filas = matriz.length;
         int columnas = matriz[0].length;
 
+<<<<<<< HEAD
+=======
+        // Se non é cuadrática 
+        if(filas != columnas){
+            return false;
+        }
+            
+    
+        for (int i = 0; i < filas; i++) {
+            for (int j = 0; j < columnas; j++) {
+
+                // Se coincide a diagonal e o valor na matriz é distinto de 1 -> False
+                if (i == j && matriz[i][j]!=1) {
+                    return false;
+                }
+
+                // O resto da matriz (o que non é diagonal) e o valor na matriz é distinto de 0 -> False
+                if (i!=j && matriz[i][j]!=0) {
+                    return false;
+                }
+            }    
+        }
+>>>>>>> bfc772d9c2759a831e74e385350e7a2d52e0dd37
         return true;
 
     }
 }
+

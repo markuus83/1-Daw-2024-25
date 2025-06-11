@@ -1,3 +1,10 @@
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Scanner;
+
 /**
  * Crea un programa en Java para xestionar as horas traballadas polos empregados. Deberás crear un HashMap onde a clave é o DNI dos empregados e o valor é unha ArrayList para almacenar as fixaches(tanto de entrada coma de saída) de dito empregado. O programa contará co seguinte menú.
  * 
@@ -17,7 +24,64 @@
  */
 
 public class Ejercicio6 {
+
     public static void main(String[] args) {
-        
+
+        Scanner scanner = new Scanner(System.in);
+
+        boolean menuActivo = true;
+        while (menuActivo) {
+            
+            System.out.println("\n----------------------");
+            System.out.println("BENVIDO A XESTIÓN DE HORAS");
+            System.out.println("\ta) Fichar entrada/saída: ");
+            System.out.println("\tb) Comprobar salario: ");
+            System.out.println("\tc) Saír");
+
+            System.out.print("> ");
+            String option = scanner.nextLine();
+
+            switch (option) {
+
+                
+                /**
+                 * ENGADIR CITA
+                 */
+                case "a" -> {
+
+
+
+                }
+
+
+
+                /**
+                 * ELIMINAR CITA
+                 */
+                case "b" -> {
+                    
+                    
+                }
+
+
+
+                /**
+                 * SAÍR
+                 */
+                case "c" -> {
+                    System.out.println("Saíndo...");
+                    menuActivo = false;
+                }
+
+
+
+                /**
+                 * ERRO
+                 */
+                default -> {
+                    System.out.println("Erro. Opción inválida!");
+                }
+            }
+        }
     }
 }
